@@ -14,6 +14,9 @@ app.use(express.json())
 //init db
 connectDB();
 
+// init router
+app.use('', require('./routes'))
+
 //handling error
 app.use((req, res, next) => {
     const error = new Error('Not Found')

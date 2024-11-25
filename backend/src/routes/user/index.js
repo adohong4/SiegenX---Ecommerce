@@ -1,0 +1,13 @@
+'use strict'
+
+const express = require('express')
+const UserController = require('../../controllers/user.controller')
+const { asyncHandler } = require('../../middleware/checkAuth')
+const router = express.Router()
+
+//signUp
+router.post('/user/signup', asyncHandler(UserController.signUp))
+
+//authentication
+
+module.exports = router
