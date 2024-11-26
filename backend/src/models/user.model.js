@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+const DOCUMENT_NAME = 'Users'
+
 const AddressSchema = new Schema({
     fullname: { type: String, required: true },
     phone: { type: String, required: true },
@@ -21,6 +23,6 @@ const UserSchema = new Schema({
     cartData: { type: Object, default: {} }
 }, { minimize: false, timestamps: true })
 
-const userModel = mongoose.models.user || mongoose.model("users", UserSchema)
+const userModel = mongoose.models.user || mongoose.model(DOCUMENT_NAME, UserSchema)
 
 module.exports = userModel;

@@ -49,20 +49,16 @@ class UserService {
 
             if (newUser) {
                 return {
-                    code: 201,
                     metadata: {
                         user: getInfoData({ fileds: ['_id', 'username', 'email'], object: newUser }),
                     }
                 }
             }
-            return {
-                code: 200,
-                metadata: null
-            }
+            return null;
 
         } catch (error) {
-            console.log(error);
-            throw new BadRequestError('Error')
+            // console.log(error);
+            throw error;
         }
     }
 }

@@ -13,15 +13,16 @@ class UserController {
     }
 
     signUp = async (req, res, next) => {
-        // return res.status(201).json({
-        //     message: '',
-        //     metadata:
-        // })
         try {
-            new CREATED({
-                message: 'Registered OK',
-                metadata: await UserService.signUp(req.body)
-            }).send(res);
+            const result = await UserService.signUp(req.body);
+            if (result) {
+                new CREATED({
+                    message: 'Registered OK',
+                    metadata: result.metadata
+                }).send(res);
+            } else {
+                res.status(400).json({ message: 'Registration failed' });
+            }
         } catch (error) {
             next(error);
         }
