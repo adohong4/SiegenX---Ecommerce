@@ -1,9 +1,8 @@
 'use strict'
 
 const mongoose = require('mongoose');
-const specificationSchema = require('./specification.model');
-const imageSchema = require('./images.model');
-
+const { ImageSchema } = require('./images.model');
+const { SpecificationSchema } = require('./specification.model');
 const Schema = mongoose.Schema;
 
 const DOCUMENT_NAME = 'Products'
@@ -13,10 +12,10 @@ const ProductSchema = new Schema({
     nameProduct: { type: String, required: true },
     product_slug: { type: String, required: true },
     price: { type: Number, required: true },
-    // images: [imageSchema],
+    images: [ImageSchema], // Nhúng trực tiếp schema `ImageSchema`
     recap: { type: String, required: true },
     description: { type: String, required: true },
-    // specification: [specificationSchema],
+    specification: [SpecificationSchema], // Nhúng trực tiếp schema `SpecificationSchema`
     category: { type: String, required: true },
     quantity: { type: Number, required: true }
 }, { minimize: false, timestamps: true });
