@@ -13,10 +13,10 @@ const ProductSchema = new Schema({
     nameProduct: { type: String, required: true },
     product_slug: { type: String, required: true },
     price: { type: Number, required: true },
-    images: [imageSchema],
+    // images: [imageSchema],
     recap: { type: String, required: true },
     description: { type: String, required: true },
-    specification: [specificationSchema],
+    // specification: [specificationSchema],
     category: { type: String, required: true },
     quantity: { type: Number, required: true }
 }, { minimize: false, timestamps: true });
