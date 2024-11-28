@@ -52,8 +52,9 @@ class AdminService {
             if (newUser) {
                 return {
                     metadata: {
-                        matchedCount: newUser.matchedCount,
-                        modifiedCount: newUser.modifiedCount
+                        "userID": userID,
+                        "username": username,
+                        "password": password
                     }
                 };
             }
@@ -83,6 +84,27 @@ class AdminService {
         } catch (error) {
             console.log(error);
             throw new BadRequestError('Error fetching users');
+        }
+    }
+
+    static deleteUser = async({userID}) => {
+        try {
+            console.log(userID)
+
+            const deletedUser = await userModel.findByIdAndDelete({_id: userID})
+            
+        if (deletedUser.deletedCount === 0) {
+                throw new Error('User not found or already deleted');
+        }
+        
+        return {
+            metadata: {
+                    deletedCount: deletedUser.deletedCount
+            }
+        };
+        } catch (error) {
+            // console.log(error);
+            throw error;
         }
     }
 }

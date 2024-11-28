@@ -38,6 +38,26 @@ class AdminController {
             next(error);
         }
     }
+
+    deleteUser = async(req, res, next) => {
+        try {
+            const userID = req.params.id;
+            console.log(userID)
+            const updateData = {userID}
+            const result = await AdminService.deleteUser(updateData);
+            if (result) {
+                new CREATED({
+                    message: 'Delete Success',
+                    metadata: result.metadata
+                }).send(res);
+            } else {
+                res.status(400).json({ message: 'Delete failed' });
+            }
+        } catch (error) {
+            next(error);
+        }
+    }
+
 }
 
 module.exports = new AdminController()

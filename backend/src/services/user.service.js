@@ -142,9 +142,6 @@ class UserService {
             throw new BadRequestError('Error fetching users');
         }
     }
-    
-    
-    
 
 }
 
