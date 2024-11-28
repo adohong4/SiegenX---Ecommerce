@@ -5,4 +5,5 @@ const router = express.Router()
 
 router.use('/v1/api', require('./user'))
 
-module.exports = router
+
+module.exports = router;
