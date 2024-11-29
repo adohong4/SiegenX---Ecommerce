@@ -22,19 +22,26 @@ class ProductController {
         }
     }
 
-    // Phương thức upload ảnh sản phẩm
     static async uploadProductImage(req, res, next) {
         try {
-            if (!req.file) {
-                return res.status(400).json({ error: 'Không có file được tải lên!' });
+            // Kiểm tra nếu không có ảnh nào được tải lên
+            if (!req.files || req.files.length === 0) {
+                return res.status(400).json({ error: 'Không có file nào được tải lên!' });
             }
 
-            const imagePath = `/uploads/${req.file.filename}`; // Đường dẫn ảnh
+            // Tạo mảng các đường dẫn ảnh
+            const imagePaths = req.files.map(file => `/uploads/${file.filename}`); // Đường dẫn ảnh
 
             // Tùy thuộc vào yêu cầu, bạn có thể lưu thông tin này vào database
-            res.status(200).json({ message: 'Ảnh được tải lên thành công!', path: imagePath });
+            // Nếu cần, bạn có thể lưu mảng imagePaths vào một sản phẩm, ví dụ:
+            // const newProduct = new Product({ images: imagePaths, ... });
+
+            res.status(200).json({
+                message: 'Ảnh đã được tải lên thành công!',
+                paths: imagePaths,  // Trả về mảng đường dẫn ảnh đã tải lên
+            });
         } catch (error) {
-            next(error); // Chuyển lỗi tới middleware xử lý lỗi
+            next(error); // Chuyển lỗi cho middleware xử lý lỗi
         }
     }
 }
