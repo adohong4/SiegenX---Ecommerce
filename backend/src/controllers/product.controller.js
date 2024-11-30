@@ -2,18 +2,18 @@
 
 const ShopService = require('../services/shop.service');
 const ProductService = require('../services/products.service');
-const { CREATED } = require('../core/success.response');
+const { CREATE,SuccessResponse  } = require('../core/success.response');
 
 // Đưa phương thức upload vào ProductController
-class ProductController {
+class  ProductController {
     // Phương thức thêm sản phẩm
-    addProduct = async (req, res, next) => {
+    static addProduct = async (req, res, next) => {
         try {
             const productData = req.body;  // Lấy dữ liệu từ request body
             const result = await ProductService.createProduct(productData);  // Gọi phương thức tạo sản phẩm từ ProductService
 
             // Trả về kết quả thành công
-            new CREATED({
+            new CREATE({
                 message: 'Product created successfully',
                 metadata: result.metadata.product
             }).send(res);
@@ -22,7 +22,7 @@ class ProductController {
         }
     }
 
-    uploadProductImage = async (req, res, next) => {
+    static uploadProductImage = async (req, res, next) => {
         try {
             // Kiểm tra nếu không có ảnh nào được tải lên
             if (!req.files || req.files.length === 0) {
@@ -46,7 +46,7 @@ class ProductController {
     }
 
 
-    getAllProducts = async (req, res, next) => {
+    static getAllProducts = async (req, res, next) => {
         try {
             const result = await ShopService.getAllProducts();
             new SuccessResponse({
@@ -58,7 +58,7 @@ class ProductController {
     };
 
     // Lấy sản phẩm theo ID
-    getProductById = async (req, res, next) => {
+    static getProductById = async (req, res, next) => {
         try {
             const result = await ShopService.getProductById(req.params.id);
             new SuccessResponse({
@@ -69,7 +69,7 @@ class ProductController {
         }
     };
 
-    getProductBySlug = async (req, res, next) => {
+    static getProductBySlug = async (req, res, next) => {
         try {
             const { slug } = req.params;
             const result = await ShopService.getProductBySlug(slug);
@@ -83,7 +83,7 @@ class ProductController {
     };
 
     // Cập nhật sản phẩm
-    updateProduct = async (req, res, next) => {
+    static updateProduct = async (req, res, next) => {
         try {
             const result = await ShopService.updateProduct(req.params.id, req.body);
             new SuccessResponse({

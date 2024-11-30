@@ -5,7 +5,7 @@ const ProductController = require('../../controllers/product.controller');
 const { asyncHandler } = require('../../helpers/asyncHandler');
 const router = express.Router();
 
-router.get('/products', asyncHandler(ProductController.getAllProducts));
+router.get('/products', ProductController.getAllProducts);
 
 router.get('/product/:id', asyncHandler(ProductController.getProductById));
 
