@@ -24,7 +24,6 @@ class UserService {
             }
 
             const token = createToken(user._id);
-            res.json({ success: true, token })
 
         } catch (error) {
             console.log(error);
@@ -59,8 +58,7 @@ class UserService {
                 email: email,
                 password: hashedPassword
             })
-            const token = createToken(user._id)
-            res.json({ success: true, token });
+            const token = createToken(newUser._id)
 
             if (newUser) {
                 return {

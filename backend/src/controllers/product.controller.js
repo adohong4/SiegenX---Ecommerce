@@ -3,12 +3,11 @@
 const ShopService = require('../services/shop.service');
 const ProductService = require('../services/products.service');
 const { CREATED } = require('../core/success.response');
-const productModel = require('../models/product.model');
 
 // Đưa phương thức upload vào ProductController
 class ProductController {
     // Phương thức thêm sản phẩm
-    static async addProduct(req, res, next) {
+    addProduct = async (req, res, next) => {
         try {
             const productData = req.body;  // Lấy dữ liệu từ request body
             const result = await ProductService.createProduct(productData);  // Gọi phương thức tạo sản phẩm từ ProductService
@@ -23,7 +22,7 @@ class ProductController {
         }
     }
 
-    static async uploadProductImage(req, res, next) {
+    uploadProductImage = async (req, res, next) => {
         try {
             // Kiểm tra nếu không có ảnh nào được tải lên
             if (!req.files || req.files.length === 0) {
