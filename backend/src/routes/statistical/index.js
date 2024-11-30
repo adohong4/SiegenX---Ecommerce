@@ -9,4 +9,7 @@ router.get('/countProducts', asyncHandler(StatisticalController.getQuantityProdu
 
 router.get('/countUsers', asyncHandler(StatisticalController.getQuantityUsers));
 
+router.get('/getTotalRevenue', asyncHandler(StatisticalController.getTotalRevenue));
+
+
 module.exports = router;

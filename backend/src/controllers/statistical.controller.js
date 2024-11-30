@@ -31,5 +31,17 @@ class StatisticalController {
         }
 
     }
+
+    getTotalRevenue = async (req, res, next) => {
+        try {
+            const result = await StatisticalService.getTotalRevenue();
+            new SuccessResponse({
+                message: "Get total revenue successfully",
+                metadata: result,
+            }).send(res);
+        } catch (error) {
+            next(error);
+        }
+    };
 }
 module.exports = new StatisticalController();
