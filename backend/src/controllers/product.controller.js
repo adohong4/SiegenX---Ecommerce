@@ -1,6 +1,6 @@
 'use strict';
 
-<<<<<<< HEAD
+const ShopService = require('../services/shop.service');
 const ProductService = require('../services/products.service');
 const { CREATED } = require('../core/success.response');
 const productModel = require('../models/product.model');
@@ -45,14 +45,8 @@ class ProductController {
             next(error); // Chuyển lỗi cho middleware xử lý lỗi
         }
     }
-}
 
-module.exports = ProductController;
-=======
-const ShopService = require('../services/shop.service');
-const { OK, CREATED, SuccessResponse } = require('../core/success.response');
 
-class ProductController {
     getAllProducts = async (req, res, next) => {
         try {
             const result = await ShopService.getAllProducts();
@@ -101,9 +95,6 @@ class ProductController {
             next(error);
         }
     };
-
-
 }
 
-module.exports = new ProductController();
->>>>>>> a94802c3ec91183bdcfc15604fdf04ee4bbde737
+module.exports = ProductController;
