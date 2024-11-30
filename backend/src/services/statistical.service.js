@@ -2,7 +2,7 @@
 
 const productModel = require('../models/product.model');
 const userModel = require('../models/user.model');
-const orderModel = require('../models/order.model'); // Import thêm model order
+const orderModel = require('../models/order.model'); 
 const { BadRequestError, NotFoundError } = require('../core/error.response');
 
 class StatisticalService {
