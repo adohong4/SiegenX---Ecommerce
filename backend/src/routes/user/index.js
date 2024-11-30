@@ -9,6 +9,10 @@ const router = express.Router()
 router.post('/user/signup', asyncHandler(UserController.signUp))
 router.post('/user/login', asyncHandler(UserController.login))
 
+
+// router.put('/user/changeInfo/:id', asyncHandler(UserController.changeInfo))
+router.get('/user/getAllUsers', asyncHandler(UserController.getAllUsers))
+
 //authentication
 
 module.exports = router
