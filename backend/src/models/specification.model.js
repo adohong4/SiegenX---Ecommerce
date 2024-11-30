@@ -17,9 +17,9 @@ const SpecificationSchema = new Schema({
     displaySize: { type: String, required: true },
     pixelDensity: { type: String, required: true },
     display: { type: String, required: true },
-    refreshRate: { type: String, required: true }
+    refreshRate: { type: String, required: true },
 }, { minimize: false, timestamps: true });
 
-const specificationModel = mongoose.models.specification || mongoose.model(DOCUMENT_NAME, SpecificationSchema);
+const specificationModel = mongoose.models.Specifications || mongoose.model('Specifications', SpecificationSchema);
 
-module.exports = specificationModel;
+module.exports = { specificationModel, SpecificationSchema }; // Export cả model và schema
