@@ -2,25 +2,25 @@
 
 const ShopService = require('../services/shop.service');
 const ProductService = require('../services/products.service');
-const { CREATED } = require('../core/success.response');
+const { CREATED, SuccessResponse } = require('../core/success.response');
+const { specificationModel } = require('../models/specification.model');
 
-// Đưa phương thức upload vào ProductController
 class ProductController {
     // Phương thức thêm sản phẩm
     addProduct = async (req, res, next) => {
         try {
-            const productData = req.body;  // Lấy dữ liệu từ request body
-            const result = await ProductService.createProduct(productData);  // Gọi phương thức tạo sản phẩm từ ProductService
+            const productData = req.body; // Lấy dữ liệu từ request body
+            const result = await ProductService.createProduct(productData); // Gọi phương thức tạo sản phẩm từ ProductService
 
             // Trả về kết quả thành công
             new CREATED({
                 message: 'Product created successfully',
-                metadata: result.metadata.product
+                metadata: result.metadata.product,
             }).send(res);
         } catch (error) {
-            next(error);  // Chuyển lỗi tới middleware xử lý lỗi
+            next(error); // Chuyển lỗi tới middleware xử lý lỗi
         }
-    }
+    };
 
     uploadProductImage = async (req, res, next) => {
         try {
@@ -33,24 +33,20 @@ class ProductController {
             const imagePaths = req.files.map(file => `/uploads/${file.filename}`); // Đường dẫn ảnh
 
             // Tùy thuộc vào yêu cầu, bạn có thể lưu thông tin này vào database
-            // Nếu cần, bạn có thể lưu mảng imagePaths vào một sản phẩm, ví dụ:
-            // const newProduct = new Product({ images: imagePaths, ... });
-
             res.status(200).json({
                 message: 'Ảnh đã được tải lên thành công!',
-                paths: imagePaths,  // Trả về mảng đường dẫn ảnh đã tải lên
+                paths: imagePaths, // Trả về mảng đường dẫn ảnh đã tải lên
             });
         } catch (error) {
             next(error); // Chuyển lỗi cho middleware xử lý lỗi
         }
-    }
-
+    };
 
     getAllProducts = async (req, res, next) => {
         try {
             const result = await ShopService.getAllProducts();
             new SuccessResponse({
-                metadata: result.metadata
+                metadata: result.metadata,
             }).send(res);
         } catch (error) {
             next(error);
@@ -62,7 +58,7 @@ class ProductController {
         try {
             const result = await ShopService.getProductById(req.params.id);
             new SuccessResponse({
-                metadata: result.metadata
+                metadata: result.metadata,
             }).send(res);
         } catch (error) {
             next(error);
@@ -75,7 +71,7 @@ class ProductController {
             const result = await ShopService.getProductBySlug(slug);
             new SuccessResponse({
                 message: 'Product fetched successfully by slug',
-                metadata: result.metadata
+                metadata: result.metadata,
             }).send(res);
         } catch (error) {
             next(error);
@@ -88,8 +84,34 @@ class ProductController {
             const result = await ShopService.updateProduct(req.params.id, req.body);
             new SuccessResponse({
                 message: 'Product updated successfully',
-                metadata: result.metadata
+                metadata: result.metadata,
             }).send(res);
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    createSpecification = async (req, res, next) => {
+        try {
+            const specification = new specificationModel(req.body);
+            const savedSpecification = await specification.save();
+            res.status(201).json({
+                message: 'Specification created successfully',
+                data: savedSpecification,
+            });
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    // Phương thức lấy danh sách thông số sản phẩm
+    getSpecifications = async (req, res, next) => {
+        try {
+            const specifications = await specificationModel.find();
+            res.status(200).json({
+                message: 'Specifications fetched successfully',
+                data: specifications,
+            });
         } catch (error) {
             next(error);
         }
