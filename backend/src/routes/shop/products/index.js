@@ -10,7 +10,11 @@ const productController = new ProductController();
 router.post('/add', asyncHandler(productController.addProduct));
 
 // Route upload ảnh
-router.post('/upload-image', upload.array('images', 5), asyncHandler(productController.uploadProductImage));
+router.post(
+    '/upload-image/:_id',
+    upload.array('images', 5), // Tối đa 5 ảnh được tải lên cùng lúc
+    asyncHandler(productController.uploadProductImage)
+);
 
 // Route upload thông số sản phẩm
 router.post('/specification', asyncHandler(productController.createSpecification));

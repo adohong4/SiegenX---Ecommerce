@@ -4,6 +4,9 @@ const ShopService = require('../services/shop.service');
 const ProductService = require('../services/products.service');
 const { CREATED, SuccessResponse } = require('../core/success.response');
 const { specificationModel } = require('../models/specification.model');
+const Image = require('../models/images.model'); // Nhập Image model
+const Product = require('../models/product.model');
+const mongoose = require('mongoose');
 
 class ProductController {
     // Phương thức thêm sản phẩm
@@ -21,26 +24,52 @@ class ProductController {
             next(error); // Chuyển lỗi tới middleware xử lý lỗi
         }
     };
-
     uploadProductImage = async (req, res, next) => {
         try {
+            const productId = req.params._id;
+    
+            // Kiểm tra tính hợp lệ của productId
+            if (!mongoose.Types.ObjectId.isValid(productId)) {
+                return res.status(400).json({ error: 'Invalid product ID format' });
+            }
+    
+            // Lấy sản phẩm theo ID
+            const product = await Product.findById(productId);
+    
+            if (!product) {
+                return res.status(404).json({ error: 'Product not found' });
+            }
+    
             // Kiểm tra nếu không có ảnh nào được tải lên
             if (!req.files || req.files.length === 0) {
-                return res.status(400).json({ error: 'Không có file nào được tải lên!' });
+                return res.status(400).json({ error: 'No files were uploaded!' });
             }
-
-            // Tạo mảng các đường dẫn ảnh
-            const imagePaths = req.files.map(file => `/uploads/${file.filename}`); // Đường dẫn ảnh
-
-            // Tùy thuộc vào yêu cầu, bạn có thể lưu thông tin này vào database
+    
+            // Tạo mảng các đối tượng ảnh
+            const imagePaths = req.files.map(file => ({
+                _id: product._id,  // Gán _id của hình ảnh trùng với _id của sản phẩm
+                filename: file.filename,
+                url: `/uploads/${file.filename}` // Đường dẫn ảnh
+            }));
+    
+            // Cập nhật ảnh cho sản phẩm
+            product.images.push(...imagePaths);  // Thêm các ảnh vào mảng images của sản phẩm
+            await product.save();  // Lưu sản phẩm với ảnh mới
+    
             res.status(200).json({
-                message: 'Ảnh đã được tải lên thành công!',
-                paths: imagePaths, // Trả về mảng đường dẫn ảnh đã tải lên
+                message: 'Images uploaded successfully!',
+                paths: imagePaths,
             });
         } catch (error) {
-            next(error); // Chuyển lỗi cho middleware xử lý lỗi
+            console.error('Error in uploadProductImage:', error);
+            next(error);
         }
     };
+    
+    
+    
+    
+    
 
     getAllProducts = async (req, res, next) => {
         try {
