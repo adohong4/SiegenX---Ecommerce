@@ -1,11 +1,8 @@
-'use strict'
-
 const mongoose = require('mongoose');
-
-const Schema = mongoose.Schema;
-const DOCUMENT_NAME = 'Specifications'
+const { Schema } = mongoose;
 
 const SpecificationSchema = new Schema({
+    productId: { type: Schema.Types.ObjectId, ref: 'Product', required: true },  // Thêm productId vào đây
     mainBoard: { type: String, required: true },
     chip: { type: String, required: true },
     cpu: { type: String, required: true },
@@ -22,4 +19,4 @@ const SpecificationSchema = new Schema({
 
 const specificationModel = mongoose.models.Specifications || mongoose.model('Specifications', SpecificationSchema);
 
-module.exports = { specificationModel, SpecificationSchema }; // Export cả model và schema
+module.exports = { specificationModel, SpecificationSchema };

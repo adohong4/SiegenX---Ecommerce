@@ -19,7 +19,10 @@ const ProductSchema = new Schema(
   }],  // Nhúng ImageSchema
     recap: { type: String, required: true },
     description: { type: String, required: true },
-    specification: [SpecificationSchema],  // Nhúng SpecificationSchema
+    specification: [{
+      type: Schema.Types.ObjectId,  // Chỉ cần lưu trữ ObjectId
+      ref: 'Specifications',  // Tham chiếu đến model Specifications
+    }],  // Liên kết với Specification
     category: { type: String, required: true },
     quantity: { type: Number, required: true },
   },

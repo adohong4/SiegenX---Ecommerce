@@ -17,7 +17,7 @@ router.post(
 );
 
 // Route upload thông số sản phẩm
-router.post('/specification', asyncHandler(productController.createSpecification));
+router.post('/specification/:_id', asyncHandler(productController.createSpecification));
 
 // Endpoint lấy danh sách thông số sản phẩm
 router.get('/get-specification', asyncHandler(productController.getSpecifications));

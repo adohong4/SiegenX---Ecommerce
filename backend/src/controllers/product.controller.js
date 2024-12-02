@@ -122,16 +122,35 @@ class ProductController {
 
     createSpecification = async (req, res, next) => {
         try {
-            const specification = new specificationModel(req.body);
-            const savedSpecification = await specification.save();
+            const productId = req.params._id;  // Lấy _id sản phẩm từ params
+            const specificationData = req.body;  // Lấy thông số từ body request
+
+            // Tạo mới một Specification
+            const newSpecification = new specificationModel(specificationData);
+            const savedSpecification = await newSpecification.save();  // Lưu thông số vào cơ sở dữ liệu
+
+            // Tìm sản phẩm và thêm thông số vào mảng specifications
+            const updatedProduct = await Product.findByIdAndUpdate(
+                productId,
+                { $push: { specifications: savedSpecification._id } },  // Thêm _id của Specification vào mảng specifications
+                { new: true, useFindAndModify: false }  // Trả về sản phẩm đã cập nhật
+            );
+
+            if (!updatedProduct) {
+                return res.status(404).json({ message: 'Product not found' });
+            }
+
+            // Trả về kết quả
             res.status(201).json({
-                message: 'Specification created successfully',
-                data: savedSpecification,
+                message: 'Specification added successfully',
+                data: updatedProduct
             });
         } catch (error) {
-            next(error);
+            next(error);  // Xử lý lỗi nếu có
         }
     };
+
+    
 
     // Phương thức lấy danh sách thông số sản phẩm
     getSpecifications = async (req, res, next) => {
