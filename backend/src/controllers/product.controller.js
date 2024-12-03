@@ -2,7 +2,7 @@
 
 const ShopService = require('../services/shop.service');
 const ProductService = require('../services/products.service');
-const { CREATE,SuccessResponse  } = require('../core/success.response');
+const { CREATED,SuccessResponse  } = require('../core/success.response');
 
 // Đưa phương thức upload vào ProductController
 class  ProductController {
@@ -13,7 +13,7 @@ class  ProductController {
             const result = await ProductService.createProduct(productData);  // Gọi phương thức tạo sản phẩm từ ProductService
 
             // Trả về kết quả thành công
-            new CREATE({
+            new CREATED({
                 message: 'Product created successfully',
                 metadata: result.metadata.product
             }).send(res);

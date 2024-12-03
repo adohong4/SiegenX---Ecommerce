@@ -34,14 +34,16 @@ class StatisticalController {
 
     getTotalRevenue = async (req, res, next) => {
         try {
-            const result = await StatisticalService.getTotalRevenue();
+            const result = await StatisticalService.getTotalRevenue(req); // Truyền `req` vào service
             new SuccessResponse({
                 message: "Get total revenue successfully",
-                metadata: result,
+                metadata: result, // Trả về kết quả từ service
             }).send(res);
         } catch (error) {
-            next(error);
+            console.error("Controller error:", error.message);
+            next(error); // Đẩy lỗi đến middleware xử lý lỗi
         }
     };
+    
 }
 module.exports = new StatisticalController();
