@@ -73,24 +73,20 @@ class ProductController {
 
     getAllProducts = async (req, res, next) => {
         try {
-            // Lấy số trang từ query params (nếu không có mặc định là 1)
             const page = parseInt(req.query.page) || 1;
-            const limit = 9; // Cố định số sản phẩm trên mỗi trang là 9
-            const skip = (page - 1) * limit; // Tính toán số sản phẩm cần bỏ qua
+            const limit = 9; 
+            const skip = (page - 1) * limit; 
     
-            // Lấy danh sách sản phẩm với skip và limit
             const [products, total] = await Promise.all([
                 Product.find()
-                    .skip(skip) // Bỏ qua sản phẩm của các trang trước
-                    .limit(limit) // Lấy đúng số sản phẩm cần hiển thị trên trang
+                    .skip(skip) 
+                    .limit(limit) 
                     .exec(),
-                Product.countDocuments() // Tính tổng số sản phẩm
+                Product.countDocuments() 
             ]);
     
-            // Tính tổng số trang
             const totalPages = Math.ceil(total / limit);
     
-            // Kiểm tra nếu vượt ngoài số trang có thể
             if (page > totalPages && totalPages > 0) {
                 return res.status(404).json({
                     message: 'Page not found',
