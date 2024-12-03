@@ -2,7 +2,7 @@
 
 const ShopService = require('../services/shop.service');
 const ProductService = require('../services/products.service');
-const { CREATED } = require('../core/success.response');
+const { CREATED, SuccessResponse, OK } = require('../core/success.response');
 
 // Đưa phương thức upload vào ProductController
 class ProductController {
@@ -36,10 +36,10 @@ class ProductController {
             // Nếu cần, bạn có thể lưu mảng imagePaths vào một sản phẩm, ví dụ:
             // const newProduct = new Product({ images: imagePaths, ... });
 
-            res.status(200).json({
+            new CREATED({
                 message: 'Ảnh đã được tải lên thành công!',
                 paths: imagePaths,  // Trả về mảng đường dẫn ảnh đã tải lên
-            });
+            }).send(res);
         } catch (error) {
             next(error); // Chuyển lỗi cho middleware xử lý lỗi
         }
@@ -73,7 +73,7 @@ class ProductController {
         try {
             const { slug } = req.params;
             const result = await ShopService.getProductBySlug(slug);
-            new SuccessResponse({
+            new OK({
                 message: 'Product fetched successfully by slug',
                 metadata: result.metadata
             }).send(res);
@@ -86,7 +86,7 @@ class ProductController {
     updateProduct = async (req, res, next) => {
         try {
             const result = await ShopService.updateProduct(req.params.id, req.body);
-            new SuccessResponse({
+            new OK({
                 message: 'Product updated successfully',
                 metadata: result.metadata
             }).send(res);
