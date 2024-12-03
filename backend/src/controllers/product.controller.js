@@ -73,14 +73,52 @@ class ProductController {
 
     getAllProducts = async (req, res, next) => {
         try {
-            const result = await ShopService.getAllProducts();
-            new SuccessResponse({
-                metadata: result.metadata,
-            }).send(res);
+            // Lấy số trang từ query params (nếu không có mặc định là 1)
+            const page = parseInt(req.query.page) || 1;
+            const limit = 9; // Cố định số sản phẩm trên mỗi trang là 9
+            const skip = (page - 1) * limit; // Tính toán số sản phẩm cần bỏ qua
+    
+            // Lấy danh sách sản phẩm với skip và limit
+            const [products, total] = await Promise.all([
+                Product.find()
+                    .skip(skip) // Bỏ qua sản phẩm của các trang trước
+                    .limit(limit) // Lấy đúng số sản phẩm cần hiển thị trên trang
+                    .exec(),
+                Product.countDocuments() // Tính tổng số sản phẩm
+            ]);
+    
+            // Tính tổng số trang
+            const totalPages = Math.ceil(total / limit);
+    
+            // Kiểm tra nếu vượt ngoài số trang có thể
+            if (page > totalPages && totalPages > 0) {
+                return res.status(404).json({
+                    message: 'Page not found',
+                    pagination: {
+                        total,
+                        page,
+                        limit,
+                        totalPages,
+                    },
+                });
+            }
+    
+            // Trả về danh sách sản phẩm kèm thông tin phân trang
+            res.status(200).json({
+                message: 'Products fetched successfully',
+                data: products,
+                pagination: {
+                    total, // Tổng số sản phẩm
+                    page, // Trang hiện tại
+                    limit, // Số sản phẩm trên mỗi trang
+                    totalPages, // Tổng số trang
+                },
+            });
         } catch (error) {
-            next(error);
+            next(error); // Xử lý lỗi
         }
     };
+    
 
     // Lấy sản phẩm theo ID
     getProductById = async (req, res, next) => {
@@ -152,18 +190,30 @@ class ProductController {
 
     
 
-    // Phương thức lấy danh sách thông số sản phẩm
-    getSpecifications = async (req, res, next) => {
-        try {
-            const specifications = await specificationModel.find();
-            res.status(200).json({
-                message: 'Specifications fetched successfully',
-                data: specifications,
+// Phương thức lấy danh sách thông số của sản phẩm
+getSpecifications = async (req, res, next) => {
+    try {
+        const productId = req.params._id;  // Lấy _id sản phẩm từ params
+
+        // Tìm các thông số (specifications) liên quan đến sản phẩm cụ thể
+        const specifications = await specificationModel.find({ productId: productId });
+
+        if (!specifications || specifications.length === 0) {
+            return res.status(404).json({
+                message: 'No specifications found for this product',
             });
-        } catch (error) {
-            next(error);
         }
-    };
+
+        // Trả về danh sách thông số
+        res.status(200).json({
+            message: 'Specifications fetched successfully',
+            data: specifications,
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
 }
 
 module.exports = ProductController;

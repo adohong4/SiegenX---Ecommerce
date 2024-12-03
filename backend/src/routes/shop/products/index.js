@@ -20,6 +20,8 @@ router.post(
 router.post('/specification/:_id', asyncHandler(productController.createSpecification));
 
 // Endpoint lấy danh sách thông số sản phẩm
-router.get('/get-specification', asyncHandler(productController.getSpecifications));
+router.get('/get-specification/:_id', asyncHandler(productController.getSpecifications));
+//Lấy phân trang sản phẩm
+router.get('/pagination', asyncHandler(productController.getAllProducts));
 
 module.exports = router;
