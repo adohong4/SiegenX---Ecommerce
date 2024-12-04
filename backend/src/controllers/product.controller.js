@@ -2,7 +2,7 @@
 
 const ShopService = require('../services/shop.service');
 const ProductService = require('../services/products.service');
-const { CREATED, SuccessResponse } = require('../core/success.response');
+const { CREATED, SuccessResponse, OK } = require('../core/success.response');
 const { specificationModel } = require('../models/specification.model');
 const Image = require('../models/images.model'); // Nhập Image model
 const Product = require('../models/product.model');
@@ -27,35 +27,36 @@ class ProductController {
     uploadProductImage = async (req, res, next) => {
         try {
             const productId = req.params._id;
-    
+
             // Kiểm tra tính hợp lệ của productId
             if (!mongoose.Types.ObjectId.isValid(productId)) {
                 return res.status(400).json({ error: 'Invalid product ID format' });
             }
-    
+
             // Lấy sản phẩm theo ID
             const product = await Product.findById(productId);
-    
+
             if (!product) {
                 return res.status(404).json({ error: 'Product not found' });
             }
-    
+
             // Kiểm tra nếu không có ảnh nào được tải lên
             if (!req.files || req.files.length === 0) {
                 return res.status(400).json({ error: 'No files were uploaded!' });
             }
-    
+
+
             // Tạo mảng các đối tượng ảnh
             const imagePaths = req.files.map(file => ({
                 _id: product._id,  // Gán _id của hình ảnh trùng với _id của sản phẩm
                 filename: file.filename,
                 url: `/uploads/${file.filename}` // Đường dẫn ảnh
             }));
-    
+
             // Cập nhật ảnh cho sản phẩm
             product.images.push(...imagePaths);  // Thêm các ảnh vào mảng images của sản phẩm
             await product.save();  // Lưu sản phẩm với ảnh mới
-    
+
             res.status(200).json({
                 message: 'Images uploaded successfully!',
                 paths: imagePaths,
@@ -65,28 +66,24 @@ class ProductController {
             next(error);
         }
     };
-    
-    
-    
-    
-    
+
 
     getAllProducts = async (req, res, next) => {
         try {
             const page = parseInt(req.query.page) || 1;
-            const limit = 9; 
-            const skip = (page - 1) * limit; 
-    
+            const limit = 9;
+            const skip = (page - 1) * limit;
+
             const [products, total] = await Promise.all([
                 Product.find()
-                    .skip(skip) 
-                    .limit(limit) 
+                    .skip(skip)
+                    .limit(limit)
                     .exec(),
-                Product.countDocuments() 
+                Product.countDocuments()
             ]);
-    
+
             const totalPages = Math.ceil(total / limit);
-    
+
             if (page > totalPages && totalPages > 0) {
                 return res.status(404).json({
                     message: 'Page not found',
@@ -98,7 +95,7 @@ class ProductController {
                     },
                 });
             }
-    
+
             // Trả về danh sách sản phẩm kèm thông tin phân trang
             res.status(200).json({
                 message: 'Products fetched successfully',
@@ -114,7 +111,7 @@ class ProductController {
             next(error); // Xử lý lỗi
         }
     };
-    
+
 
     // Lấy sản phẩm theo ID
     getProductById = async (req, res, next) => {
@@ -132,7 +129,7 @@ class ProductController {
         try {
             const { slug } = req.params;
             const result = await ShopService.getProductBySlug(slug);
-            new SuccessResponse({
+            new OK({
                 message: 'Product fetched successfully by slug',
                 metadata: result.metadata,
             }).send(res);
@@ -145,7 +142,7 @@ class ProductController {
     updateProduct = async (req, res, next) => {
         try {
             const result = await ShopService.updateProduct(req.params.id, req.body);
-            new SuccessResponse({
+            new OK({
                 message: 'Product updated successfully',
                 metadata: result.metadata,
             }).send(res);
@@ -184,31 +181,31 @@ class ProductController {
         }
     };
 
-    
 
-// Phương thức lấy danh sách thông số của sản phẩm
-getSpecifications = async (req, res, next) => {
-    try {
-        const productId = req.params._id;  // Lấy _id sản phẩm từ params
 
-        // Tìm các thông số (specifications) liên quan đến sản phẩm cụ thể
-        const specifications = await specificationModel.find({ productId: productId });
+    // Phương thức lấy danh sách thông số của sản phẩm
+    getSpecifications = async (req, res, next) => {
+        try {
+            const productId = req.params._id;  // Lấy _id sản phẩm từ params
 
-        if (!specifications || specifications.length === 0) {
-            return res.status(404).json({
-                message: 'No specifications found for this product',
+            // Tìm các thông số (specifications) liên quan đến sản phẩm cụ thể
+            const specifications = await specificationModel.find({ productId: productId });
+
+            if (!specifications || specifications.length === 0) {
+                return res.status(404).json({
+                    message: 'No specifications found for this product',
+                });
+            }
+
+            // Trả về danh sách thông số
+            res.status(200).json({
+                message: 'Specifications fetched successfully',
+                data: specifications,
             });
+        } catch (error) {
+            next(error);
         }
-
-        // Trả về danh sách thông số
-        res.status(200).json({
-            message: 'Specifications fetched successfully',
-            data: specifications,
-        });
-    } catch (error) {
-        next(error);
-    }
-};
+    };
 
 }
 
