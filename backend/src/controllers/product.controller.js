@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 
 class ProductController {
     // Phương thức thêm sản phẩm
-    addProduct = async (req, res, next) => {
+    static addProduct = async (req, res, next) => {
         try {
             const productData = req.body; // Lấy dữ liệu từ request body
             const result = await ProductService.createProduct(productData); // Gọi phương thức tạo sản phẩm từ ProductService
@@ -24,7 +24,8 @@ class ProductController {
             next(error); // Chuyển lỗi tới middleware xử lý lỗi
         }
     };
-    uploadProductImage = async (req, res, next) => {
+
+    static uploadProductImage = async (req, res, next) => {
         try {
             const productId = req.params._id;
 
@@ -68,7 +69,7 @@ class ProductController {
     };
 
 
-    getAllProducts = async (req, res, next) => {
+    static getAllProducts = async (req, res, next) => {
         try {
             const page = parseInt(req.query.page) || 1;
             const limit = 9;
@@ -114,7 +115,7 @@ class ProductController {
 
 
     // Lấy sản phẩm theo ID
-    getProductById = async (req, res, next) => {
+    static getProductById = async (req, res, next) => {
         try {
             const result = await ShopService.getProductById(req.params.id);
             new SuccessResponse({
@@ -125,7 +126,7 @@ class ProductController {
         }
     };
 
-    getProductBySlug = async (req, res, next) => {
+    static getProductBySlug = async (req, res, next) => {
         try {
             const { slug } = req.params;
             const result = await ShopService.getProductBySlug(slug);
@@ -139,7 +140,7 @@ class ProductController {
     };
 
     // Cập nhật sản phẩm
-    updateProduct = async (req, res, next) => {
+    static updateProduct = async (req, res, next) => {
         try {
             const result = await ShopService.updateProduct(req.params.id, req.body);
             new OK({
@@ -180,8 +181,6 @@ class ProductController {
             next(error);  // Xử lý lỗi nếu có
         }
     };
-
-
 
     // Phương thức lấy danh sách thông số của sản phẩm
     getSpecifications = async (req, res, next) => {
