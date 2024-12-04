@@ -14,8 +14,12 @@ import about3 from './about/about3.png'
 import about4 from './about/about4.png'
 import economic from './about/economic.png'
 
+import contact from './banner/contact.png'
+import introduce from './banner/introduce.png'
+
 export const assets = {
     logo,
     icon1, icon2, icon3, icon4, icon5, icon6, arrowRight,
-    about1, about2, about3, about4, economic
+    about1, about2, about3, about4, economic,
+    contact, introduce
 }
