@@ -1,0 +1,61 @@
+.about-us-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+    /* Tạo khoảng cách giữa các phần tử */
+    height: auto;
+}
+
+.image-overlay {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 50%;
+    height: auto;
+    overflow: visible;
+    /* Đảm bảo hình ảnh không bị cắt */
+}
+
+.image-overlay img {
+    position: absolute;
+    width: 300px;
+    /* Đặt kích thước cố định hoặc tùy chỉnh theo nhu cầu */
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    /* Thêm hiệu ứng hover nếu cần */
+}
+
+/* Tạo hiệu ứng xếp chồng */
+.image-overlay img:nth-child(1) {
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
+.image-overlay img:nth-child(2) {
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+}
+
+.image-overlay img:nth-child(3) {
+    top: 40px;
+    left: 40px;
+    z-index: 1;
+}
+
+.right-image {
+    width: 40%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Chống phần tràn xuống section dưới */
+.about-us-container+* {
+    margin-top: 50px;
+}
