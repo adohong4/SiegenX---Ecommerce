@@ -1,0 +1,74 @@
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 0;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-info,
+.footer-services,
+.footer-support,
+.footer-links,
+.footer-contact {
+    flex-basis: 20%;
+    margin-bottom: 30px;
+}
+
+.footer-content h3,
+.footer-content h4 {
+    margin-bottom: 20px;
+}
+
+.footer-services ul,
+.footer-support ul,
+.footer-links ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-services li,
+.footer-support li,
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #ccc;
+}
+
+.footer-contact .contact-form {
+    display: flex;
+    align-items: center;
+}
+
+.footer-contact input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+}
+
+.footer-contact button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.footer-contact button:hover {
+    background-color: #45a049;
+}

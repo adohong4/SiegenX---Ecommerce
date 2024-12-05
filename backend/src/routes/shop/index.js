@@ -2,14 +2,15 @@
 
 const express = require('express');
 const ProductController = require('../../controllers/product.controller');
+const { asyncHandler } = require('../../helpers/asyncHandler');
 const router = express.Router();
 
-router.get('/products', ProductController.getAllProducts);
+router.get('/products', asyncHandler(ProductController.getAllProducts));
 
-router.get('/product/:id', ProductController.getProductById);
+router.get('/product/:id', asyncHandler(ProductController.getProductById));
 
-router.get('/products/:slug', ProductController.getProductBySlug);
+router.get('/products/:slug', asyncHandler(ProductController.getProductBySlug));
 
-router.put('/products/:id', ProductController.updateProduct);
+router.put('/products/:id', asyncHandler(ProductController.updateProduct));
 
 module.exports = router;

@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const { ImageSchema } = require('./images.model');  // Nhúng ImageSchema
 const { SpecificationSchema } = require('./specification.model');  // Nhúng SpecificationSchema
 const Schema = mongoose.Schema;
-
 const DOCUMENT_NAME = 'Products';
 
 const ProductSchema = new Schema(
@@ -13,10 +12,17 @@ const ProductSchema = new Schema(
     nameProduct: { type: String, required: true },
     product_slug: { type: String, required: true, unique: true },
     price: { type: Number, required: true },
-    images: [ImageSchema],  // Nhúng ImageSchema
+    images: [{
+      _id: { type: Schema.Types.ObjectId, ref: 'Product' }, 
+      filename: { type: String, required: true },
+      url: { type: String, required: true }
+  }], 
     recap: { type: String, required: true },
     description: { type: String, required: true },
-    specification: [SpecificationSchema],  // Nhúng SpecificationSchema
+    specification: [{
+      type: Schema.Types.ObjectId, 
+      ref: 'Specifications',  
+    }],  
     category: { type: String, required: true },
     quantity: { type: Number, required: true },
   },

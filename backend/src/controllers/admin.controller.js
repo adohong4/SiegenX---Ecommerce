@@ -4,11 +4,11 @@ const AdminService = require('../services/admin.user.service')
 const { OK, CREATED, SuccessResponse } = require('../core/success.response')
 
 class AdminController {
-    changeInfo = async(req, res, next) => {
+    static changeInfo = async (req, res, next) => {
         try {
             const userID = req.params.id;
             console.log(userID)
-            const updateData = {userID, ...req.body}
+            const updateData = { userID, ...req.body }
             const result = await AdminService.changeInfo(updateData);
             if (result) {
                 new CREATED({
@@ -23,7 +23,7 @@ class AdminController {
         }
     }
 
-    getAllUser = async(req, res, next) => {
+    static getAllUser = async (req, res, next) => {
         try {
             const result = await AdminService.getAllUser();
             if (result) {
@@ -39,11 +39,11 @@ class AdminController {
         }
     }
 
-    deleteUser = async(req, res, next) => {
+    static deleteUser = async (req, res, next) => {
         try {
             const userID = req.params.id;
             console.log(userID)
-            const updateData = {userID}
+            const updateData = { userID }
             const result = await AdminService.deleteUser(updateData);
             if (result) {
                 new CREATED({

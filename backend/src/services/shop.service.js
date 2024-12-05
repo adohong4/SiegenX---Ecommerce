@@ -64,22 +64,37 @@ class ShopService {
     // updateProduct
     static async updateProduct(productId, updateData) {
         try {
-            const updatedProduct = await productModel.findByIdAndUpdate(productId, updateData, { new: true, runValidators: true });
-
+            // Gắn ID sản phẩm vào mỗi ảnh trong danh sách `images` nếu tồn tại
+            if (updateData.images && Array.isArray(updateData.images)) {
+                updateData.images = updateData.images.map((img) => ({
+                    ...img, // Giữ nguyên các trường dữ liệu khác
+                    _id: productId // Gắn ID sản phẩm làm `_id` cho từng ảnh
+                }));
+            }
+    
+            // Thực hiện cập nhật sản phẩm
+            const updatedProduct = await productModel.findByIdAndUpdate(
+                productId,
+                updateData,
+                { new: true, runValidators: true }
+            );
+    
+            // Xử lý nếu không tìm thấy sản phẩm
             if (!updatedProduct) {
                 throw new NotFoundError('Product not found');
             }
-
+    
             return {
                 metadata: {
                     product: updatedProduct
                 }
             };
         } catch (error) {
-            console.error(error);
+            console.error('Error updating product:', error);
             throw error;
         }
     }
+    
 
 }
 

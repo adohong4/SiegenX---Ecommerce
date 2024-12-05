@@ -2,7 +2,7 @@
 
 const express = require('express')
 const AdminController = require('../../controllers/admin.controller')
-const { asyncHandler } = require('../../middleware/checkAuth')
+const { asyncHandler } = require('../../helpers/asyncHandler')
 const router = express.Router()
 
 //changeInfo User && get all info user
