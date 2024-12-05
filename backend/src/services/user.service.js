@@ -24,6 +24,13 @@ class UserService {
             }
 
             const token = createToken(user._id);
+            return {
+                user: {
+                    id: user._id,
+                    email: user.email,
+                },
+                token,
+            };
 
         } catch (error) {
             console.log(error);
@@ -64,6 +71,7 @@ class UserService {
                 return {
                     metadata: {
                         user: getInfoData({ fileds: ['_id', 'username', 'email'], object: newUser }),
+                        token
                     }
                 }
             }
@@ -71,6 +79,33 @@ class UserService {
 
         } catch (error) {
             // console.log(error);
+            throw error;
+        }
+    }
+
+    static addUserAddress = async ({ userId, fullname, phone, street, precinct, city, province }) => {
+        try {
+            const newAddress = {
+                fullname: fullname,
+                phone, street, precinct, city, province
+            };
+
+            const user = await userModel.findByIdAndUpdate(
+                userId,
+                { $push: { address: newAddress } }, // Sử dụng 'address' thay vì 'addresses'
+                { new: true, runValidators: true } // Thêm runValidators để đảm bảo dữ liệu hợp lệ
+            );
+
+            if (!user) {
+                throw new Error("User not found"); // Ném lỗi nếu không tìm thấy người dùng
+            }
+
+            return {
+                metadata: {
+                    addresses: user.address,
+                }
+            }
+        } catch (error) {
             throw error;
         }
     }
