@@ -8,7 +8,7 @@ const { BadRequestError, ConflictRequestError, AuthFailureError, ForbiddenError 
 const { createToken } = require("../middleware/authUtils")
 
 class UserService {
-
+    //Login
     static login = async ({ email, password }) => {
         try {
             const user = await userModel.findOne({ email });
@@ -38,6 +38,7 @@ class UserService {
         }
     }
 
+    // Sign Up
     static signUp = async ({ username, email, password }) => {
         try {
             //checking is user already exists
@@ -83,6 +84,7 @@ class UserService {
         }
     }
 
+    //add User Address
     static addUserAddress = async ({ userId, fullname, phone, street, precinct, city, province }) => {
         try {
             const newAddress = {
@@ -92,12 +94,12 @@ class UserService {
 
             const user = await userModel.findByIdAndUpdate(
                 userId,
-                { $push: { address: newAddress } }, // Sử dụng 'address' thay vì 'addresses'
-                { new: true, runValidators: true } // Thêm runValidators để đảm bảo dữ liệu hợp lệ
+                { $push: { address: newAddress } },
+                { new: true, runValidators: true }
             );
 
             if (!user) {
-                throw new Error("User not found"); // Ném lỗi nếu không tìm thấy người dùng
+                throw new Error("User not found");
             }
 
             return {
@@ -110,28 +112,24 @@ class UserService {
         }
     }
 
-    static getAllUsers = async () => {
+    //get User Address
+    static addUserAddress = async ({ userId, fullname, phone, street, precinct, city, province }) => {
         try {
-            // Tìm tất cả người dùng và chỉ lấy các trường _id, username, email
-            const users = await userModel.find({}, '_id username email');
+            const userAddress = await userModel.findById(userId)
 
-            if (!users || users.length === 0) {
-                throw new BadRequestError('No users found');
+            if (!userAddress) {
+                throw new Error("User not found");
             }
 
             return {
-                status: 200,
-                message: "Users fetched successfully",
                 metadata: {
-                    users: users
+                    addresses: userAddress.address,
                 }
-            };
+            }
         } catch (error) {
-            console.log(error);
-            throw new BadRequestError('Error fetching users');
+            throw error;
         }
     }
-
 }
 
 module.exports = UserService;

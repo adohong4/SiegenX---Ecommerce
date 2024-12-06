@@ -1,13 +1,13 @@
 'use strict'
 
 const AdminService = require('../services/admin.user.service')
-const { OK, CREATED, SuccessResponse } = require('../core/success.response')
+const { OK, CREATED, NOCONTENT } = require('../core/success.response')
 
 class AdminController {
-    static changeInfo = async (req, res, next) => {
+    changeInfo = async (req, res, next) => {
         try {
             const userID = req.params.id;
-            console.log(userID)
+            // console.log(userID)
             const updateData = { userID, ...req.body }
             const result = await AdminService.changeInfo(updateData);
             if (result) {
@@ -23,11 +23,11 @@ class AdminController {
         }
     }
 
-    static getAllUser = async (req, res, next) => {
+    getAllUser = async (req, res, next) => {
         try {
             const result = await AdminService.getAllUser();
             if (result) {
-                new CREATED({
+                new OK({
                     message: 'Get Info User Successful',
                     metadata: result.metadata
                 }).send(res);
@@ -39,14 +39,14 @@ class AdminController {
         }
     }
 
-    static deleteUser = async (req, res, next) => {
+    deleteUser = async (req, res, next) => {
         try {
             const userID = req.params.id;
-            console.log(userID)
+            // console.log(userID)
             const updateData = { userID }
             const result = await AdminService.deleteUser(updateData);
             if (result) {
-                new CREATED({
+                new NOCONTENT({
                     message: 'Delete Success',
                     metadata: result.metadata
                 }).send(res);

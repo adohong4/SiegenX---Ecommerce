@@ -12,14 +12,9 @@ const router = express.Router()
 router.post('/user/signup', asyncHandler(UserController.signUp))
 router.post('/user/login', asyncHandler(UserController.login))
 
-
-
-// router.put('/user/changeInfo/:id', asyncHandler(UserController.changeInfo))
-router.get('/user/getAllUsers', asyncHandler(UserController.getAllUsers))
-
 //add User address
-router.post('/user/address', authMiddleware, asyncHandler(UserController.addUserAddress));
-
+router.post('/user/addAddress', authMiddleware, asyncHandler(UserController.addUserAddress));
+router.get('./user/getAddress', authMiddleware, asyncHandler(UserController.getUserAddress));
 
 //phan trang nguoi dung
 router.get('/pagination_users', asyncHandler(UserController.getUsersWithPagination));

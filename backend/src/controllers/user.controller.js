@@ -28,29 +28,29 @@ class UserController {
         }
     }
 
-    getAllUsers = async (req, res, next) => {
-        try {
-            const result = await UserService.getAllUsers();
-            if (result) {
-                new CREATED({
-                    message: 'Registered OK',
-                    metadata: result.metadata
-                }).send(res);
-            } else {
-                res.status(400).json({ message: 'Failed' });
-            }
-        } catch (error) {
-            next(error);
-        }
-    }
-
-
     addUserAddress = async (req, res, next) => {
         try {
             const result = await UserService.addUserAddress(req.body);
             if (result) {
                 new CREATED({
                     message: 'Address added successfully',
+                    metadata: result.metadata
+                }).send(res);
+            } else {
+                res.status(400).json({ message: 'Address failed' });
+            }
+
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    getUserAddress = async (req, res, next) => {
+        try {
+            const result = await UserService.getUserAddress(req.body);
+            if (result) {
+                new OK({
+                    message: 'Get Address Successfully',
                     metadata: result.metadata
                 }).send(res);
             } else {
