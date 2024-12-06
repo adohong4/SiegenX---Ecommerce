@@ -6,74 +6,56 @@ import { assets } from '../../assets/assets';
 
 const Navbar = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div className="container">
-                <Link className="navbar-brand" to="/">
-                    <img src={assets.logo} alt="SiegenX Logo" />
-                </Link>
-                <button
-                    className="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                    aria-controls="navbarNav"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav me-auto">
-                        <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/">
-                                TRANG CHỦ
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/about">
-                                GIỚI THIỆU
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/capabilities">
-                                HỒ SƠ NĂNG LỰC
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/products">
-                                SẢN PHẨM
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/projects">
-                                DỰ ÁN
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/news">
-                                TIN TỨC
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/contact">
-                                LIÊN HỆ
-                            </Link>
-                        </li>
-                    </ul>
-                    <form className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Search" />
-                        <button className="btn btn-outline-light" type="submit">
-                            <i className="bi bi-search"></i>
-                        </button>
-                    </form>
-                    <div className="user-actions">
-                        <img src="user-profile-icon.png" alt="User Profile" className="user-icon" />
-                        <img src="shopping-cart-icon.png" alt="Shopping Cart" className="cart-icon" />
-                    </div>
-                    <button className="btn btn-success hotline-button">HOTLINE: 091 343 6666</button>
+        <header className='nav-header' id='header'>
+            <div className="container header-top">
+                <div className='top-row-header'>
+                    <Link className="navbar-brand d-flex align-items-center header-logo" to="/">
+                        <img src={assets.logo} alt="SiegenX Logo" style={{ height: '60px' }} />
+                    </Link>
                 </div>
-            </div>
-        </nav>
+                <div className='mid-row-header'>
+                    <div className='mid-row-header-1'>
+                        <div className='mid-left'>
+                            <ul>
+                                <li>SiegenX</li>
+                                <li>SiegenX Object</li>
+                                <li>SiegenX LED</li>
+                            </ul>
+                        </div>
+                        <div className='mid-right'>
+
+                        </div>
+                    </div>
+                    <div className='mid-row-header-2'>
+                        <div className='nav-bar-header-left'>
+                            <ul>
+                                <li>
+                                    <a href="#">Trang Chủ</a>
+                                </li>
+                                <li>
+                                    <a href="/about">Giới thiệu</a>
+                                </li>
+                                <li>
+                                    <a href="#">Sản phẩm</a>
+                                </li>
+                                <li>
+                                    <a href="#">Giải pháp</a>
+                                </li>
+                                <li>
+                                    <a href="#">Liên hệ</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className='nav-bar-header-right'>
+                            <div className='hotline'>
+                                <p>Hotline <span> 0982848203</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </header>
+
     );
 };
 

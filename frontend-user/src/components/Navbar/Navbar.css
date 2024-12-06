@@ -1,84 +1,30 @@
-.navbar {
-    background-color: #fff;
-    padding: 0.5rem 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+#header{
+    padding-left: 50px;
+    padding-right: 50px;
 }
-
-.navbar-brand img {
-    max-height: 40px;
-}
-
-.navbar-nav {
+.mid-row-header .mid-row-header-1 ul,
+.mid-row-header .mid-row-header-2 ul{
     display: flex;
-    flex-direction: row;
-    align-items: center;
 }
-
-.nav-item {
-    margin-right: 1.5rem;
+.mid-row-header .mid-row-header-1 ul li,
+.mid-row-header .mid-row-header-2 ul li{
+    list-style-type: none;
 }
-
-.nav-link {
-    color: #333 !important;
-    font-size: 1rem;
-    font-weight: 500;
-    padding: 0.5rem 0;
-    transition: color 0.3s, background-color 0.3s;
+.mid-row-header .mid-row-header-1 ul li{
+    padding: 10px 20px;
+    font-weight: bold;
 }
-
-.nav-link:hover {
-    color: #fff !important;
-    background-color: #00C896;
+.mid-row-header .mid-row-header-2 .nav-bar-header-right,
+.mid-row-header .mid-row-header-2 ul li{
+    padding: 15px 30px;
+    text-transform: uppercase;
 }
-
-.nav-link.active {
-    font-weight: 600;
-    color: #00C896 !important;
+.mid-row-header .mid-row-header-2 ul li a:hover{
+    background-color: linear-gradient(to bottom, #00B98E, #00A07B);
 }
-
-.form-control {
-    border-radius: 0;
-    background-color: #f1f1f1;
-    border-color: #f1f1f1;
-    color: #333;
-}
-
-.btn-outline-light {
-    border-radius: 0;
-    border-color: #f1f1f1;
-    color: #333;
-}
-
-.btn-outline-light:hover {
-    background-color: #f1f1f1;
-    border-color: #f1f1f1;
-}
-
-.user-actions {
+.mid-row-header .mid-row-header-2 {
     display: flex;
-    align-items: center;
-    margin-right: 1.5rem;
 }
-
-.user-icon,
-.cart-icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 0.5rem;
-    filter: invert(20%) sepia(8%) saturate(2878%) hue-rotate(346deg) brightness(94%) contrast(86%);
-}
-
-.hotline-button {
-    font-size: 1rem;
-    font-weight: 500;
-    padding: 0.5rem 1.5rem;
-    background-color: #00C896;
-    border-color: #00C896;
-    color: #fff;
-    border-radius: 0;
-}
-
-.hotline-button:hover {
-    background-color: #00a17a;
-    border-color: #00a17a;
+.header-logo{
+    padding-right: 20px;
 }

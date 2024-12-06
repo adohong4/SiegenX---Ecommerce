@@ -8,14 +8,17 @@ import Introduce from './pages/Introduce/introduce'
 function App() {
   return (
     <>
+    <div className='container'>
       <div className='app'>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<Introduce />} />
-        </Routes>
-        <Footer />
-      </div>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<Introduce />} />
+          </Routes>
+          <Footer />
+        </div>
+    </div>
+      
     </>
   )
 }

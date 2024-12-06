@@ -6,6 +6,7 @@ import Economic from '../../components/Introduce/Economic/Economic'
 const Introduce = () => {
     return (
         <div>
+            
             <AboutUs />
             <Culture />
             <Economic />
