@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ImageSchema = new Schema({
-  filename: { type: String, required: true },
-  url: { type: String, required: true },
-}, { timestamps: true, _id: false }); // Đảm bảo không tạo _id nếu không cần
+const DOCUMENT_NAME = 'Images'
 
-module.exports = mongoose.model('Image', ImageSchema);
+const imageSchema = new Schema({
+  image: { type: String, required: true },
+}, { timestamps: true });
+
+const imageModel = mongoose.models.image || mongoose.model(DOCUMENT_NAME, imageSchema)
+
+module.exports = imageModel;

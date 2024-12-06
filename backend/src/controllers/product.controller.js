@@ -206,6 +206,23 @@ class ProductController {
         }
     };
 
+
+    addProduct = async (req, res, next) => {
+        try {
+            const result = await ProductService.addProduct(req); // Truyền req vào đây
+            if (result) {
+                new CREATED({
+                    message: 'Product OK',
+                    metadata: result.metadata
+                }).send(res);
+            } else {
+                res.status(400).json({ message: 'Product failed' });
+            }
+        } catch (error) {
+            next(error);
+        }
+    }
+
 }
 
 module.exports = ProductController;

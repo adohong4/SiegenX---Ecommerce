@@ -13,16 +13,13 @@ const ProductSchema = new Schema(
     product_slug: { type: String, required: true, unique: true },
     price: { type: Number, required: true },
     images: [{
-      _id: { type: Schema.Types.ObjectId, ref: 'Product' }, 
+      _id: { type: Schema.Types.ObjectId, ref: 'Product' },
       filename: { type: String, required: true },
       url: { type: String, required: true }
-  }], 
+    }],
     recap: { type: String, required: true },
     description: { type: String, required: true },
-    specification: [{
-      type: Schema.Types.ObjectId, 
-      ref: 'Specifications',  
-    }],  
+    specification: [SpecificationSchema],
     category: { type: String, required: true },
     quantity: { type: Number, required: true },
   },
