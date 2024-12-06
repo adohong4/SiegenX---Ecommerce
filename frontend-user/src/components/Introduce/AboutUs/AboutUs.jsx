@@ -11,6 +11,7 @@ const AboutUs = () => {
             </div>
             <div className="col-12 col-md-6 col-right-forme d-flex justify-content-center align-items-center">
                 <img src={assets.about1} alt="" className="img-fluid" />
+
             </div>
         </div>
     </section>

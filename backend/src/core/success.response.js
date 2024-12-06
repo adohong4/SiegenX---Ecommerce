@@ -2,12 +2,14 @@
 
 const StatusCode = {
     OK: 200,
-    CREATED: 201
+    CREATED: 201,
+    NOCONTENT: 204
 }
 
 const ReasonStatusCode = {
     CREATED: 'Created',
-    OK: 'Success'
+    OK: 'Success',
+    NOCONTENT: 'No Content'
 }
 
 class SuccessResponse {
@@ -24,17 +26,24 @@ class SuccessResponse {
 class OK extends SuccessResponse {
     constructor({ message, metadata }) {
         super({ message, metadata });
-        this.status = 200;
+        this.status = StatusCode.OK;
     }
 }
 
 class CREATED extends SuccessResponse {
     constructor({ message, metadata }) {
         super({ message, metadata });
-        this.status = 201;
+        this.status = StatusCode.CREATED;
+    }
+}
+
+class NOCONTENT extends SuccessResponse {
+    constructor({ message, metadata }) {
+        super({ message, metadata });
+        this.status = StatusCode.NOCONTENT;
     }
 }
 
 module.exports = {
-    OK, CREATED, SuccessResponse
+    OK, CREATED, SuccessResponse, NOCONTENT
 }

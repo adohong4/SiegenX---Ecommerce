@@ -11,10 +11,12 @@
     justify-content: space-between;
     margin-bottom: 50px;
 }
+
 .footer-content .top-tittle-footer .top-title-right .container{
     background-color: white;
     border-radius: 50px;
     padding: 5px;
+
     display: flex;
     align-items: center;
 }
