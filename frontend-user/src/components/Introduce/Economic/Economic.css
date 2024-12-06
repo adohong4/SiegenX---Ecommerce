@@ -1,4 +1,4 @@
-/* Đảm bảo rằng tablist sẽ xếp các button theo chiều dọc và căn giữa */
+
 #v-pills-tab {
     display: flex;
     flex-direction: column;  
@@ -26,13 +26,15 @@
     margin-bottom: 10px;
 }
 
-
-.nav-link:hover {
+.section-linhvuc .row{
+    justify-content: center;
+}
+.section-linhvuc .nav-link:hover {
     background-color: #00B98E; 
     color: #fff; 
 }
 
-.nav-link.active {
+.section-linhvuc .nav-link.active {
     background-color: #00B98E;
     color: #fff !important;
     font-weight: bold; 

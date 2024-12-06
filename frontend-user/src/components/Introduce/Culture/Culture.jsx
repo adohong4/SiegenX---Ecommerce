@@ -5,7 +5,8 @@ import './Culture.css';
 const Culture = () => {
     return (
         <section className='section-vanhoa'>
-            <div className="culture-container">
+            <div className='container'>
+                <div className="culture-container">
                 <div className='culture-top-title'>
                     <h2 className="culture-title">VĂN HÓA DOANH NGHIỆP</h2>
                     <p className="culture-title-p">SIEGenX., JSC tự hào là một trong doanh nghiệp hàng đầu cung cấp giải pháp tương tác thông tin tại Việt Nam.</p>
@@ -46,7 +47,9 @@ const Culture = () => {
                         </div>
                     </div> 
                 </div>
+                </div>
             </div>
+            
         </section>
         
     );
