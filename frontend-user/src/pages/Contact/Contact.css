@@ -1,24 +1,35 @@
+.banner-contact{
+    margin-top: 100px;
+}
 .contact-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
-    padding: 40px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 40px 120px;
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
 }
 
 .contact-info {
     flex: 1;
-    margin-right: 40px;
+    margin-right: 20px;
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 32%;
     background-color: #00c8a0;
 }
 
 .contact-info h2 {
-    font-size: 24px;
+    font-size: 20px;
+    color: #fff;
     font-weight: bold;
     margin-bottom: 20px;
 }
-
+.contact-info p {
+    color: #fff;
+    margin-bottom: 20px;
+    line-height: 25px;
+}
 .contact-detail {
     display: flex;
     flex-direction: column;
@@ -31,25 +42,29 @@
 }
 
 .contact-item i {
+    border: 1px solid #fff;
     font-size: 18px;
-    color: #00c8a0;
-    margin-right: 10px;
+    color: #fff;
+    margin-right: 20px;
+    padding: 10px;
+    border-radius: 50%;
 }
 
 .contact-item span {
     font-size: 16px;
-    color: #333;
+    color: #fff;
 }
 
 .contact-form {
     flex: 1;
     background-color: #d6d6d6;
     padding: 40px;
-    border-radius: 5px;
+    background-image: url(../../assets/about/bgrcontact.png);
+    border-radius: 20px;
 }
 
 .contact-form .title {
-    display: grid;
+    display: gr id;
     grid-template-columns: repeat(2, 0.5fr);
 }
 
@@ -84,6 +99,7 @@
     border: none;
     border-radius: 5px;
     font-size: 16px;
+    border: 1px solid #e7e1e1
 }
 
 .form-group textarea {
@@ -94,7 +110,7 @@
     background-color: #00c8a0;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 60px;
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
@@ -103,4 +119,15 @@
 
 .btn:hover {
     background-color: #f2f2f2;
+}
+
+.section-map .container{
+    padding: 40px 120px;
+    padding-top: 0 !important;
+}
+.section-map .container iframe{
+    border-radius: 20px;
+}
+.img-banner img{
+    width: 100%;
 }
