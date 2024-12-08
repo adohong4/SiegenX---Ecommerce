@@ -18,10 +18,10 @@ import economic from './about/economic.png'
 import forme from './about/forme.png'
 import contact from './banner/contact.png'
 import introduce from './banner/introduce.png'
-
+import upload from './upload_area.png'
 export const assets = {
     logo,
     icon1, icon2, icon3, icon4, icon5, icon6, arrowRight,
     about1, about2, about3, about4, economic, about5,
-    contact, introduce, forme, bgrcontact
+    contact, introduce, forme, bgrcontact,upload
 }

@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import { assets } from '../../assets/assets';
 
+
+
 const Navbar = () => {
+    const [isUserDropdownVisible, setUserDropdownVisible] = useState(false);
+    const [isCartDropdownVisible, setCartDropdownVisible] = useState(false);
+
+    const toggleUserDropdown = () => {
+        setUserDropdownVisible(!isUserDropdownVisible);
+        setCartDropdownVisible(false); 
+    };
+
+    const toggleCartDropdown = () => {
+        setCartDropdownVisible(!isCartDropdownVisible);
+        setUserDropdownVisible(false); 
+    };
+
     return (
         <header className="nav-header" id="header">
             <div className="container header-top">
@@ -30,12 +45,29 @@ const Navbar = () => {
                                 </button>
                             </div>
                             <div className="icons">
-                                <span className="icon-user">
+                                <span className="icon-user" onClick={toggleUserDropdown}>
                                     <i className="fas fa-user"></i>
                                 </span>
-                                <div className="icon-cart">
+                                {isUserDropdownVisible && (
+                                    <div className={`dropdown-menu ${isUserDropdownVisible ? "show" : ""}`}>
+                                        <ul>
+                                            <li><a href="/login">Login</a></li>
+                                            <li><a href="/logout">Logout</a></li>
+                                            <li><a href="/profile">My Profile</a></li>
+                                        </ul>
+                                    </div>
+                                )}
+                                <span className="icon-cart" onClick={toggleCartDropdown}>
                                     <i className="fas fa-shopping-cart"></i>
-                                </div>
+                                </span>
+                                {isCartDropdownVisible && (
+                                    <div className={`dropdown-menu-cart ${isCartDropdownVisible ? "show" : ""}`}>
+                                        <ul>
+                                            <li><a href="/Cart">My Cart</a></li>
+                                            <li><a href="/myorder">My Order</a></li>
+                                        </ul>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -43,21 +75,11 @@ const Navbar = () => {
                     <div className="mid-row-header-2">
                         <div className="nav-bar-header-left">
                             <ul>
-                                <li>
-                                    <Link to="/">Trang Chủ</Link>
-                                </li>
-                                <li>
-                                    <Link to="/about">Giới thiệu</Link>
-                                </li>
-                                <li>
-                                    <a href="#">Sản phẩm</a>
-                                </li>
-                                <li>
-                                    <a href="#">Giải pháp</a>
-                                </li>
-                                <li>
-                                    <a href="/contact">Liên hệ</a>
-                                </li>
+                                <li><Link to="/">Trang Chủ</Link></li>
+                                <li><Link to="/about">Giới thiệu</Link></li>
+                                <li><a href="#">Sản phẩm</a></li>
+                                <li><a href="#">Giải pháp</a></li>
+                                <li><a href="/contact">Liên hệ</a></li>
                             </ul>
                         </div>
                         {/* Hotline */}
@@ -65,7 +87,9 @@ const Navbar = () => {
                             <div className="hotline">
                                 <p>
                                     <span className="label-hotline">Hotline</span> 
-                                    <span className="sdt"> 0982848203</span>
+                                    <span className="sdt" >
+                                        <a href="https://zalo.me/0982848203">0982848203</a>
+                                    </span>
                                 </p>
                             </div>
                         </div>
