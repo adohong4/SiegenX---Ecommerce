@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './profile.css';
 import { assets } from '../../assets/assets'; 
-import AddressPopup from '../../components/Popup/AddressPopup/AddressPopup'; // Import AddressPopup component
+import AddressPopup from '../../components/Popup/AddressPopup/AddressPopup'; 
 
 const Profile = () => {
     const [profileImage, setProfileImage] = useState(assets.upload);
