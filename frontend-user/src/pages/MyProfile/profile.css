@@ -60,11 +60,11 @@
     margin-top: 10px;
 }
 
-.btn {
+.add-btn {
     display: inline-block;
     padding: 10px 20px;
     color: white;
-    background-color: #00b98e;
+    background-color: #00b98e !important;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -147,6 +147,7 @@
     font-size: 16px;
     color: #fff;
     display: block;
+    background-color: #00b98e !important;
     width: max-content;
     border-radius: 50px;
     margin: 20px auto !important;

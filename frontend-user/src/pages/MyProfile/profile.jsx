@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './profile.css';
 import { assets } from '../../assets/assets'; 
+import AddressPopup from '../../components/Popup/AddressPopup/AddressPopup'; // Import AddressPopup component
 
 const Profile = () => {
-    const [profileImage, setProfileImage] = useState(assets.upload); 
+    const [profileImage, setProfileImage] = useState(assets.upload);
     const [showAddressPopup, setShowAddressPopup] = useState(false);
 
     const handleImageChange = (e) => {
@@ -11,32 +12,31 @@ const Profile = () => {
         if (file) {
             const reader = new FileReader();
             reader.onload = () => {
-                setProfileImage(reader.result); 
+                setProfileImage(reader.result);
             };
-            reader.readAsDataURL(file); 
+            reader.readAsDataURL(file);
         }
     };
 
     return (
         <div className="profile">
             <div className="container my-4 d-flex">
-                {/* Profile Information */}
                 <div className="profile-info">
                     <h2 className="border-bt">Thông tin cá nhân</h2>
                     <div className="form-group top-image-profile">
                         <p>Ảnh đại diện</p>
                         <img
-                            src={profileImage} 
+                            src={profileImage}
                             alt="Profile"
                             className="profile-image"
-                            onClick={() => document.getElementById('image').click()} 
+                            onClick={() => document.getElementById('image').click()}
                         />
                         <input
                             type="file"
                             id="image"
                             className="form-control-file"
                             style={{ display: 'none' }}
-                            onChange={handleImageChange}  
+                            onChange={handleImageChange}
                         />
                     </div>
 
@@ -70,12 +70,11 @@ const Profile = () => {
                             placeholder="Type here"
                         />
                     </div>
-                    <div className='bottom-profile'>
+                    <div className="bottom-profile">
                         <button type="submit" className="btn btn-primary add-btn">
                             LƯU THAY ĐỔI
                         </button>
                     </div>
-                    
                 </div>
 
                 {/* My Address */}
@@ -101,7 +100,7 @@ const Profile = () => {
                                         <p>123 Main St, Hanoi, Vietnam, 100000, +84 123 456 789</p>
                                     </div>
                                     <div className="address-details-right">
-                                        <button>Edit</button>
+                                        <button>Chỉnh sửa</button>
                                     </div>
                                 </div>
                             </div>
@@ -109,6 +108,11 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
+
+            {/* AddressPopup */}
+            {showAddressPopup && (
+                <AddressPopup setShowAddress={setShowAddressPopup} />
+            )}
         </div>
     );
 };
