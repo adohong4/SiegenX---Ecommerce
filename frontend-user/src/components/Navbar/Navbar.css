@@ -32,11 +32,17 @@
     font-weight: bold;
 }
 
-.mid-row-header .mid-row-header-2 ul li a:hover{
+.mid-row-header-2 ul li a:hover {
     background-image: linear-gradient(to bottom, #00B98E, #00A07B);
     color: #fff;
-
 }
+
+.mid-row-header-2 ul li a.active {
+    background-image: linear-gradient(to bottom, #00B98E, #00A07B);
+    color: #fff;
+}
+
+
 .mid-row-header .mid-row-header-2 {
     display: flex;
 }
@@ -138,7 +144,7 @@
 }
 .mid-right .icons .icon-cart,
 .mid-right .icons .icon-user{
-    padding: 5px;
+    padding: 10px;
 }
 
 .dropdown-menu-cart {

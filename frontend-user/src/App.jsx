@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer'
 import Introduce from './pages/Introduce/introduce'
 import Contact from './pages/Contact/Contact'
 import Profile from './pages/MyProfile/profile'
+import Cart from './pages/Cart/Cart'
 function App() {
   return (
     <>
@@ -17,6 +18,7 @@ function App() {
           <Route path="/about" element={<Introduce />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/Cart" element={<Cart />} />
         </Routes>
         <Footer />
         </div>

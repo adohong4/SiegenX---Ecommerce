@@ -19,9 +19,10 @@ import forme from './about/forme.png'
 import contact from './banner/contact.png'
 import introduce from './banner/introduce.png'
 import upload from './upload_area.png'
+import logofooter from './logofooter.png'
 export const assets = {
     logo,
     icon1, icon2, icon3, icon4, icon5, icon6, arrowRight,
     about1, about2, about3, about4, economic, about5,
-    contact, introduce, forme, bgrcontact,upload
+    contact, introduce, forme, bgrcontact,upload,logofooter
 }

@@ -1,22 +1,38 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 import { assets } from '../../assets/assets';
 
-
-
 const Navbar = () => {
+    const location = useLocation(); 
     const [isUserDropdownVisible, setUserDropdownVisible] = useState(false);
     const [isCartDropdownVisible, setCartDropdownVisible] = useState(false);
+    const [activeLink, setActiveLink] = useState("/");
+
+    const navLinks = ["/", "/about", "/contact"]; // Danh sách các đường dẫn điều hướng
+
+    useEffect(() => {
+        if (navLinks.includes(location.pathname)) {
+            setActiveLink(location.pathname);
+        } else {
+            setActiveLink(""); 
+        }
+    }, [location.pathname]);
 
     const toggleUserDropdown = () => {
         setUserDropdownVisible(!isUserDropdownVisible);
-        setCartDropdownVisible(false); 
+        setCartDropdownVisible(false);
     };
 
     const toggleCartDropdown = () => {
         setCartDropdownVisible(!isCartDropdownVisible);
-        setUserDropdownVisible(false); 
+        setUserDropdownVisible(false);
+    };
+
+    const handleLinkClick = (path) => {
+        setActiveLink(path);
+        setUserDropdownVisible(false);
+        setCartDropdownVisible(false);
     };
 
     return (
@@ -75,19 +91,59 @@ const Navbar = () => {
                     <div className="mid-row-header-2">
                         <div className="nav-bar-header-left">
                             <ul>
-                                <li><Link to="/">Trang Chủ</Link></li>
-                                <li><Link to="/about">Giới thiệu</Link></li>
-                                <li><a href="#">Sản phẩm</a></li>
-                                <li><a href="#">Giải pháp</a></li>
-                                <li><a href="/contact">Liên hệ</a></li>
+                                <li>
+                                    <Link
+                                        to="/"
+                                        className={activeLink === "/" ? "active" : ""}
+                                        onClick={() => handleLinkClick("/")}
+                                    >
+                                        Trang Chủ
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to="/about"
+                                        className={activeLink === "/about" ? "active" : ""}
+                                        onClick={() => handleLinkClick("/about")}
+                                    >
+                                        Giới thiệu
+                                    </Link>
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        className={activeLink === "products" ? "active" : ""}
+                                        onClick={() => handleLinkClick("products")}
+                                    >
+                                        Sản phẩm
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        className={activeLink === "solutions" ? "active" : ""}
+                                        onClick={() => handleLinkClick("solutions")}
+                                    >
+                                        Giải pháp
+                                    </a>
+                                </li>
+                                <li>
+                                    <Link
+                                        to="/contact"
+                                        className={activeLink === "/contact" ? "active" : ""}
+                                        onClick={() => handleLinkClick("/contact")}
+                                    >
+                                        Liên hệ
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                         {/* Hotline */}
                         <div className="nav-bar-header-right">
                             <div className="hotline">
                                 <p>
-                                    <span className="label-hotline">Hotline</span> 
-                                    <span className="sdt" >
+                                    <span className="label-hotline">Hotline</span>
+                                    <span className="sdt">
                                         <a href="https://zalo.me/0982848203">0982848203</a>
                                     </span>
                                 </p>

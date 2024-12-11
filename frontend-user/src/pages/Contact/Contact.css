@@ -56,12 +56,16 @@
 }
 
 .contact-form {
-    flex: 1;
-    background-color: #d6d6d6;
-    padding: 40px;
-    background-image: url(../../assets/about/bgrcontact.png);
+    flex: 1; 
+    background-color: #d6d6d6; 
+    padding: 40px; 
+    background-image: url('../../assets/about/bgrcontact.png'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
     border-radius: 20px;
 }
+
 
 .contact-form .title {
     display: gr id;
