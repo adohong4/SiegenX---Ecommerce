@@ -1,0 +1,33 @@
+.notification-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 130px;
+  }
+  
+  .notification-text {
+    font-size: 14px;
+    color: #333;
+    margin-right: 20px;
+  }
+  
+  .notification-text em {
+    font-style: italic;
+    font-weight: 700;
+  }
+  
+  .cta-button {
+    background-color: #EC1313;
+    color: white;
+    padding: 5px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    
+  }
+  
+  .cta-button:hover {
+    background-color: darkred;
+  }
+  

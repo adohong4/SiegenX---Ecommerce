@@ -75,9 +75,9 @@ const Navbar = () => {
                     <div className="mid-row-header-2">
                         <div className="nav-bar-header-left">
                             <ul>
-                                <li><Link to="/">Trang Chủ</Link></li>
+                                <li><Link to="/home">Trang Chủ</Link></li>
                                 <li><Link to="/about">Giới thiệu</Link></li>
-                                <li><a href="#">Sản phẩm</a></li>
+                                <li><a href="/product">Sản phẩm</a></li>
                                 <li><a href="#">Giải pháp</a></li>
                                 <li><a href="/contact">Liên hệ</a></li>
                             </ul>
