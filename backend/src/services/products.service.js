@@ -36,7 +36,7 @@ class ProductService {
         }
     }
 
-    static addProduct = async ({ title, nameProduct, product_slug, price, recap, description, specification, category, quantity }) => {
+    static addProduct = async (req) => {
         try {
 
             const { title, nameProduct, product_slug, price, recap, description, specification, category, quantity } = req.body;
