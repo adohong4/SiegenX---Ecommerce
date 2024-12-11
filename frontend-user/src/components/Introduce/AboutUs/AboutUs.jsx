@@ -4,14 +4,20 @@ import './AboutUs.css';
 
 const AboutUs = () => {
     return (
-        <div className="about-us-container">
-            <div className="image">
-                <img src={assets.about5} alt="Image 5" />
+        <section className="section_1_forme">
+            <div className='container'>
+                <div className="row row_intro">
+                    <div className="row_intro_feft">
+                        <img src={assets.forme} alt="" />
+                    </div>
+                    <div className="row_intro_right">
+                        <img src={assets.about1} alt="" />
+
+                    </div>
+                </div>
             </div>
-            <div className="image">
-                <img src={assets.about1} alt="Image 1" />
-            </div>
-        </div>
+            
+    </section>
     );
 };
 

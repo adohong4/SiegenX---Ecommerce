@@ -1,0 +1,13 @@
+.banner-img-f {
+  display: flex;
+  justify-content: center; /* Căn giữa nếu cần */
+  margin: -50px 0 20px 0; /* Di chuyển lên trên 50px */
+}
+
+.banner-img-f img {
+  width: 85%; /* Điều chỉnh kích thước ảnh, có thể là 50%, 80% hoặc một giá trị cụ thể */
+  height: auto; /* Đảm bảo tỷ lệ ảnh không bị méo */
+  object-fit: contain; /* Điều chỉnh cách ảnh được hiển thị */
+}
+
+
