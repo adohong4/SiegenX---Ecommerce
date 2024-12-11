@@ -1,0 +1,11 @@
+.banner-top-img {
+    width: 100%; 
+    margin: 0; 
+    padding: 0; 
+}
+
+.banner-top-img img {
+    width: 100%; 
+    height: auto; 
+    display: block
+}

@@ -1,20 +1,18 @@
-.about-us-container {
+.row_intro{
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    gap: 20px;
-    /* Tạo khoảng cách giữa các phần tử */
-    height: auto;
+    justify-content: center;
+    padding: 50px 0px;
 }
-
-.about-us-container .image {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+.row_intro .row_intro_feft{
+    padding: 0px;
+    text-align: end;
 }
-
-/* Chống phần tràn xuống section dưới */
-.about-us-container+* {
-    margin-top: 50px;
+.row_intro .row_intro_feft img{
+    width: 80%;
+}
+.row_intro .row_intro_right{
+    padding: 50px;
+}
+.row_intro .row_intro_right img{
+    width: 90%;
 }

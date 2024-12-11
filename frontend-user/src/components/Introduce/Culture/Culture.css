@@ -1,5 +1,6 @@
 .culture-container {
-    padding: 2rem;
+    padding-top: 50px;
+    padding-bottom: 50px;
     background-color: #f8f8f8;
 }
 
@@ -7,7 +8,6 @@
     font-size: 2rem;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 2rem;
 }
 
 .culture-title-p {
@@ -30,6 +30,11 @@
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    transform: translateY(0);
+}
+.culture-item:hover{
+    transform: translateY(-10px);
 }
 
 .culture-item img {
@@ -47,4 +52,9 @@
 .culture-item p {
     font-size: 0.9rem;
     color: #555;
+}
+
+.main-body-vanhoa{
+    max-width: 60%;
+    margin: 0 auto;
 }
