@@ -110,22 +110,22 @@ const Navbar = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <a
-                                        href="#"
+                                    <Link
+                                        to="/about"
                                         className={activeLink === "products" ? "active" : ""}
                                         onClick={() => handleLinkClick("products")}
                                     >
                                         Sản phẩm
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a
-                                        href="#"
+                                    <Link
+                                        to="/about"
                                         className={activeLink === "solutions" ? "active" : ""}
                                         onClick={() => handleLinkClick("solutions")}
                                     >
                                         Giải pháp
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <Link
