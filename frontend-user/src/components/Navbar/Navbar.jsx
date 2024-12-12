@@ -68,7 +68,7 @@ const Navbar = () => {
                                     <div className={`dropdown-menu ${isUserDropdownVisible ? "show" : ""}`}>
                                         <ul>
                                             <li><a href="/login">Login</a></li>
-                                            <li><a href="/logout">Logout</a></li>
+                                            <li><a href="/">Logout</a></li>
                                             <li><a href="/profile">My Profile</a></li>
                                         </ul>
                                     </div>

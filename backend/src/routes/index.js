@@ -8,6 +8,8 @@ router.use('/v1/api', require('./shop/products'));
 router.use('/v1/api', require('./shop'))
 router.use('/v1/api', require('./statistical'))
 router.use('/v1/api', require('./admin'))
+router.use('/v1/api', require('./contact'))
+
 module.exports = router;
 
 

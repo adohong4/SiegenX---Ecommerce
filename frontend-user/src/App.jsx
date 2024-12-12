@@ -6,6 +6,7 @@ import Introduce from './pages/Introduce/Introduce';
 import Contact from './pages/Contact/Contact';
 import Profile from './pages/MyProfile/profile';
 import Products from './pages/Products/Products';
+import Cart from './pages/Cart/Cart'
 import Login from './pages/Login/Login';
 
 function App() {
@@ -21,18 +22,19 @@ function App() {
                 <>
                   <Navbar />
                   <Routes>
-                    <Route path="/home" element={<Home />} />
+                    <Route path="/" element={<Home />} />
                     <Route path="/product" element={<Products />} />
                     <Route path="/about" element={<Introduce />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/cart" element={<Cart />} />
                   </Routes>
                   <Footer />
                 </>
               }
             />
-            {/* Redirect từ path khác về Home */}
-            <Route path="*" element={<Navigate to="/home" />} />
+            {/* Redirect từ path khác về Home
+            <Route path="*" element={<Navigate to="/home" />} /> */}
           </Routes>
 
         </div>
