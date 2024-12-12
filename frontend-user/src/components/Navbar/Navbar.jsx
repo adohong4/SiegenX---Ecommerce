@@ -11,19 +11,19 @@ const Navbar = () => {
 
     const toggleUserDropdown = () => {
         setUserDropdownVisible(!isUserDropdownVisible);
-        setCartDropdownVisible(false); 
+        setCartDropdownVisible(false);
     };
 
     const toggleCartDropdown = () => {
         setCartDropdownVisible(!isCartDropdownVisible);
-        setUserDropdownVisible(false); 
+        setUserDropdownVisible(false);
     };
 
     return (
         <header className="nav-header" id="header">
             <div className="container header-top">
                 <div className="top-row-header">
-                    <Link className="navbar-brand d-flex align-items-center header-logo" to="/">
+                    <Link className="navbar-brand d-flex align-items-center header-logo" to="/home">
                         <img src={assets.logo} alt="SiegenX Logo" style={{ height: '60px' }} />
                     </Link>
                 </div>
@@ -52,7 +52,7 @@ const Navbar = () => {
                                     <div className={`dropdown-menu ${isUserDropdownVisible ? "show" : ""}`}>
                                         <ul>
                                             <li><a href="/login">Login</a></li>
-                                            <li><a href="/logout">Logout</a></li>
+                                            <li><a href="/home">Logout</a></li>
                                             <li><a href="/profile">My Profile</a></li>
                                         </ul>
                                     </div>
@@ -86,7 +86,7 @@ const Navbar = () => {
                         <div className="nav-bar-header-right">
                             <div className="hotline">
                                 <p>
-                                    <span className="label-hotline">Hotline</span> 
+                                    <span className="label-hotline">Hotline</span>
                                     <span className="sdt" >
                                         <a href="https://zalo.me/0982848203">0982848203</a>
                                     </span>
