@@ -34,6 +34,7 @@ function App() {
             {/* Redirect từ path khác về Home */}
             <Route path="*" element={<Navigate to="/home" />} />
           </Routes>
+
         </div>
       </div>
     </>

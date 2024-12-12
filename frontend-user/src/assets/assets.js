@@ -20,6 +20,7 @@ import contact from './banner/contact.png'
 import introduce from './banner/introduce.png'
 import homebanner from './banner/banner-home.png'
 import upload from './upload_area.png'
+
 import homeProduct from './banner/home-product.jpg'
 import category1 from './banner/category1.jpg'
 import category2 from './banner/category2.jpg'
@@ -39,12 +40,18 @@ import videoWallScreen from './banner/Rectangle 42.png'
 import bannerProduct from './banner/Bg.png'
 import bannerProductList from './banner/Banner1.png'
 import { products } from '../data/products'
+
+import logofooter from './logofooter.png'
+
 export const assets = {
     logo,
     icon1, icon2, icon3, icon4, icon5, icon6, arrowRight,
     about1, about2, about3, about4, economic, about5,
-    contact, introduce, forme, bgrcontact,upload, homebanner, homeProduct, 
+
+    contact, introduce, forme, bgrcontact, upload, homebanner, homeProduct,
     category1, category2, category3, category4, category5, products, solution1, solution2, solution3,
     solutionImage, bannerEnd, interactiveScreen, mobileScreen, advertisingScreen, ledScreen, videoWallScreen,
-    bannerProduct, bannerProductList
+    bannerProduct, bannerProductList,
+
+    contact, introduce, forme, bgrcontact, upload, logofooter
 }
