@@ -113,9 +113,9 @@ class UserService {
     }
 
     //get User Address
-    static addUserAddress = async ({ userId, fullname, phone, street, precinct, city, province }) => {
+    static getUserAddress = async ({ userId }) => {
         try {
-            const userAddress = await userModel.findById(userId)
+            const userAddress = await userModel.findById(userId);
 
             if (!userAddress) {
                 throw new Error("User not found");
@@ -125,11 +125,13 @@ class UserService {
                 metadata: {
                     addresses: userAddress.address,
                 }
-            }
+            };
         } catch (error) {
             throw error;
         }
     }
+
+
 }
 
 module.exports = UserService;

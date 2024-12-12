@@ -14,8 +14,8 @@ router.post('/user/login', asyncHandler(UserController.login))
 
 //add User address
 router.post('/user/addAddress', authMiddleware, asyncHandler(UserController.addUserAddress));
-router.get('./user/getAddress', authMiddleware, asyncHandler(UserController.getUserAddress));
+router.get('/user/getAddress', authMiddleware, asyncHandler(UserController.getUserAddress));
 
 //phan trang nguoi dung
 router.get('/pagination_users', asyncHandler(UserController.getUsersWithPagination));
-module.exports = router
+module.exports = router;

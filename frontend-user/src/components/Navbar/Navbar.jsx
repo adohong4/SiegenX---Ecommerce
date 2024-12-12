@@ -4,7 +4,7 @@ import './Navbar.css';
 import { assets } from '../../assets/assets';
 
 const Navbar = () => {
-    const location = useLocation(); 
+    const location = useLocation();
     const [isUserDropdownVisible, setUserDropdownVisible] = useState(false);
     const [isCartDropdownVisible, setCartDropdownVisible] = useState(false);
     const [activeLink, setActiveLink] = useState("/");
@@ -15,7 +15,7 @@ const Navbar = () => {
         if (navLinks.includes(location.pathname)) {
             setActiveLink(location.pathname);
         } else {
-            setActiveLink(""); 
+            setActiveLink("");
         }
     }, [location.pathname]);
 
@@ -68,7 +68,7 @@ const Navbar = () => {
                                     <div className={`dropdown-menu ${isUserDropdownVisible ? "show" : ""}`}>
                                         <ul>
                                             <li><a href="/login">Login</a></li>
-                                            <li><a href="/logout">Logout</a></li>
+                                            <li><a href="/">Logout</a></li>
                                             <li><a href="/profile">My Profile</a></li>
                                         </ul>
                                     </div>

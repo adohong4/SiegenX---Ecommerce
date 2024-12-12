@@ -12,17 +12,10 @@ const ProductSchema = new Schema(
     nameProduct: { type: String, required: true },
     product_slug: { type: String, required: true, unique: true },
     price: { type: Number, required: true },
-    images: [{
-      _id: { type: Schema.Types.ObjectId, ref: 'Product' }, 
-      filename: { type: String, required: true },
-      url: { type: String, required: true }
-  }], 
+    // images: [ImageSchema],
     recap: { type: String, required: true },
     description: { type: String, required: true },
-    specification: [{
-      type: Schema.Types.ObjectId, 
-      ref: 'Specifications',  
-    }],  
+    specification: [SpecificationSchema],
     category: { type: String, required: true },
     quantity: { type: Number, required: true },
   },

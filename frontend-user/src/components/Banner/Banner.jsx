@@ -8,7 +8,8 @@ const Banner = () => {
             <div className='img-banner'>
                 <img src={assets.contact} alt="Liên hệ" />
             </div>
-        </section>  
+        </section>
+    
     )
 }
 
