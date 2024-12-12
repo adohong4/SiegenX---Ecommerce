@@ -111,7 +111,7 @@ const Navbar = () => {
                                 </li>
                                 <li>
                                     <Link
-                                        to="/about"
+                                        to="/product"
                                         className={activeLink === "products" ? "active" : ""}
                                         onClick={() => handleLinkClick("products")}
                                     >

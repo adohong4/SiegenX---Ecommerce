@@ -103,7 +103,9 @@ const Contact = () => {
                                         required
                                     />
                                 </div>
-                                <div className="form-group">
+                                
+                            </div>
+                            <div className="form-group">
                                     <label htmlFor="phone">Phone</label>
                                     <input
                                         type="text"
@@ -114,7 +116,6 @@ const Contact = () => {
                                         required
                                     />
                                 </div>
-                            </div>
                             <div className="form-group">
                                 <label htmlFor="content">Nội dung</label>
                                 <textarea

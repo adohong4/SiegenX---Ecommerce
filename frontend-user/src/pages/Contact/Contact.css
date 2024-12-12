@@ -17,6 +17,7 @@
     border-radius: 20px;
     max-width: 32%;
     background-color: #00c8a0;
+    height: 520px;
 }
 
 .contact-info h2 {
@@ -68,14 +69,14 @@
 
 
 .contact-form .title {
-    display: gr id;
+    display: grid;
     grid-template-columns: repeat(2, 0.5fr);
 }
 
 .contact-form .group {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 2rem;
+    grid-gap: 1rem;
 }
 
 .contact-form h2 {
@@ -83,6 +84,9 @@
     font-weight: bold;
     color: #000;
     margin-bottom: 20px;
+}
+.contact-form p {
+    font-size: 1rem;
 }
 
 .form-group {
