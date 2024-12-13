@@ -110,7 +110,6 @@
     padding: 0;
   }
   
-  /* Thêm gạch dưới cho sublist khi hover vào mục submenu */
   .submenu-item {
     font-size: 14px;
     padding: 5px 10px;
@@ -129,6 +128,6 @@
   }
   .submenu-arrow {
     font-size: 18px;
-    margin-left: auto; /* Đẩy mũi tên ra cuối dòng */
+    margin-left: auto;
     color: #333;
   }

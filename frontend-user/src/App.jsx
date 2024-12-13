@@ -1,4 +1,5 @@
 
+
 import { Route, Routes, Navigate } from 'react-router-dom'; // Thêm Navigate ở đây
 import Home from './pages/Home/Home';
 import Navbar from './components/Navbar/Navbar';
@@ -40,7 +41,6 @@ function App() {
             {/* Redirect từ path khác về Home
             <Route path="*" element={<Navigate to="/home" />} /> */}
           </Routes>
-
         </div>
       </div>
     </>

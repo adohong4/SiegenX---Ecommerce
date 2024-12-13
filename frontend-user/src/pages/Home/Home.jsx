@@ -18,7 +18,7 @@ const Home = () => {
         </div>
         <Solutions />
         <div className='banner-img-f'>
-          <img src={assets.bannerEnd} alt="Liên hệ" />
+          <img src={assets.bannerEnd}  />
         </div>
         <Provide />
         <Partners />

@@ -1,10 +1,10 @@
 .banner-main {
     display: flex;
-    justify-content: center; /* Căn giữa nếu cần */
+    justify-content: center; 
   }
   
   .banner-main img {
-    width: 100%; /* Điều chỉnh kích thước ảnh, có thể là 50%, 80% hoặc một giá trị cụ thể */
-    height: auto; /* Đảm bảo tỷ lệ ảnh không bị méo */
-    object-fit: contain; /* Điều chỉnh cách ảnh được hiển thị */
+    width: 100%; 
+    height: auto;
+    object-fit: contain; 
   }

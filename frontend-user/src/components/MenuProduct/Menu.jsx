@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Menu.css"; // Import file CSS
+import "./Menu.css"; 
 
 const Menu = () => {
   const [activeColumn, setActiveColumn] = useState(null);
