@@ -1,3 +1,4 @@
+
 import { Route, Routes, Navigate } from 'react-router-dom'; // Thêm Navigate ở đây
 import Home from './pages/Home/Home';
 import Navbar from './components/Navbar/Navbar';
@@ -9,6 +10,7 @@ import Products from './pages/Products/Products';
 import Cart from './pages/Cart/Cart'
 import Login from './pages/Login/Login';
 import Order from './pages/Order/Order';
+import ProductsAttributes from './pages/ProductAttributes/ProductAttributes'
 function App() {
   return (
     <>
@@ -25,6 +27,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/product" element={<Products />} />
                     <Route path="/about" element={<Introduce />} />
+                    <Route path="/product/:productId" element={<ProductsAttributes />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/cart" element={<Cart />} />
@@ -37,7 +40,6 @@ function App() {
             {/* Redirect từ path khác về Home
             <Route path="*" element={<Navigate to="/home" />} /> */}
           </Routes>
-
         </div>
       </div>
     </>

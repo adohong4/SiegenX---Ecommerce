@@ -1,93 +1,109 @@
-// ProductsList.js
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import "./ProductsList.css";
 import { products } from "../../../data/products";
 import { assets } from "../../../assets/assets";
 
 const ProductsList = () => {
-  
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
 
-  
   const productsPerPage = 9;
-
-  
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-
-  
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
-
-  
   const totalPages = Math.ceil(products.length / productsPerPage);
 
+  const currentProducts = products.slice(
+    (currentPage - 1) * productsPerPage,
+    currentPage * productsPerPage
+  );
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
+  const handleProductClick = (productId) => {
+    navigate(`/product/${productId}`);
+  }; 
+
+  const handleContactRedirect = () => {
+    window.location.href = "/contact";
   };
 
-
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+ 
   const generatePageNumbers = () => {
-    let pageNumbers = [];
+    const pages = [];
     if (totalPages <= 4) {
-      for (let i = 1; i <= totalPages; i++) {
-        pageNumbers.push(i);
-      }
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
     } else {
       const startPage = Math.max(1, currentPage - 1);
       const endPage = Math.min(totalPages, currentPage + 1);
 
       if (startPage > 1) {
-        pageNumbers.push(1);
-        if (startPage > 2) pageNumbers.push("...");
+        pages.push(1);
+        if (startPage > 2) pages.push("...");
       }
 
-      for (let i = startPage; i <= endPage; i++) {
-        pageNumbers.push(i);
-      }
+      for (let i = startPage; i <= endPage; i++) pages.push(i);
 
       if (endPage < totalPages) {
-        if (endPage < totalPages - 1) pageNumbers.push("...");
-        pageNumbers.push(totalPages);
+        if (endPage < totalPages - 1) pages.push("...");
+        pages.push(totalPages);
       }
     }
-    return pageNumbers;
+    return pages;
   };
 
   return (
     <div className="products-list">
       <h2 className="section-title">SẢN PHẨM NỔI BẬT</h2>
       <div className="products-content">
-        {/* Banner */}
         <div className="productlist-banner">
           <img src={assets.bannerProductList} alt="Màn hình LED" />
         </div>
-
-        {/* Product Grid */}
         <div className="productlist-grid">
           {currentProducts.map((product) => (
-            <div className="productlist-card" key={product.id}>
+            <div
+              className="productlist-card"
+              key={product.id}
+              onClick={() => handleProductClick(product.id)}
+            >
               <div className="productlist-img-container">
-                <img src={product.image} alt={product.name} className="productlist-image" />
+                <img
+                  src={product.images[0]?.url}
+                  alt={product.nameProduct}
+                  className="productlist-image"
+                />
                 <div className="cart-icon">
                   <i className="fas fa-shopping-cart"></i>
                 </div>
               </div>
-              <h3 className="productlist-title">{product.name}</h3>
+              <h3 className="productlist-title">{product.nameProduct}</h3>
               <div className="productlist-actions">
-                <button className="productlist-price-btn">
-                  {product.price ? product.price : "LIÊN HỆ"}
+                <button
+                  className="productlist-price-btn"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    product.price ? null : handleContactRedirect();
+                  }}
+                >
+                  {product.price ? `${product.price.toLocaleString()}đ` : "LIÊN HỆ"}
                 </button>
-                <button className="productlist-btn">XEM NGAY</button>
+                <button
+                  className="productlist-btn"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleProductClick(product.id);
+                  }}
+                >
+                  XEM NGAY
+                </button>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Pagination */}
       <div className="pagination">
-        {/* Previous Page */}
         <button
           className="pagination-btn"
           onClick={() => handlePageChange(currentPage - 1)}
@@ -96,27 +112,17 @@ const ProductsList = () => {
           &lt;
         </button>
 
-        {/* Page Numbers */}
-        {generatePageNumbers().map((page, index) => {
-          if (page === "...") {
-            return (
-              <button key={index} className="pagination-btn dots">
-                ...
-              </button>
-            );
-          }
-          return (
-            <button
-              key={page}
-              className={`pagination-btn ${currentPage === page ? "active" : ""}`}
-              onClick={() => handlePageChange(page)}
-            >
-              {page}
-            </button>
-          );
-        })}
+        {generatePageNumbers().map((page, index) => (
+          <button
+            key={index}
+            className={`pagination-btn ${currentPage === page ? "active" : ""}`}
+            onClick={() => typeof page === "number" && handlePageChange(page)}
+            disabled={page === "..."}
+          >
+            {page}
+          </button>
+        ))}
 
-        {/* Next Page */}
         <button
           className="pagination-btn"
           onClick={() => handlePageChange(currentPage + 1)}

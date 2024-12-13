@@ -4,7 +4,7 @@ import Notification from "../../components/Notification/Notification";
 import MenuProduct from "../../components/MenuProduct/Menu"
 import ProductsList from "../../components/Products/ProductsList/ProductsList";
 import './Products.css';
-const Home = () => {
+const Products = () => {
     return (
         <main>
             <div className='container-home'>
@@ -19,4 +19,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Products;

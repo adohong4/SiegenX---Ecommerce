@@ -37,28 +37,28 @@
 }
 
 .solutions-images {
-  display: flex; /* Sử dụng flex để xếp thành hàng ngang */
-  justify-content: center; /* Căn giữa các phần tử trong hàng */
-  gap: 20px; /* Giảm khoảng cách giữa các phần tử */
+  display: flex; 
+  justify-content: center; 
+  gap: 20px; 
 }
 
 .solution-item1, .solution-item3 {
-  width: 278px; /* Giảm kích thước ảnh */
-  height: 375px; /* Giảm chiều cao ảnh */
+  width: 278px; 
+  height: 375px; 
   border-radius: 35px;
   overflow: hidden;
   margin-top: 62px;
-  position: relative; /* Để các caption có thể được đặt lên trên ảnh */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Thêm hiệu ứng */
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .solution-item2 {
-  width: 360px; /* Giảm kích thước ảnh giữa */
-  height: 500px; /* Giảm chiều cao ảnh giữa */
+  width: 360px;
+  height: 500px; 
   border-radius: 60px;
   overflow: hidden;
-  position: relative; /* Để các caption có thể được đặt lên trên ảnh */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Thêm hiệu ứng */
+  position: relative; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .solution-img {
@@ -68,30 +68,30 @@
 }
 
 .solution-item1:hover, .solution-item2:hover, .solution-item3:hover {
-  transform: scale(1.05); /* Khi hover, ảnh sẽ phóng to một chút */
+  transform: scale(1.05); 
 }
 
 
 .solution-item2 .solution-btn-container {
   position: absolute;
-  bottom: 70px; /* Điều chỉnh khoảng cách từ dưới lên */
+  bottom: 70px; 
   left: 50%;
-  transform: translateX(-50%); /* Căn giữa nút */
-  z-index: 10; /* Đảm bảo nút luôn nằm trên ảnh */
+  transform: translateX(-50%); 
+  z-index: 10; 
 }
 .solution-btn {
   padding: 10px 20px;
   background-color: #00B98E;
-  border: 2px solid white; /* Thêm border màu trắng và độ dày là 2px */
+  border: 2px solid white; 
   border-radius: 30px;
   color: white;
   font-size: 12px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease, border-color 0.3s ease; /* Thêm hiệu ứng cho border */
+  transition: background-color 0.3s ease, border-color 0.3s ease; 
 }
 
 .solution-btn:hover {
   background-color: #008C65;
-  border-color: #00B98E; /* Đổi màu border khi hover */
+  border-color: #00B98E; 
 }
