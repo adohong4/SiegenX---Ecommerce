@@ -1,13 +1,16 @@
-.banner-contact{
+.banner-contact {
     margin-top: 100px;
 }
+
 .contact-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
+
     padding: 40px 120px;
     /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
+
 }
 
 .contact-info {
@@ -26,11 +29,13 @@
     font-weight: bold;
     margin-bottom: 20px;
 }
+
 .contact-info p {
     color: #fff;
     margin-bottom: 20px;
     line-height: 25px;
 }
+
 .contact-detail {
     display: flex;
     flex-direction: column;
@@ -49,24 +54,25 @@
     margin-right: 20px;
     padding: 10px;
     border-radius: 50%;
+
 }
 
 .contact-item span {
     font-size: 16px;
+
     color: #fff;
 }
 
 .contact-form {
-    flex: 1; 
-    background-color: #d6d6d6; 
-    padding: 40px; 
-    background-image: url('../../assets/about/bgrcontact.png'); 
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
+    flex: 1;
+    background-color: #d6d6d6;
+    padding: 40px;
+    background-image: url('../../assets/about/bgrcontact.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border-radius: 20px;
 }
-
 
 .contact-form .title {
     display: grid;
@@ -77,6 +83,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1rem;
+
 }
 
 .contact-form h2 {
@@ -85,9 +92,11 @@
     color: #000;
     margin-bottom: 20px;
 }
+
 .contact-form p {
     font-size: 1rem;
 }
+
 
 .form-group {
     margin-bottom: 20px;
@@ -129,13 +138,16 @@
     background-color: #f2f2f2;
 }
 
-.section-map .container{
+.section-map .container {
     padding: 40px 120px;
     padding-top: 0 !important;
 }
-.section-map .container iframe{
+
+.section-map .container iframe {
     border-radius: 20px;
 }
-.img-banner img{
+
+.img-banner img {
     width: 100%;
+
 }

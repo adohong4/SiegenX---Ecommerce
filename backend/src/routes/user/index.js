@@ -3,6 +3,7 @@
 const express = require('express')
 const UserController = require('../../controllers/user.controller')
 const { asyncHandler } = require('../../helpers/asyncHandler')
+
 const { authMiddleware } = require('../../middleware/checkAuth')
 
 const router = express.Router()
@@ -19,3 +20,4 @@ router.get('/user/getAddress', authMiddleware, asyncHandler(UserController.getUs
 //phan trang nguoi dung
 router.get('/pagination_users', asyncHandler(UserController.getUsersWithPagination));
 module.exports = router;
+

@@ -1,14 +1,14 @@
-
 #v-pills-tab {
     display: flex;
-    flex-direction: column;  
-    align-items: center;  
-    justify-content: center;  
-    height: 100vh; 
-    padding: 0; 
-    margin: 0; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
 }
-.section-linhvuc{
+
+.section-linhvuc {
     padding-top: 40px;
     padding-bottom: 40px;
 }
@@ -26,12 +26,13 @@
     margin-bottom: 10px;
 }
 
-.section-linhvuc .row{
+.section-linhvuc .row {
     justify-content: center;
 }
+
 .section-linhvuc .nav-link:hover {
-    background-color: #00B98E; 
-    color: #fff; 
+    background-color: #00B98E;
+    color: #fff;
 }
 
 .section-linhvuc .nav-link.active {
@@ -45,20 +46,23 @@
 }
 
 .tab-pane {
-    display: none; 
+    display: none;
 }
 
 .tab-pane.show {
-    display: block; 
+    display: block;
 }
-.economic-activity .row{
+
+.economic-activity .row {
     display: flex;
     justify-content: center;
 }
-.section-linhvuc .col-tab-right-linhvuc{
+
+.section-linhvuc .col-tab-right-linhvuc {
     padding: 40px;
 }
-.section-linhvuc .col-tab-right-linhvuc button{
+
+.section-linhvuc .col-tab-right-linhvuc button {
     margin-top: 30px;
     padding: 15px 30px;
     color: #fff;
@@ -70,6 +74,7 @@
     font-weight: bold;
     font-size: 15px;
 }
-.section-linhvuc .col-tab-right-linhvuc button:hover{
+
+.section-linhvuc .col-tab-right-linhvuc button:hover {
     background-color: #009E79;
 }

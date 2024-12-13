@@ -142,9 +142,9 @@ const Navbar = () => {
                                 </li>
                                 <li>
                                     <Link
-                                        to="/about"
-                                        className={activeLink === "solutions" ? "active" : ""}
-                                        onClick={() => handleLinkClick("solutions")}
+                                        to="/solutions"
+                                        className={activeLink === "/solutions" ? "active" : ""}
+                                        onClick={() => handleLinkClick("/solutions")}
                                     >
                                         Giải pháp
                                     </Link>

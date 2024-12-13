@@ -16,8 +16,8 @@ const AboutUs = () => {
                     </div>
                 </div>
             </div>
-            
-    </section>
+
+        </section>
     );
 };
 

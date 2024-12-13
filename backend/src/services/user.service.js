@@ -32,6 +32,7 @@ class UserService {
                 token,
             };
 
+
         } catch (error) {
             console.log(error);
             throw new BadRequestError('Error');

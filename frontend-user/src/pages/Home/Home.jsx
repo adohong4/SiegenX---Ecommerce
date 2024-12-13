@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <main>
       <div className='container-home'>
-        <Notification/>
+        <Notification />
         <BannerHome />
         <div className="container">
           <ProductShowcase />
@@ -28,3 +28,4 @@ const Home = () => {
 };
 
 export default Home;
+

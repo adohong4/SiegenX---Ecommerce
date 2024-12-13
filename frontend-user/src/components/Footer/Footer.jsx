@@ -1,5 +1,6 @@
 import React from 'react';
 import './Footer.css';
+
 import { assets } from '../../assets/assets';
 
 const handleSubmit = (event) => {
@@ -8,6 +9,7 @@ const handleSubmit = (event) => {
     console.log("Số điện thoại đã nhập:", phone);
     // Xử lý thêm logic gửi dữ liệu tại đây
 };
+
 
 const Footer = () => {
     return (
@@ -66,6 +68,7 @@ const Footer = () => {
                                 <li><a href="https://zalo.com/Siegenx">Zalo</a></li>
                             </ul>
                         </div>
+
                     </div>
                 </div>
             </div>

@@ -1,18 +1,22 @@
-.row_intro{
+.row_intro {
     display: flex;
     justify-content: center;
     padding: 50px 0px;
 }
-.row_intro .row_intro_feft{
+
+.row_intro .row_intro_feft {
     padding: 0px;
     text-align: end;
 }
-.row_intro .row_intro_feft img{
+
+.row_intro .row_intro_feft img {
     width: 80%;
 }
-.row_intro .row_intro_right{
+
+.row_intro .row_intro_right {
     padding: 50px;
 }
-.row_intro .row_intro_right img{
+
+.row_intro .row_intro_right img {
     width: 90%;
 }

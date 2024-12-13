@@ -33,8 +33,10 @@
     transition: all 0.3s ease-in-out;
     transform: translateY(0);
 }
-.culture-item:hover{
+
+.culture-item:hover {
     transform: translateY(-10px);
+
 }
 
 .culture-item img {
@@ -54,7 +56,7 @@
     color: #555;
 }
 
-.main-body-vanhoa{
+.main-body-vanhoa {
     max-width: 60%;
     margin: 0 auto;
 }

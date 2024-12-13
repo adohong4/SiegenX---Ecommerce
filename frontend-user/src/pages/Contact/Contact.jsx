@@ -3,6 +3,7 @@ import './Contact.css';
 import Banner from '../../components/Banner/Banner';
 
 const Contact = () => {
+
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -103,19 +104,19 @@ const Contact = () => {
                                         required
                                     />
                                 </div>
-                                
+
                             </div>
                             <div className="form-group">
-                                    <label htmlFor="phone">Phone</label>
-                                    <input
-                                        type="text"
-                                        id="phone"
-                                        name="phone"
-                                        value={formData.phone}
-                                        onChange={handleChange}
-                                        required
-                                    />
-                                </div>
+                                <label htmlFor="phone">Phone</label>
+                                <input
+                                    type="text"
+                                    id="phone"
+                                    name="phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
                             <div className="form-group">
                                 <label htmlFor="content">Nội dung</label>
                                 <textarea

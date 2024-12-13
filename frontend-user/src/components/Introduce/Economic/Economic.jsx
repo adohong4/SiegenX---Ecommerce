@@ -127,7 +127,6 @@ const Economic = () => {
                 </div>
             </div>
         </section>
-
     );
 };
 

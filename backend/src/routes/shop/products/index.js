@@ -4,6 +4,7 @@ const express = require('express');
 const ProductController = require('../../../controllers/product.controller');
 const upload = require('../../../services/upload.service'); // Đảm bảo đường dẫn đúng
 const { asyncHandler } = require('../../../helpers/asyncHandler');
+
 const upLoad = require('../../../middleware/upLoad')
 const router = express.Router();
 const productController = new ProductController();
@@ -25,7 +26,7 @@ router.post('/specification/:_id', asyncHandler(productController.createSpecific
 router.get('/get-specification/:_id', asyncHandler(productController.getSpecifications));
 //Lấy phân trang sản phẩm
 router.get('/pagination', asyncHandler(productController.getAllProducts));
-
 router.post('/product/addProduct', upLoad.array('images', 3), asyncHandler(productController.addProduct))
+
 
 module.exports = router;

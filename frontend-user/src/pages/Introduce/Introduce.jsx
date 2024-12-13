@@ -15,7 +15,7 @@ const Introduce = () => {
                 <Culture />
                 <Economic />
             </div>
-        </main> 
+        </main>
     )
 }
 

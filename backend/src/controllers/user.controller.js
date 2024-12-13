@@ -28,6 +28,7 @@ class UserController {
         }
     }
 
+
     addUserAddress = async (req, res, next) => {
         try {
             const result = await UserService.addUserAddress(req.body);
@@ -59,13 +60,13 @@ class UserController {
 
         } catch (error) {
             next(error);
+
         }
     };
 
 
     getUsersWithPagination = async (req, res, next) => {
         try {
-
             const page = parseInt(req.query.page) || 1;
             const limit = parseInt(req.query.limit) || 20;
             const skip = (page - 1) * limit;
@@ -92,6 +93,7 @@ class UserController {
             });
         } catch (error) {
             next(error);
+
         }
     };
 }

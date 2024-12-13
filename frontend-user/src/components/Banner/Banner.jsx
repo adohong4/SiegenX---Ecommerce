@@ -1,5 +1,6 @@
 import React from 'react'
 import { assets } from '../../assets/assets';
+
 import './Banner.css';
 
 const Banner = () => {
@@ -9,7 +10,7 @@ const Banner = () => {
                 <img src={assets.contact} alt="Liên hệ" />
             </div>
         </section>
-    
+
     )
 }
 

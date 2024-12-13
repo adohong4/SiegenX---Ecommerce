@@ -4,6 +4,7 @@ const AdminService = require('../services/admin.user.service')
 const { OK, CREATED, NOCONTENT } = require('../core/success.response')
 
 class AdminController {
+
     changeInfo = async (req, res, next) => {
         try {
             const userID = req.params.id;
