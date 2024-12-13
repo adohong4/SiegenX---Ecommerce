@@ -1,10 +1,8 @@
-/* Tổng quát */
 .banner {
   position: relative;
   width: 100%;
 }
 
-/* Banner chính */
 .banner-main {
   position: relative;
   width: 100%;
@@ -29,7 +27,6 @@
   text-align: center;
 }
 
-/* Danh mục sản phẩm */
 .banner-categories {
   display: flex;
   justify-content: space-around;
@@ -51,42 +48,42 @@
   bottom: 5px;
   left: 0;
   width: 100%;
-  height: 60px; /* Chiều cao của khu vực màu dưới ảnh */
-  background: linear-gradient(to top, rgb(1, 181, 139), rgba(36, 218, 178,0)); /* Gradient từ đậm đến nhạt */ /* Màu xanh nước biển mờ */
+  height: 60px; 
+  background: linear-gradient(to top, rgb(1, 181, 139), rgba(36, 218, 178,0)); 
 }
 
 .category-text {
   position: absolute;
-  bottom: 20px; /* Điều chỉnh vị trí chữ */
+  bottom: 20px; 
   left: 50%;
   transform: translateX(-50%);
   color: white;
   font-size: 13px;
   font-weight: bold;
-  white-space: nowrap; /* Không cho chữ xuống dòng */
-  overflow: hidden; /* Cắt bớt chữ nếu vượt quá vùng chứa */
-  text-overflow: ellipsis; /* Thêm dấu "..." nếu chữ bị cắt */
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
   
 }
 .banner-main .home-banner-btn{
   position: absolute;
-  bottom: 127px; /* Điều chỉnh khoảng cách từ dưới lên */
+  bottom: 127px; 
   left: 32.9%;
-  transform: translateX(-50%); /* Căn giữa nút */
-  z-index: 10; /* Đảm bảo nút luôn nằm trên ảnh */
+  transform: translateX(-50%); 
+  z-index: 10; 
 }
 .home-banner-btn{
   padding: 10px 20px;
   background-color: #00B98E;
-  border: 2px solid white; /* Thêm border màu trắng và độ dày là 2px */
+  border: 2px solid white; 
   border-radius: 30px;
   color: white;
   font-size: 12px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease, border-color 0.3s ease; /* Thêm hiệu ứng cho border */
+  transition: background-color 0.3s ease, border-color 0.3s ease; 
 }
 .home-banner-btn:hover{
   background-color: #008C65;
-  border-color: #00B98E; /* Đổi màu border khi hover */
+  border-color: #00B98E; 
 }

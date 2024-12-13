@@ -65,7 +65,6 @@ const Provide = () => {
           />
         </div>
         <div className="content-description">
-          {/* <h3>{options[selectedOption].title}</h3> */}
           <p>{options[selectedOption].description}</p>
           <button className="details-button">XEM CHI TIẾT</button>
         </div>

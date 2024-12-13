@@ -7,6 +7,7 @@ import Introduce from './pages/Introduce/Introduce'
 import Contact from './pages/Contact/Contact'
 import Profile from './pages/MyProfile/profile'
 import Products from './pages/Products/Products'
+import ProductsAttributes from './pages/ProductAttributes/ProductAttributes'
 function App() {
   return (
     <>
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/product" element={<Products />} />
+          <Route path="/product/:productId" element={<ProductsAttributes />} />
           <Route path="/about" element={<Introduce />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/profile" element={<Profile />} />
