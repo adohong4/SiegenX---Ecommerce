@@ -80,7 +80,7 @@ const Navbar = () => {
                                     <div className={`dropdown-menu-cart ${isCartDropdownVisible ? "show" : ""}`}>
                                         <ul>
                                             <li><a href="/Cart">My Cart</a></li>
-                                            <li><a href="/myorder">My Order</a></li>
+                                            <li><a href="/order">My Order</a></li>
                                         </ul>
                                     </div>
                                 )}

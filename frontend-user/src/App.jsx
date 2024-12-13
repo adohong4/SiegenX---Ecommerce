@@ -8,7 +8,7 @@ import Profile from './pages/MyProfile/profile';
 import Products from './pages/Products/Products';
 import Cart from './pages/Cart/Cart'
 import Login from './pages/Login/Login';
-
+import Order from './pages/Order/Order';
 function App() {
   return (
     <>
@@ -28,6 +28,7 @@ function App() {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/cart" element={<Cart />} />
+                    <Route path="/order" element={<Order />} />
                   </Routes>
                   <Footer />
                 </>
