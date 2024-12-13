@@ -1,21 +1,60 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { StoreContext } from '../../context/StoreContext'
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import axios from 'axios'
+import { toast } from 'react-toastify';
 
 const Login = () => {
-
+    const { url, setToken } = useContext(StoreContext)
+    const navigate = useNavigate();
     const [currState, setCurrState] = useState('Login');
+
+    const [data, setData] = useState({
+        name: "",
+        email: "",
+        password: ""
+    })
+
+    const onChangeHandler = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setData(data => ({ ...data, [name]: value }))
+
+    }
+
+    const onLogin = async (event) => {
+        event.preventDefault()
+        let newUrl = url;
+
+        if (currState === 'Login') {
+            newUrl += "/v1/api/user/login"
+        } else {
+            newUrl += "/v1/api/user/signup"
+        }
+
+        const response = await axios.post(newUrl, data);
+
+        console.log(response.data.metadata.token)
+
+        setToken(response.data.metadata.token);
+        toast.success('Login Success!!')
+        localStorage.setItem("token", response.data.metadata.token);
+
+        navigate('/')
+
+    }
 
     return (
         <div className='login-popup'>
-            <form className="login-popup-container">
+            <form onSubmit={onLogin} className="login-popup-container">
                 <div className="login-popup-title">
                     <h2>ĐĂNG NHẬP</h2>
                 </div>
                 <div className="login-popup-inputs">
-                    {currState === "Login" ? <></> : <input name='name' type="text" placeholder='Your name' required />}
-                    <input name='email' type="email" placeholder='Email' required />
-                    <input name='password' type="password" placeholder='Mật khẩu' required />
+                    {currState === "Login" ? <></> : <input name='name' onChange={onChangeHandler} value={data.name} type="text" placeholder='Your name' required />}
+                    <input name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Email' required />
+                    <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Mật khẩu' required />
                 </div>
                 <div className="Oauth2">
                     <button className='btn-fb'>Facebook</button>

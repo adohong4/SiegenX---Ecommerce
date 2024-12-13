@@ -42,6 +42,9 @@ import bannerProductList from './banner/Banner1.png'
 import { products } from '../data/products'
 import bglogin from './bglogin.png'
 import logofooter from './logofooter.png'
+import profile_icon from './profile_icon.png'
+import bag_icon from './bag_icon.png'
+import logout_icon from './logout_icon.png'
 
 export const assets = {
     logo,
@@ -53,5 +56,7 @@ export const assets = {
     solutionImage, bannerEnd, interactiveScreen, mobileScreen, advertisingScreen, ledScreen, videoWallScreen,
     bannerProduct, bannerProductList, bglogin,
 
-    contact, introduce, forme, bgrcontact, upload, logofooter
+    contact, introduce, forme, bgrcontact, upload, logofooter,
+
+    profile_icon, bag_icon, logout_icon
 }

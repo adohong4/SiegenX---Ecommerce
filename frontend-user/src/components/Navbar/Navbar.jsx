@@ -1,9 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { StoreContext } from '../../context/StoreContext';
 import './Navbar.css';
 import { assets } from '../../assets/assets';
 
 const Navbar = () => {
+
+    const [menu, setMenu] = useState("home");
+
+    const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+
+    const navigate = useNavigate();
+
+    const logout = () => {
+        localStorage.removeItem("token");
+        setToken("");
+        navigate("/")
+
+    }
+
     const location = useLocation();
     const [isUserDropdownVisible, setUserDropdownVisible] = useState(false);
     const [isCartDropdownVisible, setCartDropdownVisible] = useState(false);
@@ -60,31 +75,38 @@ const Navbar = () => {
                                     <i className="fas fa-search"></i>
                                 </button>
                             </div>
+
                             <div className="icons">
-                                <span className="icon-user" onClick={toggleUserDropdown}>
-                                    <i className="fas fa-user"></i>
-                                </span>
-                                {isUserDropdownVisible && (
-                                    <div className={`dropdown-menu ${isUserDropdownVisible ? "show" : ""}`}>
-                                        <ul>
-                                            <li><a href="/login">Login</a></li>
-                                            <li><a href="/">Logout</a></li>
-                                            <li><a href="/profile">My Profile</a></li>
-                                        </ul>
-                                    </div>
-                                )}
-                                <span className="icon-cart" onClick={toggleCartDropdown}>
-                                    <i className="fas fa-shopping-cart"></i>
-                                </span>
-                                {isCartDropdownVisible && (
-                                    <div className={`dropdown-menu-cart ${isCartDropdownVisible ? "show" : ""}`}>
-                                        <ul>
-                                            <li><a href="/Cart">My Cart</a></li>
-                                            <li><a href="/order">My Order</a></li>
-                                        </ul>
+                                {!token ? (
+                                    <button className="btn btn-signin btn-primary" onClick={() => { navigate('/login') }}>
+                                        Đăng Nhập
+                                    </button>
+                                ) : (
+                                    <div className="navbar-profile col-2 dropdown">
+                                        <span className="icon-user" onClick={toggleUserDropdown}>
+                                            <i className="fas fa-user"></i>
+                                        </span>
+                                        {isUserDropdownVisible && (
+                                            <div className={`dropdown-menu ${isUserDropdownVisible ? "show" : ""}`}>
+                                                <ul>
+                                                    <li onClick={() => navigate('/order')}>My Order</li>
+                                                    <li onClick={() => navigate('/profile')}>My Profile</li>
+                                                    <li onClick={logout}>Logout</li>
+                                                </ul>
+                                            </div>
+                                        )}
+
+                                        <span className="icon-cart" onClick={toggleCartDropdown}>
+                                            <Link to="/cart">
+                                                <i className="fas fa-shopping-cart"></i>
+                                            </Link>
+                                        </span>
+
                                     </div>
                                 )}
                             </div>
+
+
                         </div>
                     </div>
                     {/* Menu điều hướng */}

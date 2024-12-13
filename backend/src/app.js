@@ -1,4 +1,5 @@
-const express = require('express')
+const express = require('express');
+const cors = require('cors');
 const connectDB = require('./config/db.mongo');
 const { default: helmet } = require('helmet')
 const compression = require('compression')
@@ -10,6 +11,7 @@ app.use(morgan("dev"))
 app.use(helmet())
 app.use(compression())
 app.use(express.json())
+app.use(cors());
 
 //init db
 connectDB();

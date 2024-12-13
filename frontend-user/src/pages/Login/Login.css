@@ -1,11 +1,11 @@
-
 .login-popup {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('../../assets/bglogin.png');
-    background-size: contain;
+    margin: 0;
+    background-image: url('../../assets/bglogin.jpg');
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     font-family: 'Arial', sans-serif;
