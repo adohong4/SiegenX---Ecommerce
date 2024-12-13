@@ -50,6 +50,11 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li className="nav-item">
+                            <Link className="nav-link" to="/solution">
+                                GIẢI PHÁP
+                            </Link>
+                        </li>
+                        <li className="nav-item">
                             <Link className="nav-link" to="/news">
                                 TIN TỨC
                             </Link>
