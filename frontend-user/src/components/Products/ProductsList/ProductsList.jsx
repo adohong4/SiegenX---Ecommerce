@@ -16,8 +16,9 @@ const ProductsList = () => {
     currentPage * productsPerPage
   );
 
-  const handleProductClick = (productId) => window.location.href = `/product/${productId}`;
- 
+  const handleProductClick = (productId) => {
+    navigate(`/product/${productId}`);
+  }; 
 
   const handleContactRedirect = () => {
     window.location.href = "/contact";
@@ -28,7 +29,7 @@ const ProductsList = () => {
       setCurrentPage(page);
     }
   };
-
+ 
   const generatePageNumbers = () => {
     const pages = [];
     if (totalPages <= 4) {

@@ -8,7 +8,7 @@ const ProductShowcase = () => {
   const navigate = useNavigate();
 
   const handleProductClick = (productId) => {
-    window.location.href = `/product/${productId}`;
+    navigate ( `/product/${productId}`);
   };
 
   const handleContactRedirect = () => {
