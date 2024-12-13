@@ -29,7 +29,7 @@ const ProductsList = () => {
       setCurrentPage(page);
     }
   };
-
+ 
   const generatePageNumbers = () => {
     const pages = [];
     if (totalPages <= 4) {
