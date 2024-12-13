@@ -41,7 +41,7 @@ const ProductInfo = () => {
   return (
     <div className="productinfo-container">
       <div className="productinfo-images">
-        <div className="productinfo-main-image">
+        <div className="productinfo-main-image"> 
           <img src={mainImage} alt={product.nameProduct} />
           <div className="productinfo-zoom-icon" onClick={togglePopup}>
             <FaSearch size={22} color="black" />
