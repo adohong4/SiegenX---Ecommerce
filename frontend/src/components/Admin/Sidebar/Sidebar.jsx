@@ -18,22 +18,27 @@ const Sidebar = () => {
 
                     <NavLink to='/admin/add' className="sidebar-option">
                         <i className="bi bi-plus-circle"></i>
-                        <p>Add Product</p>
+                        <p>Thêm sản phẩm</p>
                     </NavLink>
 
-                    <NavLink to='/admin/list' className="sidebar-option">
+                    <NavLink to='/admin/product' className="sidebar-option">
                         <i className="bi bi-list-ul"></i>
-                        <p>List Product</p>
+                        <p>Sản phẩm</p>
                     </NavLink>
 
                     <NavLink to='/admin/user' className="sidebar-option">
                         <i className="bi bi-file-person"></i>
-                        <p>List User</p>
+                        <p>Tài Khoản</p>
                     </NavLink>
 
                     <NavLink to='/admin/orders' className="sidebar-option">
                         <i className="bi bi-box"></i>
-                        <p>List Order</p>
+                        <p>Hóa Đơn</p>
+                    </NavLink>
+
+                    <NavLink to='/admin/contact' className="sidebar-option">
+                        <i className="bi bi-box"></i>
+                        <p>Liên Hệ CSKH</p>
                     </NavLink>
                 </div>
             </div>
