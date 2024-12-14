@@ -1,61 +1,22 @@
-.about-us-container {
+.row_intro {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    gap: 20px;
-    /* Tạo khoảng cách giữa các phần tử */
-    height: auto;
-}
-
-.image-overlay {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    width: 50%;
-    height: auto;
-    overflow: visible;
-    /* Đảm bảo hình ảnh không bị cắt */
+    padding: 50px 0px;
 }
 
-.image-overlay img {
-    position: absolute;
-    width: 300px;
-    /* Đặt kích thước cố định hoặc tùy chỉnh theo nhu cầu */
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-    /* Thêm hiệu ứng hover nếu cần */
+.row_intro .row_intro_feft {
+    padding: 0px;
+    text-align: end;
 }
 
-/* Tạo hiệu ứng xếp chồng */
-.image-overlay img:nth-child(1) {
-    top: 0;
-    left: 0;
-    z-index: 3;
+.row_intro .row_intro_feft img {
+    width: 80%;
 }
 
-.image-overlay img:nth-child(2) {
-    top: 20px;
-    left: 20px;
-    z-index: 2;
+.row_intro .row_intro_right {
+    padding: 50px;
 }
 
-.image-overlay img:nth-child(3) {
-    top: 40px;
-    left: 40px;
-    z-index: 1;
-}
-
-.right-image {
-    width: 40%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Chống phần tràn xuống section dưới */
-.about-us-container+* {
-    margin-top: 50px;
+.row_intro .row_intro_right img {
+    width: 90%;
 }

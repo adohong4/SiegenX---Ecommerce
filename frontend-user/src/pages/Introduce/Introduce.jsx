@@ -6,12 +6,16 @@ import { assets } from '../../assets/assets';
 
 const Introduce = () => {
     return (
-        <div>
-            <img src={assets.introduce} alt="Liên hệ" />
-            <AboutUs />
-            <Culture />
-            <Economic />
-        </div>
+        <main>
+            <div className='banner-top-img'>
+                <img src={assets.introduce} alt="Liên hệ" />
+            </div>
+            <div className='container'>
+                <AboutUs />
+                <Culture />
+                <Economic />
+            </div>
+        </main>
     )
 }
 
