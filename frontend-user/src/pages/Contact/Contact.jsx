@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, } from 'react';
 import './Contact.css';
 import Banner from '../../components/Banner/Banner';
+import StoreContextProvider from '../../context/StoreContext';
 
 const Contact = () => {
+
+    const [url] = useContext(StoreContextProvider)
 
     const [formData, setFormData] = useState({
         username: '',
@@ -19,35 +22,7 @@ const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault(); // Ngăn chặn hành vi mặc định của biểu mẫu
 
-        const contactData = {
-            username: username, // Giả sử bạn đã khai báo biến này
-            email: email,       // Giả sử bạn đã khai báo biến này
-            phone: phone,       // Giả sử bạn đã khai báo biến này
-            content: content,   // Giả sử bạn đã khai báo biến này
-        };
-
-        try {
-            const response = await fetch('http://localhost:4001/v1/api/contact/add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(contactData),
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const result = await response.json();
-            console.log('Liên hệ đã được thêm:', result);
-            // Có thể cập nhật trạng thái UI hoặc thông báo thành công ở đây
-
-        } catch (error) {
-            console.error('Lỗi khi gửi dữ liệu:', error);
-            // Có thể hiển thị thông báo lỗi cho người dùng ở đây
-        }
-    };
+    }
 
     return (
         <div className='page-contact'>

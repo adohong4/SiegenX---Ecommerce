@@ -11,7 +11,7 @@ const Login = () => {
     const [currState, setCurrState] = useState('Login');
 
     const [data, setData] = useState({
-        name: "",
+        username: "",
         email: "",
         password: ""
     })
@@ -52,7 +52,7 @@ const Login = () => {
                     <h2>ĐĂNG NHẬP</h2>
                 </div>
                 <div className="login-popup-inputs">
-                    {currState === "Login" ? <></> : <input name='name' onChange={onChangeHandler} value={data.name} type="text" placeholder='Your name' required />}
+                    {currState === "Login" ? <></> : <input name='username' onChange={onChangeHandler} value={data.username} type="text" placeholder='Your name' required />}
                     <input name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Email' required />
                     <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Mật khẩu' required />
                 </div>

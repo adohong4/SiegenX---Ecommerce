@@ -40,9 +40,14 @@
     color: #fff !important;
 }
 
+.col-tab-left-linhvuc {
+    margin-top: -50p x;
+}
 
-.tab-content {
+.col-tab-right-linhvuc .tab-content {
     margin-top: 20px;
+    padding: 0;
+    border: none;
 }
 
 .tab-pane {

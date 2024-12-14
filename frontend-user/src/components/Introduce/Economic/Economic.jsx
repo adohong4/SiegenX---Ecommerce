@@ -84,7 +84,7 @@ const Economic = () => {
 
                     {/* Tab Content */}
                     <div className="col-md-8 col-xxl-8 col-tab-right-linhvuc">
-                        <div className="tab-content" id="v-pills-tabContent">
+                        <div className="tab-content tab-gt" id="v-pills-tabContent">
                             {/* Chỉ hiển thị ảnh khi tab được chọn */}
                             <div
                                 className={`tab-pane fade ${activeTab === 'tech' ? 'show active' : ''}`}
