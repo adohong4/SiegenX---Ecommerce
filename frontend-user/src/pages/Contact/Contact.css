@@ -127,9 +127,12 @@
     background-color: #00c8a0;
     color: #fff;
     border: none;
-    padding: 10px 60px;
-    font-size: 16px;
-    border-radius: 5px;
+    padding: 10px 12px;
+    margin-left: 10px;
+    font-size: 14px;
+    border-radius: 50px;
+    width: max-content;
+    font-weight: 550;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
