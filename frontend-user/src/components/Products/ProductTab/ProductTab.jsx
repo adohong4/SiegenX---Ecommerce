@@ -1,30 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios'; 
+import axios from 'axios';
 import './ProductTab.css';
 
 const ProductTab = () => {
     const { productSlug } = useParams();
     const [activeTab, setActiveTab] = useState('description');
-    const [product, setProduct] = useState(null); 
-    
+    const [product, setProduct] = useState(null);
+
 
     useEffect(() => {
         const fetchProductData = async () => {
-            try {
-                setLoading(true);
-                const response = await axios.get(`http://localhost:4001/v1/api/products/${productSlug}`); 
-                setProduct(response.data.metadata.product); 
-                console.log(response.data.metadata.product)
-            } catch (err) {
-                setError('Failed to fetch product data');
-            } finally {
-                setLoading(false);
-            }
+            const response = await axios.get(`http://localhost:4001/v1/api/products/${productSlug}`);
+            setProduct(response.data.metadata.product);
+            console.log(response.data.metadata.product)
         };
 
         fetchProductData();
-    }, [productSlug]); 
+    }, [productSlug]);
 
     if (!product) {
         return <div className="error-message">Sản phẩm không tồn tại</div>;

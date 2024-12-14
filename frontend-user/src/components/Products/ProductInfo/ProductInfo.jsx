@@ -1,4 +1,4 @@
-import React, { useState, useEffect , useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import "./ProductInfo.css";
 import axios from "axios";
@@ -12,22 +12,15 @@ const ProductInfo = () => {
   const [mainImage, setMainImage] = useState(null);
   const [selectedThumbnail, setSelectedThumbnail] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-  const { productSlug } = useParams(); 
+  const { productSlug } = useParams();
 
-  
   const fetchProduct = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await axios.get(`http://localhost:4001/v1/api/products/${productSlug}`); // URL API
-      setProduct(response.data.metadata.product);
-      console.log(response.data.metadata.product)
-      setMainImage(response.data.metadata.product.images[0]?.url);
-    } catch (error) {
-      setError(error.response?.data?.message || "Không thể tải sản phẩm. Vui lòng thử lại sau!");
-    } finally {
-      setLoading(false);
-    }
+
+    const response = await axios.get(`http://localhost:4001/v1/api/products/${productSlug}`); // URL API
+    setProduct(response.data.metadata.product);
+    console.log(response.data.metadata.product)
+    setMainImage(response.data.metadata.product.images[0]?.url);
+
   };
 
   // Gọi API khi component được render lần đầu
@@ -57,7 +50,7 @@ const ProductInfo = () => {
 
   const togglePopup = () => setShowPopup(!showPopup);
 
-  
+
   if (!product_slug) return <div>Sản phẩm không tồn tại</div>;
 
   return (
