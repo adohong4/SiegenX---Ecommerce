@@ -11,12 +11,12 @@ const MeetingRoomSolution = () => {
                         <hr />
                         <h1>PHÒNG HỌP THÔNG MINH LÀ GÌ</h1>
                     </div>
-                    <p>Phòng họp thông minh là không gian hội họp không cần giấy tờ, giúp tiết kiệm tài nguyên và tăng tính hiệu quả trong
+                    {/* <p>Phòng họp thông minh là không gian hội họp không cần giấy tờ, giúp tiết kiệm tài nguyên và tăng tính hiệu quả trong
                         việc chia sẻ tài liệu. Người dùng có thể dễ dàng tự động điều khiển tất cả các thiết bị điện tử
                         trong phòng họp ngay trên máy tính như: cửa, rèm, đèn, máy lạnh, thiết bị hội nghị truyền hình,
                         màn hình, máy chiếu, màn chiếu, và các thiết bị âm thanh. Với màn hình lớn hiển thị rõ ràng, hệ thống micro
                         cho âm thanh sắc nét, và camera hỗ trợ ghi hình cũng như kết nối từ xa, phòng họp thông minh mang lại trải nghiệm chuyên nghiệp
-                        và thuận tiện cho doanh nghiệp.</p>
+                        và thuận tiện cho doanh nghiệp.</p> */}
                 </div>
             </div>
 

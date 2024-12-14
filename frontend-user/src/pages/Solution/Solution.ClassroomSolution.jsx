@@ -13,7 +13,7 @@ const ClassRoomSolution = () => {
                         <hr />
                         <h1>GIẢI PHÁP PHÒNG HỌC THÔNG MINH LÀ GÌ</h1>
                     </div>
-                    <p>Phòng học thông minh, hay lớp học thông minh, mang đến cho cả người học và người giảng dạy
+                    {/* <p>Phòng học thông minh, hay lớp học thông minh, mang đến cho cả người học và người giảng dạy
                         cơ hội trải nghiệm môi trường giáo dục được trang bị đầy đủ các ứng dụng và thiết bị tiên tiến
                         của thời đại công nghệ phát triển. Mô hình này giúp giảm thiểu thời gian giảng dạy của giáo viên
                         mà vẫn đảm bảo truyền tải lượng kiến thức phong phú và hiệu quả cho học sinh.</p>
@@ -21,7 +21,7 @@ const ClassRoomSolution = () => {
                     <p>Các thiết bị trong phòng học thông minh đều dựa trên nền tảng công nghệ hiện đại, dễ sử dụng,
                         thân thiện với người dùng, và hoạt động một cách đồng bộ nhằm làm cho nội dung học trở nên sinh động hơn.
                         Nhờ vậy, cả giáo viên lẫn học sinh được trải nghiệm một không gian học tập đầy thú vị và hiệu quả,
-                        góp phần tăng sự hứng thú học tập và cải thiện đáng kể kết quả học tập của học sinh.</p>
+                        góp phần tăng sự hứng thú học tập và cải thiện đáng kể kết quả học tập của học sinh.</p> */}
                 </div>
             </div>
 

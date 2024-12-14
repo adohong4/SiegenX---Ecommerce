@@ -11,11 +11,11 @@ const BoothSolution = () => {
                         <hr />
                         <h1>GIAN HÀNG THÔNG MINH</h1>
                     </div>
-                    <p>
+                    {/* <p>
                         Gian hàng thông minh là một khái niệm sử dụng công nghệ để tối ưu hóa trải nghiệm mua sắm tại các
                         cửa hàng hoặc các sự kiện thương mại. Gian hàng thông minh kết hợp nhiều công nghệ tiên tiến như trí tuệ nhân tạo (AI),
                         Internet vạn vật (IoT), nhận diện khuôn mặt, dữ liệu lớn (Big Data), và tự động hóa để mang đến sự tiện lợi,
-                        nhanh chóng và cá nhân hóa trong quá trình mua sắm.</p>
+                        nhanh chóng và cá nhân hóa trong quá trình mua sắm.</p> */}
                 </div>
             </div>
 
