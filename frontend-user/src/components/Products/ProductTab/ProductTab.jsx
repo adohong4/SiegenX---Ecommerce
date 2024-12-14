@@ -1,12 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios'; 
 import './ProductTab.css';
-import { products } from '../../../data/products';
 
 const ProductTab = () => {
-    const { productId } = useParams();
+    const { productSlug } = useParams();
     const [activeTab, setActiveTab] = useState('description');
-    const product = products.find((p) => p.id === parseInt(productId));
+    const [product, setProduct] = useState(null); 
+    
+
+    useEffect(() => {
+        const fetchProductData = async () => {
+            try {
+                setLoading(true);
+                const response = await axios.get(`http://localhost:4001/v1/api/products/${productSlug}`); 
+                setProduct(response.data.metadata.product); 
+                console.log(response.data.metadata.product)
+            } catch (err) {
+                setError('Failed to fetch product data');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProductData();
+    }, [productSlug]); 
 
     if (!product) {
         return <div className="error-message">Sản phẩm không tồn tại</div>;
@@ -49,13 +67,13 @@ const ProductTab = () => {
 
                         <h2>II. Ưu điểm sản phẩm</h2>
                         <div className="producttab-images">
-                            {product.images.length > 0 && (
+                            {product.images.length > 1 && (
                                 <img src={product.images[1].url} alt="Hình ảnh sản phẩm" className="producttab-image" />
                             )}
                         </div>
                         <p className="producttab-description">{product.description}</p>
                         <div className="producttab-images">
-                            {product.images.length > 0 && (
+                            {product.images.length > 2 && (
                                 <img src={product.images[2].url} alt="Hình ảnh sản phẩm" className="producttab-image" />
                             )}
                         </div>

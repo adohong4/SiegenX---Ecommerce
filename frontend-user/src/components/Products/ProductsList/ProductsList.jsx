@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ProductsList.css";
-import { products } from "../../../data/products";
 import { assets } from "../../../assets/assets";
+import { StoreContext } from "../../../context/StoreContext";
 
 const ProductsList = () => {
+  const { product_list,url } = useContext(StoreContext);
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
 
   const productsPerPage = 9;
-  const totalPages = Math.ceil(products.length / productsPerPage);
-
-  const currentProducts = products.slice(
+  const totalPages = Math.ceil(product_list.length / productsPerPage);
+  const currentProducts = product_list.slice(
     (currentPage - 1) * productsPerPage,
     currentPage * productsPerPage
   );
 
-  const handleProductClick = (productId) => {
-    navigate(`/product/${productId}`);
-  }; 
+  const handleProductClick = (productSlug) => {
+    navigate(`/product/${productSlug}`);
+  };
 
   const handleContactRedirect = () => {
     window.location.href = "/contact";
@@ -29,7 +29,8 @@ const ProductsList = () => {
       setCurrentPage(page);
     }
   };
- 
+  console.log(product_list)
+
   const generatePageNumbers = () => {
     const pages = [];
     if (totalPages <= 4) {
@@ -60,77 +61,84 @@ const ProductsList = () => {
         <div className="productlist-banner">
           <img src={assets.bannerProductList} alt="Màn hình LED" />
         </div>
-        <div className="productlist-grid">
-          {currentProducts.map((product) => (
-            <div
-              className="productlist-card"
-              key={product.id}
-              onClick={() => handleProductClick(product.id)}
-            >
-              <div className="productlist-img-container">
-                <img
-                  src={product.images[0]?.url}
-                  alt={product.nameProduct}
-                  className="productlist-image"
-                />
-                <div className="cart-icon">
-                  <i className="fas fa-shopping-cart"></i>
+
+        {product_list.length === 0 ? (
+          <p>Không có sản phẩm nào để hiển thị!</p>
+        ) : (
+          <div className="productlist-grid">
+            {currentProducts.map((product) => (
+              <div
+                className="productlist-card"
+                key={product.product_slug}
+                onClick={() => handleProductClick(product.product_slug)}
+              >
+                <div className="productlist-img-container">
+                  <img
+                    src={product.images[0]?.url}
+                    alt={product.nameProduct}
+                    className="productlist-image"
+                  />
+                  <div className="cart-icon">
+                    <i className="fas fa-shopping-cart"></i>
+                  </div>
+                </div>
+                <h3 className="productlist-title">{product.nameProduct}</h3>
+                <div className="productlist-actions">
+                  <button
+                    className="productlist-price-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      product.price ? null : handleContactRedirect();
+                    }}
+                  >
+                    {product.price ? `${product.price.toLocaleString()}đ` : "LIÊN HỆ"}
+                  </button>
+                  <button
+                    className="productlist-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleProductClick(product.product_slug);
+                    }}
+                  >
+                    XEM NGAY
+                  </button>
                 </div>
               </div>
-              <h3 className="productlist-title">{product.nameProduct}</h3>
-              <div className="productlist-actions">
-                <button
-                  className="productlist-price-btn"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    product.price ? null : handleContactRedirect();
-                  }}
-                >
-                  {product.price ? `${product.price.toLocaleString()}đ` : "LIÊN HỆ"}
-                </button>
-                <button
-                  className="productlist-btn"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleProductClick(product.id);
-                  }}
-                >
-                  XEM NGAY
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
-      <div className="pagination">
-        <button
-          className="pagination-btn"
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          &lt;
-        </button>
-
-        {generatePageNumbers().map((page, index) => (
+      {product_list.length > 0 && (
+        <div className="pagination">
           <button
-            key={index}
-            className={`pagination-btn ${currentPage === page ? "active" : ""}`}
-            onClick={() => typeof page === "number" && handlePageChange(page)}
-            disabled={page === "..."}
+            className="pagination-btn"
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
           >
-            {page}
+            &lt;
           </button>
-        ))}
 
-        <button
-          className="pagination-btn"
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          &gt;
-        </button>
-      </div>
+          {generatePageNumbers().map((page, index) => (
+            <button
+              key={index}
+              className={`pagination-btn ${currentPage === page ? "active" : ""}`}
+              onClick={() => typeof page === "number" && handlePageChange(page)}
+              disabled={page === "..."}
+            >
+              {page}
+            </button>
+          ))}
+
+          <button
+            className="pagination-btn"
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            &gt;
+          </button>
+        </div>
+      )}
     </div>
   );
 };

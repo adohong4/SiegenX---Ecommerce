@@ -72,7 +72,7 @@ class ProductController {
     static getAllProducts = async (req, res, next) => {
         try {
             const page = parseInt(req.query.page) || 1;
-            const limit = 9;
+            const limit = 10000;
             const skip = (page - 1) * limit;
 
             const [products, total] = await Promise.all([
@@ -100,7 +100,7 @@ class ProductController {
             // Trả về danh sách sản phẩm kèm thông tin phân trang
             res.status(200).json({
                 message: 'Products fetched successfully',
-                data: products,
+                metadata: products,
                 pagination: {
                     total, // Tổng số sản phẩm
                     page, // Trang hiện tại

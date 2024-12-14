@@ -12,7 +12,7 @@ const ProductsAttributes = () => {
         <main>
             <div className='container-home'>
                 <Notification />
-                <ProductInfo />
+                <ProductInfo productId={productId}/>
                 <ProductTab productId={productId} /> 
             </div>
         </main>

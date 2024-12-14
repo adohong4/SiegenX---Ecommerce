@@ -2,15 +2,16 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
+
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
-
     const [cartItems, setCartItems] = useState({})
     const url = "http://localhost:4001";
     const url2 = "http://localhost:5174";
     const [token, setToken] = useState("")
     const [product_list, setProductList] = useState([])
+    const [product_slug, setProductSlug] = useState([])
 
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
@@ -43,7 +44,12 @@ const StoreContextProvider = (props) => {
 
     const fetchProductList = async () => {
         const response = await axios.get(`${url}/v1/api/products`);
-        setProductList(response.data.data);
+        setProductList(response.data.metadata);
+    }
+
+    const fetchProductSlug = async (productSlug) => {
+        const response = await axios.get(`${url}/v1/api/products/${productSlug}`);
+        setProductSlug(response.data.metadata.product);
     }
 
     const loadCartData = async (token) => {
@@ -63,9 +69,22 @@ const StoreContextProvider = (props) => {
         loadData();
     }, [])
 
+    useEffect(() => {
+        async function loadDataSlug() {
+            await fetchProductSlug()
+            if (localStorage.getItem("token")) {
+                setToken(localStorage.getItem("token"));
+                await loadCartData(localStorage.getItem("token"))
+            }
+
+        }
+        loadDataSlug();
+    }, [])
+
 
     const contextValue = {
         product_list,
+        product_slug,
         cartItems,
         setCartItems,
         addToCart,

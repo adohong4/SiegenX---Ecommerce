@@ -1,14 +1,37 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"; // Import axios
 import "./ProductShowcase.css";
-import { products } from "../../../data/products";
 import { assets } from "../../../assets/assets";
+import { StoreContext } from "../../../context/StoreContext";
 
 const ProductShowcase = () => {
+  const { product_list,url } = useContext(StoreContext);
   const navigate = useNavigate();
+  const [products, setProducts] = useState([]); // State to store products
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
 
-  const handleProductClick = (productId) => {
-    navigate ( `/product/${productId}`);
+  // Function to fetch products from the API
+  // const fetchProducts = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const response = await axios.get("http://localhost:4001/v1/api/products"); // Replace with your API endpoint
+  //     setProducts(response.data.metadata); // Store products in state
+  //     console.log(response.data.metadata)
+  //   } catch (err) {
+  //     setError("Failed to fetch products"); // Handle error
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchProducts(); // Fetch products when component mounts
+  // }, []);
+
+  const handleProductClick = (productSlug) => {
+    navigate(`/product/${productSlug}`);
   };
 
   const handleContactRedirect = () => {
@@ -30,11 +53,11 @@ const ProductShowcase = () => {
 
         {/* Cột sản phẩm */}
         <div className="product-grid">
-          {products.slice(0, 4).map((product) => (
+          {product_list.slice(0, 4).map((product) => (
             <div
               className="product-card"
-              key={product.id}
-              onClick={() => handleProductClick(product.id)}
+              key={product.product_slug}
+              onClick={() => handleProductClick(product.product_slug)}
             >
               {/* Container hình ảnh và icon giỏ hàng */}
               <div className="product-img-container">
@@ -63,7 +86,7 @@ const ProductShowcase = () => {
                   className="product-btn"
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleProductClick(product.id);
+                    handleProductClick(product.product_slug);
                   }}
                 >
                   XEM NGAY
