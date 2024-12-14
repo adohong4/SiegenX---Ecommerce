@@ -4,92 +4,19 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { StoreContext } from '../../../context/StoreContext';
 
+
 const ListProduct = () => {
-    const { url } = useContext(StoreContext)
+    const { url, product_list } = useContext(StoreContext)
 
     const [list, setList] = useState([]);
-    const [showPopup, setShowPopup] = useState(false); // State điều khiển popup
-    const [currentFood, setCurrentFood] = useState(null); // Lưu trữ thông tin món ăn được chỉnh sửa
-    const [newImage, setNewImage] = useState(null); // State lưu hình ảnh mới
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [sort, setSort] = useState('Sort By');
 
-    const fetchList = async () => {
-        const response = await axios.get(`${url}/v1/api/products`);
-        console.log('data:', response.data.data)
-        if (response.data.message) {
-            setList(response.data.data);
-        } else {
-            toast.error("Error");
-        }
+    // Hàm xóa sản phẩm
+    const removeProduct = async (productId) => {
+
     };
-
-    useEffect(() => {
-        fetchList();
-    }, []);
-
-    // Hàm xóa món ăn
-    const removeFood = async (foodId) => {
-        const response = await axios.post(`${url}/api/food/remove`, { id: foodId });
-        await fetchList();
-        if (response.data.success) {
-            toast.success(response.data.message);
-        } else {
-            toast.error("Error");
-        }
-    };
-
-    // Hàm mở popup và hiển thị dữ liệu món ăn cần chỉnh sửa
-    const openUpdatePopup = (food) => {
-        setCurrentFood(food);
-        setShowPopup(true);
-    };
-
-    // Hàm đóng popup
-    const closePopup = () => {
-        setShowPopup(false);
-        setCurrentFood(null);
-        setNewImage(null); // Reset lại hình ảnh khi đóng popup
-    };
-
-    // Hàm xử lý khi người dùng nhấn nút Update trong popup
-    const handleUpdate = async () => {
-        const formData = new FormData();
-        formData.append('id', currentFood._id);
-        formData.append('name', currentFood.name);
-        formData.append('category', currentFood.category);
-        formData.append('price', currentFood.price);
-        formData.append('description', currentFood.description); // Thêm mô tả vào formData
-
-        // Nếu người dùng chọn ảnh mới thì thêm ảnh vào formData
-        if (newImage) {
-            formData.append('image', newImage);
-        }
-
-        const response = await axios.put(`${url}/api/food/update/${currentFood._id}`, formData, {
-            headers: { 'Content-Type': 'multipart/form-data' }
-        });
-
-        if (response.data.success) {
-            toast.success('Updated successfully');
-            await fetchList(); // Cập nhật lại danh sách
-            closePopup(); // Đóng popup sau khi thành công
-        } else {
-            toast.error('Error updating food');
-        }
-    };
-
-    // Hàm xử lý khi có thay đổi trên input
-    const handleChange = (e) => {
-        setCurrentFood({ ...currentFood, [e.target.name]: e.target.value });
-    };
-
-    // Hàm xử lý khi người dùng chọn hình ảnh mới
-    const handleImageChange = (e) => {
-        setNewImage(e.target.files[0]);
-    };
-
 
     const handleSearch = async () => {
         if (searchTerm.trim() === '') {
@@ -129,7 +56,7 @@ const ListProduct = () => {
         <div className='list add flex-col'>
             <div className='top-list-tiltle'>
                 <div className='col-lg-6 tittle-right'>
-                    <p>All Foods List</p>
+                    <p>SẢN PHẨM</p>
                 </div>
                 <div className='col-lg-6 list-left'>
                     <div className="sort-container">
@@ -142,15 +69,12 @@ const ListProduct = () => {
 
                     <div className="selected-container">
                         <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
-                            <option value="All" selected>All</option>
-                            <option value="Salad">Salad</option>
-                            <option value="Rolls">Rolls</option>
-                            <option value="Deserts">Deserts</option>
-                            <option value="Sandwich">Sandwich</option>
-                            <option value="Drink">Drink</option>
-                            <option value="Pure Veg">Pure Veg</option>
-                            <option value="Pasta">Pasta</option>
-                            <option value="Noodles">Noodles</option>
+                            <option value="All" selected>Tất cả</option>
+                            <option value="LED">Màn hình LED</option>
+                            <option value="Tương tác">MH tương tác</option>
+                            <option value="LCD">MH quảng cáo LCD</option>
+                            <option value="OOH">Quảng cáo 3D (OOH)</option>
+                            <option value="KTV 5D">KTV 5D</option>
                         </select>
                     </div>
                     <div className='search-left'>
@@ -168,79 +92,31 @@ const ListProduct = () => {
             </div>
 
 
-
-
             <div className="list-table">
                 <div className="list-table-format title">
-                    <b>Image</b>
-                    <b>Name</b>
-                    <b>Category</b>
-                    <b>Price</b>
-                    <b>Action</b>
-                    <b>Update</b>
+                    <b>Hình Ảnh</b>
+                    <b>Tên Sản Phẩm</b>
+                    <b>Danh Mục</b>
+                    <b>Giá</b>
+                    <b>Số Lượng</b>
+                    <b>Tùy Chỉnh</b>
                 </div>
-                {list.map((item, index) => (
+                {product_list.map((item, index) => (
                     // if (category === "All" || category === item.category) {}
                     <div key={index} className='list-table-format'>
                         <img src={`${url}/images/${item.image}`} alt="" />
                         <p>{item.nameProduct}</p>
                         <p>{item.category}</p>
                         <p>{item.price}</p>
-                        <button onClick={() => removeFood(item._id)} className='cursor1' > Delete</button>
-                        <button onClick={() => openUpdatePopup(item)} className="btn-update1">Update</button>
+                        <p>{item.quantity}</p>
+                        <div>
+                            <button onClick={() => (e)} className='cursor1' > Xóa</button>
+                            <button onClick={() => (e)} className="btn-update1">Sửa</button>
+                        </div>
+
                     </div>
                 ))}
             </div>
-
-            {/* Popup Form */}
-            {showPopup && (
-                <div className="popup">
-                    <div className="popup-content">
-                        <h3>Update Food</h3>
-
-                        <label>Current Image:</label>
-                        {currentFood.image && <img src={`${url}/images/${currentFood.image}`} alt="Current Food" style={{ width: '100px', height: '100px' }} />}
-
-                        <label>Name:</label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={currentFood.nameProduct}
-                            onChange={handleChange}
-                        />
-
-                        <label>Category:</label>
-                        <input
-                            type="text"
-                            name="category"
-                            value={currentFood.quantity}
-                            onChange={handleChange}
-                        />
-
-                        <label>Price:</label>
-                        <input
-                            type="text"
-                            name="price"
-                            value={currentFood.price}
-                            onChange={handleChange}
-                        />
-
-                        <label>Product Description:</label>
-                        <textarea
-                            name="description"
-                            value={currentFood.description}
-                            onChange={handleChange}
-                            rows="4"
-                        />
-
-                        <label>Upload New Image (Optional):</label>
-                        <input type="file" name="image" onChange={handleImageChange} />
-
-                        <button onClick={handleUpdate}>Update</button>
-                        <button onClick={closePopup}>Cancel</button>
-                    </div>
-                </div>
-            )}
         </div>
     )
 }
