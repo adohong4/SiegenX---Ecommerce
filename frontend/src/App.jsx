@@ -12,6 +12,7 @@ import Login from './pages/Login/Login';
 import Order from './pages/Order/Order';
 import Solution from './pages/Solution/Solution';
 import ProductsAttributes from './pages/ProductAttributes/ProductAttributes'
+import Admin from './pages/Admin/Admin';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <div className='app'>
           <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/admin/*" element={<Admin />} />
             <Route
               path="*"
               element={
@@ -40,8 +42,6 @@ function App() {
                 </>
               }
             />
-            {/* Redirect từ path khác về Home
-            <Route path="*" element={<Navigate to="/home" />} /> */}
           </Routes>
         </div>
       </div>

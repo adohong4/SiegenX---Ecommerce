@@ -18,6 +18,6 @@ router.post('/user/addAddress', authMiddleware, asyncHandler(UserController.addU
 router.get('/user/getAddress', authMiddleware, asyncHandler(UserController.getUserAddress));
 
 //phan trang nguoi dung
-router.get('/pagination_users', asyncHandler(UserController.getUsersWithPagination));
+router.get('/user/pagination', asyncHandler(UserController.getUsersWithPagination));
 module.exports = router;
 

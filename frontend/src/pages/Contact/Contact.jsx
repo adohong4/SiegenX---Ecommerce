@@ -1,27 +1,45 @@
 import React, { useState, useContext, } from 'react';
 import './Contact.css';
 import Banner from '../../components/Banner/Banner';
-import StoreContextProvider from '../../context/StoreContext';
+import { StoreContext } from '../../context/StoreContext'
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Contact = () => {
 
-    const [url] = useContext(StoreContextProvider)
+    const { url } = useContext(StoreContext)
 
-    const [formData, setFormData] = useState({
+    const [data, setData] = useState({
         username: '',
         email: '',
         phone: '',
         content: ''
     });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+    const onChangeHandler = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setData(data => ({ ...data, [name]: value }))
+    }
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Ngăn chặn hành vi mặc định của biểu mẫu
+        e.preventDefault();
 
+        let newUrl = url;
+        const response = await axios.post(`${newUrl}/v1/api/contact/add`, data);
+        console.log("data:", response.data.metadata)
+        if (response.data.status) {
+            setData({
+                username: '',
+                email: '',
+                phone: '',
+                content: ''
+            })
+            toast.success(response.data.message)
+        }
+        else {
+            toast.error(response.data.message)
+        }
     }
 
     return (
@@ -63,8 +81,7 @@ const Contact = () => {
                                         type="text"
                                         id="username"
                                         name="username"
-                                        value={formData.username}
-                                        onChange={handleChange}
+                                        onChange={onChangeHandler} value={data.username}
                                         required
                                     />
                                 </div>
@@ -74,8 +91,7 @@ const Contact = () => {
                                         type="email"
                                         id="email"
                                         name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
+                                        onChange={onChangeHandler} value={data.email}
                                         required
                                     />
                                 </div>
@@ -87,8 +103,7 @@ const Contact = () => {
                                     type="text"
                                     id="phone"
                                     name="phone"
-                                    value={formData.phone}
-                                    onChange={handleChange}
+                                    onChange={onChangeHandler} value={data.phone}
                                     required
                                 />
                             </div>
@@ -97,8 +112,7 @@ const Contact = () => {
                                 <textarea
                                     id="content"
                                     name="content"
-                                    value={formData.content}
-                                    onChange={handleChange}
+                                    onChange={onChangeHandler} value={data.content}
                                     required
                                 ></textarea>
                             </div>
