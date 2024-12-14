@@ -70,10 +70,10 @@ const ListProduct = () => {
                     <div className="selected-container">
                         <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
                             <option value="All" selected>Tất cả</option>
-                            <option value="LED">Màn hình LED</option>
-                            <option value="Tương tác">MH tương tác</option>
-                            <option value="LCD">MH quảng cáo LCD</option>
-                            <option value="OOH">Quảng cáo 3D (OOH)</option>
+                            <option value="Màn hình LED">Màn hình LED</option>
+                            <option value="MH tương tác">MH tương tác</option>
+                            <option value="MH quảng cáo LCD">MH quảng cáo LCD</option>
+                            <option value="Quảng cáo 3D (OOH)">Quảng cáo 3D (OOH)</option>
                             <option value="KTV 5D">KTV 5D</option>
                         </select>
                     </div>
