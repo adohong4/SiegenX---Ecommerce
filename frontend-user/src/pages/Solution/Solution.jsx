@@ -7,16 +7,8 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Solution = () => {
-    // const naviSol = navigateSolution()
 
-    // const handleClick = () => {
-    // }
     const navigate = useNavigate();
-
-
-    // Xử lý khi click vào sản phẩm
-
-
 
     return (
         <div className='allContent'>
