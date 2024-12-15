@@ -1,28 +1,18 @@
 import React from 'react'
 import { assets } from '../../assets/assets';
 import "./Solution.MeetingRoomSolution.css"
+import Notification from "../../components/Notification/Notification";
+
 
 const MeetingRoomSolution = () => {
     return (
         <div>
-            <div className="container">
-                <div>
-                    <div>
-                        <hr />
-                        <h1>PHÒNG HỌP THÔNG MINH LÀ GÌ</h1>
-                    </div>
-                    {/* <p>Phòng họp thông minh là không gian hội họp không cần giấy tờ, giúp tiết kiệm tài nguyên và tăng tính hiệu quả trong
-                        việc chia sẻ tài liệu. Người dùng có thể dễ dàng tự động điều khiển tất cả các thiết bị điện tử
-                        trong phòng họp ngay trên máy tính như: cửa, rèm, đèn, máy lạnh, thiết bị hội nghị truyền hình,
-                        màn hình, máy chiếu, màn chiếu, và các thiết bị âm thanh. Với màn hình lớn hiển thị rõ ràng, hệ thống micro
-                        cho âm thanh sắc nét, và camera hỗ trợ ghi hình cũng như kết nối từ xa, phòng họp thông minh mang lại trải nghiệm chuyên nghiệp
-                        và thuận tiện cho doanh nghiệp.</p> */}
-                </div>
+            <Notification />
+            <div className='meet-section-0 meet-section'>
+                <img src={assets.meeting1} alt="meeting1" />
             </div>
 
-            <img src={assets.meeting1} alt="meeting1" />
-
-            <div className='container section1'>
+            <div className='meet-section-1 meet-section'>
                 <img src={assets.meeting2} alt="meeting2" />
                 <div>
                     <h1>GIẢI PHÁP NÀY GIÚP GÌ CHO BẠN</h1>
@@ -42,14 +32,14 @@ const MeetingRoomSolution = () => {
                 </div>
             </div>
 
-            <div className='section2'>
-                <div className="container">
+            <div className='meet-section-2 meet-section'>
+                <div className="meet-container">
                     <h1>GIẢI PHÁP NÀY DÀNH CHO AI</h1>
                     <p>SIEGenX tự hào là một trong doanh nghiệp hàng đầu cung cấp giải pháp tương tác thông minh tại Việt Nam</p>
-                    <div className='section2-child'>
+                    <div className='meet-section-2-child'>
                         <div>
                             <img src={assets.meeting4} alt="meeting4" />
-                            <h3>DÀNH CHO DOANH NGHIỆP</h3>
+                            <h2>DÀNH CHO DOANH NGHIỆP</h2>
                             <p>Tăng tính tương tác linh hoạt giữa các thành viên, không giới hạn không gian, thời gian.
                                 Tài liệu được gửi lên trước khi họp trên phần mềm, thành viên tham dự có thời gian nghiên cứu trước,
                                 giảm thời gian họp, nâng cao chất lượng cuộc họp.</p>
@@ -57,7 +47,7 @@ const MeetingRoomSolution = () => {
 
                         <div>
                             <img src={assets.meeting5} alt="meeting5" />
-                            <h3>DÀNH CHO CHÍNH PHỦ</h3>
+                            <h2>DÀNH CHO CHÍNH PHỦ</h2>
                             <p>Hệ thống an toàn thông tin luôn được đảm bảo, không giới hạn không gian, thời gian và khoảng cách địa lý.
                                 Tự tổng hợp chính xác, đầy đủ các nội dung ý kiến của các đại biểu cho thư ký cuộc họp. </p>
                         </div>
@@ -65,7 +55,7 @@ const MeetingRoomSolution = () => {
 
                         <div>
                             <img src={assets.meeting6} alt="meeting6" />
-                            <h3>DÀNH CHO HỘI NGHỊ KHÁC</h3>
+                            <h2>DÀNH CHO HỘI NGHỊ KHÁC</h2>
                             <p>Giúp dễ dàng theo dõi toàn bộ nội dung, diễn biến cuộc họp.
                                 Dễ dàng tra cứu tài liệu họp đối với các cuộc họp đã kết thúc nếu có tài khoản tham dự.</p>
                         </div>
@@ -73,59 +63,115 @@ const MeetingRoomSolution = () => {
                 </div>
             </div>
 
-            <div className='section-3 container'>
-                <h1>THỰC TRẠNG CHUNG</h1>
-                <div className='section-3-child'>
-                    <img src={assets.meeting7} alt="meeting7" />
+            <div className='meet-section-3 meet-section'>
+                <div className="meet-container">
+                    <h1>THỰC TRẠNG CHUNG</h1>
                     <div>
-                        <h4>NHỮNG CUỘC HỌP NHÀM CHÁN VÀ KHÔNG HIỆU QUẢ</h4>
-                        <div className='box'>
-                            <i class="fa-solid fa-check"></i>
-                            <p><strong>Trước cuộc họp: </strong>
-                                Vận hành phức tạp nhiều thiết bị dẫn đến hiệu quả công việc thấp.
-                            </p>
-                        </div>
+                        <img src={assets.meeting7} alt="meeting7" />
+                        <div>
+                            <h2>NHỮNG CUỘC HỌP NHÀM CHÁN VÀ KHÔNG HIỆU QUẢ</h2>
+                            <div>
+                                <div className='sol-box'>
+                                    <i class="fa-solid fa-check"></i>
+                                    <p><strong>Trước cuộc họp: </strong>
+                                        Vận hành phức tạp nhiều thiết bị dẫn đến hiệu quả công việc thấp.
+                                    </p>
+                                </div>
 
-                        <div className='box'>
-                            <i class="fa-solid fa-check"></i>
-                            <p><strong>Trong cuộc họp: </strong>Khó thu nhập và ghi chép dữ liệu khi họp, khó đảm
-                                bảo tính chính xác và toàn vẹn của dữ liệu. </p>
-                        </div>
+                                <div className='sol-box'>
+                                    <i class="fa-solid fa-check"></i>
+                                    <p><strong>Trong cuộc họp: </strong>Khó thu nhập và ghi chép dữ liệu khi họp, khó đảm
+                                        bảo tính chính xác và toàn vẹn của dữ liệu. </p>
+                                </div>
 
-                        <div className='box'>
-                            <i class="fa-solid fa-check"></i>
-                            <p><strong>Sau cuộc họp: </strong>Khó truy vấn dữ liệu diễn ra trong cuộc họp đồng thời nguy cơ rò rỉ thông tin cao.</p>
+                                <div className='sol-box'>
+                                    <i class="fa-solid fa-check"></i>
+                                    <p><strong>Sau cuộc họp: </strong>Khó truy vấn dữ liệu diễn ra trong cuộc họp đồng thời nguy cơ rò rỉ thông tin cao.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className='section-4'>
-                <h2>GIẢI PHÁP CÓ GÌ</h2>
+
+            <div className='meet-section-4 meet-section'>
+                {/* <a href="/"><span>LIÊN HỆ</span></a> */}
+                <div className='meet-container'>
+                    <h1>THIẾT BỊ & SẢN PHẨM</h1>
+                    <div class="sp-row">
+                        <div class="sp-col">
+                            <div className='sp'>
+                                <img src={assets.productClass1} alt="productclass1" />
+                                <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
+                                <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
+                                <div>
+                                    <a href="/">
+                                        <span>LIÊN HỆ</span></a>
+                                    <a href="/">
+                                        <span>XEM NGAY</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sp-col">
+                            <div className="sp">
+                                <img src={assets.productClass2} alt="productclass2" />
+                                <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
+                                <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
+                                <div>
+                                    <a href="/">
+                                        <span>LIÊN HỆ</span></a>
+                                    <a href="/">
+                                        <span>XEM NGAY</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sp-col">
+                            <div className="sp">
+                                <img src={assets.productClass3} alt="productclass3" />
+                                <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
+                                <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
+                                <div>
+                                    <a href="/">
+                                        <span>LIÊN HỆ</span></a>
+                                    <a href="/">
+                                        <span>XEM NGAY</span></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sp-col">
+                            <div className="sp">
+                                <img src={assets.productClass4} alt="productclass4" />
+                                <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
+                                <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
+                                <div>
+                                    <a href="/">
+                                        <span>LIÊN HỆ</span></a>
+                                    <a href="/">
+                                        <span>XEM NGAY</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
-            <img src={assets.meeting8} alt="meeting8" className='section-5'/>
-
-            <div className='section-6 container'>
-                <a href="/"><span>LIÊN HỆ</span></a>
-                <h1>THIẾT BỊ & SẢN PHẨM</h1>
-                <img src={assets.meeting8} alt="meeting9" />
-            </div>
-
-            <div className='section-7'>
+            <section id='section-lh-gp' className='meet-section-5 meet-section'>
                 <img src={assets.meeting10} alt="meeting10" />
                 <div>
                     <h2>LIÊN HỆ ĐĂNG KÝ</h2>
-                    <form action="">
+                    <form action="" className='sol-form'>
                         <div>
-                            <input type="text" placeholder='Họ tên' name='name'/>
-                            <input type="text" placeholder='Số điện thoại' name='sdt'/>
+                            <input className='sol-input' type="text" placeholder='Họ tên' name='sol-name' />
+                            <input className='sol-input' type="text" placeholder='Số điện thoại' name='sol-sdt' />
                         </div>
-                        <input type="text" placeholder='Nội dung' name='des' />
-                        <input type="submit" value="Gửi đi" />
+                        <textarea className="sol-input" name="sol-des" placeholder='Nội dung'></textarea>
+                        <input className='sol-input' type="submit" value="Gửi đi" name='sol-submit' />
                     </form>
                 </div>
-            </div>
+            </section>
         </div>
     )
 }

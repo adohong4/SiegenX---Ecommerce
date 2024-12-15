@@ -56,7 +56,7 @@ import sol5 from './solution/sol5.png'
 import sol6 from './solution/sol6.png'
 import sol7 from './solution/sol7.png'
 
-import meeting1 from './solution/MeetingRoomSolution/met1.png'
+import meeting1 from './solution/MeetingRoomSolution/met1.jpg'
 import meeting2 from './solution/MeetingRoomSolution/met2.png'
 import meeting3 from './solution/MeetingRoomSolution/met3.png'
 import meeting4 from './solution/MeetingRoomSolution/met4.svg'

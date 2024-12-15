@@ -5,27 +5,35 @@
     box-sizing: border-box;
 }
 
-.content {
+.sol-section {
+    padding: 0 190px;
+    
+}
+
+.sol-content {
     padding: 30px 0;
     box-sizing: border-box;
 }
 
-.content:nth-child(even) {
+.sol-content:nth-child(even) {
     background-color: #EFEFEF;
 }
 
-.container .section {
+.sol-container .sol-section {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
 }
 
-
+.sol-section div p {
+    text-align: left;
+    font-size: 20px;
+}
 
 /* .section {
     margin: 32px 0;
 } */
 
-.section img {
+.sol-section img {
     height: 400px;
     width: 650px;
     object-fit: cover;
@@ -35,33 +43,49 @@
 
 
 
-.section div {
+.sol-section div {
     margin-left: 50px;
+    
 }
 
-.content:nth-child(even) .section {
+.sol-content:nth-child(even) .sol-section {
     flex-direction: row-reverse;
 }
 
-.content:nth-child(even) .section div {
+.sol-content:nth-child(even) .section div {
     flex-direction: row-reverse;
     margin-right: 50px;
 }
 
 
-.section p {
-    width: 320px;
+.sol-section p {
+    width: 100%;
 }
 
-.section button {
+.sol-section-2 p {
+    width: 95%;
+}
+
+.sol-section button {
     width: 135px;
     padding: 10px;
     background-color: #00B78D;
     border-radius: 30px;
     border-style: none;
     color: white;
+    margin-top: 10px;
 }
 
-.section button:hover {
+.sol-section button:hover {
     background-color: #009472;
+}
+
+.sol-section div h3 {
+    font-weight: 600;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.sol-section-1 div p {
+    margin-top: 0px;
 }
