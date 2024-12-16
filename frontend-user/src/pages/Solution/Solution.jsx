@@ -12,8 +12,8 @@ const Solution = () => {
 
     return (
         <div className='allContent'>
-            <Notification />
-            <div>
+            {/* <Notification /> */}
+            <div className='sol-section-0'>
                 <img src={assets.sol} alt="Solution" className='' />
             </div>
 
