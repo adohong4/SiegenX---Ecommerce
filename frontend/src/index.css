@@ -22,9 +22,9 @@ body {
   width: 100%;
 }
 
-body {
+/* body {
   min-width: 100vh;
-}
+} */
 
 a {
   text-decoration: none;
@@ -57,7 +57,7 @@ a {
 
 @media (max-width: 1200px) {
   .container {
-    width: 90%;
+    width: 100%;
   }
   #root {
     width: 100vw;
