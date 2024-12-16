@@ -27,7 +27,7 @@ class ContactController {
             if (result) {
                 new OK({
                     message: 'Contact OK',
-                    metadata: result.metadata
+                    metadata: result
                 }).send(res);
             } else {
                 res.status(400).json({ message: 'Contact failed' });

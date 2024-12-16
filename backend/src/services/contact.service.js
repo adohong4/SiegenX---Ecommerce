@@ -29,9 +29,7 @@ class ContactService {
         try {
             const contacts = await contactModel.find({});
             return {
-                metadata: {
-                    contacts
-                }
+                contacts
             }
         } catch (error) {
             throw error;

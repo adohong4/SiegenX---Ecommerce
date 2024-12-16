@@ -3,6 +3,10 @@
     color: #fff;
 }
 
+.footer-container{
+    padding: 30px;
+}
+
 .footer-content {
     display: block;
     padding: 50px 200px;
@@ -18,7 +22,8 @@
     background-color: white;
     border-radius: 50px;
     padding: 5px;
-
+    justify-content: space-around;
+    width: fit-content;
     display: flex;
     align-items: center;
 }
@@ -110,6 +115,7 @@
     .body-footer .footer-info {
         width: 100%;
         text-align: center;
+        text-align: center !important;
         line-height: 30px;
     }
     .footer-chinhsach{
@@ -120,6 +126,7 @@
     .footer-copy{
         display: block;
         text-align: center;
+        text-align: center !important;
         font-style: italic;
         padding-bottom: 10px;
         padding-top: 10px;
