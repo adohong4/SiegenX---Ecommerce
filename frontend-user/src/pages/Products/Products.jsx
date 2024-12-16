@@ -1,19 +1,19 @@
 import React from "react";
 import { assets } from "../../assets/assets";
 import Notification from "../../components/Notification/Notification";
-import MenuProduct from "../../components/MenuProduct/Menu"
 import ProductsList from "../../components/Products/ProductsList/ProductsList";
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import './Products.css';
 const Products = () => {
     return (
         <main>
             <div className='container-home'>
-                <Notification/>
+                {/* <ScrollToTop /> */}
+                <Notification />
                 <div className='banner-main'>
                     <img src={assets.bannerProduct} alt="" />
                 </div>
-                <MenuProduct/>
-                <ProductsList/>
+                <ProductsList />
             </div>
         </main>
     );

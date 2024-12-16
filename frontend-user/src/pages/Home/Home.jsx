@@ -7,10 +7,12 @@ import Partners from "../../components/Home/Partners/Partners";
 import Provide from "../../components/Home/Provide/Provide";
 import './Home.css';
 import Notification from "../../components/Notification/Notification";
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 const Home = () => {
   return (
     <main>
       <div className='container-home'>
+        <ScrollToTop />
         <Notification />
         <BannerHome />
         <div className="container">
@@ -18,7 +20,7 @@ const Home = () => {
         </div>
         <Solutions />
         <div className='banner-img-f'>
-          <img src={assets.bannerEnd}  />
+          <img src={assets.bannerEnd} />
         </div>
         <Provide />
         <Partners />

@@ -1,35 +1,34 @@
-
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-
+import { useParams } from "react-router-dom";
 
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
-    const [cartItems, setCartItems] = useState({})
+    const [cartItems, setCartItems] = useState({});
     const url = "http://localhost:4001";
     const url2 = "http://localhost:5174";
-    const [token, setToken] = useState("")
-    const [product_list, setProductList] = useState([])
-    const [product_slug, setProductSlug] = useState([])
+    const [token, setToken] = useState("");
+    const [product_list, setProductList] = useState([]);
+    const [product_slug, setProductSlug] = useState(null);
 
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
-            setCartItems((prev) => ({ ...prev, [itemId]: 1 }))
+            setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
         } else {
-            setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
+            setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
         }
         if (token) {
-            await axios.post(url + "/api/cart/add", { itemId }, { headers: { token } })
+            await axios.post(url + "/api/cart/add", { itemId }, { headers: { token } });
         }
-    }
+    };
 
     const removeFromCart = async (itemId) => {
-        setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
+        setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
         if (token) {
-            await axios.post(url + "/api/cart/remove", { itemId }, { headers: { token } })
+            await axios.post(url + "/api/cart/remove", { itemId }, { headers: { token } });
         }
-    }
+    };
 
     const getTotalCartAmount = () => {
         let totalAmount = 0;
@@ -40,47 +39,33 @@ const StoreContextProvider = (props) => {
             }
         }
         return totalAmount;
-    }
+    };
 
     const fetchProductList = async () => {
         const response = await axios.get(`${url}/v1/api/products`);
         setProductList(response.data.metadata);
-    }
+    };
 
-    const fetchProductSlug = async (productSlug) => {
-        const response = await axios.get(`${url}/v1/api/products/${productSlug}`);
+    const fetchProductSlug = async (slug) => {
+        const response = await axios.get(`${url}/v1/api/products/${slug}`);
         setProductSlug(response.data.metadata.product);
-    }
+    };
 
     const loadCartData = async (token) => {
-        const response = await axios.post(url + "/api/cart/get", {}, { headers: { token } })
+        const response = await axios.post(url + "/api/cart/get", {}, { headers: { token } });
         setCartItems(response.data.cartData);
-    }
+    };
 
     useEffect(() => {
         async function loadData() {
-            await fetchProductList()
+            await fetchProductList();
             if (localStorage.getItem("token")) {
                 setToken(localStorage.getItem("token"));
-                await loadCartData(localStorage.getItem("token"))
+                await loadCartData(localStorage.getItem("token"));
             }
-
         }
         loadData();
-    }, [])
-
-    useEffect(() => {
-        async function loadDataSlug() {
-            await fetchProductSlug()
-            if (localStorage.getItem("token")) {
-                setToken(localStorage.getItem("token"));
-                await loadCartData(localStorage.getItem("token"))
-            }
-
-        }
-        loadDataSlug();
-    }, [])
-
+    }, []);
 
     const contextValue = {
         product_list,
@@ -90,16 +75,18 @@ const StoreContextProvider = (props) => {
         addToCart,
         removeFromCart,
         getTotalCartAmount,
-        url, url2,
+        fetchProductSlug,
+        url,
+        url2,
         setToken,
-        token
-    }
+        token,
+    };
 
     return (
         <StoreContext.Provider value={contextValue}>
             {props.children}
         </StoreContext.Provider>
-    )
-}
+    );
+};
 
 export default StoreContextProvider;

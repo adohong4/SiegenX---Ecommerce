@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Contact.css';
 import Banner from '../../components/Banner/Banner';
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
+import Notification from '../../components/Notification/Notification';
 
 const Contact = () => {
 
@@ -50,11 +52,14 @@ const Contact = () => {
     };
 
     return (
+        
         <div className='page-contact'>
+            <ScrollToTop />
             <div className='banner-contact'>
                 <Banner />
             </div>
             <div className='section-contact'>
+                
                 <div className="container contact-container">
                     <div className="contact-info">
                         <h2>CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ SIEGENX</h2>

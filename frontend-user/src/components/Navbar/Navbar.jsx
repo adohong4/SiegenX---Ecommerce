@@ -44,11 +44,6 @@ const Navbar = () => {
         setUserDropdownVisible(false);
     };
 
-    const handleLinkClick = (path) => {
-        setActiveLink(path);
-        setUserDropdownVisible(false);
-        setCartDropdownVisible(false);
-    };
 
     return (
         <header className="nav-header" id="header">
@@ -117,7 +112,7 @@ const Navbar = () => {
                                     <Link
                                         to="/"
                                         className={activeLink === "/" ? "active" : ""}
-                                        onClick={() => handleLinkClick("/")}
+                                        onClick={() => navigate("/")}
                                     >
                                         Trang Chủ
                                     </Link>
@@ -126,7 +121,7 @@ const Navbar = () => {
                                     <Link
                                         to="/about"
                                         className={activeLink === "/about" ? "active" : ""}
-                                        onClick={() => handleLinkClick("/about")}
+                                        onClick={() => navigate("/about")}
                                     >
                                         Giới thiệu
                                     </Link>
@@ -135,7 +130,7 @@ const Navbar = () => {
                                     <Link
                                         to="/product"
                                         className={activeLink === "products" ? "active" : ""}
-                                        onClick={() => handleLinkClick("products")}
+                                        onClick={() => navigate("products")}
                                     >
                                         Sản phẩm
                                     </Link>
@@ -144,7 +139,7 @@ const Navbar = () => {
                                     <Link
                                         to="/solutions"
                                         className={activeLink === "/solutions" ? "active" : ""}
-                                        onClick={() => handleLinkClick("/solutions")}
+                                        onClick={() => navigate("/solutions")}
                                     >
                                         Giải pháp
                                     </Link>
@@ -153,7 +148,7 @@ const Navbar = () => {
                                     <Link
                                         to="/contact"
                                         className={activeLink === "/contact" ? "active" : ""}
-                                        onClick={() => handleLinkClick("/contact")}
+                                        onClick={() => navigate("/contact")}
                                     >
                                         Liên hệ
                                     </Link>
