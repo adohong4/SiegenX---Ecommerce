@@ -9,14 +9,14 @@ const Contact = () => {
     const [list, setList] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOrder, setSortOrder] = useState({ name: 'asc', email: 'asc' });
+    const [selectedRow, setSelectedRow] = useState(null); // Lưu thông tin hàng được chọn
+    const [isPopupOpen, setIsPopupOpen] = useState(false); // Trạng thái mở/đóng popup
 
     const fetchList = async () => {
         try {
             const response = await axios.get(`${url}/v1/api/contact/get`);
-            // console.log('data:', response.data.metadata.contacts)
             if (response.data.status) {
                 setList(response.data.metadata.contacts);
-
             } else {
                 toast.error("Error fetching contacts");
             }
@@ -70,16 +70,35 @@ const Contact = () => {
         setList(sortedList);
     };
 
+    const openPopup = (row) => {
+        setSelectedRow(row); 
+        setIsPopupOpen(true); 
+        document.body.classList.add('popup-open');
+    };
+
+    const closePopup = () => {
+        setIsPopupOpen(false);
+        setSelectedRow(null); 
+        document.body.classList.remove('popup-open'); 
+    };
+
     return (
         <div className='user-list-container'>
             <p>Contacts List</p>
-            <input
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search..."
-            />
-            <button onClick={handleSearch}>Search</button>
+            <div className='search'>
+                <div className='search-CSKH'>
+                    <input
+                        type="text"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        placeholder="Search..."
+                        className='search-input'
+                    />
+                    <button onClick={handleSearch} className='btn-search'>
+                        <i className="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
 
             <table className="user-list-table">
                 <thead>
@@ -97,20 +116,52 @@ const Contact = () => {
                 </thead>
                 <tbody>
                     {list.map((item) => (
-                        <tr key={item._id} className='table-row'>
+                        <tr key={item._id} className='table-row' onClick={() => openPopup(item)}>
                             <td>{item.username}</td>
                             <td>{item.email}</td>
                             <td>{item.phone}</td>
                             <td>{item.content}</td>
                             <td>
-                                <button onClick={() => removeUser(item._id)} className='btn-delete'>Delete</button>
+                                <button onClick={(e) => { e.stopPropagation(); removeUser(item._id); }} className='btn-delete'>Xóa</button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+
+            {isPopupOpen && selectedRow && (
+                <div className="popup-overlay" onClick={closePopup}>
+                    <div className="popup-content-cskh" onClick={(e) => e.stopPropagation()}>
+                        <button className="close-popup" onClick={closePopup}>×</button>
+                        <div className="popup-header">
+                            <h3>Chi tiết thông tin</h3>
+                        </div>
+                        <div className="popup-body">
+                            <div className="popup-info">
+                                <label><strong>Tên:</strong></label>
+                                <p>{selectedRow.username}</p>
+                            </div>
+                            <div className="popup-info">
+                                <label><strong>Email:</strong></label>
+                                <p>{selectedRow.email}</p>
+                            </div>
+                            <div className="popup-info">
+                                <label><strong>SĐT:</strong></label>
+                                <p>{selectedRow.phone}</p>
+                            </div>
+                            <div className="popup-info">
+                                <label><strong>Nội dung:</strong></label>
+                                <p>{selectedRow.content}</p>
+                            </div>
+                        </div>
+                        <div className="popup-footer">
+                            <button onClick={closePopup} className="popup-close-btn">Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
-}
+};
 
 export default Contact;

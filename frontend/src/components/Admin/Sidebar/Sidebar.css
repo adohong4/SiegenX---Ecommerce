@@ -1,9 +1,8 @@
 .sidebar {
-    width: 10vw;
+    width: 100%;
     min-height: 100%;
     border-top: 0;
     font-size: 1em;
-    background: #000;
     position: relative;
     z-index: 999;
 }
@@ -112,10 +111,10 @@ swal2-html-container {
 
 .logo-sidebar {
     text-align: center;
-    background-color: #DDDD;
-    border-bottom: 1px solid #ccc;
 }
-
+.logo-sidebar img{
+    width: 100%;
+}
 .Logout {
     width: 10vw;
     position: fixed;
