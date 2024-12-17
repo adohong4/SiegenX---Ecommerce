@@ -126,3 +126,31 @@
     color: #ff0000;
     margin-top: 40px;
 }
+
+@media only screen and (max-width: 48em){
+    .product-tab-container {
+        width: 100%;
+        padding: 10px;
+    }
+    .tab-header {
+        top: 0px;
+    }
+    .tab-button {
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+    .tab-content {
+        padding: 10px;
+    }
+    .spec-value,
+    .spec-label {
+        font-size: 14px;
+    }
+    .spec-value {
+        position: relative;
+        left: 0;
+    }
+    .producttab-images img{
+        width: 100%;
+    }
+  }

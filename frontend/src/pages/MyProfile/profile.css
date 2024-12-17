@@ -164,3 +164,18 @@
     font-family: 'Poppins';
     src: url('/frontend-user/public/DesignerVN-Poppins-Regular.ttf') format('truetype');
   }
+
+
+  @media only screen and (max-width: 48em){
+    .profile .container {
+        margin-top: 0px;
+    }
+    .profile .container {
+        display: block;
+    }
+    .profile-info, .my-address {
+        width: 100%;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+  }

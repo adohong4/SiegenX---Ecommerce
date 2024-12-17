@@ -154,3 +154,38 @@
     width: 100%;
 
 }
+
+
+@media only screen and (max-width: 48em) {
+    .contact-container {
+        display: block;
+        padding: 0;
+        /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
+    
+    }
+    .banner-contact {
+        margin-top: 0px;
+    }
+    .contact-info {
+        flex: 1;
+        max-width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    .section-map .container {
+        padding: 10px;
+        padding-top: 0 !important;
+    }
+    .contact-container{
+        padding: 20px;
+    }
+    .contact-form .title {
+        display: block;
+    }
+    .contact-form{
+        padding: 20px;
+    }
+    .submit-form{
+        text-align: center;
+    }
+}

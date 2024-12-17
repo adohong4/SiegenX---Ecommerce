@@ -32,3 +32,19 @@
 .cta-button:hover {
   background-color: darkred;
 }
+@media only screen and (max-width: 48em) {
+  .notification-container {
+    display: block;
+    height: fit-content;
+    background-color: #EFEFEF;
+    text-align: center;
+    padding: 10px 0px;
+  }
+  .notification-text {
+    text-align: center;
+    margin-right: 0;
+}
+.banner-main .home-banner-btn {
+  display: none;
+}
+}

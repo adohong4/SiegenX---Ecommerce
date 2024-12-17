@@ -116,9 +116,9 @@
         line-height: 30px;
     }
     .footer-chinhsach{
+        width: 65%;
         display: flex;
         justify-content: space-around;
-        margin-top: 10px;
     }
     .footer-copy{
         display: block;
