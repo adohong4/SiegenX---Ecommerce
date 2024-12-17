@@ -79,22 +79,22 @@ const ListProduct = () => {
                             </select>
                         </div>
                     </div>
-                    
+
                     <div className='search-left'>
-                    <div className='search'>
-                        <div className='search-CSKH'>
-                            <input
-                                type="text"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                placeholder="Search..."
-                                className='search-input'
-                            />
-                            <button onClick={handleSearch} className='btn-search'>
-                                <i className="fas fa-search"></i>
-                            </button>
+                        <div className='search'>
+                            <div className='search-CSKH'>
+                                <input
+                                    type="text"
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    placeholder="Search..."
+                                    className='search-input'
+                                />
+                                <button onClick={handleSearch} className='btn-search'>
+                                    <i className="fas fa-search"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
@@ -108,12 +108,11 @@ const ListProduct = () => {
                     <b>Giá</b>
                     <b>Số Lượng</b>
                     <b>Tùy Chỉnh</b>
-                </div> 
+                </div>
                 {product_list.map((item, index) => (
-                    // if (category === "All" || category === item.category) {}
                     <div key={index} className='list-table-format'>
-                        <img src={`${url}/images/${item.image}`} alt="" />
-                        <p>{item.nameProduct}</p>
+                        <img src={`${url}/images/${item.images[0]}`} alt="" />
+                        <p>{item.title}</p>
                         <p>{item.category}</p>
                         <p>{item.price}</p>
                         <p>{item.quantity}</p>
