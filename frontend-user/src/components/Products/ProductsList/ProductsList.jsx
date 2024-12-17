@@ -71,8 +71,8 @@ const ProductsList = () => {
   };
 
   const columns = [
-    { title: "Màn hình LED", category: "Laptops" },
-    { title: "MH tương tác", category: "LaptopTYFCs" },
+    { title: "Màn hình LED", category: "Màn hình LED" },
+    { title: "MH tương tác", category: "MH tương tác" },
     { title: "Màn hình quảng cáo LCD", category: "Màn hình quảng cáo LCD" },
     { title: "Quảng cáo 3D (OOH)", category: "Quảng cáo 3D (OOH)" },
     { title: "KTV 5D", category: "KTV 5D" },
@@ -108,7 +108,7 @@ const ProductsList = () => {
 
       <div className="products-content">
         <div className="productlist-banner">
-          <img src={assets.bannerProductList} alt="Màn hình LED" />
+          <img src={assets.bannerProductList} alt="" />
         </div>
 
         {filteredProducts.length === 0 ? (
@@ -123,7 +123,7 @@ const ProductsList = () => {
               >
                 <div className="productlist-img-container">
                   <img
-                    src={product.images[0]?.url}
+                    src={product.images[0]}
                     alt={product.nameProduct}
                     className="productlist-image"
                   />

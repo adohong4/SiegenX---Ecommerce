@@ -5,9 +5,9 @@ import { assets } from "../../../assets/assets";
 import { StoreContext } from "../../../context/StoreContext";
 
 const ProductShowcase = () => {
-  const { product_list,url } = useContext(StoreContext);
+  const { product_list, url } = useContext(StoreContext);
   const navigate = useNavigate();
-  
+
   const handleProductClick = (productSlug) => {
     navigate(`/product/${productSlug}`);
   };
@@ -40,7 +40,7 @@ const ProductShowcase = () => {
               {/* Container hình ảnh và icon giỏ hàng */}
               <div className="product-img-container">
                 <img
-                  src={product.images[0]?.url}
+                  src={product.images[0]}
                   alt={product.title}
                   className="product-img"
                 />
@@ -70,6 +70,14 @@ const ProductShowcase = () => {
                   XEM NGAY
                 </button>
               </div>
+            </div>
+          ))}
+          {/* Thêm các ô trống nếu số lượng sản phẩm ít hơn 4 */}
+          {Array.from({ length: 4 - product_list.length }).map((_, index) => (
+            <div className="product-card-empty-card" key={`empty-${index}`}>
+              {/* Chỉ để trống hoặc hiển thị placeholder */}
+              <div className="product-img-container empty"></div>
+              <div className="product-actions empty"></div>
             </div>
           ))}
         </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../../context/StoreContext";
-import { FaSearch, FaShoppingCart,FaCartPlus, FaComments, FaEnvelope } from "react-icons/fa";
+import { FaSearch, FaShoppingCart, FaCartPlus, FaComments, FaEnvelope } from "react-icons/fa";
 import "./ProductInfo.css";
 
 const ProductInfo = () => {
@@ -23,8 +23,8 @@ const ProductInfo = () => {
 
   useEffect(() => {
     if (product_slug && product_slug.images && product_slug.images.length > 0) {
-      setMainImage(product_slug.images[0].url);
-      setSelectedThumbnail(product_slug.images[0].url);
+      setMainImage(product_slug.images[0]);
+      setSelectedThumbnail(product_slug.images[0]);
     }
   }, [product_slug]);
 
@@ -55,7 +55,7 @@ const ProductInfo = () => {
 
   const togglePopup = () => setShowPopup(!showPopup);
 
-  
+
 
   if (!product_slug) return <div>Sản phẩm không tồn tại</div>;
 
@@ -74,10 +74,10 @@ const ProductInfo = () => {
             {product_slug.images.map((image, index) => (
               <img
                 key={index}
-                src={image.url}
+                src={image}
                 alt={`Thumbnail ${index + 1}`}
-                className={`productinfo-thumbnail ${selectedThumbnail === image?.url ? "selected" : ""}`}
-                onClick={() => handleThumbnailClick(image.url)}
+                className={`productinfo-thumbnail ${selectedThumbnail === image ? "selected" : ""}`}
+                onClick={() => handleThumbnailClick(image)}
               />
             ))}
           </div>
@@ -130,15 +130,15 @@ const ProductInfo = () => {
           </div>
 
           <button className="productinfo-buy-now">
-              <FaShoppingCart className="productinfo-icon" /> MUA NGAY
-            </button>
+            <FaShoppingCart className="productinfo-icon" /> MUA NGAY
+          </button>
 
           <div className="productinfo-actions">
-            <button className="productinfo-contact" onClick={()=> navigate("/contact")} >
-              <FaEnvelope className="productinfo-icon-contact"/> LIÊN HỆ
+            <button className="productinfo-contact" onClick={() => navigate("/contact")} >
+              <FaEnvelope className="productinfo-icon-contact" /> LIÊN HỆ
             </button>
-            <button className="productinfo-addCart" onClick={()=> navigate("/cart")} >
-              <FaCartPlus  className="productinfo-icon-addCart" /> Thêm vào giỏ hàng
+            <button className="productinfo-addCart" onClick={() => navigate("/cart")} >
+              <FaCartPlus className="productinfo-icon-addCart" /> Thêm vào giỏ hàng
             </button>
           </div>
         </div>
@@ -166,9 +166,9 @@ const ProductInfo = () => {
             <div className="description-section">
               <h1 className="producttab-title">{product_slug.nameProduct}</h1>
               <div className="producttab-images">
-                {product_slug.images?.[0]?.url && (
+                {product_slug.images?.[0] && (
                   <img
-                    src={product_slug.images[0].url}
+                    src={product_slug.images[0]}
                     alt="Hình ảnh sản phẩm"
                     className="producttab-image"
                   />
@@ -176,13 +176,13 @@ const ProductInfo = () => {
               </div>
 
               <h2>I. Thông tin sản phẩm</h2>
-              <p className="producttab-description">{product_slug.description}</p>
+              <p className="producttab-description">{product_slug.recap}</p>
 
               <h2>II. Ưu điểm sản phẩm</h2>
               <div className="producttab-images">
-                {product_slug.images?.[1]?.url && (
+                {product_slug.images?.[1] && (
                   <img
-                    src={product_slug.images[1].url}
+                    src={product_slug.images[1]}
                     alt="Hình ảnh sản phẩm"
                     className="producttab-image"
                   />
@@ -190,9 +190,9 @@ const ProductInfo = () => {
               </div>
               <p className="producttab-description">{product_slug.description}</p>
               <div className="producttab-images">
-                {product_slug.images?.[2]?.url && (
+                {product_slug.images?.[2] && (
                   <img
-                    src={product_slug.images[2].url}
+                    src={product_slug.images[2]}
                     alt="Hình ảnh sản phẩm"
                     className="producttab-image"
                   />
@@ -204,65 +204,62 @@ const ProductInfo = () => {
             </div>
           )}
 
-          {activeTab === "specification" && product_slug?.specification && (
+          {activeTab === "specification" && product_slug && (
             <div className="specification-section">
               <h2 className="specification-title">Thông số kỹ thuật</h2>
               <ul className="specification-list">
-                {product_slug.specification.map((spec, index) => (
-                  <React.Fragment key={index}>
-                    <li className="spec-item">
-                      <span className="spec-label">MainBoard:</span>
-                      <span className="spec-value">{spec.mainBoard}</span>
-                    </li>
-                    <li className="spec-item">
-                      <span className="spec-label">Chip:</span>
-                      <span className="spec-value">{spec.chip}</span>
-                    </li>
-                    <li className="spec-item">
-                      <span className="spec-label">CPU:</span>
-                      <span className="spec-value">{spec.cpu}</span>
-                    </li>
-                    <li className="spec-item">
-                      <span className="spec-label">GPU:</span>
-                      <span className="spec-value">{spec.gpu}</span>
-                    </li>
-                    <li className="spec-item">
-                      <span className="spec-label">RAM:</span>
-                      <span className="spec-value">{spec.ram}</span>
-                    </li>
-                    <li className="spec-item">
-                      <span className="spec-label">Memory:</span>
-                      <span className="spec-value">{spec.memory}</span>
-                    </li>
-                    <li className="spec-item">
-                      <span className="spec-label">Version:</span>
-                      <span className="spec-value">{spec.version}</span>
-                    </li>
-                    <li className="spec-item">
-                      <span className="spec-label">Ports:</span>
-                      <span className="spec-value">{spec.ports}</span>
-                    </li>
-                    <li className="spec-item">
-                      <span className="spec-label">Display Size:</span>
-                      <span className="spec-value">{spec.displaySize}</span>
-                    </li>
-                    <li className="spec-item">
-                      <span className="spec-label">Pixel Density:</span>
-                      <span className="spec-value">{spec.pixelDensity}</span>
-                    </li>
-                    <li className="spec-item">
-                      <span className="spec-label">Display:</span>
-                      <span className="spec-value">{spec.display}</span>
-                    </li>
-                    <li className="spec-item">
-                      <span className="spec-label">Refresh Rate:</span>
-                      <span className="spec-value">{spec.refreshRate}</span>
-                    </li>
-                  </React.Fragment>
-                ))}
+                <li className="spec-item">
+                  <span className="spec-label">Bo mạch chủ:</span>
+                  <span className="spec-value">{product_slug.mainBoard}</span>
+                </li>
+                <li className="spec-item">
+                  <span className="spec-label">Chip:</span>
+                  <span className="spec-value">{product_slug.chip}</span>
+                </li>
+                <li className="spec-item">
+                  <span className="spec-label">CPU:</span>
+                  <span className="spec-value">{product_slug.cpu}</span>
+                </li>
+                <li className="spec-item">
+                  <span className="spec-label">GPU:</span>
+                  <span className="spec-value">{product_slug.gpu}</span>
+                </li>
+                <li className="spec-item">
+                  <span className="spec-label">RAM:</span>
+                  <span className="spec-value">{product_slug.ram}</span>
+                </li>
+                <li className="spec-item">
+                  <span className="spec-label">Bộ nhớ:</span>
+                  <span className="spec-value">{product_slug.memory}</span>
+                </li>
+                <li className="spec-item">
+                  <span className="spec-label">Phiên bản:</span>
+                  <span className="spec-value">{product_slug.version}</span>
+                </li>
+                <li className="spec-item">
+                  <span className="spec-label">Cổng kết nối:</span>
+                  <span className="spec-value">{product_slug.ports}</span>
+                </li>
+                <li className="spec-item">
+                  <span className="spec-label">Kích thước màn hình:</span>
+                  <span className="spec-value">{product_slug.displaySize}</span>
+                </li>
+                <li className="spec-item">
+                  <span className="spec-label">Mật độ điểm ảnh:</span>
+                  <span className="spec-value">{product_slug.pixelDensity}</span>
+                </li>
+                <li className="spec-item">
+                  <span className="spec-label">Màn hình:</span>
+                  <span className="spec-value">{product_slug.display}</span>
+                </li>
+                <li className="spec-item">
+                  <span className="spec-label">Tần số quét:</span>
+                  <span className="spec-value">{product_slug.refreshRate}</span>
+                </li>
               </ul>
             </div>
           )}
+
         </div>
       </div>
 
