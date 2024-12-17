@@ -6,29 +6,33 @@ import Notification from "../../components/Notification/Notification";
 
 const MeetingRoomSolution = () => {
     return (
-        <div>
+        <div sol-all-content>
             <Notification />
             <div className='meet-section-0 meet-section'>
                 <img src={assets.meeting1} alt="meeting1" />
             </div>
 
             <div className='meet-section-1 meet-section'>
-                <img src={assets.meeting2} alt="meeting2" />
-                <div>
-                    <h1>GIẢI PHÁP NÀY GIÚP GÌ CHO BẠN</h1>
-                    <p>
-                        Giải pháp phòng họp thông minh mang đến nhiều lợi ích thiết thực cho doanh nghiệp,
-                        giúp nâng cao hiệu quả làm việc và tạo ra trải nghiệm hội họp chuyên nghiệp.
-                        Với khả năng điều khiển tự động các thiết bị trong phòng như đèn, máy lạnh, màn hình và hệ thống âm thanh,
-                        người dùng có thể dễ dàng chuẩn bị và quản lý cuộc họp chỉ với một vài thao tác đơn giản.
-                    </p>
-                    <p>
-                        Hơn nữa, phòng họp không giấy tờ giúp tiết kiệm chi phí in ấn và bảo vệ môi trường,
-                        trong khi các thiết bị hiện đại như màn hình lớn và hệ thống hội nghị truyền hình hỗ trợ giao tiếp rõ ràng, mượt mà,
-                        kết nối dễ dàng từ xa. Giải pháp này không chỉ nâng cao hiệu suất công việc mà còn tạo ra không gian làm việc hiện đại, thân thiện,
-                        và chuyên nghiệp.
-                    </p>
-                    <a href="/"><span>LIÊN HỆ</span></a>
+                <div className="meet-container">
+                    <div>
+                        <img src={assets.meeting2} alt="meeting2" />
+                    </div>
+                    <div>
+                        <h1>GIẢI PHÁP NÀY GIÚP GÌ CHO BẠN</h1>
+                        <p>
+                            Giải pháp phòng họp thông minh mang đến nhiều lợi ích thiết thực cho doanh nghiệp,
+                            giúp nâng cao hiệu quả làm việc và tạo ra trải nghiệm hội họp chuyên nghiệp.
+                            Với khả năng điều khiển tự động các thiết bị trong phòng như đèn, máy lạnh, màn hình và hệ thống âm thanh,
+                            người dùng có thể dễ dàng chuẩn bị và quản lý cuộc họp chỉ với một vài thao tác đơn giản.
+                        </p>
+                        <p>
+                            Hơn nữa, phòng họp không giấy tờ giúp tiết kiệm chi phí in ấn và bảo vệ môi trường,
+                            trong khi các thiết bị hiện đại như màn hình lớn và hệ thống hội nghị truyền hình hỗ trợ giao tiếp rõ ràng, mượt mà,
+                            kết nối dễ dàng từ xa. Giải pháp này không chỉ nâng cao hiệu suất công việc mà còn tạo ra không gian làm việc hiện đại, thân thiện,
+                            và chuyên nghiệp.
+                        </p>
+                        <a href="/"><span>LIÊN HỆ</span></a>
+                    </div>
                 </div>
             </div>
 

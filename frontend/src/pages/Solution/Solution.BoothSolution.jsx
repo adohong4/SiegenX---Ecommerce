@@ -9,8 +9,10 @@ const BoothSolution = () => {
             <Notification />
 
 
-            <img src={assets.booth1} alt="booth1" />
-
+            <div className="booth-section-0">
+                <img src={assets.booth1} alt="booth1" />
+            </div>
+            
             <div className='booth-section-1 booth-section'>
                 <img src={assets.booth2} alt="booth2" />
                 <div>
