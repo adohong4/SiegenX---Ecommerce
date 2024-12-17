@@ -1,6 +1,7 @@
 .product-showcase {
   text-align: center;
   padding: 0 60px;
+  background-color: #ffffff;
 }
 
 .section-title {
@@ -39,6 +40,12 @@
   margin-top: 0;
   padding: 0 10px; 
 }
+.empty-card {
+  height: 300px;
+}
+.product-card-empty-card{
+  background-color: #ffffff;
+}
 
 .product-card {
   cursor: pointer;
@@ -74,6 +81,9 @@
   height: 100%;
   object-fit: contain;
 }
+/* .product-img:hover{
+  transform: translateY(5px) scale(1.1);
+} */
 
 
 .cart-icon {

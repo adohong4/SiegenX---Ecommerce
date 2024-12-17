@@ -26,7 +26,7 @@ const ProductInfo = () => {
     if (product_slug && product_slug.images && product_slug.images.length > 0) {
       setMainImage(product_slug.images[0]);
       setSelectedThumbnail(product_slug.images[0]);
-      console.log(product_slug.images);
+
     }
   }, [product_slug]);
 
