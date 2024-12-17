@@ -515,7 +515,7 @@ input[name='sol-sdt'] {
 
     .class-section-5  div{
         padding: 20px 2vw;
-        width: 100vw !important;
+        width: 100% !important;
     }
 
     .class-section-5 img {
