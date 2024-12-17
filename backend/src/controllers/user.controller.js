@@ -71,9 +71,7 @@ class UserController {
             const limit = parseInt(req.query.limit) || 20;
             const skip = (page - 1) * limit;
 
-
             const totalUsers = await User.countDocuments();
-
 
             const users = await User.find()
                 .skip(skip)
