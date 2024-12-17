@@ -1,9 +1,0 @@
-.banner-main {
-    display: flex;
-    justify-content: center; 
-  }
-  
-  .banner-main img {
-    width: 100%; 
-    object-fit: contain; 
-  }
