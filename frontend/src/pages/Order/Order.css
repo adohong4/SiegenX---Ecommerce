@@ -97,3 +97,15 @@ hr {
 .place-order-btn:hover {
     background-color: #008E6D;
 }
+
+
+@media only screen and (max-width: 48em){
+    .place-order {
+        display: block;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .place-order-left p{
+        text-align: center;
+    }
+  }

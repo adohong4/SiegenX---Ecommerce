@@ -1,80 +1,66 @@
 /* @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"); */
-@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
 
 * {
     box-sizing: border-box;
-    font-family: poppins;
-}
-
-.container {
-    padding: 0;
-}
-
-.container div {
-    padding: 20px 0;
-    margin-bottom: 0px;
-}
-
-.container div h1 {
-    z-index: 3;
-    position: relative;
-    background-color: white;
-    width: 700px;
-    bottom: 40px;
-    margin: auto;
-    text-align: center;
-    font-size: 34.264px;
-
-}
-
-.container div {
-    position: relative;
-}
-
-.container div p {
-    text-align: justify;
-}
-
-.container p {
-    font-size: 24px;
-}
-
-hr {
-    z-index: 1;
 }
 
 
-.section1 {
+
+.meet-section:nth-child(even) {
+    background-color: #EFEFEF;
+}
+
+
+.meet-section-0 > img {
+    width: 100%;
+}
+
+
+.meet-section-1 .meet-container div  {
+    width: 500px;
+}
+
+.meet-section-1 div img {
+    width: 100%;
+    height: auto;
+}
+
+.meet-section-1 {
+    background: url("/src/assets/solution/MeetingRoomSolution/met3.png");
+    background-size: cover;
+}
+
+.meet-section-1 .meet-container {
     display: flex;
     align-items: center;
-    background: url("/src/assets/solution/MeetingRoomSolution/met3.png");
+    justify-content: center;
 }
 
-.section1 div {
+.meet-container {
+    padding: 70px 0;
+}
+
+.meet-section-1 img {
+    height: auto;
+    width: 500px;
+}
+
+.meet-section-1 .meet-container div {
     width: 600px;
-    margin-left: 30px;
+    margin-left: 40px;
     margin-bottom: 0;
-    padding: 0;
     margin-top: 60px;
 }
 
-.section1 div h1 {
-    text-align: left;
-}
-
-.section1 div p {
+.meet-section-1 .meet-container div p{
+    margin-top: 30px;
+    font-size: 20px;
     text-align: justify;
 }
 
-.section1 img {
-    height: auto;
-    width: 700px;
-    margin: 0;
-    margin-bottom: 50px;
-}
-
-.section1 div a {
+.meet-section-1 div a {
     display: block;
     width: 260px;
     height: 70px;
@@ -85,157 +71,562 @@ hr {
     margin-top: 20px;
     padding: 12px;
     text-align: center;
-}
-
-.section1 div a span {
     color: white;
 }
 
-.section1 div a:hover {
+.meet-section-1 div a:hover {
     background-color: #BD0F0F;
 }
 
-.section2 {
-    background-color: #EFEFEF;
-    padding: 50px;
+
+
+.meet-section-2-child {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
 }
 
-.section2 .container h1,
-p {
-    text-align: center;
+.meet-section-2-child div {
+    width: 320px;
 }
 
-
-.section2-child div {
-    width: 370px;
-    text-align: center;
-}
-
-.section2-child div p {
+.meet-section-2-child div > p {
     text-align: justify;
     font-size: 20px;
 }
 
-.section2-child {
+.meet-section-2-child h2 {
+    text-align: center;
+    font-size: 23px;
+    margin-top: 20px;
+    margin-bottom: 20px !important;
+}
+.meet-section-2-child p {
+    text-align: center;
+    font-size: 18px;
+}
+/* h1 {
+    text-align: center;
+} */
+
+/* p {
+    text-align: justify;
+} */
+
+.meet-section-2 div > p, .meet-section-2 div > h1 {
+    text-align: center;
+}
+
+.meet-section-2-child div p {
+    text-align: justify;
+}
+
+.meet-section-2-child div {
+    margin: 0 65px;
+}
+
+.meet-section-2-child div img {
+    margin-left: 54px;
+}
+
+
+
+.meet-section-3 {
+    padding-top: 0px 30px;
+}
+
+.meet-section-3 h1{
+    text-align: center;
+}
+
+.meet-section-3 .meet-container > div {
+    margin-top: 70px;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    /* justify-content: center; */
+    padding: 0px 60px;
 }
 
-.section-3 {
-    padding-top: 70px;
-}
-
-.section-3-child {
-    display: flex;
-}
-
-
-.section-3-child img {
-    height: auto;
-    width: 650px;
+.meet-section-3 .meet-container > div > img {
+    width: 805px;
+    height: 542px;
     border-radius: 30px;
-    margin-right: 30px;
 }
 
-
-.section-3 h1 {
-    text-align: center;
+.meet-section-3 .meet-container > div > div {
+    margin-left: 50px;
+    width: 550px;
 }
 
-.box {
+.meet-section-3 .meet-container > div > div > div {
+    margin-top: 30px;
+}
+
+.sol-box {
     display: flex;
-    background-color: white;
-    justify-content: center;
+    margin-top: 20px;
 }
 
-.box i {
-    margin-top: 6px;
-    margin-right: 5px;
-    color: green
+.sol-box i {
+    margin: 5px;
+    color: green;
 }
 
-.section-4 {
-    background-color: #EFEFEF;
+.sol-box p {
+    font-size: 20px;
+}
+
+
+.meet-section-4 {
+    background-color: white !important;
+}
+
+.meet-section-4 h1 {
     text-align: center;
-    padding: 50px;
 }
 
-.section-5 {
-    height: auto;
-    width: 100%;
-}
-
-.section-6 a {
+.meet-section-4 a{
     display: block;
     background-color: #00B78D;
     width: 160px;
     margin: auto;
-    padding: 15px;
+    padding: 10px 15px;
     text-align: center;
     border-radius: 30px;
 }
 
-.section-6 a span {
+.meet-section-4 a span {
     color: white;
     font-size: 20px;
     width: 30px;
 }
 
-.section-6 a:hover {
+.meet-section-4 a:hover {
     background-color: #009472;
 }
 
-.section-7 {
-    display: flex;
-    background-size: auto;
-    align-items: center;
+
+.meet-section-4 .meet-container .sp-row .sp-col{
+    width: 22%;
+    gap:10px;
+}
+.sp {
+    position: relative;
     background-color: #EFEFEF;
-    background: url("/src/assets/solution/MeetingRoomSolution/met3.png");
+    border-radius: 20px;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0px 18px;
+    padding: 20px;
 }
 
-.section-7 img {
+
+.sp div {
+    display: flex;
+}
+
+.buy{
+    border-radius: 50%;
+    width: 50px !important;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    background-color: white !important; 
+    color: #009472;
+}
+
+.sp h5 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.sp img {
+    width: 100%;
+    margin: 0;
+}
+
+.sp div a {
+    width: fit-content;
+}
+.section-lh-gp .section-lh-left{
+    margin: 0 !important;
+}
+.section-lh-gp .section-lh-right{
+    width: 100%;
+    text-align: center !important;
+    background-image: url("/src/assets/solution/MeetingRoomSolution/met3.png");
+}
+.sp div a span {
+    font-size: 13px;
+}
+
+.sp div a:first-child {
+    background-color: red;
+}
+
+.sp-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 70px;
+    padding: 0px 120px;
+    justify-content: space-around;
+
+}
+
+
+#section-lh-gp {
+    width: 100% !important;
+
+}
+#section-lh-gp .section-lh-left {
+    width: 50% !important;
+    
+}
+#section-lh-gp .section-lh-right {
+    width: 100% !important; 
+
+}
+
+#section-lh-gp .section-lh-right .form-lienhe {
+    display: flex;
+    justify-content: center;
+}
+.meet-section-5 {
+    display: flex;
+    align-items: center;
+    background-color: #F1F1F1;
+    background-image: url("/src/assets/solution/MeetingRoomSolution/met3.png");
+    background-size: auto; 
+    background-repeat: no-repeat;
+    background-position: right; 
+}
+
+
+
+.meet-section-5 img {
     height: auto;
     width: 50vw;
     margin: 0;
-    margin-right: 60px;
+    margin-right: 0px;
 }
 
-.section-7 div {
-
+/* .meet-section-5 div {
     margin: auto;
-}
+} */
 
-.section-7 div h2 {
+.meet-section-5 div h2 {
     margin-bottom: 50px;
     text-align: center;
 }
 
-input {
+.sol-input {
     height: 40px;
     border-radius: 15px;
     padding: 10px;
     border: 1px solid #4543437e;
 }
 
-input[type="submit"] {
+.btn-send-lh input[name="sol-submit"] {
     display: block;
-    width: 600px;
+    width: 100%;
     margin-top: 20px;
     background-color: #00B78D;
     height: 50px;
     color: white;
 }
-
-input[name='des'] {
+.btn-send-lh{
+    justify-content: center;
+    display: flex;
+}
+textarea[name='sol-des'] {
     width: 600px;
     margin-top: 20px;
+    height: 200px;
 }
 
-input[name='name'] {
+input[name='sol-name'] {
     width: 250px;
 }
 
-input[name='sdt'] {
+input[name='sol-sdt'] {
     margin-left: 20px;
     width: 330px;
+}
+
+.section-lh-gp .section-lh-right{
+    text-align: center !important;
+}
+
+
+
+@media(max-width:1200px) {
+    .meet-section-1 .meet-container {
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+    }
+
+    .meet-section-2-child div:last-child {
+        margin-top: 20px;
+    }
+
+
+}
+
+
+
+.meet-section:nth-child(even) {
+    background-color: #EFEFEF;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+    .meet-section-1 {
+        flex-direction: column;
+        padding: 30px;
+    }
+
+    .meet-section-1 img {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .meet-section-1 div {
+        width: 100%;
+        margin: 0;
+    }
+
+    .meet-section-2-child div {
+        margin: 20px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .meet-section-1 {
+        flex-direction: column;
+        padding: 0 4vw;
+    }
+
+    .meet-section-1 div {
+        text-align: center;
+    }
+
+    .meet-section-2-child div {
+        margin: 20px 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+
+    .meet-section-1 img {
+        width: 100%;
+    }
+
+
+
+    .meet-section-2-child div {
+        margin: 15px;
+    }
+
+    .meet-section-3 .meet-container > div {
+        flex-direction: column;
+    }
+
+    .meet-section-3 img {
+        width: 100%;
+    }
+
+    .meet-section-3 .meet-container > div > div {
+        margin: 20px 0;
+    }
+
+    .sp {
+        margin: 15px auto;
+        width: 90%;
+    }
+
+    .sp img {
+        width: 100%;
+    }
+
+    .sp div {
+        justify-content: space-around;
+    }
+
+    .sol-box p {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+
+    .meet-section-1  {
+        padding: 0;
+    }
+
+    .meet-section-1 .meet-container div {
+        width: 90.8vw;
+        margin-left: 0;
+    }
+
+
+    .meet-section-1 div p {
+        font-size: 16px;
+    }
+
+    .meet-section-1 div a {
+        width: 3vw;
+    }
+
+    .meet-section-1 div a {
+        width: 38vw;
+        font-size: 20px;
+        height: 53px;
+    }
+
+    .meet-section-2 .meet-container {
+        padding: 70px 15px;
+    }
+
+    .meet-section-2-child div h2 {
+        font-size: 18px;
+        margin: 0;
+    }
+
+    .meet-section-2-child div img {
+        margin-left: 20vw;
+    }
+
+    .meet-section-2-child div {
+        margin: 20px 0 0;
+    }
+
+
+
+    .meet-section-3 .meet-container > div > img {
+        width: 98vw;
+        height: auto;
+        border-radius: 30px;
+        object-fit: cover;
+    }
+
+    .meet-section-3 .meet-container > div {
+        margin-top: 30px;
+    }
+
+    .meet-section-3 .meet-container > div {
+        padding: 0 0;
+    }
+
+    .meet-section-3 .meet-container > div > div {
+        padding: 0 2vw;
+        width: auto;
+    }
+
+    .sp {
+        width: 90%;
+        height: 450px;
+    }
+
+    .sp-row {
+        padding: 0px 8vw !important;
+        margin-top: 25px !important;
+    }
+
+    .sp-col {
+        margin: 10px 0;
+    }
+
+    .sp h5 {
+        font-size: 16px;
+    }
+
+    .sp img {
+        width: 80%;
+        margin: auto;
+    }
+
+    /* .sol-form {
+        width: 100vw;
+    } */
+
+    .meet-section-5  div{
+        padding: 20px 2vw;
+        width: 100% !important;
+    }
+
+    .meet-section-5 img {
+        display: none;
+    }
+
+
+    .sol-form div {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .meet-section-5 div h2 {
+        margin-bottom: 20px;
+        width: 95vw;
+    }
+
+    .meet-section-5 div {
+        margin: 0;
+    }
+
+    input[name='sol-name'], input[name='sol-sdt'] {
+        margin: 0;
+    }
+
+    input[name='sol-sdt'] {
+        margin-left: 0px !important;
+    }
+
+
+
+    input[name='sol-name'], input[name='sol-sdt'] {
+        margin: 10px 0;
+    }
+
+    /* input[name='sol-name'], input[name='sol-sdt'], input[name = 'sol-des'], input[name = 'sol-submit'] {
+    } */
+
+    .sol-input {
+        width: 96vw !important;
+    }
+
+    .sol-all-content {
+        overflow-y: hidden !important;
+    }
+}
+@media only screen and (max-width: 48em){
+    .section-lh-left{
+        display: none;
+    }
+    .meet-section-4 .meet-container .sp-row .sp-col {
+        width: 48%;
+    }
+    .meet-section-4 .meet-container .sp-row .sp-col .sp div {
+        display: block;
+    }
+    .meet-section-4 .sp-row{
+        padding: 10px !important;
+    }
+    .sp div {
+        display: block;
+    }
+    .sp div a{
+        margin: 0;
+        margin-top: 10px ;
+        width: 100% !important;
+    }
+    .sp, .sp-col
+     {
+        margin-bottom: 0px !important;
+    }
+
 }

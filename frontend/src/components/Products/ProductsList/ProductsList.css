@@ -176,3 +176,45 @@
   background-color: #f0f0f0;
   cursor: not-allowed;
 }
+.productlist-banner-last{
+  display: none;
+}
+
+@media only screen and (max-width: 48em) {
+  .productlist-banner{
+    display: none;
+  }
+  .productlist-banner-last{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .products-list {
+    padding: 0 10px;
+}
+.products-content {
+  display: block;
+  padding: 0px;
+}
+.productlist-banner {
+  margin-left: 0px;
+  margin-bottom: 20px;
+}
+.productlist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  flex: 1;
+  margin-top: 0;
+  padding: 0;
+}
+.productlist-grid .productlist-card:last-child {
+  display: none;
+}
+.productlist-actions {
+  display: block;
+}
+.productlist-image {
+  width: 100%;
+}
+}

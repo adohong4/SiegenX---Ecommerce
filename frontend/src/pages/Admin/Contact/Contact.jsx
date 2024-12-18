@@ -71,15 +71,15 @@ const Contact = () => {
     };
 
     const openPopup = (row) => {
-        setSelectedRow(row); 
-        setIsPopupOpen(true); 
+        setSelectedRow(row);
+        setIsPopupOpen(true);
         document.body.classList.add('popup-open');
     };
 
     const closePopup = () => {
         setIsPopupOpen(false);
-        setSelectedRow(null); 
-        document.body.classList.remove('popup-open'); 
+        setSelectedRow(null);
+        document.body.classList.remove('popup-open');
     };
 
     return (
@@ -111,7 +111,12 @@ const Contact = () => {
                         </th>
                         <th>SĐT</th>
                         <th>Nội dung</th>
-                        <th>Delete</th>
+                        <th onClick={() => sortBy('time')} style={{ cursor: 'pointer' }}>
+                            Thời gian {sortOrder.time === 'asc' ? '↑' : '↓'}
+                        </th>
+                        <th>Kiểm tra</th>
+                        <th>Tùy chỉnh</th>
+
                     </tr>
                 </thead>
                 <tbody>

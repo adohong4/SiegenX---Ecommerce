@@ -17,5 +17,15 @@
     object-fit: contain;
     transition: transform 0.3s ease;
   }
-  
+  @media only screen and (max-width: 48em){
+    .partners-grid {
+      display: block;
+  }
+    .partners-grid img {
+      width: 100vw;
+  }
+  .partners {
+    padding: 0px;
+}
+  }
   

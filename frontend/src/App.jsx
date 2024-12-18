@@ -12,6 +12,9 @@ import Login from './pages/Login/Login';
 import Order from './pages/Order/Order';
 import Solution from './pages/Solution/Solution';
 import ProductsAttributes from './pages/ProductAttributes/ProductAttributes'
+import MeetingSolution from './pages/Solution/Solution.MeetingRoomSolution'
+import ClassSolution from './pages/Solution/Solution.ClassroomSolution'
+import BoothSolution from './pages/Solution/Solution.BoothSolution'
 import Admin from './pages/Admin/Admin';
 
 function App() {
@@ -37,6 +40,9 @@ function App() {
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/order" element={<Order />} />
                     <Route path="/solutions" element={<Solution />} />
+                    <Route path="/solutions/MeetingSolution" element={<MeetingSolution/>}></Route>
+                    <Route path="/solutions/ClassroomSolution" element={<ClassSolution/>}></Route>
+                    <Route path="/solutions/BoothSolution" element={<BoothSolution/>}></Route>
                   </Routes>
                   <Footer />
                 </>

@@ -60,3 +60,21 @@
     max-width: 60%;
     margin: 0 auto;
 }
+
+@media only screen and (max-width: 48em) {
+
+    .main-body-vanhoa {
+        max-width: 100%;
+    }
+    .section-vanhoa{
+        padding: 10px;
+    }
+    .culture-items {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 0.5rem;
+    }
+    .culture-title {
+        font-size: 1.5rem;
+    }
+}

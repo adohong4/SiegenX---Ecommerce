@@ -116,7 +116,9 @@ const Contact = () => {
                                     required
                                 ></textarea>
                             </div>
-                            <button type="submit" className="btn">Gửi</button>
+                            <div className='submit-form'>
+                                <button type="submit" className="btn">Gửi</button>
+                            </div>
                         </form>
                     </div>
                 </div>

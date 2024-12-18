@@ -20,11 +20,14 @@ body {
 
 #root {
   width: 100%;
+  overflow-x: hidden;
 }
 
-body {
+
+
+/* body {
   min-width: 100vh;
-}
+} */
 
 a {
   text-decoration: none;
@@ -46,18 +49,33 @@ a {
 
 @font-face {
   font-family: 'Poppins';
-  src: url('/frontend-user/public/DesignerVN-Poppins-ExtraBold.ttf') format('truetype');
+  src: url('/frontend/public/FZ\ Poppins-Black.ttf') format('truetype');
 }
-
 @font-face {
   font-family: 'Poppins';
-  src: url('/frontend-user/public/DesignerVN-Poppins-Regular.ttf') format('truetype');
+  src: url('/frontend/public/FZ\ Poppins-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('/frontend/public/FZ\ Poppins-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('/frontend/public/FZ\ Poppins-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('/frontend/public/FZ\ Poppins-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('/frontend/public/FZ\ Poppins-Thin.ttf') format('truetype');
 }
 
-
-@media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
   .container {
     width: 90%;
+    width: 100%;
   }
   #root {
     width: 100vw;
@@ -74,9 +92,6 @@ a {
   #root {
     width: 100vw;
   }
-  /* .container {
-    padding: 0 15px;
-  } */
 
   .app {
     width: 100%;
@@ -87,10 +102,6 @@ a {
   body {
     font-size: 12px;
   }
-
-  /* .container {
-    padding: 0 10px;
-  } */
   #root {
     width: 100vw;
   }
@@ -103,15 +114,32 @@ a {
     font-size: 12px;
   }
 
-  /* .container {
-    padding: 0 10px;
-  } */
   #root {
     width: 100vw;
   }
   .app {
     width: 100%;
   }
+} */
+
+
+@media only screen and (max-width: 48em){
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .container, #root, .app {
+    width: 100vw; 
+    max-width: 100%; 
+    margin: 0;
+    padding: 0;
+  }
+  
+  .app {
+    margin-top: 90px; 
+    overflow-x: hidden; 
+  }
+  
 }
-
-

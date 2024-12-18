@@ -131,3 +131,13 @@
     margin-left: auto;
     color: #333;
   }
+
+  @media only screen and (max-width: 48em) {
+    .menu-columns {
+      display: block;
+      width: 100%;
+  }
+  .menu-title {
+    text-align: center;
+}
+  }

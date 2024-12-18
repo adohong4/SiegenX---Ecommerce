@@ -101,6 +101,7 @@ const ProductsList = () => {
             </div>
           ))}
         </div>
+        
       </div>
 
       <div className="pagination">
@@ -131,6 +132,9 @@ const ProductsList = () => {
           &gt;
         </button>
       </div>
+      <div className="productlist-banner-last">
+          <img src={assets.bannerProductList} alt="Màn hình LED" />
+        </div>
     </div>
   );
 };

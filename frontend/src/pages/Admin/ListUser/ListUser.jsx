@@ -10,7 +10,7 @@ const ListUser = () => {
     const { url } = useContext(StoreContext);
     const [list, setList] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
-    const [isPopupOpen, setIsPopupOpen] = useState(false); 
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [totalUser, setTotalUser] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
@@ -23,13 +23,13 @@ const ListUser = () => {
         setIsPopupOpen(true);
         document.body.classList.add('popup-open');
     };
-    
+
     const closePopup = () => {
         setIsPopupOpen(false);
         setCurrentUser(null);
-        document.body.classList.remove('popup-open'); 
+        document.body.classList.remove('popup-open');
     };
-    
+
 
     const fetchList = async (page = 1) => {
         try {
@@ -152,13 +152,12 @@ const ListUser = () => {
                 <thead>
                     <tr className="table-header">
                         <th onClick={sortByName} style={{ cursor: 'pointer' }}>
-                            Name {sortNameOrder === 'asc' ? '↑' : '↓'}
+                            Tài Khoản {sortNameOrder === 'asc' ? '↑' : '↓'}
                         </th>
                         <th onClick={sortByEmail} style={{ cursor: 'pointer' }}>
                             Email {sortEmailOrder === 'asc' ? '↑' : '↓'}
                         </th>
-                        <th>Delete</th>
-                        <th>Actions</th>
+                        <th>Tùy chỉnh</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -166,16 +165,19 @@ const ListUser = () => {
                         <tr key={index} className="table-row">
                             <td>{item.username}</td>
                             <td>{item.email}</td>
-                            <td>
-                                <button onClick={() => removeUser(item._id)} className="btn-delete">
-                                    Delete
-                                </button>
-                            </td>
-                            <td>
-                                <button onClick={() => openUpdatePopup(item)} className="btn-update">
-                                    Update
-                                </button>
-                            </td>
+                            <div>
+                                <td>
+                                    <button onClick={() => removeUser(item._id)} className="btn-delete">
+                                        Delete
+                                    </button>
+                                </td>
+                                <td>
+                                    <button onClick={() => openUpdatePopup(item)} className="btn-update">
+                                        Update
+                                    </button>
+                                </td>
+                            </div>
+
                         </tr>
                     ))}
                 </tbody>
