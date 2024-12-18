@@ -72,6 +72,21 @@ class ProductService {
         }
     }
 
+    static getProductBySlug = async (product_slug) => {
+        try {
+            const product = await productModel.findOne({ product_slug });
+            if (!product) {
+                throw new Error("Product not found");
+            }
+            console.log('st', product)
+            return {
+                product
+            };
+        } catch (error) {
+            throw error;
+        }
+    }
+
     static deleteProduct = async (id) => {
         try {
             const product = await productModel.findById(id);

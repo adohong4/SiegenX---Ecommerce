@@ -62,6 +62,19 @@ class ProductController {
         }
     }
 
+    getProductBySlug = async (req, res, next) => {
+        try {
+            const result = await ProductService.getProductBySlug(req.params.slug);
+
+            new OK({
+                message: 'get Product By Slug OK',
+                metadata: result.product
+            }).send(res);
+        } catch (error) {
+            next(error);
+        }
+    }
+
     deleteProduct = async (req, res, next) => {
         try {
             const result = await ProductService.deleteProduct(req.params.id);
