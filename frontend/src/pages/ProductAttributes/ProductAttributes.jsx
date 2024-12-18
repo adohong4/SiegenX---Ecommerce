@@ -1,19 +1,18 @@
 import React from "react";
-import { useParams } from "react-router-dom"; 
+import { useParams } from "react-router-dom";
 import './ProductAttributes.css';
 import Notification from "../../components/Notification/Notification";
 import ProductInfo from "../../components/Products/ProductInfo/ProductInfo";
-import ProductTab from "../../components/Products/ProductTab/ProductTab"; 
-
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 const ProductsAttributes = () => {
-    const { productId } = useParams(); 
+    const { productSlug } = useParams();
 
     return (
         <main>
             <div className='container-home'>
+                <ScrollToTop />
                 <Notification />
-                <ProductInfo />
-                <ProductTab productId={productId} /> 
+                <ProductInfo producSlug={productSlug} />
             </div>
         </main>
     );

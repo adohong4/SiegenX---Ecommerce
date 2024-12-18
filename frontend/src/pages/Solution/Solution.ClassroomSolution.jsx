@@ -4,7 +4,6 @@ import "./Solution.ClassroomSolution.css"
 import Notification from "../../components/Notification/Notification";
 
 
-
 const ClassRoomSolution = () => {
     return (
         <div>
@@ -32,7 +31,6 @@ const ClassRoomSolution = () => {
                     <a href="/"><span>LIÊN HỆ</span></a>
                 </div>
             </div>
-
             <div className='class-section-2 class-section'>
                 <div className="class-container">
                     <h1>GIẢI PHÁP PHÒNG HỌP THÔNG MINH DÀNH CHO AI</h1>
@@ -64,7 +62,6 @@ const ClassRoomSolution = () => {
                     </div>
                 </div>
             </div>
-
             <div className='class-section-3 class-section'>
                 <div className="div class-container">
                     <h1>THỰC TRẠNG CHUNG</h1>
@@ -163,7 +160,6 @@ const ClassRoomSolution = () => {
                     </div>
                 </div>
             </div>
-
             <section id='section-lh-gp' className='meet-section-5 meet-section'>
                 <div className='section-lh-left'>
                     <img src={assets.meeting10} alt="meeting10" />

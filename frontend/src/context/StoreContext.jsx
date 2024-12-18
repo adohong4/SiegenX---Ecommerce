@@ -12,6 +12,8 @@ const StoreContextProvider = (props) => {
     const [token, setToken] = useState("")
     const [product_list, setProductList] = useState([])
     const [user_address, setUserAddress] = useState([])
+    const [product_slug, setProductSlug] = useState(null);
+
 
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
@@ -45,13 +47,20 @@ const StoreContextProvider = (props) => {
     const fetchProductList = async () => {
         const response = await axios.get(`${url}/v1/api/product/get`);
         setProductList(response.data.metadata);
-    }
+
+    };
+
+    const fetchProductSlug = async (_id) => {
+        const response = await axios.get(`${url}/v1/api/product/${slug}`);
+        setProductSlug(response.data.metadata.product);
+    };
 
     const loadUserAddress = async (token) => {
         const response = await axios.get(`${url}/v1/api/user/getAddress`, {
             headers: { token }
         });
         setUserAddress(response.data.metadata.addresses);
+
     }
 
     // const loadCartData = async (token) => {
@@ -75,11 +84,13 @@ const StoreContextProvider = (props) => {
     const contextValue = {
         user_address,
         product_list,
+        product_slug,
         cartItems,
         setCartItems,
         addToCart,
         removeFromCart,
         getTotalCartAmount,
+        fetchProductSlug,
         url, url2,
         setToken,
         token

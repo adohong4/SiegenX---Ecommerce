@@ -36,7 +36,14 @@
 .category {
   position: relative;
   text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
+.category:hover{
+  transform: scale(1.05);
+  background-color: rgb(1, 181, 139);
+  box-shadow: 0 20px 16px rgba(0, 0, 0, 0.3);
+} 
 
 .category img {
   width: 270px;

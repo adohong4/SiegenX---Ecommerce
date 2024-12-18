@@ -17,7 +17,7 @@ const Home = () => {
           <ProductShowcase />
         </div>
         <Solutions />
-        <div className='banner-img-f'>
+        <div className='banner-img-end'>
           <img src={assets.bannerEnd}  />
         </div>
         <Provide />

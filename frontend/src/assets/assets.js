@@ -40,7 +40,6 @@ import ledScreen from './banner/Rectangle 42.png'
 import videoWallScreen from './banner/Rectangle 42.png'
 import bannerProduct from './banner/Bg.png'
 import bannerProductList from './banner/Banner1.png'
-import { products } from '../data/products'
 import bglogin from './bglogin.png'
 import logofooter from './logofooter.png'
 import profile_icon from './profile_icon.png'
@@ -99,7 +98,7 @@ export const assets = {
     about1, about2, about3, about4, economic, about5,
 
     contact, introduce, forme, bgrcontact, upload, homebanner, homeProduct,
-    category1, category2, category3, category4, category5, products, solution1, solution2, solution3,
+    category1, category2, category3, category4, category5, solution1, solution2, solution3,
     solutionImage, bannerEnd, interactiveScreen, mobileScreen, advertisingScreen, ledScreen, videoWallScreen,
     bannerProduct, bannerProductList, bglogin,
 
