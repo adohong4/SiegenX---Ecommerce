@@ -102,7 +102,24 @@
   font-size: 16px;
   color: #00B98E;
   z-index: 2;
+ 
 }
+.cart-icon:hover{
+  background-color: #EC1313;
+}
+.cart-icon i::before {
+  content: "\f07a"; /* Unicode cho icon 'fa-shopping-cart' */
+  font-weight: 900;
+  font-size: 15px;
+  color: #000000;
+}
+
+.cart-icon:hover i::before {
+  content: "\f217"; /* Unicode cho icon 'fa-cart-plus' */
+  color: #ffffff; /* Thay đổi màu sắc khi hover */
+}
+
+
 
 .product-name {
   font-size: 14px;

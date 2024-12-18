@@ -84,6 +84,7 @@
 }
 
 .popup-overlay {
+    margin-top: 80px;
     position: fixed;
     top: 0;
     left: 0;

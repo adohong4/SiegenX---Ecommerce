@@ -44,7 +44,13 @@ const ProductShowcase = () => {
                   alt={product.title}
                   className="product-img"
                 />
-                <div className="cart-icon">
+                <div
+                  className="cart-icon"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Ngăn chặn sự kiện nhấn sp
+                    navigate("/cart"); // Chuyển hướng tới trang giỏ hàng
+                  }}
+                >
                   <i className="fas fa-shopping-cart"></i>
                 </div>
               </div>

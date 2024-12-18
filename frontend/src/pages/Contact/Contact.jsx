@@ -4,6 +4,7 @@ import Banner from '../../components/Banner/Banner';
 import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
 const Contact = () => {
 
@@ -44,6 +45,7 @@ const Contact = () => {
 
     return (
         <div className='page-contact'>
+            < ScrollToTop/>
             <div className='banner-contact'>
                 <Banner />
             </div>
