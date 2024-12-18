@@ -153,6 +153,7 @@ const ListUser = () => {
                     <tr className="table-header">
                         <th onClick={sortByName} style={{ cursor: 'pointer' }}>
                             Tài Khoản {sortNameOrder === 'asc' ? '↑' : '↓'}
+
                         </th>
                         <th onClick={sortByEmail} style={{ cursor: 'pointer' }}>
                             Email {sortEmailOrder === 'asc' ? '↑' : '↓'}
@@ -177,7 +178,6 @@ const ListUser = () => {
                                     </button>
                                 </td>
                             </div>
-
                         </tr>
                     ))}
                 </tbody>

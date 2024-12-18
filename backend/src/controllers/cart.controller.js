@@ -7,7 +7,7 @@ class CartController {
     addToCart = async (req, res, next) => {
         try {
             const cartData = req.body;
-            const result = await CartController.addToCart(cartData)
+            const result = await CartService.addToCart(cartData)
 
             new CREATED({
                 message: "Add to Cart",
@@ -21,7 +21,7 @@ class CartController {
     removeFromCart = async (req, res, next) => {
         try {
             const cartData = req.body;
-            const result = await CartController.removeFromCart(cartData)
+            const result = await CartService.removeFromCart(cartData)
 
             new CREATED({
                 message: "Remove From Cart",
@@ -35,7 +35,7 @@ class CartController {
     getCart = async (req, res, next) => {
         try {
             const cartData = req.body;
-            const result = await CartController.getCart(cartData)
+            const result = await CartService.getCart(cartData)
 
             new OK({
                 message: "Get Cart",

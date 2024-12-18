@@ -1,6 +1,8 @@
 import React from 'react';
 import './Cart.css';
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 import { useNavigate } from 'react-router-dom';
+
 
 const Cart = () => {
     const navigate = useNavigate();
@@ -30,6 +32,7 @@ const Cart = () => {
 
     return (
         <div className="cart">
+            <ScrollToTop/>
             <h1 className="cart-header">Giỏ Hàng Của Bạn</h1>
             <div className="cart-content">
                 <div className="cart-items">

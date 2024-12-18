@@ -1,3 +1,4 @@
+
 /* @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"); */
 /* @import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
@@ -181,6 +182,7 @@ p {
 }
 
 .class-section-4 a{
+
     display: block;
     background-color: #00B78D;
     width: 160px;
@@ -201,12 +203,12 @@ p {
 }
 
 
-
 .sp {
     position: relative;
     background-color: #EFEFEF;
     border-radius: 20px;
     margin: 0;
+
     width: 100% !important;
     height: 100% !important;
     margin: 0px 18px;
@@ -564,6 +566,28 @@ input[name='sol-sdt'] {
     }
 }
 @media only screen and (max-width: 48em){
+    .class-section-1 div a {
+        width: fit-content;
+        padding: 15px 30px;
+        margin: 30px auto;
+    }
+    .class-section-1 img{
+        padding: 20px;
+    }
+    .class-section-2-child  div{
+        text-align: center;
+    }
+    .class-section-2-child div img {
+        margin-left: 0vw;
+    }
+    .class-section-2-child div h2 {
+        font-size: 18px;
+        margin-top: 20px;
+    }
+    .class-section-2-child div p {
+        text-align: center;
+        font-size: 16px !important;
+    }
     .section-lh-left{
         display: none;
     }

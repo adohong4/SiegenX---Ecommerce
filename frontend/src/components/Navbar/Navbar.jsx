@@ -81,32 +81,32 @@ const Navbar = () => {
 
                                             {/* Dropdown Menu */}
                                                 {isDropdownOpen && (
-    <ul className="dropdown-menu">
-        <li
-        onClick={() => {
-            navigate('/order');
-            setIsDropdownOpen(false); // Đóng dropdown
-        }}
-        >
-        My Order
-        </li>
-        <li
-        onClick={() => {
-            navigate('/profile');
-            setIsDropdownOpen(false); // Đóng dropdown
-        }}
-        >
-        My Profile
-        </li>
-        <li
-        onClick={() => {
-            handleLogout();
-            setIsDropdownOpen(false); // Đóng dropdown
-        }}
-        >
-        Logout
-        </li>
-    </ul>
+                                            <ul className="dropdown-menu">
+                                                <li
+                                                onClick={() => {
+                                                    navigate('/order');
+                                                    setIsDropdownOpen(false); // Đóng dropdown
+                                                }}
+                                                >
+                                                My Order
+                                                </li>
+                                                <li
+                                                onClick={() => {
+                                                    navigate('/profile');
+                                                    setIsDropdownOpen(false); // Đóng dropdown
+                                                }}
+                                                >
+                                                My Profile
+                                                </li>
+                                                <li
+                                                onClick={() => {
+                                                    handleLogout();
+                                                    setIsDropdownOpen(false); // Đóng dropdown
+                                                }}
+                                                >
+                                                Logout
+                                                </li>
+                                            </ul>
                                                 )}
 
                                         </div>
@@ -200,7 +200,6 @@ const Navbar = () => {
                             <li onClick={() => handleNavigate('/solutions')}>Giải Pháp</li>
                             <li onClick={() => handleNavigate('/contact')}>Liên Hệ</li>
                         </ul>
-
                         {!token ? (
                             <button
                                 className="btn btn-signin"

@@ -116,7 +116,6 @@ const Contact = () => {
                         </th>
                         <th>Kiểm tra</th>
                         <th>Tùy chỉnh</th>
-
                     </tr>
                 </thead>
                 <tbody>
