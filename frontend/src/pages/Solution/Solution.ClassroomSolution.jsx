@@ -164,21 +164,28 @@ const ClassRoomSolution = () => {
                 </div>
             </div>
 
-            <div className='class-section-5 class-section'>
-                <img src={assets.meeting10} alt="meeting10" />
-                <div>
-                    <h2>LIÊN HỆ ĐĂNG KÝ</h2>
-                    <form action="" className='sol-form'>
-                        <div>
-                            <input className='sol-input' type="text" placeholder='Họ tên' name='sol-name' />
-                            <input className='sol-input' type="text" placeholder='Số điện thoại' name='sol-sdt' />
-                        </div>
-                        {/* <input className='sol-input' type="text" placeholder='Nội dung' name='sol-des' /> */}
-                        <textarea className="sol-input" name="sol-des" placeholder='Nội dung'></textarea>
-                        <input className='sol-input' type="submit" value="Gửi đi" name='sol-submit' />
-                    </form>
+            <section id='section-lh-gp' className='meet-section-5 meet-section'>
+                <div className='section-lh-left'>
+                    <img src={assets.meeting10} alt="meeting10" />
                 </div>
-            </div>
+                <div className='section-lh-right'>
+                    <h2>LIÊN HỆ ĐĂNG KÝ</h2>
+                    <div className='form-lienhe'>
+                        <form action="" className='sol-form'>
+                            <div>
+                                <input className='sol-input' type="text" placeholder='Họ tên' name='sol-name' />
+                                <input className='sol-input' type="text" placeholder='Số điện thoại' name='sol-sdt' />
+                            </div>
+                            <textarea className="sol-input" name="sol-des" placeholder='Nội dung'></textarea>
+                            <div className='btn-send-lh'>
+                                <input className='sol-input' type="submit" value="Gửi đi" name='sol-submit' />
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </section>
         </div >
     )
 }

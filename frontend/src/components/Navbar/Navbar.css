@@ -292,7 +292,7 @@
     .mobile-display {
         display: flex;
         position: fixed;
-        width: 100%;
+        width: 100vw;
         left: 0;
         top:0px;
         z-index: 999;
@@ -350,6 +350,7 @@
       .menu-content {
         position: fixed;
         top: 60px;
+        left: 20px;
         left: 0px;
         /* width: 100%; */
         background-color: #fff;

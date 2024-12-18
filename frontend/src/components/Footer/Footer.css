@@ -2,9 +2,11 @@
     background-color: #0A9A79;
     color: #fff;
 }
+
 .footer-container{
     padding: 30px;
 }
+
 .footer-content {
     display: block;
     padding: 50px 200px;
@@ -42,10 +44,15 @@
     color: white;
     border: none;
     border-radius: 50px;
+    margin-top: 0;
     font-weight: bold;
     cursor: pointer;
 }
-
+.footer-chinhsach{
+    display: flex ;
+    justify-content: space-around;
+    width: 65%;
+}
 .footer-content .top-tittle-footer .top-title-right button:hover {
     background-color: #009c8b;
 }
@@ -88,6 +95,12 @@
 }
 
 @media only screen and (max-width: 48em){
+    .footer {
+        padding: 20px;
+    }
+    .top-title-left p{
+        text-align: center;
+    }
     .footer-content {
         padding: 0;
     }
@@ -95,7 +108,7 @@
         display: block;
     }
     .footer-content .top-tittle-footer .top-title-right input {
-        width: 67%;
+        width: 278px;
     }
     .footer-content .top-tittle-footer .top-title-right button {
         margin-top: 0px;
@@ -112,22 +125,34 @@
     }
     .body-footer .footer-info {
         width: 100%;
-        text-align: center !important;
+        text-align: center;
         line-height: 30px;
     }
+    .body-footer .footer-info p{
+        text-align: center;
+    }
     .footer-chinhsach{
-        width: 65%;
+        width: 100%;
+        margin-top: 20px;
         display: flex;
         justify-content: space-around;
     }
     .footer-copy{
         display: block;
-        text-align: center !important;
+        text-align: center;
         font-style: italic;
         padding-bottom: 10px;
         padding-top: 10px;
         border-top: 1px solid #bbb;
     }
-
+    .footer-copy p{
+        text-align: center;
+        font-weight: lighter;
+        font-style: italic;
+    }
+    .footer-content .top-tittle-footer .top-title-right .container {
+        width: 100vw;
+        justify-content: space-between;
+    }
     
 }

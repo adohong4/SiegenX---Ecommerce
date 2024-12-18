@@ -189,30 +189,57 @@
 
 
     .sol-section img {
-        width: 100%; /* Đặt chiều rộng của ảnh là 100% để phù hợp với màn hình nhỏ */
-        height: auto; /* Đặt chiều cao tự động để duy trì tỉ lệ ảnh */
+        width: 100%; 
+        height: auto; 
         max-width: 100%;
-        object-fit: cover; /* Hoặc object-fit: contain; */
+        object-fit: cover; 
     }
 
     .sol-section div {
-        margin: 10px 0 0; /* Giảm margin để phù hợp với màn hình nhỏ */
+        margin: 10px 0 0; 
     }
 
     .sol-section div h3 {
-        font-size: 1.25rem; /* Giảm kích thước font của tiêu đề */
+        font-size: 1.25rem; 
     }
 
     .sol-section div p {
-        font-size: 0.875rem; /* Giảm kích thước font của đoạn văn */
+        font-size: 0.875rem; 
     }
 
     .sol-section button {
-        width: 100%; /* Đặt chiều rộng của nút là 100% */
-        padding: 8px; /* Giảm padding của nút */
-        font-size: 0.875rem; /* Giảm kích thước font của nút */
+        width: 100%; 
+        padding: 8px; 
+        font-size: 0.875rem;
     }
 
+}
 
-
+@media only screen and (max-width: 48em){
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .container, #root, .app {
+    width: 100vw; 
+    max-width: 100%; 
+    margin: 0;
+    padding: 0;
+  }
+  
+  .app {
+    margin-top: 90px; 
+    overflow-x: hidden; 
+  }
+  
+}
+@media only screen and (max-width: 48em){
+    .sol-content{
+        text-align: center;
+    }
+    .sol-content div p{
+        text-align: center;
+    }
 }

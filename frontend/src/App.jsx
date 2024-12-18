@@ -12,13 +12,10 @@ import Login from './pages/Login/Login';
 import Order from './pages/Order/Order';
 import Solution from './pages/Solution/Solution';
 import ProductsAttributes from './pages/ProductAttributes/ProductAttributes'
-import Admin from './pages/Admin/Admin';
-
 import MeetingSolution from './pages/Solution/Solution.MeetingRoomSolution'
 import ClassSolution from './pages/Solution/Solution.ClassroomSolution'
 import BoothSolution from './pages/Solution/Solution.BoothSolution'
-
-
+import Admin from './pages/Admin/Admin';
 
 function App() {
   return (
