@@ -6,6 +6,7 @@ const app = express();
 
 // Init middlewares
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 // Init db
@@ -16,6 +17,7 @@ connectDB();
 // Init router
 app.use('', require('./routes'));
 app.use('/images', express.static('upload'));
+
 // Handling errors
 app.use((req, res, next) => {
     const error = new Error('Not Found');

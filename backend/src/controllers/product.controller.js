@@ -1,7 +1,7 @@
 'use strict'
 
 const ProductService = require("../services/product.services");
-const { CREATED, OK, SuccessResponse } = require('../core/success.response');
+const { CREATED, OK, SuccessResponse, NOCONTENT } = require('../core/success.response');
 
 class ProductController {
     createProduct = async (req, res, next) => {
@@ -20,6 +20,19 @@ class ProductController {
         }
     }
 
+
+    updateProduct = async (req, res, next) => {
+        try {
+            const result = await ProductService.updateProduct(req, res, next);
+
+            new CREATED({
+                message: 'update successful!',
+                metadata: result.product
+            }).send(res);
+        } catch (error) {
+            next(error);
+        }
+    }
     getAllProduct = async (req, res, next) => {
         try {
             const result = await ProductService.getProduct(req.body);
@@ -35,6 +48,34 @@ class ProductController {
             next(error);
         }
     }
+
+    getProductById = async (req, res, next) => {
+        try {
+            const result = await ProductService.getProductById(req.params.id);
+
+            new OK({
+                message: 'get Product By Id OK',
+                metadata: result.product
+            }).send(res);
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    deleteProduct = async (req, res, next) => {
+        try {
+            const result = await ProductService.deleteProduct(req.params.id);
+
+            new NOCONTENT({
+                message: 'delete successful!',
+                metadata: result.product
+            }).send(res);
+        } catch (error) {
+            next(error);
+        }
+    }
+
+
 }
 
 module.exports = new ProductController();
