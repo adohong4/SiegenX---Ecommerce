@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './AddressPopup.css';
+import { StoreContext } from '../../../context/StoreContext';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const AddressPopup = ({ setShowAddress }) => {
+    const { url, setToken } = useContext(StoreContext);
     const [data, setData] = useState({
         fullname: '',
         phone: '',
@@ -16,14 +20,22 @@ const AddressPopup = ({ setShowAddress }) => {
         setData(prevData => ({ ...prevData, [name]: value }));
     };
 
-    const onSubmitHandler = (event) => {
+    const onSubmitHandler = async (event) => {
         event.preventDefault();
-        console.log("Address Data:", data);
-        // Bạn có thể gửi dữ liệu này đến API hoặc xử lý dữ liệu khác ở đây.
-        setShowAddress(false); // Đóng popup sau khi xử lý
+        const token = localStorage.getItem("token");
+        let newUrl = `${url}/v1/api/user/addAddress`; // Giả sử endpoint của bạn là /api/address
+        const response = await axios.post(newUrl, data, {
+            headers: { token }
+        });
+        if (response.data.status) {
+            toast.success('Address added successfully!');
+            setShowAddress(false);
+        } else {
+            toast.error(response.data.message);
+        }
     };
 
-    return(
+    return (
         <div className="address-popup">
             <form onSubmit={onSubmitHandler} className="address-popup-container">
                 <div className="popup-header">

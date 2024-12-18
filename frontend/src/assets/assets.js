@@ -90,6 +90,7 @@ import booth5 from './solution/BoothSolution/booth5.svg'
 import booth6 from './solution/BoothSolution/booth6.jpg'
 import booth7 from './solution/BoothSolution/booth7.jpg'
 
+import parcel_icon from './parcel_icon.png'
 
 export const assets = {
     logo,
@@ -111,6 +112,8 @@ export const assets = {
     meeting5, meeting6, meeting7, meeting8, meeting9, meeting10,
     class1, class2, class3, class4, class5, class6, class7, class8, class9,
     productClass1, productClass2, productClass3, productClass4,
-    booth1, booth2, booth3, booth4, booth5, booth6, booth7
+    booth1, booth2, booth3, booth4, booth5, booth6, booth7,
+
+    parcel_icon,
 
 }
