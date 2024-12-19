@@ -136,12 +136,12 @@ const PlaceOrder = () => {
                         <hr />
                         <div className="cart-total-details">
                             <p>Phí Giao Hàng</p>
-                            <p>200000</p>
+                            <p>50000</p>
                         </div>
                         <hr />
                         <div className="cart-total-details">
                             <b>Tổng Cộng</b>
-                            <b>5200000</b>
+                            <b>5050000</b>
                         </div>
                     </div>
                     <div className="hinhthuc-thanhtoan">
@@ -172,8 +172,8 @@ const PlaceOrder = () => {
                             <div className="payment-options">
                                 <p>Chọn phương thức thanh toán trực tuyến:</p>
                                 <img src={assets.momo} alt="MoMo" className="payment-logo" />
-                                <img src={assets.zalopay}  alt="ZaloPay" className="payment-logo" />
-                                <img src={assets.stripe}  alt="Stripe" className="payment-logo" />
+                                <img src={assets.zalopay} alt="ZaloPay" className="payment-logo" />
+                                <img src={assets.stripe} alt="Stripe" className="payment-logo" />
                             </div>
                         )}
                     </div>

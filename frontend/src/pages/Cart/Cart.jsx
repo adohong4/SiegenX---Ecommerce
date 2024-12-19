@@ -24,7 +24,7 @@ const Cart = () => {
         },
     ];
 
-    const Fee = cartItems.length === 0 ? 0 : 200000;
+    const Fee = cartItems.length === 0 ? 0 : 50000;
 
     const getTotalCartAmount = () => {
         return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -32,7 +32,7 @@ const Cart = () => {
 
     return (
         <div className="cart">
-            <ScrollToTop/>
+            <ScrollToTop />
             <h1 className="cart-header">Giỏ Hàng Của Bạn</h1>
             <div className="cart-content">
                 <div className="cart-items">
@@ -70,7 +70,7 @@ const Cart = () => {
                         <b>Tổng Cộng:</b>
                         <b>{(getTotalCartAmount() + Fee)}</b>
                     </div>
-                    <button onClick={() => navigate('/order')} className="cart-checkout-button">Tiến Hành Thanh Toán</button>
+                    <button onClick={() => navigate('/hoa-don')} className="cart-checkout-button">Tiến Hành Thanh Toán</button>
                 </div>
             </div>
         </div>
