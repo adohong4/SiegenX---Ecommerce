@@ -7,7 +7,6 @@ class OrderController {
     getOrder = async (req, res, next) => {
         try {
             const result = await OrderService.getOrder()
-            console.log('td: ', result)
 
             new CREATED({
                 message: "Get Order",

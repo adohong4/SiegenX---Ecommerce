@@ -7,6 +7,7 @@ import Contact from './Contact/Contact';
 import AddProduct from './AddProduct/AddProduct';
 import '../Admin/Admin.css'
 import Orders from './Cart/Cart';
+import DashBoard from './Dashboard/DashBoard';
 
 const Admin = () => {
     return (
@@ -16,6 +17,7 @@ const Admin = () => {
             </div>
             <div className="admin-content sidebar-right">
                 <Routes>
+                    <Route path="dashboard" element={<DashBoard />} />
                     <Route path="user" element={<ListUser />} />
                     <Route path="product" element={<ListProduct />} />
                     <Route path="contact" element={<Contact />} />
