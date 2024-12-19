@@ -38,14 +38,20 @@ class CartService {
     }
 
     // fetch user cart data
-    static getCart = async () => {
+    static getCart = async (userId) => {
         try {
-            let userData = await userModel.findById(req.body.userId)
-            let cartData = await userData.cartData;
-            res.json({ success: true, cartData })
+            let userData = await userModel.findById(userId)
+
+            if (!userData) {
+                throw new Error("User not found");
+            }
+
+            let cartData = userData.cartData;
+            return {
+                cartData
+            }
         } catch (error) {
-            console.log(error);
-            res.json({ success: false, message: "Error" })
+            throw error;
         }
     }
 

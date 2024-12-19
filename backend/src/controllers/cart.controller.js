@@ -34,13 +34,13 @@ class CartController {
 
     getCart = async (req, res, next) => {
         try {
-            const cartData = req.body;
-            const result = await CartService.getCart(cartData)
+            const { userId } = req.body;
+            const result = await CartService.getCart(userId);
 
             new OK({
                 message: "Get Cart",
-                data: result
-            }).send(res)
+                data: result.cartData
+            }).send(res);
         } catch (error) {
             next(error);
         }
