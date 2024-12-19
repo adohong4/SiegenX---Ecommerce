@@ -1,4 +1,5 @@
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Route, Routes, Navigate } from 'react-router-dom'; // Thêm Navigate ở đây
 import Home from './pages/Home/Home';
 import Navbar from './components/Navbar/Navbar';
@@ -16,10 +17,12 @@ import MeetingSolution from './pages/Solution/Solution.MeetingRoomSolution'
 import ClassSolution from './pages/Solution/Solution.ClassroomSolution'
 import BoothSolution from './pages/Solution/Solution.BoothSolution'
 import Admin from './pages/Admin/Admin';
+import MyOrder from './pages/MyOrders/MyOrders';
 
 function App() {
   return (
     <>
+      <ToastContainer />
       <div className='container'>
         <div className='app'>
           <Routes>
@@ -31,6 +34,7 @@ function App() {
                 <>
                   <Navbar />
                   <Routes>
+
                     <Route path="/" element={<Home />} />
                     <Route path="/san-pham" element={<Products />} />
                     <Route path="/gioi-thieu" element={<Introduce />} />
@@ -43,6 +47,7 @@ function App() {
                     <Route path="/giai-phap/phong-hop-thong-minh" element={<MeetingSolution />}></Route>
                     <Route path="/giai-phap/lop-hoc-thong-minh" element={<ClassSolution />}></Route>
                     <Route path="/giai-phap/giai-phap-gian-hang" element={<BoothSolution />}></Route>
+                    <Route path="/myorder" element={<MyOrder />}></Route>
                   </Routes>
                   <Footer />
                 </>

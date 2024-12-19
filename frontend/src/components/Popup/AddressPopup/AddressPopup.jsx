@@ -22,18 +22,25 @@ const AddressPopup = ({ setShowAddress }) => {
 
     const onSubmitHandler = async (event) => {
         event.preventDefault();
-        const token = localStorage.getItem("token");
-        let newUrl = `${url}/v1/api/user/addAddress`; // Giả sử endpoint của bạn là /api/address
-        const response = await axios.post(newUrl, data, {
-            headers: { token }
-        });
-        if (response.data.status) {
-            toast.success('Address added successfully!');
-            setShowAddress(false);
-        } else {
-            toast.error(response.data.message);
+        try {
+            const token = localStorage.getItem("token");
+            const newUrl = `${url}/v1/api/user/addAddress`; 
+            const response = await axios.post(newUrl, data, {
+                headers: { token }
+            });
+    
+            if (response.data.status) {
+                toast.success('Địa chỉ đã được lưu thành công!');
+                setShowAddress(false); // Đóng popup
+            } else {
+                toast.error(response.data.message || 'Đã xảy ra lỗi. Vui lòng thử lại!');
+            }
+        } catch (error) {
+            console.error("Error saving address:", error);
+            toast.error('Không thể lưu địa chỉ. Vui lòng thử lại sau!');
         }
     };
+    
 
     return (
         <div className="address-popup">
@@ -54,7 +61,7 @@ const AddressPopup = ({ setShowAddress }) => {
                             placeholder="Nhập họ và tên"
                             value={data.fullname}
                             onChange={onChangeHandler}
-                        />
+                        /> 
                     </div>
 
                     <div className="form-group">

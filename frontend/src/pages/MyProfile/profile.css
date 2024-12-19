@@ -39,7 +39,10 @@
 .form-group {
     margin-bottom: 15px;
 }
-
+.address-details-body{
+    display: flex;
+    align-items: center;
+}
 .form-control {
     width: 100%;
     padding: 8px;
@@ -99,10 +102,12 @@
 .address-details-left p {
     margin: 0;
 }
-
+.address-details-right{
+    margin-top: 10px;
+}
 .address-details-right button {
     padding: 5px 10px;
-    background-color: #00b98e;
+    background-color: red;
     color: white;
     border: none;
     border-radius: 50px;

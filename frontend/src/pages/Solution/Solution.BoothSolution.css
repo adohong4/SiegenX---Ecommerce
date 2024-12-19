@@ -318,7 +318,9 @@ input[name='sol-sdt'] {
     margin-left: 20px;
     width: 330px;
 }
-
+.sol-box p {
+    font-size: 18px;
+}
 
 
 

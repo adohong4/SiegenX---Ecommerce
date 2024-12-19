@@ -80,11 +80,12 @@ const Navbar = () => {
                                             </span>
 
                                             {/* Dropdown Menu */}
+
                                             {isDropdownOpen && (
                                                 <ul className="dropdown-menu">
                                                     <li
                                                         onClick={() => {
-                                                            navigate('/order');
+                                                            navigate('/myorder');
                                                             setIsDropdownOpen(false); // Đóng dropdown
                                                         }}
                                                     >
@@ -108,6 +109,7 @@ const Navbar = () => {
                                                     </li>
                                                 </ul>
                                             )}
+
 
                                         </div>
                                     )}
