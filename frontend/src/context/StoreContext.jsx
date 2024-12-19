@@ -50,9 +50,9 @@ const StoreContextProvider = (props) => {
 
     };
 
-    const fetchProductSlug = async (_id) => {
-        const response = await axios.get(`${url}/v1/api/product/${slug}`);
-        setProductSlug(response.data.metadata.product);
+    const fetchProductSlug = async (slug) => {
+        const response = await axios.get(`${url}/v1/api/product/getSlug/${slug}`);
+        setProductSlug(response.data.metadata);
     };
 
     const loadUserAddress = async (token) => {

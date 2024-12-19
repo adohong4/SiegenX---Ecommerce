@@ -32,17 +32,17 @@ function App() {
                   <Navbar />
                   <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/product" element={<Products />} />
-                    <Route path="/about" element={<Introduce />} />
-                    <Route path="/product/:productSlug" element={<ProductsAttributes />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/san-pham" element={<Products />} />
+                    <Route path="/gioi-thieu" element={<Introduce />} />
+                    <Route path="/san-pham/:productSlug" element={<ProductsAttributes />} />
+                    <Route path="/lien-he" element={<Contact />} />
+                    <Route path="/ca-nhan" element={<Profile />} />
                     <Route path="/cart" element={<Cart />} />
-                    <Route path="/order" element={<Order />} />
-                    <Route path="/solutions" element={<Solution />} />
-                    <Route path="/solutions/MeetingSolution" element={<MeetingSolution/>}></Route>
-                    <Route path="/solutions/ClassroomSolution" element={<ClassSolution/>}></Route>
-                    <Route path="/solutions/BoothSolution" element={<BoothSolution/>}></Route>
+                    <Route path="/hoa-don" element={<Order />} />
+                    <Route path="/giai-phap" element={<Solution />} />
+                    <Route path="/giai-phap/phong-hop-thong-minh" element={<MeetingSolution />}></Route>
+                    <Route path="/giai-phap/lop-hoc-thong-minh" element={<ClassSolution />}></Route>
+                    <Route path="/giai-phap/giai-phap-gian-hang" element={<BoothSolution />}></Route>
                   </Routes>
                   <Footer />
                 </>

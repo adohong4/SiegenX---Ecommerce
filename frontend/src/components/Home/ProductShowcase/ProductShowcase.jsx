@@ -9,11 +9,11 @@ const ProductShowcase = () => {
   const navigate = useNavigate();
 
   const handleProductClick = (productSlug) => {
-    navigate(`/product/${productSlug}`);
+    navigate(`/san-pham/${productSlug}`);
   };
 
   const handleContactRedirect = () => {
-    navigate("/contact");
+    navigate("/lien-he");
   };
 
   return (
@@ -40,7 +40,7 @@ const ProductShowcase = () => {
               {/* Container hình ảnh và icon giỏ hàng */}
               <div className="product-img-container">
                 <img
-                  src={product.images[0]}
+                  src={`${url}/images/${product.images[0]}`}
                   alt={product.title}
                   className="product-img"
                 />

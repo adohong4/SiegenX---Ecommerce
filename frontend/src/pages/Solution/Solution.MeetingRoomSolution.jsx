@@ -31,7 +31,7 @@ const MeetingRoomSolution = () => {
                             kết nối dễ dàng từ xa. Giải pháp này không chỉ nâng cao hiệu suất công việc mà còn tạo ra không gian làm việc hiện đại, thân thiện,
                             và chuyên nghiệp.
                         </p>
-                        <a href="/"><span>LIÊN HỆ</span></a>
+                        <a href="/lien-he"><span>LIÊN HỆ</span></a>
                     </div>
                 </div>
             </div>
@@ -110,9 +110,9 @@ const MeetingRoomSolution = () => {
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div>
-                                    <a href="/">
+                                    <a href="/lien-he">
                                         <span>LIÊN HỆ</span></a>
-                                    <a href="/">
+                                    <a href="/san-pham">
                                         <span>XEM NGAY</span></a>
                                 </div>
                             </div>
@@ -123,9 +123,9 @@ const MeetingRoomSolution = () => {
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div>
-                                    <a href="/">
+                                    <a href="/lien-he">
                                         <span>LIÊN HỆ</span></a>
-                                    <a href="/">
+                                    <a href="/san-pham">
                                         <span>XEM NGAY</span></a>
                                 </div>
                             </div>
@@ -136,9 +136,9 @@ const MeetingRoomSolution = () => {
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div>
-                                    <a href="/">
+                                    <a href="/lien-he">
                                         <span>LIÊN HỆ</span></a>
-                                    <a href="/">
+                                    <a href="/san-pham">
                                         <span>XEM NGAY</span></a>
                                 </div>
                             </div>
@@ -149,9 +149,9 @@ const MeetingRoomSolution = () => {
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div>
-                                    <a href="/">
+                                    <a href="/lien-he">
                                         <span>LIÊN HỆ</span></a>
-                                    <a href="/">
+                                    <a href="/san-pham">
                                         <span>XEM NGAY</span></a>
                                 </div>
                             </div>
@@ -167,9 +167,9 @@ const MeetingRoomSolution = () => {
                     <img src={assets.meeting10} alt="meeting10" />
                 </div>
                 <div className='section-lh-right'>
-                <h2>LIÊN HỆ ĐĂNG KÝ</h2>
-                <div className='form-lienhe'>
-                    <form action="" className='sol-form'>
+                    <h2>LIÊN HỆ ĐĂNG KÝ</h2>
+                    <div className='form-lienhe'>
+                        <form action="" className='sol-form'>
                             <div>
                                 <input className='sol-input' type="text" placeholder='Họ tên' name='sol-name' />
                                 <input className='sol-input' type="text" placeholder='Số điện thoại' name='sol-sdt' />
@@ -178,9 +178,9 @@ const MeetingRoomSolution = () => {
                             <div className='btn-send-lh'>
                                 <input className='sol-input' type="submit" value="Gửi đi" name='sol-submit' />
                             </div>
-                    </form>
-                </div>
-                    
+                        </form>
+                    </div>
+
                 </div>
             </section>
         </div>

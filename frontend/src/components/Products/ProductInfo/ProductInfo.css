@@ -6,7 +6,7 @@
     padding-top: 20px;
     padding-right: 17%;
     padding-left: 17%;
-    padding-bottom: 1px;
+    padding-bottom: 40px;
 }
 
 .productinfo-images {
@@ -130,7 +130,7 @@
     flex-direction: column;
     gap: 1rem;
     width: 100%;
-    min-width: 380px;  
+    min-width: 380px;
     /* max-width: 500px; */
 }
 
@@ -175,19 +175,22 @@
     display: flex;
     align-items: center;
 }
-.quantity-control{
+
+.quantity-control {
     height: 30px;
 }
+
 .productinfo-quantity label {
     font-size: 0.8rem;
     font-weight: 600;
     color: #000000;
 
 }
+
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 
@@ -199,14 +202,16 @@ input[type="number"]::-webkit-inner-spin-button {
     border-radius: 20px;
     text-align: center;
 }
-.productinfo-quantity button{
-    margin:0px 10px;
+
+.productinfo-quantity button {
+    margin: 0px 10px;
     border: none;
     background-color: #ffffff;
     font-size: 20px;
-    padding:0px 10px ;
+    padding: 0px 10px;
 }
-.productinfo-quantity button:hover{
+
+.productinfo-quantity button:hover {
     border-radius: 40px;
     background-color: #00B98E;
     color: #ffffff;
@@ -220,7 +225,7 @@ input[type="number"]::-webkit-inner-spin-button {
     gap: 0.7rem;
 }
 
-.productinfo-buy-now{
+.productinfo-buy-now {
     padding: 13px;
     background-color: #00B98E;
     font-size: 0.9rem;
@@ -256,7 +261,8 @@ input[type="number"]::-webkit-inner-spin-button {
     align-items: center;
     justify-content: center;
 }
-.productinfo-icon-contact{
+
+.productinfo-icon-contact {
     margin-right: 10px;
     text-align: center;
 }
@@ -269,24 +275,28 @@ input[type="number"]::-webkit-inner-spin-button {
     font-weight: 700;
 }
 
-@media only screen and (max-width: 48em){
+@media only screen and (max-width: 48em) {
     .productinfo-container {
         display: block;
         padding: 20px;
     }
+
     .productinfo-main-image {
         width: 90vw;
     }
+
     .productinfo-thumbnail-images {
         display: block;
         text-align: left;
         width: 90vw;
     }
+
     .productinfo-quantity label {
         font-size: 1rem;
     }
-  }
-.productinfo-addCart{
+}
+
+.productinfo-addCart {
     display: flex;
     justify-content: center;
     justify-items: center;
@@ -302,11 +312,13 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 70%;
     text-transform: uppercase;
 }
-.productinfo-icon-addCart{
+
+.productinfo-icon-addCart {
     margin-right: 10px;
     text-align: center;
 }
-.productinfo-addCart:hover{
+
+.productinfo-addCart:hover {
     background-color: #d31111;
 }
 

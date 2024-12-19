@@ -28,7 +28,7 @@ const BoothSolution = () => {
                         thẻ tín dụng hoặc nhận diện khuôn mặt. Hệ thống này cũng đặc biệt phù hợp với những người muốn mua sắm mà không cần tương tác trực tiếp với
                         nhân viên, tạo cảm giác thoải mái và riêng tư.
                     </p>
-                    <a href="/"><span>LIÊN HỆ</span></a>
+                    <a href="/lien-he"><span>LIÊN HỆ</span></a>
                 </div>
             </div>
 
@@ -118,9 +118,9 @@ const BoothSolution = () => {
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div>
-                                    <a href="/">
+                                    <a href="/lien-he">
                                         <span>LIÊN HỆ</span></a>
-                                    <a href="/">
+                                    <a href="/san-pham">
                                         <span>XEM NGAY</span></a>
                                 </div>
                             </div>
@@ -131,9 +131,9 @@ const BoothSolution = () => {
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div>
-                                    <a href="/">
+                                    <a href="/lien-he">
                                         <span>LIÊN HỆ</span></a>
-                                    <a href="/">
+                                    <a href="/san-pham">
                                         <span>XEM NGAY</span></a>
                                 </div>
                             </div>
@@ -144,9 +144,9 @@ const BoothSolution = () => {
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div>
-                                    <a href="/">
+                                    <a href="/lien-he">
                                         <span>LIÊN HỆ</span></a>
-                                    <a href="/">
+                                    <a href="/san-pham">
                                         <span>XEM NGAY</span></a>
                                 </div>
                             </div>
@@ -157,9 +157,9 @@ const BoothSolution = () => {
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div>
-                                    <a href="/">
+                                    <a href="/lien-he">
                                         <span>LIÊN HỆ</span></a>
-                                    <a href="/">
+                                    <a href="/san-pham">
                                         <span>XEM NGAY</span></a>
                                 </div>
                             </div>

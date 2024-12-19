@@ -84,7 +84,7 @@ const Contact = () => {
 
     return (
         <div className='user-list-container'>
-            <p>Contacts List</p>
+            <p>Danh sách Khách hàng liên hệ</p>
             <div className='search'>
                 <div className='search-CSKH'>
                     <input
@@ -125,7 +125,7 @@ const Contact = () => {
                             <td>{item.email}</td>
                             <td>{item.phone}</td>
                             <td>{item.content}</td>
-                            <td>{item.createdAt}</td>
+                            <td>{item.date}</td>
                             <td>
                                 <input
                                     type='checkbox'
@@ -139,8 +139,6 @@ const Contact = () => {
                                     <button onClick={() => openPopup(item)} className='btn-info'>Xem</button>
                                 </td>
                             </div>
-
-
                         </tr>
                     ))}
                 </tbody>
@@ -168,7 +166,7 @@ const Contact = () => {
                             </div>
                             <div className="popup-info">
                                 <label><strong>Thời gian:</strong></label>
-                                <p>{selectedRow.createdAt}</p>
+                                <p>{selectedRow.date}</p>
                             </div>
                             <div className="popup-info">
                                 <label><strong>Nội dung:</strong></label>

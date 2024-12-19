@@ -62,22 +62,22 @@ const Factors = () => {
 
     return (
         <div className="user-factors">
-            <h2>User Factors</h2>
+            <h2>Thống kê</h2>
             <div className="info-cards">
                 <div className="info-card">
-                    <h3>Total Users</h3>
+                    <h3>Người dùng</h3>
                     <p>{stats.totalUsers}</p>
                 </div>
                 <div className="info-card">
-                    <h3>Total Foods</h3>
+                    <h3>Sản phẩm</h3>
                     <p>{stats.totalProducts}</p>
                 </div>
                 <div className="info-card">
-                    <h3>Total Orders</h3>
+                    <h3>Đơn hàng</h3>
                     <p>{stats.totalOrders} 0</p>
                 </div>
                 <div className="info-card">
-                    <h3>Total Revenue/ Day</h3>
+                    <h3>Doanh thu</h3>
                     {/* <p>${stats.totalRevenue.toFixed(2)}</p> */} <p>0</p>
                 </div>
                 <div>

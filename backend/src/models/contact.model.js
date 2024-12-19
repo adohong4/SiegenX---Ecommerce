@@ -11,6 +11,19 @@ const ContactSchema = new Schema({
     email: { type: String, required: true },
     phone: { type: String, required: true },
     content: { type: String, required: true },
+    date: {
+        type: String,
+        default: () => {
+            // get the current time in VN time zone
+            const now = new Date();
+            return now.toLocaleDateString('vi-VN', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+        }
+    },
+    isCheck: { type: Boolean, default: false }
 }, { minimize: false, timestamps: true })
 
 const contactModel = mongoose.models.contact || mongoose.model(DOCUMENT_NAME, ContactSchema)

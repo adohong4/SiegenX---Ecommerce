@@ -78,7 +78,7 @@ class ProductService {
             if (!product) {
                 throw new Error("Product not found");
             }
-            console.log('st', product)
+
             return {
                 product
             };

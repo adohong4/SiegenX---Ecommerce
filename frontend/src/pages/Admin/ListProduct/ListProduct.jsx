@@ -103,6 +103,7 @@ const ListProduct = () => {
             <div className="list-table">
                 <div className="list-table-format title">
                     <b>Hình ảnh</b>
+                    <b>Mã sản phẩm</b>
                     <b>Tên Sản Phẩm</b>
                     <b>Danh Mục</b>
                     <b>Giá</b>
@@ -112,6 +113,7 @@ const ListProduct = () => {
                 {product_list.map((item, index) => (
                     <div key={index} className='list-table-format'>
                         <img src={`${url}/images/${item.images[0]}`} alt="" />
+                        <p>{item._id}</p>
                         <p>{item.title}</p>
                         <p>{item.category}</p>
                         <p>{item.price}</p>

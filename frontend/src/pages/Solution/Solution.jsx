@@ -25,7 +25,7 @@ const Solution = () => {
                             <div>
                                 <h3>Giải pháp phòng họp thông minh</h3>
                                 <p>Giải pháp của SiegenX tập trung vào việc cung cấp các sản phẩm và dịch vụ công nghệ thông minh nhằm tối ưu hóa quy trình hoạt động và nâng cao hiệu quả kinh doanh cho doanh nghiệp.</p>
-                                <button onClick = {()=>(navigate("/solutions/MeetingSolution"))} >Xem chi tiết</button>
+                                <button onClick={() => (navigate("/giai-phap/phong-hop-thong-minh"))} >Xem chi tiết</button>
                             </div>
 
                         </section>
@@ -38,7 +38,7 @@ const Solution = () => {
                             <div>
                                 <h3>Giải pháp phòng học thông minh</h3>
                                 <p>Giải pháp của SiegenX tập trung vào việc cung cấp các sản phẩm và dịch vụ công nghệ thông minh nhằm tối ưu hóa quy trình hoạt động và nâng cao hiệu quả kinh doanh cho doanh nghiệp.</p>
-                                <button onClick = {()=>(navigate("/solutions/ClassroomSolution"))}>Xem chi tiết</button>
+                                <button onClick={() => (navigate("/giai-phap/lop-hoc-thong-minh"))}>Xem chi tiết</button>
                             </div>
                         </section>
                     </div>
@@ -51,7 +51,7 @@ const Solution = () => {
                             <div>
                                 <h3>Giải pháp cho gian hàng</h3>
                                 <p>Giải pháp của SiegenX tập trung vào việc cung cấp các sản phẩm và dịch vụ công nghệ thông minh nhằm tối ưu hóa quy trình hoạt động và nâng cao hiệu quả kinh doanh cho doanh nghiệp.</p>
-                                <button onClick = {()=>(navigate("/solutions/BoothSolution"))} >Xem chi tiết</button>
+                                <button onClick={() => (navigate("/giai-phap/giai-phap-gian-hang"))} >Xem chi tiết</button>
                             </div>
                         </section>
                     </div>

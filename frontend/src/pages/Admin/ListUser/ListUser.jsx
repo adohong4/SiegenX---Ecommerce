@@ -132,7 +132,7 @@ const ListUser = () => {
 
     return (
         <div className="user-list-container">
-            <p>User List</p>
+            <p>Tài khoản khách hàng</p>
             <div className="search">
                 <div className="search-CSKH">
                     <input

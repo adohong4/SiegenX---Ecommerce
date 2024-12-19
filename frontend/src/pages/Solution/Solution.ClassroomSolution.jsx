@@ -28,7 +28,7 @@ const ClassRoomSolution = () => {
                         Cuối cùng, giải pháp này hỗ trợ việc theo dõi và đánh giá quá trình học tập, giúp giáo viên nhận biết sự tiến bộ của học sinh
                         và điều chỉnh phương pháp giảng dạy phù hợp. Tất cả những điều này góp phần nâng cao chất lượng giáo dục một cách rõ rệt.
                     </p>
-                    <a href="/"><span>LIÊN HỆ</span></a>
+                    <a href="/lien-he"><span>LIÊN HỆ</span></a>
                 </div>
             </div>
             <div className='class-section-2 class-section'>
@@ -111,9 +111,9 @@ const ClassRoomSolution = () => {
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div>
-                                    <a href="/">
+                                    <a href="/lien-he">
                                         <span>LIÊN HỆ</span></a>
-                                    <a href="/">
+                                    <a href="/san-pham">
                                         <span>XEM NGAY</span></a>
                                 </div>
                             </div>
@@ -124,9 +124,9 @@ const ClassRoomSolution = () => {
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div>
-                                    <a href="/">
+                                    <a href="/lien-he">
                                         <span>LIÊN HỆ</span></a>
-                                    <a href="/">
+                                    <a href="/san-pham">
                                         <span>XEM NGAY</span></a>
                                 </div>
                             </div>
@@ -137,9 +137,9 @@ const ClassRoomSolution = () => {
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div>
-                                    <a href="/">
+                                    <a href="/lien-he">
                                         <span>LIÊN HỆ</span></a>
-                                    <a href="/">
+                                    <a href="/san-pham">
                                         <span>XEM NGAY</span></a>
                                 </div>
                             </div>
@@ -150,9 +150,9 @@ const ClassRoomSolution = () => {
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div>
-                                    <a href="/">
+                                    <a href="/lien-he">
                                         <span>LIÊN HỆ</span></a>
-                                    <a href="/">
+                                    <a href="/san-pham">
                                         <span>XEM NGAY</span></a>
                                 </div>
                             </div>

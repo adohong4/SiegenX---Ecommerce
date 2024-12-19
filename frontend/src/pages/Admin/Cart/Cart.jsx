@@ -124,8 +124,8 @@ const Cart = () => {
                         <tr key={item._id} className='table-row'>
                             <td>{item._id}</td>
                             <td>{item.date}</td>
-                            <td>{item.address.firstName}</td>
-                            <td>Chuyen khoan</td>
+                            <td>{item.address.fullname}</td>
+                            <td>{item.paymentMethod}</td>
                             <td>{item.amount}</td>
                             <td>{item.address.street}, {item.address.state}, {item.address.country}, {item.address.zipcode}</td>
                             <td><select

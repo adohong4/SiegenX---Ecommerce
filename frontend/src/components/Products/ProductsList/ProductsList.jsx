@@ -1,31 +1,4 @@
-// <<<<<<< HEAD
-// import React, { useState } from 'react';
-// import { useNavigate } from "react-router-dom";
-// import "./ProductsList.css";
-// import { products } from "../../../data/products";
-// import { assets } from "../../../assets/assets";
 
-// const ProductsList = () => {
-//   const [currentPage, setCurrentPage] = useState(1);
-//   const navigate = useNavigate();
-
-//   const productsPerPage = 9;
-//   const totalPages = Math.ceil(products.length / productsPerPage);
-
-//   const currentProducts = products.slice(
-//     (currentPage - 1) * productsPerPage,
-//     currentPage * productsPerPage
-//   );
-
-//   const handleProductClick = (productId) => {
-//     navigate(`/product/${productId}`);
-//   }; 
-
-//   const handleContactRedirect = () => {
-//     window.location.href = "/contact";
-//   };
-
-// =======
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import "./ProductsList.css";
@@ -66,7 +39,7 @@ const ProductsList = () => {
 
   // Xử lý khi click vào sản phẩm
   const handleProductClick = (productSlug) => {
-    navigate(`/product/${productSlug}`);
+    navigate(`/san-pham/${productSlug}`);
   };
 
 
@@ -104,90 +77,6 @@ const ProductsList = () => {
     return pages;
   };
 
-  // <<<<<<< HEAD
-  //   return (
-  //     <div className="products-list">
-  //       <h2 className="section-title">SẢN PHẨM NỔI BẬT</h2>
-  //       <div className="products-content">
-  //         <div className="productlist-banner">
-  //           <img src={assets.bannerProductList} alt="Màn hình LED" />
-  //         </div>
-  //         <div className="productlist-grid">
-  //           {currentProducts.map((product) => (
-  //             <div
-  //               className="productlist-card"
-  //               key={product.id}
-  //               onClick={() => handleProductClick(product.id)}
-  //             >
-  //               <div className="productlist-img-container">
-  //                 <img
-  //                   src={product.images[0]?.url}
-  //                   alt={product.nameProduct}
-  //                   className="productlist-image"
-  //                 />
-  //                 <div className="cart-icon">
-  //                   <i className="fas fa-shopping-cart"></i>
-  //                 </div>
-  //               </div>
-  //               <h3 className="productlist-title">{product.nameProduct}</h3>
-  //               <div className="productlist-actions">
-  //                 <button
-  //                   className="productlist-price-btn"
-  //                   onClick={(e) => {
-  //                     e.stopPropagation();
-  //                     product.price ? null : handleContactRedirect();
-  //                   }}
-  //                 >
-  //                   {product.price ? `${product.price.toLocaleString()}đ` : "LIÊN HỆ"}
-  //                 </button>
-  //                 <button
-  //                   className="productlist-btn"
-  //                   onClick={(e) => {
-  //                     e.stopPropagation();
-  //                     handleProductClick(product.id);
-  //                   }}
-  //                 >
-  //                   XEM NGAY
-  //                 </button>
-  //               </div>
-  //             </div>
-  //           ))}
-  //         </div>
-
-  //       </div>
-
-  //       <div className="pagination">
-  //         <button
-  //           className="pagination-btn"
-  //           onClick={() => handlePageChange(currentPage - 1)}
-  //           disabled={currentPage === 1}
-  //         >
-  //           &lt;
-  //         </button>
-
-  //         {generatePageNumbers().map((page, index) => (
-  //           <button
-  //             key={index}
-  //             className={`pagination-btn ${currentPage === page ? "active" : ""}`}
-  //             onClick={() => typeof page === "number" && handlePageChange(page)}
-  //             disabled={page === "..."}
-  //           >
-  //             {page}
-  //           </button>
-  //         ))}
-
-  //         <button
-  //           className="pagination-btn"
-  //           onClick={() => handlePageChange(currentPage + 1)}
-  //           disabled={currentPage === totalPages}
-  //         >
-  //           &gt;
-  //         </button>
-  //       </div>
-  //       <div className="productlist-banner-last">
-  //           <img src={assets.bannerProductList} alt="Màn hình LED" />
-  //         </div>
-  // =======
   const columns = [
     { title: "Màn hình LED", category: "Màn hình LED" },
     { title: "MH tương tác", category: "MH tương tác" },
@@ -206,7 +95,7 @@ const ProductsList = () => {
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
     setCurrentPage(1);
-    navigate(`/product?category=${category}`); // Chuyển đến URL với category
+    navigate(`/san-pham?category=${category}`); // Chuyển đến URL với category
   };
 
   return (
@@ -271,10 +160,10 @@ const ProductsList = () => {
                     className="productlist-price-btn"
                     onClick={(e) => {
                       e.stopPropagation();
-                      product.price ? null : navigate("/contact");
+                      product.price ? null : navigate("/lien-he");
                     }}
                   >
-                    {product.price ? `${product.price.toLocaleString()}đ` : "LIÊN HỆ"}
+                    {/* {product.price ? `${product.price.toLocaleString()}đ` : "LIÊN HỆ"} */} LIÊN HỆ
                   </button>
                   <button
                     className="productlist-btn"
