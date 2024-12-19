@@ -24,6 +24,7 @@ const Profile = () => {
             reader.readAsDataURL(file);
         }
     };
+    
 
 
     return (
@@ -65,7 +66,6 @@ const Profile = () => {
                             name="email"
                             className="form-control"
                             placeholder="Type here"
-                            readOnly
                         />
                     </div>
 
@@ -101,17 +101,20 @@ const Profile = () => {
                                 <div key={index} className="my-address-addresses">
                                     <img src={assets.parcel_icon} alt="" className="address-icon" />
                                     <div className="address-details">
-                                        <p>
-                                            <p><span>{address.fullname}</span></p>
-                                        </p>
-                                        <div className="address-details-body">
-                                            <div className="address-details-left">
-                                                <p>{address.street}, {address.precinct}, {address.city}, {address.province}, {address.phone}</p>
-                                            </div>
-                                            <div className="address-details-right">
-                                                <button>Chỉnh sửa</button>
+                                        <div className='Address'>
+                                            <p>
+                                                <p><span>{address.fullname}</span></p>
+                                            </p>
+                                            <div className="address-details-body">
+                                                <div className="address-details-left">
+                                                    <p>{address.street}, {address.precinct}, {address.city}, {address.province}, {address.phone}</p>
+                                                </div>
+                                                <div className="address-details-right">
+                                                    <button>Xóa</button>
+                                                </div>
                                             </div>
                                         </div>
+                                        
                                     </div>
                                 </div>
                             );

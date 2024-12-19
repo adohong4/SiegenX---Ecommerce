@@ -62,14 +62,14 @@
 
 .meet-section-1 div a {
     display: block;
-    width: 260px;
-    height: 70px;
+    width: fit-content;
+    height: fit-content;
     border-radius: 50px;
     background-color: red;
     border: none;
-    font-size: 30px;
+    font-size: 20px;
     margin-top: 20px;
-    padding: 12px;
+    padding: 12px 20px;
     text-align: center;
     color: white;
 }
@@ -119,18 +119,19 @@
 }
 
 .meet-section-2-child div p {
-    text-align: justify;
+    text-align: center;
+    font-size: 16px;
 }
 
 .meet-section-2-child div {
     margin: 0 65px;
+    text-align: center;
 }
 
 .meet-section-2-child div img {
-    margin-left: 54px;
+    margin-left: 0px;
+    width: 50%;
 }
-
-
 
 .meet-section-3 {
     padding-top: 0px 30px;
@@ -138,8 +139,12 @@
 
 .meet-section-3 h1{
     text-align: center;
+    font-weight: bold;
 }
-
+.meet-section-3 h2{
+    text-align: left;
+    font-size: 25px;
+}
 .meet-section-3 .meet-container > div {
     margin-top: 70px;
     display: flex;
@@ -174,7 +179,7 @@
 }
 
 .sol-box p {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 
@@ -184,6 +189,7 @@
 
 .meet-section-4 h1 {
     text-align: center;
+    font-weight: bold;
 }
 
 .meet-section-4 a{
@@ -245,8 +251,10 @@
     margin: 0;
 }
 
-.sp div a {
-    width: fit-content;
+.sp .btn-sp a {
+    width: 100px;
+    border-radius: 50px;
+    text-align: center;
 }
 .section-lh-gp .section-lh-left{
     margin: 0 !important;

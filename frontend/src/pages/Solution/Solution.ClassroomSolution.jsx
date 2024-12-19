@@ -11,61 +11,63 @@ const ClassRoomSolution = () => {
             <div className="class-section-0">
                 <img src={assets.class1} alt="class1" />
             </div>
-            <div className='class-section-1 class-section'>
-                <img src={assets.class2} alt="class2" />
-                <div>
-                    <h1>GIẢI PHÁP NÀY GIÚP GÌ CHO BẠN</h1>
-                    <p>
-                        Giải pháp phòng học thông minh mang lại nhiều lợi ích thiết thực cho giáo viên và học sinh.
-                        Đầu tiên, nó tạo ra một môi trường học tập tương tác, giúp tăng cường sự hứng thú và động lực học tập.
-                        Với các thiết bị hiện đại như màn hình tương tác và máy chiếu, nội dung bài giảng trở nên hấp dẫn và dễ tiếp thu hơn.
-                    </p>
-                    <p>
-                        Thứ hai, phòng học thông minh giúp giáo viên tiết kiệm thời gian chuẩn bị và giảng dạy,
-                        cho phép họ sử dụng các ứng dụng số để trình bày và chia sẻ thông tin một cách nhanh chóng và hiệu quả.
-                    </p>
-                    <p>
-                        Cuối cùng, giải pháp này hỗ trợ việc theo dõi và đánh giá quá trình học tập, giúp giáo viên nhận biết sự tiến bộ của học sinh
-                        và điều chỉnh phương pháp giảng dạy phù hợp. Tất cả những điều này góp phần nâng cao chất lượng giáo dục một cách rõ rệt.
-                    </p>
-                    <a href="/"><span>LIÊN HỆ</span></a>
+            <div className='meet-section-1 meet-section'>
+                <div className="meet-container">
+                    <div>
+                        <img src={assets.class2} alt="meeting2" />
+                    </div>
+                    <div>
+                        <h1>GIẢI PHÁP NÀY GIÚP GÌ CHO BẠN</h1>
+                        <p>
+                            Giải pháp phòng học thông minh mang lại nhiều lợi ích thiết thực cho giáo viên và học sinh.
+                            Đầu tiên, nó tạo ra một môi trường học tập tương tác, giúp tăng cường sự hứng thú và động lực học tập.
+                            Với các thiết bị hiện đại như màn hình tương tác và máy chiếu, nội dung bài giảng trở nên hấp dẫn và dễ tiếp thu hơn.
+                        </p>
+                        <p>
+                            Thứ hai, phòng học thông minh giúp giáo viên tiết kiệm thời gian chuẩn bị và giảng dạy,
+                            cho phép họ sử dụng các ứng dụng số để trình bày và chia sẻ thông tin một cách nhanh chóng và hiệu quả.
+                        </p>
+                        <p>
+                            Cuối cùng, giải pháp này hỗ trợ việc theo dõi và đánh giá quá trình học tập, giúp giáo viên nhận biết sự tiến bộ của học sinh
+                            và điều chỉnh phương pháp giảng dạy phù hợp. Tất cả những điều này góp phần nâng cao chất lượng giáo dục một cách rõ rệt.
+                        </p>
+                        <a href="/"><span>LIÊN HỆ</span></a>
+                    </div>
                 </div>
             </div>
-            <div className='class-section-2 class-section'>
-                <div className="class-container">
-                    <h1>GIẢI PHÁP PHÒNG HỌP THÔNG MINH DÀNH CHO AI</h1>
+
+            <div className='meet-section-2 meet-section'>
+                <div className="meet-container">
+                    <h1>GIẢI PHÁP NÀY DÀNH CHO AI</h1>
                     <p>SIEGenX tự hào là một trong doanh nghiệp hàng đầu cung cấp giải pháp tương tác thông minh tại Việt Nam</p>
-                    <div className='class-section-2-child'>
+                    <div className='meet-section-2-child'>
                         <div>
-                            <img src={assets.class4} alt="class4" />
+                            <img src={assets.class4} alt="meeting4" />
                             <h2>DÀNH CHO TRƯỜNG HỌC</h2>
-                            <p>Màn hình tương tác thông minh là thiết bị all in one có thể thay thế hoàn toàn TV,
-                                máy tính, máy chiếu thông thường, bảng đen truyền thống…Không phải kết nối cầu kỳ,
-                                thiết bị được tích hợp với tính năng ưu việt cho phép người dùng thao tác trực tiếp trên màn hình.</p>
+                            <p>Tăng tính tương tác linh hoạt giữa các thành viên, không giới hạn không gian, thời gian.</p>
                         </div>
 
                         <div>
-                            <img src={assets.class5} alt="class5" />
+                            <img src={assets.class5} alt="meeting5" />
                             <h2>DÀNH CHO GIÁO VIÊN</h2>
-                            <p>Đa dạng ứng dụng hữu ích, cho phép trình chiếu, duyệt web, xem video, tạo hình ảnh, tải tệp trình chiếu,
-                                video call và thực hiện nhiều tác vụ khác, tối ưu hóa quá trình hội họp và giảng dạy. </p>
+                            <p>Hệ thống an toàn thông tin luôn được đảm bảo, không giới hạn không gian, thời gian và khoảng cách địa lý.</p>
                         </div>
 
 
                         <div>
-                            <img src={assets.class6} alt="class6" />
+                            <img src={assets.class6} alt="meeting6" />
                             <h2>DÀNH CHO HỌC SINH</h2>
-                            <p>Nội dung cuộc họp và bài giảng với hình ảnh sắc nét, âm thanh, truyền tải thông tin một cách chính xác.
-                                Công nghệ chống chói, chống lóa sáng và lọc ánh sáng xanh. Sản phẩm được trang bị màn hình Chimei/ BOE
-                                chống lóa mắt giúp bảo vệ mắt khỏi tác động có hại.</p>
+                            <p>Giúp dễ dàng theo dõi toàn bộ nội dung, diễn biến cuộc họp.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className='class-section-3 class-section'>
-                <div className="div class-container">
+
+
+            <div className='meet-section-3 class-section'>
+                <div className="div meet-container">
                     <h1>THỰC TRẠNG CHUNG</h1>
-                    <div className='class-section-3-child'>
+                    <div className='meet-section-3-child'>
                         <img src={assets.class7} alt="class7" />
                         <div>
                             <h2>NHỮNG TIẾT HỌC NHÀM CHÁN, NHỮNG BÀI HỌC KHÔNG THẤY KẾT QUẢ</h2>
@@ -100,9 +102,9 @@ const ClassRoomSolution = () => {
                 </div>
             </div>
 
-            <div className='class-section-4 class-section'>
+            <div className='meet-section-4 meet-section'>
                 {/* <a href="/"><span>LIÊN HỆ</span></a> */}
-                <div className='class-container'>
+                <div className='meet-container'>
                     <h1>THIẾT BỊ & SẢN PHẨM</h1>
                     <div class="sp-row">
                         <div class="sp-col">
@@ -110,7 +112,7 @@ const ClassRoomSolution = () => {
                                 <img src={assets.productClass1} alt="productclass1" />
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
-                                <div>
+                                <div className='btn-sp'>
                                     <a href="/">
                                         <span>LIÊN HỆ</span></a>
                                     <a href="/">
@@ -123,7 +125,7 @@ const ClassRoomSolution = () => {
                                 <img src={assets.productClass2} alt="productclass2" />
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
-                                <div>
+                                <div className='btn-sp'>
                                     <a href="/">
                                         <span>LIÊN HỆ</span></a>
                                     <a href="/">
@@ -136,7 +138,7 @@ const ClassRoomSolution = () => {
                                 <img src={assets.productClass3} alt="productclass3" />
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
-                                <div>
+                                <div className='btn-sp'>
                                     <a href="/">
                                         <span>LIÊN HỆ</span></a>
                                     <a href="/">
@@ -149,7 +151,7 @@ const ClassRoomSolution = () => {
                                 <img src={assets.productClass4} alt="productclass4" />
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
-                                <div>
+                                <div className='btn-sp'>
                                     <a href="/">
                                         <span>LIÊN HỆ</span></a>
                                     <a href="/">
@@ -159,6 +161,8 @@ const ClassRoomSolution = () => {
                         </div>
                     </div>
                 </div>
+
+
             </div>
             <section id='section-lh-gp' className='meet-section-5 meet-section'>
                 <div className='section-lh-left'>

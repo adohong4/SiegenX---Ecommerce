@@ -84,7 +84,7 @@ const Navbar = () => {
                                             <ul className="dropdown-menu">
                                                 <li
                                                 onClick={() => {
-                                                    navigate('/order');
+                                                    navigate('/myorder');
                                                     setIsDropdownOpen(false); // Đóng dropdown
                                                 }}
                                                 >
