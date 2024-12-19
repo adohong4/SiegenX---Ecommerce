@@ -33,10 +33,10 @@ import { assets } from "../../../assets/assets";
 import { StoreContext } from "../../../context/StoreContext";
 
 const ProductsList = () => {
-  const { product_list } = useContext(StoreContext);
+  const { product_list, url } = useContext(StoreContext);
   const [searchParams] = useSearchParams(); // Lấy các tham số từ URL
   const [selectedCategory, setSelectedCategory] = useState(null); // Category được chọn
-  const [currentPage, setCurrentPage] = useState(1); 
+  const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 9; // Số sản phẩm mỗi trang
   const navigate = useNavigate();
 
@@ -46,7 +46,7 @@ const ProductsList = () => {
     if (categoryFromUrl) {
       setSelectedCategory(categoryFromUrl); // Cập nhật selectedCategory khi category thay đổi trong URL
     } else {
-      setSelectedCategory(null); 
+      setSelectedCategory(null);
     }
   }, [searchParams]);
 
@@ -55,8 +55,8 @@ const ProductsList = () => {
     ? product_list.filter((product) => product.category === selectedCategory)
     : product_list;
 
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage); 
-  const currentProducts = filteredProducts.slice( 
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const currentProducts = filteredProducts.slice(
     (currentPage - 1) * productsPerPage, // (thứ tự trang hiện tại - 1) * số lượng sp có thể hiển thị trên 1 trang( 9sp )
     currentPage * productsPerPage // trang hiện tại * 9 
     // kết quả vidu: (0,9), (9,18), (18, 27)
@@ -69,18 +69,18 @@ const ProductsList = () => {
     navigate(`/product/${productSlug}`);
   };
 
-  
-// >>>>>>> featureTuoi
+
+  // >>>>>>> featureTuoi
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
   };
-// <<<<<<< HEAD
- 
-// =======
+  // <<<<<<< HEAD
 
-// >>>>>>> featureTuoi
+  // =======
+
+  // >>>>>>> featureTuoi
   const generatePageNumbers = () => {
     const pages = [];
     if (totalPages <= 4) {
@@ -104,94 +104,94 @@ const ProductsList = () => {
     return pages;
   };
 
-// <<<<<<< HEAD
-//   return (
-//     <div className="products-list">
-//       <h2 className="section-title">SẢN PHẨM NỔI BẬT</h2>
-//       <div className="products-content">
-//         <div className="productlist-banner">
-//           <img src={assets.bannerProductList} alt="Màn hình LED" />
-//         </div>
-//         <div className="productlist-grid">
-//           {currentProducts.map((product) => (
-//             <div
-//               className="productlist-card"
-//               key={product.id}
-//               onClick={() => handleProductClick(product.id)}
-//             >
-//               <div className="productlist-img-container">
-//                 <img
-//                   src={product.images[0]?.url}
-//                   alt={product.nameProduct}
-//                   className="productlist-image"
-//                 />
-//                 <div className="cart-icon">
-//                   <i className="fas fa-shopping-cart"></i>
-//                 </div>
-//               </div>
-//               <h3 className="productlist-title">{product.nameProduct}</h3>
-//               <div className="productlist-actions">
-//                 <button
-//                   className="productlist-price-btn"
-//                   onClick={(e) => {
-//                     e.stopPropagation();
-//                     product.price ? null : handleContactRedirect();
-//                   }}
-//                 >
-//                   {product.price ? `${product.price.toLocaleString()}đ` : "LIÊN HỆ"}
-//                 </button>
-//                 <button
-//                   className="productlist-btn"
-//                   onClick={(e) => {
-//                     e.stopPropagation();
-//                     handleProductClick(product.id);
-//                   }}
-//                 >
-//                   XEM NGAY
-//                 </button>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-        
-//       </div>
+  // <<<<<<< HEAD
+  //   return (
+  //     <div className="products-list">
+  //       <h2 className="section-title">SẢN PHẨM NỔI BẬT</h2>
+  //       <div className="products-content">
+  //         <div className="productlist-banner">
+  //           <img src={assets.bannerProductList} alt="Màn hình LED" />
+  //         </div>
+  //         <div className="productlist-grid">
+  //           {currentProducts.map((product) => (
+  //             <div
+  //               className="productlist-card"
+  //               key={product.id}
+  //               onClick={() => handleProductClick(product.id)}
+  //             >
+  //               <div className="productlist-img-container">
+  //                 <img
+  //                   src={product.images[0]?.url}
+  //                   alt={product.nameProduct}
+  //                   className="productlist-image"
+  //                 />
+  //                 <div className="cart-icon">
+  //                   <i className="fas fa-shopping-cart"></i>
+  //                 </div>
+  //               </div>
+  //               <h3 className="productlist-title">{product.nameProduct}</h3>
+  //               <div className="productlist-actions">
+  //                 <button
+  //                   className="productlist-price-btn"
+  //                   onClick={(e) => {
+  //                     e.stopPropagation();
+  //                     product.price ? null : handleContactRedirect();
+  //                   }}
+  //                 >
+  //                   {product.price ? `${product.price.toLocaleString()}đ` : "LIÊN HỆ"}
+  //                 </button>
+  //                 <button
+  //                   className="productlist-btn"
+  //                   onClick={(e) => {
+  //                     e.stopPropagation();
+  //                     handleProductClick(product.id);
+  //                   }}
+  //                 >
+  //                   XEM NGAY
+  //                 </button>
+  //               </div>
+  //             </div>
+  //           ))}
+  //         </div>
 
-//       <div className="pagination">
-//         <button
-//           className="pagination-btn"
-//           onClick={() => handlePageChange(currentPage - 1)}
-//           disabled={currentPage === 1}
-//         >
-//           &lt;
-//         </button>
+  //       </div>
 
-//         {generatePageNumbers().map((page, index) => (
-//           <button
-//             key={index}
-//             className={`pagination-btn ${currentPage === page ? "active" : ""}`}
-//             onClick={() => typeof page === "number" && handlePageChange(page)}
-//             disabled={page === "..."}
-//           >
-//             {page}
-//           </button>
-//         ))}
+  //       <div className="pagination">
+  //         <button
+  //           className="pagination-btn"
+  //           onClick={() => handlePageChange(currentPage - 1)}
+  //           disabled={currentPage === 1}
+  //         >
+  //           &lt;
+  //         </button>
 
-//         <button
-//           className="pagination-btn"
-//           onClick={() => handlePageChange(currentPage + 1)}
-//           disabled={currentPage === totalPages}
-//         >
-//           &gt;
-//         </button>
-//       </div>
-//       <div className="productlist-banner-last">
-//           <img src={assets.bannerProductList} alt="Màn hình LED" />
-//         </div>
-// =======
+  //         {generatePageNumbers().map((page, index) => (
+  //           <button
+  //             key={index}
+  //             className={`pagination-btn ${currentPage === page ? "active" : ""}`}
+  //             onClick={() => typeof page === "number" && handlePageChange(page)}
+  //             disabled={page === "..."}
+  //           >
+  //             {page}
+  //           </button>
+  //         ))}
+
+  //         <button
+  //           className="pagination-btn"
+  //           onClick={() => handlePageChange(currentPage + 1)}
+  //           disabled={currentPage === totalPages}
+  //         >
+  //           &gt;
+  //         </button>
+  //       </div>
+  //       <div className="productlist-banner-last">
+  //           <img src={assets.bannerProductList} alt="Màn hình LED" />
+  //         </div>
+  // =======
   const columns = [
     { title: "Màn hình LED", category: "Màn hình LED" },
     { title: "MH tương tác", category: "MH tương tác" },
-    { title: "Màn hình quảng cáo LCD", category: "Màn hình quảng cáo LCD" },
+    { title: "Màn hình quảng cáo LCD", category: "MH quảng cáo LCD" },
     { title: "Quảng cáo 3D (OOH)", category: "Quảng cáo 3D (OOH)" },
     { title: "KTV 5D", category: "KTV 5D" },
   ];
@@ -258,8 +258,7 @@ const ProductsList = () => {
               >
                 <div className="productlist-img-container">
                   <img
-                    src={product.images[0]}
-                    alt={product.nameProduct}
+                    img src={`${url}/images/${product.images[0]}`} alt=""
                     className="productlist-image"
                   />
                   <div className="cart-icon">
@@ -296,7 +295,7 @@ const ProductsList = () => {
             ))}
           </div>
         )}
-        
+
       </div>
 
       {filteredProducts.length > 0 && (
@@ -330,9 +329,9 @@ const ProductsList = () => {
         </div>
       )}
       <div className="productlist-banner-foot">
-          <img src={assets.bannerProductList} alt="" />
+        <img src={assets.bannerProductList} alt="" />
       </div>
-{/* >>>>>>> featureTuoi */}
+      {/* >>>>>>> featureTuoi */}
     </div>
   );
 };
