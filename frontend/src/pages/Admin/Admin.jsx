@@ -6,6 +6,7 @@ import ListProduct from './ListProduct/ListProduct';
 import Contact from './Contact/Contact';
 import AddProduct from './AddProduct/AddProduct';
 import '../Admin/Admin.css'
+import Orders from './Cart/Cart';
 
 const Admin = () => {
     return (
@@ -19,6 +20,7 @@ const Admin = () => {
                     <Route path="product" element={<ListProduct />} />
                     <Route path="contact" element={<Contact />} />
                     <Route path="add" element={<AddProduct />} />
+                    <Route path="orders" element={<Orders />} />
                 </Routes>
             </div>
         </div>

@@ -1,10 +1,10 @@
 import React, { useEffect, useContext, useState } from 'react';
-import './Contact.css';
+import './Cart.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { StoreContext } from '../../../context/StoreContext';
 
-const Contact = () => {
+const Cart = () => {
     const { url } = useContext(StoreContext);
     const [list, setList] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -14,9 +14,9 @@ const Contact = () => {
 
     const fetchList = async () => {
         try {
-            const response = await axios.get(`${url}/v1/api/contact/get`);
+            const response = await axios.get(`${url}/v1/api/order/get`);
             if (response.data.status) {
-                setList(response.data.metadata.contacts);
+                setList(response.data.metadata);
             } else {
                 toast.error("Error fetching contacts");
             }
@@ -83,8 +83,8 @@ const Contact = () => {
     };
 
     return (
-        <div className='user-list-container'>
-            <p>Contacts List</p>
+        <div className='order-list-container'>
+            <p>Hóa đơn</p>
             <div className='search'>
                 <div className='search-CSKH'>
                     <input
@@ -100,46 +100,59 @@ const Contact = () => {
                 </div>
             </div>
 
-            <table className="user-list-table">
+            <table className="order-list-table">
                 <thead>
                     <tr className="table-header">
                         <th onClick={() => sortBy('username')} style={{ cursor: 'pointer' }}>
-                            Tên {sortOrder.name === 'asc' ? '↑' : '↓'}
+                            Mã hóa đơn {sortOrder._id === 'asc' ? '↑' : '↓'}
                         </th>
-                        <th onClick={() => sortBy('email')} style={{ cursor: 'pointer' }}>
-                            Email {sortOrder.email === 'asc' ? '↑' : '↓'}
+                        <th onClick={() => sortBy('date')} style={{ cursor: 'pointer' }}>
+                            Thời gian {sortOrder.date === 'asc' ? '↑' : '↓'}
                         </th>
-                        <th>SĐT</th>
-                        <th>Nội dung</th>
-                        <th onClick={() => sortBy('time')} style={{ cursor: 'pointer' }}>
-                            Thời gian {sortOrder.time === 'asc' ? '↑' : '↓'}
+                        <th>Khách hàng</th>
+                        <th>Hình thức thanh toán</th>
+                        <th onClick={() => sortBy('amount')} style={{ cursor: 'pointer' }}>
+                            Giá trị hóa đơn {sortOrder.amount === 'asc' ? '↑' : '↓'}
                         </th>
-                        <th>Kiểm tra</th>
-                        <th>Tùy chỉnh</th>
+                        <th>Địa chỉ</th>
+                        <th>Trạng thái</th>
+                        <th>Chức năng</th>
                     </tr>
                 </thead>
                 <tbody>
                     {list.map((item) => (
                         <tr key={item._id} className='table-row'>
-                            <td>{item.username}</td>
-                            <td>{item.email}</td>
-                            <td>{item.phone}</td>
-                            <td>{item.content}</td>
-                            <td>{item.createdAt}</td>
-                            <td>
-                                <input
-                                    type='checkbox'
-                                />
-                            </td>
+                            <td>{item._id}</td>
+                            <td>{item.date}</td>
+                            <td>{item.address.firstName}</td>
+                            <td>Chuyen khoan</td>
+                            <td>{item.amount}</td>
+                            <td>{item.address.street}, {item.address.state}, {item.address.country}, {item.address.zipcode}</td>
+                            <td><select
+                                // onChange={(event) => statusHandler(event, order._id)}
+                                // value={order.status}
+                                style={{
+                                    backgroundColor: item.status === "Wait for confirmation" ? "#2c3e50" :
+                                        item.status === "Food processing" ? "#d35400" :
+                                            item.status === "Out for delivery" ? "#f39c12" :
+                                                item.status === "Delivered" ? "#27ae60" :
+                                                    "#ecf0f1",
+                                    color: ["Wait for confirmation", "Food processing", "Out for delivery", "Delivered"].includes(item.status) ? "white" : "black"
+                                }}
+                            >
+                                <option value="Wait for confirmation">Đợi xác nhận</option>
+                                <option value="Food processing">Đang chuẩn bị hàng</option>
+                                <option value="Out for delivery">Đang giao hàng</option>
+                                <option value="Delivered">Giao hàng thành công</option>
+                            </select></td>
                             <div>
                                 <td>
                                     <button onClick={(e) => { e.stopPropagation(); removeUser(item._id); }} className='btn-delete'>Xóa</button>
                                 </td>
                                 <td>
-                                    <button onClick={() => openPopup(item)} className='btn-info'>Xem</button>
+                                    <button type="button" onClick={() => openPopup(item)} className='btn-info'>Xem</button>
                                 </td>
                             </div>
-
 
                         </tr>
                     ))}
@@ -155,24 +168,30 @@ const Contact = () => {
                         </div>
                         <div className="popup-body">
                             <div className="popup-info">
-                                <label><strong>Tên:</strong></label>
-                                <p>{selectedRow.username}</p>
-                            </div>
-                            <div className="popup-info">
-                                <label><strong>Email:</strong></label>
-                                <p>{selectedRow.email}</p>
-                            </div>
-                            <div className="popup-info">
-                                <label><strong>SĐT:</strong></label>
-                                <p>{selectedRow.phone}</p>
+                                <label><strong>Mã hóa đơn:</strong></label>
+                                <p>{selectedRow._id}</p>
                             </div>
                             <div className="popup-info">
                                 <label><strong>Thời gian:</strong></label>
-                                <p>{selectedRow.createdAt}</p>
+                                <p>{selectedRow.date}</p>
                             </div>
                             <div className="popup-info">
-                                <label><strong>Nội dung:</strong></label>
-                                <p>{selectedRow.content}</p>
+                                <label><strong>Khách hàng:</strong></label>
+                                <p>{selectedRow.address.firstName}</p>
+                            </div>
+
+                            <div className="popup-info">
+                                <label><strong>Chi tiết đơn hàng:</strong></label>
+                                <p>{selectedRow.items[0].name}</p>
+                            </div>
+
+                            <div className="popup-info">
+                                <label><strong>Giá trị đơn hàng:</strong></label>
+                                <p>{selectedRow.amount}</p>
+                            </div>
+                            <div className="popup-info">
+                                <label><strong>Địa chỉ:</strong></label>
+                                <p>{selectedRow.address.street}, {selectedRow.address.state}, {selectedRow.address.country}, {selectedRow.address.zipcode}</p>
                             </div>
                         </div>
                         <div className="popup-footer">
@@ -185,4 +204,4 @@ const Contact = () => {
     );
 };
 
-export default Contact;
+export default Cart;

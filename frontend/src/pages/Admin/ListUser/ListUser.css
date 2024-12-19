@@ -92,12 +92,12 @@
 
 .user-list-table th:nth-child(1),
 .user-list-table td:nth-child(1) {
-    max-width: 300px;
+    max-width: 50px;
 }
 
 .user-list-table th:nth-child(2),
 .user-list-table td:nth-child(2) {
-    max-width: 200px;
+    max-width: 50px;
 }
 
 .user-list-table th:nth-child(3),
@@ -111,7 +111,7 @@
 .user-list-table td:nth-child(5),
 .user-list-table th:nth-child(5) {
     text-align: center;
-    max-width: 150px;
+    max-width: 100px;
 }
 
 .page-link:hover,
@@ -322,7 +322,7 @@ body.popup-open {
     padding: 7px 12px;
     text-decoration: none;
     font-size: 1rem;
-    color: #00B98E; 
+    color: #00B98E;
     border: 1px solid #ddd;
     border-radius: 50%;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -347,7 +347,7 @@ body.popup-open {
 }
 
 .break-link {
-    color: #6c757d; 
+    color: #6c757d;
     cursor: default;
 }
 

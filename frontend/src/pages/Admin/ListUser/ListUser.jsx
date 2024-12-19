@@ -158,7 +158,10 @@ const ListUser = () => {
                         <th onClick={sortByEmail} style={{ cursor: 'pointer' }}>
                             Email {sortEmailOrder === 'asc' ? '↑' : '↓'}
                         </th>
-                        <th>Tùy chỉnh</th>
+                        <th>Ngày tạo</th>
+                        <th>Số lượng địa chỉ</th>
+                        <th>Số lượng đơn hàng</th>
+                        <th>Chức năng</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -166,15 +169,23 @@ const ListUser = () => {
                         <tr key={index} className="table-row">
                             <td>{item.username}</td>
                             <td>{item.email}</td>
+                            <td>{item.createdAt}</td>
+                            <td>{item.address.length}</td>
+                            <td>{Object.keys(item.cartData).length}</td>
                             <div>
                                 <td>
                                     <button onClick={() => removeUser(item._id)} className="btn-delete">
-                                        Delete
+                                        Xóa
                                     </button>
                                 </td>
                                 <td>
                                     <button onClick={() => openUpdatePopup(item)} className="btn-update">
-                                        Update
+                                        Cập nhật
+                                    </button>
+                                </td>
+                                <td>
+                                    <button className="btn-info">
+                                        Xem
                                     </button>
                                 </td>
                             </div>

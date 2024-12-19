@@ -11,7 +11,7 @@ class CartController {
 
             new CREATED({
                 message: "Add to Cart",
-                data: result
+                metadata: result
             }).send(res)
         } catch (error) {
             next(error);
@@ -25,7 +25,7 @@ class CartController {
 
             new CREATED({
                 message: "Remove From Cart",
-                data: result
+                metadata: result
             }).send(res)
         } catch (error) {
             next(error);
@@ -39,7 +39,7 @@ class CartController {
 
             new OK({
                 message: "Get Cart",
-                data: result.cartData
+                metadata: result.cartData
             }).send(res);
         } catch (error) {
             next(error);
