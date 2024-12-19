@@ -118,6 +118,7 @@ const Navbar = () => {
                                         onClick={() => navigate('/cart')}
                                     >
                                         <i className="fas fa-shopping-cart"></i>
+                                        <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
                                     </span>
                                 </div>
                             </div>

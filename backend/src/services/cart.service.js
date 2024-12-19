@@ -3,7 +3,7 @@
 const userModel = require("../models/user.model");
 
 class CartService {
-    static addToCart = async () => {
+    static addToCart = async (req) => {
         try {
             let userData = await userModel.findById(req.body.userId);
             let cartData = await userData.cartData;
@@ -13,27 +13,55 @@ class CartService {
             else {
                 cartData[req.body.itemId] += 1;
             }
-            await userModel.findByIdAndUpdate(req.body.userId, { cartData });
-            res.json({ success: true, message: "Added to Cart" });
+            const updatedUser = await userModel.findByIdAndUpdate(req.body.userId, { cartData });
+            return {
+                cart: updatedUser.cartData
+            }
         } catch (error) {
-            console.log(error);
-            res.json({ success: false, message: "Error" });
+            throw error
+        }
+    }
+
+    static addQuantityToCart = async (req) => {
+        try {
+            let userData = await userModel.findById(req.body.userId);
+            let cartData = await userData.cartData;
+
+            const quantity = req.body.quantity;
+
+            if (quantity <= 0) {
+                throw new Error("Số lượng phải lớn hơn 0");
+            }
+
+            if (!cartData[req.body.itemId]) {
+                cartData[req.body.itemId] = quantity;
+            }
+            else {
+                cartData[req.body.itemId] += quantity;
+            }
+            const updatedUser = await userModel.findByIdAndUpdate(req.body.userId, { cartData });
+            return {
+                cart: updatedUser.cartData
+            }
+        } catch (error) {
+            throw error
         }
     }
 
     // remove item from user cart
-    static removeFromCart = async () => {
+    static removeFromCart = async (req) => {
         try {
             let userData = await userModel.findById(req.body.userId)
             let cartData = await userData.cartData;
             if (cartData[req.body.itemId] > 0) {
                 cartData[req.body.itemId] -= 1;
             }
-            await userModel.findByIdAndUpdate(req.body.userId, { cartData })
-            res.json({ success: true, message: "Delete from Cart" });
+            const updatedUser = await userModel.findByIdAndUpdate(req.body.userId, { cartData })
+            return {
+                cart: updatedUser.cartData
+            }
         } catch (error) {
-            console.log(error);
-            res.json({ success: false, message: "Error" });
+            throw error
         }
     }
 

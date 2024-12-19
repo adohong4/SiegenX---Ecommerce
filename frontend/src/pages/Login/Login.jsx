@@ -37,7 +37,7 @@ const Login = () => {
         console.log(response.data.metadata.token)
 
         setToken(response.data.metadata.token);
-        toast.success('Login Success!!')
+        toast.success('Đăng nhập thành công!')
         localStorage.setItem("token", response.data.metadata.token);
 
         navigate('/')

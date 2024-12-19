@@ -2,11 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../../context/StoreContext";
 import { FaSearch, FaShoppingCart, FaCartPlus, FaComments, FaEnvelope } from "react-icons/fa";
+import { toast } from 'react-toastify';
 import "./ProductInfo.css";
 
 const ProductInfo = () => {
 
-  const { product_slug, fetchProductSlug, url } = useContext(StoreContext);
+  const { product_slug, fetchProductSlug, url, cartItems, addQuantityToCart, addToCart, removeFromCart } = useContext(StoreContext);
   const { productSlug } = useParams();
   const [activeTab, setActiveTab] = useState("description");
   const [quantity, setQuantity] = useState(1);
@@ -14,6 +15,21 @@ const ProductInfo = () => {
   const [selectedThumbnail, setSelectedThumbnail] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
+
+  const handleAddToCart = (id) => {
+    addToCart(id);
+    toast.success('Added to Cart!');
+  };
+
+  const handleRemoveFromCart = (id) => {
+    removeFromCart(id);
+    toast.error('Removed from Cart');
+  }
+
+  const handleAddQuantityToCart = (id, quantity) => {
+    addQuantityToCart(id, quantity)
+    toast.success('Added to Cart!');
+  };
 
 
   useEffect(() => {
@@ -105,14 +121,9 @@ const ProductInfo = () => {
 
           <div className="productinfo-quantity">
             <label htmlFor="quantity">Số lượng:</label>
+
             <div className="quantity-control">
-              <button
-                type="button"
-                onClick={() => handleQuantityChange({ target: { value: quantity - 1 } })}
-                disabled={quantity <= 1}
-              >
-                -
-              </button>
+              <button type="button" onClick={() => handleQuantityChange({ target: { value: quantity - 1 } })} disabled={quantity <= 1}>-</button>
               <input
                 id="quantity"
                 type="number"
@@ -122,14 +133,9 @@ const ProductInfo = () => {
                 max={product_slug.quantity}
                 step="1"
               />
-              <button
-                type="button"
-                onClick={() => handleQuantityChange({ target: { value: quantity + 1 } })}
-                disabled={quantity >= product_slug.quantity}
-              >
-                +
-              </button>
+              <button type="button" onClick={() => handleQuantityChange({ target: { value: quantity + 1 } })} disabled={quantity >= product_slug.quantity}>+</button>
             </div>
+
           </div>
 
           <button className="productinfo-buy-now">
@@ -140,7 +146,8 @@ const ProductInfo = () => {
             <button className="productinfo-contact" onClick={() => navigate("/contact")} >
               <FaEnvelope className="productinfo-icon-contact" /> LIÊN HỆ
             </button>
-            <button className="productinfo-addCart" onClick={() => navigate("/cart")} >
+
+            <button className="productinfo-addCart" onClick={() => handleAddQuantityToCart(product_slug._id, quantity)} >
               <FaCartPlus className="productinfo-icon-addCart" /> Thêm vào giỏ hàng
             </button>
           </div>

@@ -8,13 +8,12 @@ const StoreContextProvider = (props) => {
 
     const [cartItems, setCartItems] = useState({})
     const url = "http://localhost:4001";
-    const url2 = "http://localhost:5174";
     const [token, setToken] = useState("")
     const [product_list, setProductList] = useState([])
     const [user_address, setUserAddress] = useState([])
     const [product_slug, setProductSlug] = useState(null);
 
-    
+
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
             setCartItems((prev) => ({ ...prev, [itemId]: 1 }))
@@ -22,16 +21,32 @@ const StoreContextProvider = (props) => {
             setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
         }
         if (token) {
-            await axios.post(url + "v1/api/cart/add", { itemId }, { headers: { token } })
+            await axios.post(url + "/v1/api/cart/add", { itemId }, { headers: { token } })
         }
     }
 
     const removeFromCart = async (itemId) => {
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
         if (token) {
-            await axios.post(url + "v1/api/cart/remove", { itemId }, { headers: { token } })
+            await axios.post(url + "/v1/api/cart/remove", { itemId }, { headers: { token } })
         }
     }
+
+    const addQuantityToCart = async (itemId, quantity) => {
+        if (quantity <= 0) {
+            console.error("Số lượng phải lớn hơn 0");
+        }
+
+        if (!cartItems[itemId]) {
+            setCartItems((prev) => ({ ...prev, [itemId]: quantity }))
+        } else {
+            setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + quantity }))
+        }
+        if (token) {
+            await axios.post(url + "/v1/api/cart/addQuantity", { itemId, quantity }, { headers: { token } })
+        }
+    }
+
 
     const getTotalCartAmount = () => {
         let totalAmount = 0;
@@ -88,10 +103,11 @@ const StoreContextProvider = (props) => {
         cartItems,
         setCartItems,
         addToCart,
+        addQuantityToCart,
         removeFromCart,
         getTotalCartAmount,
         fetchProductSlug,
-        url, url2,
+        url,
         setToken,
         token
     }
