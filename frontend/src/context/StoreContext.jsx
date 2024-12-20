@@ -13,7 +13,6 @@ const StoreContextProvider = (props) => {
     const [user_address, setUserAddress] = useState([])
     const [product_slug, setProductSlug] = useState(null);
 
-
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
             setCartItems((prev) => ({ ...prev, [itemId]: 1 }))
@@ -47,7 +46,6 @@ const StoreContextProvider = (props) => {
         }
     }
 
-
     const getTotalCartAmount = () => {
         let totalAmount = 0;
         for (const item in cartItems) {
@@ -75,21 +73,22 @@ const StoreContextProvider = (props) => {
             headers: { token }
         });
         setUserAddress(response.data.metadata.addresses);
-
     }
 
-    // const loadCartData = async (token) => {
-    //     const response = await axios.post(url + "v1/api/cart/get", {}, { headers: { token } })
-    //     setCartItems(response.data.cartData);
-    // }
+    const loadCartData = async (token) => {
+        const response = await axios.get(url + "/v1/api/cart/get", {
+            headers: { token }
+        });
+        setCartItems(response.data.metadata);
+    }
 
     useEffect(() => {
         async function loadData() {
             await fetchProductList()
             if (localStorage.getItem("token")) {
                 setToken(localStorage.getItem("token"));
-                // await loadCartData(localStorage.getItem("token"))
-                await loadUserAddress(localStorage.getItem("token"))
+                await loadCartData(localStorage.getItem("token"));
+                await loadUserAddress(localStorage.getItem("token"));
             }
         }
         loadData();

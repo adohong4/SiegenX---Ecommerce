@@ -18,6 +18,7 @@ import ClassSolution from './pages/Solution/Solution.ClassroomSolution'
 import BoothSolution from './pages/Solution/Solution.BoothSolution'
 import Admin from './pages/Admin/Admin';
 import MyOrder from './pages/MyOrders/MyOrders';
+import Verify from './pages/Verify/Verify';
 
 function App() {
   return (
@@ -34,7 +35,6 @@ function App() {
                 <>
                   <Navbar />
                   <Routes>
-
                     <Route path="/" element={<Home />} />
                     <Route path="/san-pham" element={<Products />} />
                     <Route path="/gioi-thieu" element={<Introduce />} />
@@ -48,6 +48,7 @@ function App() {
                     <Route path="/giai-phap/lop-hoc-thong-minh" element={<ClassSolution />}></Route>
                     <Route path="/giai-phap/giai-phap-gian-hang" element={<BoothSolution />}></Route>
                     <Route path="/myorder" element={<MyOrder />}></Route>
+                    <Route path="/verify" element={<Verify />}></Route>
                   </Routes>
                   <Footer />
                 </>

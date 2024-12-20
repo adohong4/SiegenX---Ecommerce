@@ -78,6 +78,13 @@ const Navbar = () => {
                                             >
                                                 <i className="fas fa-user"></i>
                                             </span>
+                                            <span
+                                                className="icon-cart"
+                                                onClick={() => navigate('/cart')}
+                                            >
+                                                <i className="fas fa-shopping-cart"></i>
+                                                <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
+                                            </span>
 
                                             {/* Dropdown Menu */}
 
@@ -89,15 +96,15 @@ const Navbar = () => {
                                                             setIsDropdownOpen(false); // Đóng dropdown
                                                         }}
                                                     >
-                                                        My Order
+                                                        Hóa đơn
                                                     </li>
                                                     <li
                                                         onClick={() => {
-                                                            navigate('/profile');
+                                                            navigate('/ca-nhan');
                                                             setIsDropdownOpen(false); // Đóng dropdown
                                                         }}
                                                     >
-                                                        My Profile
+                                                        Cá Nhân
                                                     </li>
                                                     <li
                                                         onClick={() => {
@@ -105,21 +112,14 @@ const Navbar = () => {
                                                             setIsDropdownOpen(false); // Đóng dropdown
                                                         }}
                                                     >
-                                                        Logout
+                                                        Đăng xuất
                                                     </li>
                                                 </ul>
                                             )}
-
-
                                         </div>
+
                                     )}
-                                    <span
-                                        className="icon-cart"
-                                        onClick={() => navigate('/cart')}
-                                    >
-                                        <i className="fas fa-shopping-cart"></i>
-                                        <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
-                                    </span>
+
                                 </div>
                             </div>
                         </div>

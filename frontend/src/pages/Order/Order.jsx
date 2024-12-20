@@ -1,37 +1,91 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Order.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { assets } from '../../assets/assets';
+import { toast } from 'react-toastify';
+import { StoreContext } from '../../context/StoreContext';
 
 const PlaceOrder = () => {
+    const { getTotalCartAmount, token, user_address, product_list, cartItems, url } = useContext(StoreContext);
+    const navigate = useNavigate();
     const [paymentMethod, setPaymentMethod] = useState("cash");
     const [formData, setFormData] = useState({
-        firstName: "John",
-        lastName: "Doe",
-        email: "john.doe@example.com",
-        street: "123 Main St",
-        city: "Los Angeles",
-        state: "California",
-        zipCode: "90001",
-        country: "USA",
-        phone: "1234567890",
-        address: "",
+        fullname: "",
+        phone: "",
+        street: "",
+        precinct: "",
+        city: "",
+        province: "",
     });
 
     const handlePaymentChange = (event) => {
         setPaymentMethod(event.target.value);
     };
 
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
+    const onChangeHandler = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Xử lý logic đặt hàng tại đây
-        console.log("Form Data: ", formData);
-        console.log("Payment Method: ", paymentMethod);
+    const handleAddressChange = (event) => {
+        const selectedAddress = JSON.parse(event.target.value);
+        setFormData({
+            fullname: selectedAddress.fullname,
+            email: selectedAddress.email || '',
+            street: selectedAddress.street,
+            precinct: selectedAddress.precinct,
+            city: selectedAddress.city,
+            province: selectedAddress.province,
+            phone: selectedAddress.phone
+        });
     };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        let orderItems = [];
+        product_list.map((item) => {
+            if (cartItems[item._id] > 0) {
+                let itemInfo = item;
+                itemInfo["quantity"] = cartItems[item._id];
+                orderItems.push(itemInfo);
+            }
+        });
+        let orderData = {
+            address: formData,
+            items: orderItems,
+            amount: getTotalCartAmount() + 50000,
+        };
+        //lựa chọn online hay tại nhà
+        if (paymentMethod === 'online') {
+            let response = await axios.post(url + "/v1/api/stripe/place", orderData, { headers: { token } });
+
+            if (response.data.success) {
+                const { session_url } = response.data;
+                window.location.replace(session_url);
+            } else {
+                toast.error(response.data.message);
+            }
+        } else {
+            let response = await axios.post(url + "/v1/api/payment/verify", orderData, { headers: { token } });
+            if (response.data.success) {
+                toast.success(response.data.message);
+                navigate("/myorder");
+            } else {
+                toast.error(response.data.message);
+            }
+        }
+
+    };
+
+    useEffect(() => {
+        if (!token) {
+            navigate('/cart');
+        } else if (getTotalCartAmount() === 0) {
+            navigate('/cart');
+        }
+    }, [token]);
 
     return (
         <form className="place-order" onSubmit={handleSubmit}>
@@ -40,88 +94,32 @@ const PlaceOrder = () => {
                 <div className="Place-address">
                     <select
                         name="address"
-                        value={formData.address}
-                        onChange={handleInputChange}
+                        onChange={handleAddressChange}
                     >
                         <option value="" disabled>Chọn địa chỉ giao hàng của bạn</option>
-                        <option value="1">Nguyễn Việt Anh, Hà Đông, Hà Nội, Việt Nam, 90001, 1234567890</option>
-                        <option value="2">Đỗ Hồng An, Mỗ Lao, Hà Đông, Hà Nội ,Việt Nam, 10001, 9876543210</option>
+                        {user_address.map((address, index) => (
+                            <option key={index} value={JSON.stringify(address)}>
+                                {address.fullname}, {address.street}, {address.precinct}, {address.city}, {address.province}, {address.phone}
+                            </option>
+                        ))}
                     </select>
                 </div>
 
                 <div className="multi-fields">
-                    <input
-                        type="text"
-                        placeholder="Tên"
-                        name="firstName"
-                        value={formData.firstName}
-                        onChange={handleInputChange}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Họ"
-                        name="lastName"
-                        value={formData.lastName}
-                        onChange={handleInputChange}
-                    />
+                    <input type="text" placeholder="Họ và tên" name="fullname" value={formData.fullname} onChange={onChangeHandler} />
+                    <input type="email" placeholder="Email" name="email" value={formData.email} onChange={onChangeHandler} />
                 </div>
                 <div className='multi-fields'>
-                    <input
-                        type="email"
-                        placeholder="Địa chỉ email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Đường"
-                        name="street"
-                        value={formData.street}
-                        onChange={handleInputChange}
-                    />
+                    <input type="text" placeholder="Đường" name="street" value={formData.street} onChange={onChangeHandler} />
                 </div>
 
                 <div className="multi-fields">
-                    <input
-                        type="text"
-                        placeholder="Thành phố"
-                        name="city"
-                        value={formData.city}
-                        onChange={handleInputChange}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Bang"
-                        name="state"
-                        value={formData.state}
-                        onChange={handleInputChange}
-                    />
+                    <input type="text" placeholder="Phường" name="precinct" value={formData.precinct} onChange={onChangeHandler} />
+                    <input type="text" placeholder="Thành phố" name="city" value={formData.city} onChange={onChangeHandler} />
                 </div>
                 <div className="multi-fields">
-                    <input
-                        type="text"
-                        placeholder="Mã bưu điện"
-                        name="zipCode"
-                        value={formData.zipCode}
-                        onChange={handleInputChange}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Quốc gia"
-                        name="country"
-                        value={formData.country}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div className='multi-fields'>
-                    <input
-                        type="text"
-                        placeholder="Số điện thoại"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleInputChange}
-                    />
+                    <input type="text" placeholder="Tỉnh" name="province" value={formData.province} onChange={onChangeHandler} />
+                    <input type="text" placeholder="Số điện thoại" name="phone" value={formData.phone} onChange={onChangeHandler} />
                 </div>
             </div>
 
@@ -131,17 +129,17 @@ const PlaceOrder = () => {
                     <div>
                         <div className="cart-total-details">
                             <p>Tạm Tính</p>
-                            <p>5000000</p>
+                            <p>{(getTotalCartAmount()).toLocaleString()} đ</p>
                         </div>
                         <hr />
                         <div className="cart-total-details">
                             <p>Phí Giao Hàng</p>
-                            <p>50000</p>
+                            <p>{(getTotalCartAmount() === 0 ? 0 : 50000).toLocaleString()} đ</p>
                         </div>
                         <hr />
                         <div className="cart-total-details">
                             <b>Tổng Cộng</b>
-                            <b>5050000</b>
+                            <b>{(getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 50000).toLocaleString()} đ</b>
                         </div>
                     </div>
                     <div className="hinhthuc-thanhtoan">

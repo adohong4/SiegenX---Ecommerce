@@ -16,16 +16,6 @@ const ProductInfo = () => {
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
 
-  const handleAddToCart = (id) => {
-    addToCart(id);
-    toast.success('Added to Cart!');
-  };
-
-  const handleRemoveFromCart = (id) => {
-    removeFromCart(id);
-    toast.error('Removed from Cart');
-  }
-
   const handleAddQuantityToCart = (id, quantity) => {
     addQuantityToCart(id, quantity)
     toast.success('Added to Cart!');

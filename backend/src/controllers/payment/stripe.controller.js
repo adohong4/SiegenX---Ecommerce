@@ -8,48 +8,60 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 //placing user order for frontend
 class StripeController {
     placeOrder = async (req, res) => {
-        const frontend_url = process.env.URL_FRONTEND
+        const frontend_url = process.env.URL_FRONTEND;
         try {
-            const newOrder = new orderModel({
-                userId: req.body.userId,
-                items: req.body.items,
-                amount: req.body.amount,
-                address: req.body.address
-            })
-
-            await newOrder.save();
-            await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
-
-            const line_items = req.body.items.map((item) => ({
-                price_data: {
-                    currency: "vnd",
-                    product_data: {
-                        name: item.name
+            // Tính tổng số tiền
+            const totalAmount = req.body.amount;
+            if (totalAmount < 99999999) {
+                // Tính toán tổng số tiền từ các mặt hàng
+                const line_items = req.body.items.map((item) => ({
+                    price_data: {
+                        currency: "vnd",
+                        product_data: {
+                            name: item.nameProduct
+                        },
+                        unit_amount: item.price
                     },
-                    unit_amount: item.price * 100
-                },
-                quantity: item.quantity
-            }))
-            line_items.push({
-                price_data: {
-                    currency: "vnd",
-                    product_data: {
-                        name: "Delivery Charges"
+                    quantity: item.quantity
+                }));
+
+                // Thêm phí giao hàng
+                line_items.push({
+                    price_data: {
+                        currency: "vnd",
+                        product_data: {
+                            name: "Phí vận chuyển"
+                        },
+                        unit_amount: 50000
                     },
-                    unit_amount: 50000
-                },
-                quantity: 1
-            })
-            const session = await stripe.checkout.sessions.create({
-                line_items: line_items,
-                mode: 'payment',
-                success_url: `${frontend_url}/verify/?success=true&orderId=${newOrder._id}`,
-                cancel_url: `${frontend_url}/verify/?success=false&orderId=${newOrder._id}`,
-            })
-            res.json({ success: true, session_url: session.url })
+                    quantity: 1
+                });
+                const newOrder = new orderModel({
+                    userId: req.body.userId,
+                    items: req.body.items,
+                    amount: totalAmount,
+                    address: req.body.address,
+                    paymentMethod: "Thanh toán trực tuyến"
+                });
+                // Nếu tổng số tiền hợp lệ
+                await newOrder.save();
+                await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
+                // Tạo phiên giao dịch Stripe
+                const session = await stripe.checkout.sessions.create({
+                    line_items: line_items,
+                    mode: 'payment',
+                    payment_method_types: ['card'],
+                    success_url: `${frontend_url}/verify/?success=true&orderId=${newOrder._id}`,
+                    cancel_url: `${frontend_url}/verify/?success=false&orderId=${newOrder._id}`,
+                });
+
+                res.json({ success: true, session_url: session.url });
+            } else {
+                res.json({ success: false, message: "Vượt quá hạn mức giao dịch (99 triệu)" });
+            }
         } catch (error) {
             console.log(error);
-            res.json({ success: false, message: "Error" })
+            res.json({ success: false, message: "Có lỗi xảy ra." });
         }
     }
 
