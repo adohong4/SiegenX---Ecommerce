@@ -1,16 +1,23 @@
 .listproduct {
     animation: bounce 0.3s ease-in-out;
     width: 100%;
-    margin: 20px auto;
+    margin: 0px;
     padding: 20px;
     margin-right: 0;
+
+}
+.list-table-format > * {
+    overflow: hidden;          
+    text-overflow: ellipsis;  
+    white-space: nowrap;   
 }
 
 .list-table-format {
     display: grid;
-    grid-template-columns: 0.5fr 0.5fr 1fr 0.5fr 0.5fr 0.5fr 0.4fr;
+    grid-template-columns: 0.3fr 0.2fr 1fr 0.5fr 0.3fr 0.3fr 0.3fr;
     align-items: center;
     gap: 10px;
+    text-align: center;
     padding: 12px 10px;
     border: 1px solid #e2e2e2;
     font-size: 13px;
@@ -20,14 +27,26 @@
     margin-bottom: 10px;
     transition: all 0.3s ease-in-out;
 }
-
+.list-table-format .name-product{
+    padding-left: 15px;
+    padding-right: 10px;
+}
+.list-table-format p{
+    font-size: 14px !important;
+}
+.list-table-format:hover {
+    scale:1.02;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
 .list-table-format b:last-child {
     text-align: center;
+    
 }
 
 .button-product {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .list-table-format:first-child {
@@ -39,7 +58,6 @@
 .list-table-format:first-child:hover {
     background-color: #000000c0;
     transform: translateY(0px);
-    /* Hoặc đặt lại màu nền gốc */
 }
 
 .list-left {
@@ -69,7 +87,7 @@
 
 
 .list-table-format img {
-    width: 50px;
+    width: 70px;
     border-radius: 5px;
     transition: transform 0.3s ease;
 }
@@ -86,7 +104,7 @@
     border-radius: 50px;
     height: 40px;
     font-weight: bold;
-    padding: 0 20px;
+    padding: 0 30px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
@@ -97,14 +115,14 @@
     color: #fff;
     border-radius: 50px;
     height: 40px;
-    padding: 0 20px;
+    padding: 0 30px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .cursor1:hover {
     transform: scale(1.05);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); */
     background-color: #c0392b;
     color: white;
 }

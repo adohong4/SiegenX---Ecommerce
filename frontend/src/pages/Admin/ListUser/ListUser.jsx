@@ -5,6 +5,10 @@ import { toast } from 'react-toastify';
 import ReactPaginate from 'react-paginate';
 import { StoreContext } from '../../../context/StoreContext';
 import PopupUser from '../../../components/Popup/UserPopup/PopupUser';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faBook } from '@fortawesome/free-solid-svg-icons'; 
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 const ListUser = () => {
     const { url } = useContext(StoreContext);
@@ -132,7 +136,9 @@ const ListUser = () => {
 
     return (
         <div className="user-list-container">
-            <p>Tài khoản khách hàng</p>
+            <div className='user-list-title'>
+                <p>Tài khoản khách hàng</p>
+            </div>
             <div className="search">
                 <div className="search-CSKH">
                     <input
@@ -148,51 +154,42 @@ const ListUser = () => {
                 </div>
             </div>
 
-            <table className="user-list-table">
-                <thead>
-                    <tr className="table-header">
-                        <th onClick={sortByName} style={{ cursor: 'pointer' }}>
-                            Tài Khoản {sortNameOrder === 'asc' ? '↑' : '↓'}
+            <div className="user-list-table">
+                <div className="table-header">
+                    <div onClick={sortByName} className="col-tk" style={{ cursor: 'pointer' }}>
+                        Tài Khoản {sortNameOrder === 'asc' ? '↑' : '↓'}
+                    </div>
+                    <div onClick={sortByEmail} className="col-email" style={{ cursor: 'pointer' }}>
+                        Email {sortEmailOrder === 'asc' ? '↑' : '↓'}
+                    </div>
+                    <div className="col-date">Ngày tạo</div>
+                    <div className="col-address">Số lượng địa chỉ</div>
+                    <div className="col-sl">Số lượng đơn hàng</div>
+                    <div className="col-chucnang">Chức năng</div>
+                </div>
+                {list.map((item, index) => (
+                    <div key={index} className="table-row">
+                        <div>{item.username}</div>
+                        <div>{item.email}</div>
+                        <div>{item.createdAt}</div>
+                        <div>{item.address.length}</div>
+                        <div>{Object.keys(item.cartData).length}</div>
+                        <div className="actions">
+                            <button onClick={() => removeUser(item._id)} className="btn-delete">
+                                <FontAwesomeIcon icon={faTrash} />
+                            </button>
+                            <button onClick={() => openUpdatePopup(item)} className="btn-update">
+                                <FontAwesomeIcon icon={faPenToSquare} />
+                            </button>
 
-                        </th>
-                        <th onClick={sortByEmail} style={{ cursor: 'pointer' }}>
-                            Email {sortEmailOrder === 'asc' ? '↑' : '↓'}
-                        </th>
-                        <th>Ngày tạo</th>
-                        <th>Số lượng địa chỉ</th>
-                        <th>Số lượng đơn hàng</th>
-                        <th>Chức năng</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {list.map((item, index) => (
-                        <tr key={index} className="table-row">
-                            <td>{item.username}</td>
-                            <td>{item.email}</td>
-                            <td>{item.createdAt}</td>
-                            <td>{item.address.length}</td>
-                            <td>{Object.keys(item.cartData).length}</td>
-                            <div>
-                                <td>
-                                    <button onClick={() => removeUser(item._id)} className="btn-delete">
-                                        Xóa
-                                    </button>
-                                </td>
-                                <td>
-                                    <button onClick={() => openUpdatePopup(item)} className="btn-update">
-                                        Cập nhật
-                                    </button>
-                                </td>
-                                <td>
-                                    <button className="btn-info">
-                                        Xem
-                                    </button>
-                                </td>
-                            </div>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+                            <button className="btn-info">
+                                <FontAwesomeIcon icon={faBook} />
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
 
             <ReactPaginate
                 breakLabel="..."

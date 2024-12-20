@@ -70,7 +70,7 @@ const Cart = () => {
                         <b>Tổng Cộng:</b>
                         <b>{(getTotalCartAmount() + Fee)}</b>
                     </div>
-                    <button onClick={() => navigate('/order')} className="cart-checkout-button">Tiến Hành Thanh Toán</button>
+                    <button onClick={() => navigate('/hoa-don')} className="cart-checkout-button">Tiến Hành Thanh Toán</button>
                 </div>
             </div>
         </div>
