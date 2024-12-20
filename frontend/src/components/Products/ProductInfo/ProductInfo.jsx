@@ -133,7 +133,7 @@ const ProductInfo = () => {
           </button>
 
           <div className="productinfo-actions">
-            <button className="productinfo-contact" onClick={() => navigate("/contact")} >
+            <button className="productinfo-contact" onClick={() => navigate("/lien-he")} >
               <FaEnvelope className="productinfo-icon-contact" /> LIÊN HỆ
             </button>
 

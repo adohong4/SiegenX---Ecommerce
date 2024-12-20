@@ -158,10 +158,7 @@ const ProductsList = () => {
                 <div className="productlist-actions">
                   <button
                     className="productlist-price-btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      product.price ? null : navigate("/lien-he");
-                    }}
+                    onClick={(e) => navigate("/lien-he")}
                   >
                     {/* {product.price ? `${product.price.toLocaleString()}đ` : "LIÊN HỆ"} */} LIÊN HỆ
                   </button>
