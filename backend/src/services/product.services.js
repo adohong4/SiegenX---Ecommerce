@@ -44,8 +44,7 @@ class ProductService {
                 product
             }
         } catch (error) {
-            console.log(error);
-            res.status(400).json({ success: false, message: error.message });
+            throw error
         }
     }
 

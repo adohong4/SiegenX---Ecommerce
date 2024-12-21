@@ -5,7 +5,6 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { StoreContext } from '../../context/StoreContext';
 import AddressPopup from '../../components/Popup/AddressPopup/AddressPopup';
-import { AdminContext } from '../../context/AdminContext';
 
 const Profile = () => {
     const { url, token, user_address } = useContext(StoreContext)
@@ -24,7 +23,7 @@ const Profile = () => {
             reader.readAsDataURL(file);
         }
     };
-    
+
 
 
     return (
@@ -114,7 +113,7 @@ const Profile = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             );
