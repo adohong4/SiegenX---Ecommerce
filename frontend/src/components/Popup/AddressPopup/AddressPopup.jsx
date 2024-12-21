@@ -5,7 +5,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const AddressPopup = ({ setShowAddress }) => {
-    const { url, setToken } = useContext(StoreContext);
+    const { url, setToken, url2 } = useContext(StoreContext);
     const [data, setData] = useState({
         fullname: '',
         phone: '',
@@ -24,11 +24,11 @@ const AddressPopup = ({ setShowAddress }) => {
         event.preventDefault();
         try {
             const token = localStorage.getItem("token");
-            const newUrl = `${url}/v1/api/user/addAddress`; 
+            const newUrl = `${url}/v1/api/user/addAddress`;
             const response = await axios.post(newUrl, data, {
                 headers: { token }
             });
-    
+
             if (response.data.status) {
                 toast.success('Địa chỉ đã được lưu thành công!');
                 setShowAddress(false); // Đóng popup
@@ -40,7 +40,7 @@ const AddressPopup = ({ setShowAddress }) => {
             toast.error('Không thể lưu địa chỉ. Vui lòng thử lại sau!');
         }
     };
-    
+
 
     return (
         <div className="address-popup">
@@ -61,7 +61,7 @@ const AddressPopup = ({ setShowAddress }) => {
                             placeholder="Nhập họ và tên"
                             value={data.fullname}
                             onChange={onChangeHandler}
-                        /> 
+                        />
                     </div>
 
                     <div className="form-group">
