@@ -37,7 +37,7 @@ const Login = () => {
         console.log(response.data.metadata.token)
 
         setToken(response.data.metadata.token);
-        toast.success('Login Success!!')
+        toast.success('Đăng nhập thành công!')
         localStorage.setItem("token", response.data.metadata.token);
 
         navigate('/')
@@ -51,7 +51,7 @@ const Login = () => {
                     <h2>ĐĂNG NHẬP</h2>
                 </div>
                 <div className="login-popup-inputs">
-                    {currState === "Login" ? <></> : <input name='username' onChange={onChangeHandler} value={data.username} type="text" placeholder='Your name' required />}
+                    {currState === "Login" ? <></> : <input name='username' onChange={onChangeHandler} value={data.username} type="text" placeholder='Tài khoản' required />}
                     <input name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Email' required />
                     <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Mật khẩu' required />
                 </div>

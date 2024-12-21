@@ -21,7 +21,12 @@ class StatisticalService {
 
         try {
             const productCount = await productModel.countDocuments();
-            return { totalProducts: productCount };
+            const userCount = await userModel.countDocuments();
+
+            return {
+                totalProducts: productCount,
+                totalUsers: userCount
+            };
         } catch (error) {
             throw new BadRequestError("Error while counting products");
         }
@@ -57,17 +62,17 @@ class StatisticalService {
                 // Chuyển đổi startDate và endDate sang dạng Date
                 const start = new Date(startDate);
                 const end = new Date(endDate);
-            
+
                 // Đảm bảo thời gian được thiết lập chính xác cho khoảng thời gian
                 start.setHours(0, 0, 0, 0); // Bắt đầu ngày từ 00:00:00
                 end.setHours(23, 59, 59, 999); // Kết thúc ngày tại 23:59:59
-            
+
                 console.log("Start of day (UTC):", start);
                 console.log("End of day (UTC):", end);
                 // Thiết lập bộ lọc
                 filter.date = { $gte: start, $lte: end };
             }
-            
+
 
             // Truy vấn đơn hàng theo filter
             const orders = await orderModel.find(filter);

@@ -3,7 +3,8 @@ import './ListProduct.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { StoreContext } from '../../../context/StoreContext';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const ListProduct = () => {
     const { url, product_list } = useContext(StoreContext)
@@ -79,22 +80,22 @@ const ListProduct = () => {
                             </select>
                         </div>
                     </div>
-                    
+
                     <div className='search-left'>
-                    <div className='search'>
-                        <div className='search-CSKH'>
-                            <input
-                                type="text"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                placeholder="Search..."
-                                className='search-input'
-                            />
-                            <button onClick={handleSearch} className='btn-search'>
-                                <i className="fas fa-search"></i>
-                            </button>
+                        <div className='search'>
+                            <div className='search-CSKH'>
+                                <input
+                                    type="text"
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    placeholder="Search..."
+                                    className='search-input'
+                                />
+                                <button onClick={handleSearch} className='btn-search'>
+                                    <i className="fas fa-search"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
@@ -103,23 +104,26 @@ const ListProduct = () => {
             <div className="list-table">
                 <div className="list-table-format title">
                     <b>Hình ảnh</b>
+                    <b>Mã sản phẩm</b>
                     <b>Tên Sản Phẩm</b>
                     <b>Danh Mục</b>
                     <b>Giá</b>
                     <b>Số Lượng</b>
                     <b>Tùy Chỉnh</b>
-                </div> 
+                </div>
                 {product_list.map((item, index) => (
-                    // if (category === "All" || category === item.category) {}
                     <div key={index} className='list-table-format'>
-                        <img src={`${url}/images/${item.image}`} alt="" />
-                        <p>{item.nameProduct}</p>
-                        <p>{item.category}</p>
-                        <p>{item.price}</p>
-                        <p>{item.quantity}</p>
+                        <img src={`${url}/images/${item.images[0]}`} alt="" />
+                        <p className='id-product'>{item._id}</p>
+                        <p className='name-product'>{item.title}</p>
+                        <p className='category-product'>{item.category}</p>
+                        <p className='price-product'>{(item.price).toLocaleString()}</p>
+                        <p className=''>{item.quantity}</p>
                         <div className='button-product'>
-                            <button onClick={() => (e)} className='cursor1' > Xóa</button>
-                            <button onClick={() => (e)} className="btn-update1">Sửa</button>
+                            <button onClick={() => (e)} className='cursor1' >
+                                <FontAwesomeIcon icon={faTrash} />
+                            </button>
+                            {/* <button onClick={() => (e)} className="btn-update1">Sửa</button> */}
                         </div>
 
                     </div>

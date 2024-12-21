@@ -13,63 +13,62 @@ const BoothSolution = () => {
                 <img src={assets.booth1} alt="booth1" />
             </div>
 
-            <div className='booth-section-1 booth-section'>
-                <img src={assets.booth2} alt="booth2" />
-                <div>
-                    <h1>GIẢI PHÁP NÀY GIÚP GÌ CHO BẠN</h1>
-                    <p>
-                        Gian hàng thông minh giúp khách hàng tiết kiệm thời gian đáng kể nhờ vào hệ thống thanh toán tự động.
-                        Khách hàng không cần xếp hàng chờ đợi tại quầy thu ngân mà có thể thanh toán qua ứng dụng, mã QR hoặc
-                        hệ thống nhận diện khuôn mặt. Ngoài ra, màn hình tương tác và ứng dụng hỗ trợ tìm kiếm sản phẩm nhanh chóng,
-                        giúp khách hàng không phải mất thời gian tìm kiếm trong gian hàng.
-                    </p>
-                    <p>
-                        Khách hàng tận hưởng sự tiện lợi khi không cần mang theo tiền mặt, vì gian hàng thông minh hỗ trợ thanh toán không tiếp xúc qua ví điện tử,
-                        thẻ tín dụng hoặc nhận diện khuôn mặt. Hệ thống này cũng đặc biệt phù hợp với những người muốn mua sắm mà không cần tương tác trực tiếp với
-                        nhân viên, tạo cảm giác thoải mái và riêng tư.
-                    </p>
-                    <a href="/"><span>LIÊN HỆ</span></a>
+            <div className='meet-section-1 meet-section'>
+                <div className="meet-container">
+                    <div>
+                        <img src={assets.class2} alt="meeting2" />
+                    </div>
+                    <div>
+                        <h1>GIẢI PHÁP NÀY GIÚP GÌ CHO BẠN</h1>
+                        <p>
+                            Giải pháp phòng học thông minh mang lại nhiều lợi ích thiết thực cho giáo viên và học sinh.
+                            Đầu tiên, nó tạo ra một môi trường học tập tương tác, giúp tăng cường sự hứng thú và động lực học tập.
+                            Với các thiết bị hiện đại như màn hình tương tác và máy chiếu, nội dung bài giảng trở nên hấp dẫn và dễ tiếp thu hơn.
+                        </p>
+                        <p>
+                            Thứ hai, phòng học thông minh giúp giáo viên tiết kiệm thời gian chuẩn bị và giảng dạy,
+                            cho phép họ sử dụng các ứng dụng số để trình bày và chia sẻ thông tin một cách nhanh chóng và hiệu quả.
+                        </p>
+                        <p>
+                            Cuối cùng, giải pháp này hỗ trợ việc theo dõi và đánh giá quá trình học tập, giúp giáo viên nhận biết sự tiến bộ của học sinh
+                            và điều chỉnh phương pháp giảng dạy phù hợp. Tất cả những điều này góp phần nâng cao chất lượng giáo dục một cách rõ rệt.
+                        </p>
+                        <a href="/lien-he"><span>LIÊN HỆ</span></a>
+                    </div>
                 </div>
             </div>
 
-            <div className='booth-section-2 booth-section'>
-                <div className="booth-container">
+            <div className='meet-section-2 booth-section'>
+                <div className="meet-container">
                     <h1>GIẢI PHÁP GIAN HÀNG THÔNG MINH DÀNH CHO AI</h1>
                     <p>SIEGenX tự hào là một trong doanh nghiệp hàng đầu cung cấp giải pháp tương tác thông minh tại Việt Nam</p>
-                    <div className='booth-section-2-child'>
+                    <div className='meet-section-2-child'>
                         <div>
                             <img src={assets.booth3} alt="class4" />
                             <h2>KHÁCH HÀNG CÁ NHÂN</h2>
-                            <p>Gian hàng thông minh phục vụ mọi khách hàng muốn có trải nghiệm mua sắm nhanh chóng, tiện lợi và hiện đại.
-                                Điều này đặc biệt hấp dẫn với những người bận rộn, cần tiết kiệm thời gian, hoặc những người yêu thích công nghệ.
-                                Ngoài ra, người tiêu dùng trẻ, thường xuyên sử dụng thanh toán không tiền mặt và các ứng dụng mua sắm, cũng rất
-                                phù hợp với mô hình này.</p>
+                            <p>Gian hàng thông minh phục vụ mọi khách hàng muốn có trải nghiệm mua sắm nhanh chóng, tiện lợi</p>
                         </div>
 
                         <div>
                             <img src={assets.booth4} alt="class5" />
                             <h2>DOANH NGHIỆP BÁN LẺ</h2>
-                            <p>Các doanh nghiệp bán lẻ như siêu thị, cửa hàng tiện lợi, chuỗi bán lẻ, hoặc nhà bán hàng tại các trung tâm thương mại
-                                có thể triển khai gian hàng thông minh để nâng cao hiệu quả hoạt động. Hệ thống giúp họ giảm chi phí nhân sự, quản lý
-                                hàng hóa tốt hơn, và tối ưu hóa doanh thu thông qua các phân tích dữ liệu khách hàng. </p>
+                            <p>Các doanh nghiệp bán lẻ như siêu thị, cửa hàng tiện lợi, chuỗi bán lẻ, hoặc nhà bán hàng </p>
                         </div>
 
 
                         <div>
                             <img src={assets.booth5} alt="class6" />
                             <h2>CHÍNH PHỦ VÀ CỘNG ĐỒNG</h2>
-                            <p>Các tổ chức công cộng cũng có thể triển khai mô hình gian hàng thông minh tại các địa điểm như nhà ga,
-                                sân bay, hoặc trung tâm dịch vụ công cộng. Mục tiêu là phục vụ người dân tốt hơn, giảm thời gian chờ đợi
-                                và tăng sự hài lòng thông qua việc tự động hóa các dịch vụ.</p>
+                            <p>Các tổ chức công cộng cũng có thể triển khai mô hình gian hàng thông minh</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className='booth-section-3 booth-section'>
-                <div className="booth-container">
+            <div className='meet-section-3 booth-section'>
+                <div className="meet-container">
                     <h1>THỰC TRẠNG CHUNG</h1>
-                    <div className='booth-section-3-child'>
+                    <div className='meet-section-3-child'>
                         <img src={assets.booth6} alt="booth6" />
                         <div>
                             <div className='sol-box'>
@@ -106,10 +105,9 @@ const BoothSolution = () => {
                 </div>
             </div>
 
-
-            <div className='class-section-4 class-section'>
+            <div className='meet-section-4 meet-section'>
                 {/* <a href="/"><span>LIÊN HỆ</span></a> */}
-                <div className='class-container'>
+                <div className='meet-container'>
                     <h1>THIẾT BỊ & SẢN PHẨM</h1>
                     <div class="sp-row">
                         <div class="sp-col">
@@ -117,10 +115,11 @@ const BoothSolution = () => {
                                 <img src={assets.productClass1} alt="productclass1" />
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
-                                <div>
-                                    <a href="/">
+
+                                <div className='btn-sp'>
+                                    <a href="/lien-he">
                                         <span>LIÊN HỆ</span></a>
-                                    <a href="/">
+                                    <a href="/san-pham">
                                         <span>XEM NGAY</span></a>
                                 </div>
                             </div>
@@ -130,10 +129,11 @@ const BoothSolution = () => {
                                 <img src={assets.productClass2} alt="productclass2" />
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
-                                <div>
-                                    <a href="/">
+
+                                <div className='btn-sp'>
+                                    <a href="/lien-he">
                                         <span>LIÊN HỆ</span></a>
-                                    <a href="/">
+                                    <a href="/san-pham">
                                         <span>XEM NGAY</span></a>
                                 </div>
                             </div>
@@ -143,10 +143,10 @@ const BoothSolution = () => {
                                 <img src={assets.productClass3} alt="productclass3" />
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
-                                <div>
-                                    <a href="/">
+                                <div className='btn-sp'>
+                                    <a href="/lien-he">
                                         <span>LIÊN HỆ</span></a>
-                                    <a href="/">
+                                    <a href="/san-pham">
                                         <span>XEM NGAY</span></a>
                                 </div>
                             </div>
@@ -156,10 +156,10 @@ const BoothSolution = () => {
                                 <img src={assets.productClass4} alt="productclass4" />
                                 <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
-                                <div>
-                                    <a href="/">
+                                <div className='btn-sp'>
+                                    <a href="/lien-he">
                                         <span>LIÊN HỆ</span></a>
-                                    <a href="/">
+                                    <a href="/san-pham">
                                         <span>XEM NGAY</span></a>
                                 </div>
                             </div>

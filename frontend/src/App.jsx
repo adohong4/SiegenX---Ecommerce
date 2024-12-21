@@ -1,4 +1,5 @@
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Route, Routes, Navigate } from 'react-router-dom'; // Thêm Navigate ở đây
 import Home from './pages/Home/Home';
 import Navbar from './components/Navbar/Navbar';
@@ -16,10 +17,13 @@ import MeetingSolution from './pages/Solution/Solution.MeetingRoomSolution'
 import ClassSolution from './pages/Solution/Solution.ClassroomSolution'
 import BoothSolution from './pages/Solution/Solution.BoothSolution'
 import Admin from './pages/Admin/Admin';
+import MyOrder from './pages/MyOrders/MyOrders';
+import Verify from './pages/Verify/Verify';
 
 function App() {
   return (
     <>
+      <ToastContainer />
       <div className='container'>
         <div className='app'>
           <Routes>
@@ -32,17 +36,19 @@ function App() {
                   <Navbar />
                   <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/product" element={<Products />} />
-                    <Route path="/about" element={<Introduce />} />
-                    <Route path="/product/:productId" element={<ProductsAttributes />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/san-pham" element={<Products />} />
+                    <Route path="/gioi-thieu" element={<Introduce />} />
+                    <Route path="/san-pham/:productSlug" element={<ProductsAttributes />} />
+                    <Route path="/lien-he" element={<Contact />} />
+                    <Route path="/ca-nhan" element={<Profile />} />
                     <Route path="/cart" element={<Cart />} />
-                    <Route path="/order" element={<Order />} />
-                    <Route path="/solutions" element={<Solution />} />
-                    <Route path="/solutions/MeetingSolution" element={<MeetingSolution/>}></Route>
-                    <Route path="/solutions/ClassroomSolution" element={<ClassSolution/>}></Route>
-                    <Route path="/solutions/BoothSolution" element={<BoothSolution/>}></Route>
+                    <Route path="/hoa-don" element={<Order />} />
+                    <Route path="/giai-phap" element={<Solution />} />
+                    <Route path="/giai-phap/phong-hop-thong-minh" element={<MeetingSolution />}></Route>
+                    <Route path="/giai-phap/lop-hoc-thong-minh" element={<ClassSolution />}></Route>
+                    <Route path="/giai-phap/giai-phap-gian-hang" element={<BoothSolution />}></Route>
+                    <Route path="/myorder" element={<MyOrder />}></Route>
+                    <Route path="/verify" element={<Verify />}></Route>
                   </Routes>
                   <Footer />
                 </>

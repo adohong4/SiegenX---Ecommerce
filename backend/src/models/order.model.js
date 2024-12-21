@@ -12,7 +12,20 @@ const orderSchema = new Schema({
     amount: { type: Number, required: true },
     address: { type: Object, required: true },
     status: { type: String, default: "Wait for confirmation" },
-    date: { type: Date, default: Date.now() },
+    date: {
+        type: String,
+        default: () => {
+            // get the current time in VN time zone
+            return new Date().toLocaleString('vi-VN', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+            });
+        }
+    },
+    paymentMethod: { type: String, default: "Thanh toán khi nhận hàng" },
     payment: { type: Boolean, default: false }
 }, { timestamps: true })
 

@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ProductShowcase.css";
-import { products } from "../../../data/products";
 import { assets } from "../../../assets/assets";
+import { StoreContext } from "../../../context/StoreContext";
 
 const ProductShowcase = () => {
+  const { product_list, url } = useContext(StoreContext);
   const navigate = useNavigate();
 
-  const handleProductClick = (productId) => {
-    navigate ( `/product/${productId}`);
+  const handleProductClick = (productSlug) => {
+    navigate(`/san-pham/${productSlug}`);
   };
 
   const handleContactRedirect = () => {
-    window.location.href = "/contact";
+    navigate("/lien-he");
   };
 
   return (
@@ -30,20 +31,26 @@ const ProductShowcase = () => {
 
         {/* Cột sản phẩm */}
         <div className="product-grid">
-          {products.slice(0, 4).map((product) => (
+          {product_list.slice(0, 4).map((product) => (
             <div
               className="product-card"
-              key={product.id}
-              onClick={() => handleProductClick(product.id)}
+              key={product.product_slug}
+              onClick={() => handleProductClick(product.product_slug)}
             >
               {/* Container hình ảnh và icon giỏ hàng */}
               <div className="product-img-container">
                 <img
-                  src={product.images[0]?.url}
+                  src={`${url}/images/${product.images[0]}`}
                   alt={product.title}
                   className="product-img"
                 />
-                <div className="cart-icon">
+                <div
+                  className="cart-icon"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Ngăn chặn sự kiện nhấn sp
+                    navigate("/cart"); // Chuyển hướng tới trang giỏ hàng
+                  }}
+                >
                   <i className="fas fa-shopping-cart"></i>
                 </div>
               </div>
@@ -63,12 +70,20 @@ const ProductShowcase = () => {
                   className="product-btn"
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleProductClick(product.id);
+                    handleProductClick(product.product_slug);
                   }}
                 >
                   XEM NGAY
                 </button>
               </div>
+            </div>
+          ))}
+          {/* Thêm các ô trống nếu số lượng sản phẩm ít hơn 4 */}
+          {Array.from({ length: 4 - product_list.length }).map((_, index) => (
+            <div className="product-card-empty-card" key={`empty-${index}`}>
+              {/* Chỉ để trống hoặc hiển thị placeholder */}
+              <div className="product-img-container empty"></div>
+              <div className="product-actions empty"></div>
             </div>
           ))}
         </div>

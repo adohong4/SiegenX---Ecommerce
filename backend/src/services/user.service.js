@@ -132,6 +132,26 @@ class UserService {
         }
     }
 
+    static deleteUserAddress = async ({ userId, addressId }) => {
+        try {
+            const user = await userModel.findByIdAndUpdate(userId,
+                { $pull: { address: { _id: addressId } } }, { new: true }
+            );
+
+            if (!user) {
+                throw new Error("User not found");
+            }
+
+            return {
+                message: "Address deleted successfully",
+                metadata: {
+                    addresses: user.address,
+                }
+            };
+        } catch (error) {
+            throw error;
+        }
+    }
 
 }
 

@@ -21,41 +21,33 @@ const Solution = () => {
                 <div className='sol-content'>
                     <div className='sol-container'>
                         <section className='sol-section-1 sol-section'>
-                            <img src={assets.sol1} alt="sol-1 section" />
-                            <div>
+                            <div className='sol-sec1-left'>
+                                <img src={assets.sol1} alt="sol-1 section" />
+                            </div>
+                            <div className='sol-sec1-right'>
                                 <h3>Giải pháp phòng họp thông minh</h3>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta omnis ipsam dolore aspernatur?
-                                    Similique sit vero nihil beatae amet ab iste earum aperiam laboriosam facilis, labore sint? Et, iure perferendis?</p>
-                                <button onClick = {()=>(navigate("/solutions/MeetingSolution"))} >Xem chi tiết</button>
+                                <p>Giải pháp của SiegenX tập trung vào việc cung cấp các sản phẩm và dịch vụ công nghệ thông minh nhằm tối ưu hóa quy trình hoạt động và nâng cao hiệu quả kinh doanh cho doanh nghiệp.</p>
+                                <button onClick={() => (navigate("/giai-phap/phong-hop-thong-minh"))} >Xem chi tiết</button>
                             </div>
-
                         </section>
-                    </div>
-                </div>
-
-                <div className='sol-content'>
-                    <div className='sol-container'>
                         <section className='sol-section-2 sol-section'>
-                            <img src={assets.sol2} alt="sol-2 section" />
-                            <div>
+                            <div className='sol-sec2-left'>
                                 <h3>Giải pháp phòng học thông minh</h3>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta omnis ipsam dolore aspernatur?
-                                    Similique sit vero nihil beatae amet ab iste earum aperiam laboriosam facilis, labore sint? Et, iure perferendis?</p>
-                                <button onClick = {()=>(navigate("/solutions/ClassroomSolution"))}>Xem chi tiết</button>
+                                <p>Giải pháp của SiegenX tập trung vào việc cung cấp các sản phẩm và dịch vụ công nghệ thông minh nhằm tối ưu hóa quy trình hoạt động và nâng cao hiệu quả kinh doanh cho doanh nghiệp.</p>
+                                <button onClick={() => (navigate("/giai-phap/lop-hoc-thong-minh"))}>Xem chi tiết</button>
+                            </div>
+                            <div className='sol-sec2-right'>
+                                <img src={assets.sol2} alt="sol-2 section" />
                             </div>
                         </section>
-                    </div>
-                </div>
-
-                <div className='sol-content'>
-                    <div className="sol-container">
                         <section className='sol-section-3 sol-section'>
-                            <img src={assets.sol3} alt="sol-3" />
-                            <div>
+                            <div className='sol-sec1-left'>
+                                <img src={assets.sol3} alt="sol-3" />  
+                            </div>
+                            <div className='sol-sec1-right'>
                                 <h3>Giải pháp cho gian hàng</h3>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta omnis ipsam dolore aspernatur?
-                                    Similique sit vero nihil beatae amet ab iste earum aperiam laboriosam facilis, labore sint? Et, iure perferendis?</p>
-                                <button onClick = {()=>(navigate("/solutions/BoothSolution"))} >Xem chi tiết</button>
+                                <p>Giải pháp của SiegenX tập trung vào việc cung cấp các sản phẩm và dịch vụ công nghệ thông minh nhằm tối ưu hóa quy trình hoạt động và nâng cao hiệu quả kinh doanh cho doanh nghiệp.</p>
+                                <button onClick={() => (navigate("/giai-phap/giai-phap-gian-hang"))} >Xem chi tiết</button>
                             </div>
                         </section>
                     </div>

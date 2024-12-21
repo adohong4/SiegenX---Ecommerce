@@ -64,6 +64,27 @@ class UserController {
         }
     };
 
+    deleteUserAddress = async (req, res, next) => {
+        try {
+            const { addressId } = req.params;
+            const userId = req.user.id
+
+            const result = await UserService.deleteUserAddress({ userId, addressId });
+            if (result) {
+                new OK({
+                    message: 'delete Address Successfully',
+                    metadata: result.metadata
+                }).send(res);
+            } else {
+                res.status(400).json({ message: 'Address failed' });
+            }
+
+        } catch (error) {
+            next(error);
+
+        }
+    };
+
 
     getUsersWithPagination = async (req, res, next) => {
         try {
@@ -71,9 +92,7 @@ class UserController {
             const limit = parseInt(req.query.limit) || 20;
             const skip = (page - 1) * limit;
 
-
             const totalUsers = await User.countDocuments();
-
 
             const users = await User.find()
                 .skip(skip)

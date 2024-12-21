@@ -2,7 +2,6 @@
     background-color: #0A9A79;
     color: #fff;
 }
-
 .footer-container{
     padding: 30px;
 }
@@ -53,6 +52,7 @@
     justify-content: space-around;
     width: 65%;
 }
+
 .footer-content .top-tittle-footer .top-title-right button:hover {
     background-color: #009c8b;
 }
@@ -128,6 +128,7 @@
         text-align: center;
         line-height: 30px;
     }
+        
     .body-footer .footer-info p{
         text-align: center;
     }
@@ -154,5 +155,4 @@
         width: 100vw;
         justify-content: space-between;
     }
-    
 }

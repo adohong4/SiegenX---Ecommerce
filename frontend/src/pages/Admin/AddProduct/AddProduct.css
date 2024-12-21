@@ -10,6 +10,10 @@
     justify-content: center;
     gap: 20px;
 }
+.tab-content{
+    border: 2px solid #00B98E;
+    border-radius: 20px;
+}
 .addprd{
     max-width: 83%;
     margin: 20px auto;

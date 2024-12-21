@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './AddressPopup.css';
+import { StoreContext } from '../../../context/StoreContext';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const AddressPopup = ({ setShowAddress }) => {
+    const { url, setToken } = useContext(StoreContext);
     const [data, setData] = useState({
         fullname: '',
         phone: '',
@@ -16,14 +20,29 @@ const AddressPopup = ({ setShowAddress }) => {
         setData(prevData => ({ ...prevData, [name]: value }));
     };
 
-    const onSubmitHandler = (event) => {
+    const onSubmitHandler = async (event) => {
         event.preventDefault();
-        console.log("Address Data:", data);
-        // Bạn có thể gửi dữ liệu này đến API hoặc xử lý dữ liệu khác ở đây.
-        setShowAddress(false); // Đóng popup sau khi xử lý
+        try {
+            const token = localStorage.getItem("token");
+            const newUrl = `${url}/v1/api/user/addAddress`; 
+            const response = await axios.post(newUrl, data, {
+                headers: { token }
+            });
+    
+            if (response.data.status) {
+                toast.success('Địa chỉ đã được lưu thành công!');
+                setShowAddress(false); // Đóng popup
+            } else {
+                toast.error(response.data.message || 'Đã xảy ra lỗi. Vui lòng thử lại!');
+            }
+        } catch (error) {
+            console.error("Error saving address:", error);
+            toast.error('Không thể lưu địa chỉ. Vui lòng thử lại sau!');
+        }
     };
+    
 
-    return(
+    return (
         <div className="address-popup">
             <form onSubmit={onSubmitHandler} className="address-popup-container">
                 <div className="popup-header">
@@ -42,7 +61,7 @@ const AddressPopup = ({ setShowAddress }) => {
                             placeholder="Nhập họ và tên"
                             value={data.fullname}
                             onChange={onChangeHandler}
-                        />
+                        /> 
                     </div>
 
                     <div className="form-group">

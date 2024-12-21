@@ -78,45 +78,48 @@ const Navbar = () => {
                                             >
                                                 <i className="fas fa-user"></i>
                                             </span>
+                                            <span
+                                                className="icon-cart"
+                                                onClick={() => navigate('/cart')}
+                                            >
+                                                <i className="fas fa-shopping-cart"></i>
+                                                <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
+                                            </span>
 
                                             {/* Dropdown Menu */}
-                                                {isDropdownOpen && (
-    <ul className="dropdown-menu">
-        <li
-        onClick={() => {
-            navigate('/order');
-            setIsDropdownOpen(false); // Đóng dropdown
-        }}
-        >
-        My Order
-        </li>
-        <li
-        onClick={() => {
-            navigate('/profile');
-            setIsDropdownOpen(false); // Đóng dropdown
-        }}
-        >
-        My Profile
-        </li>
-        <li
-        onClick={() => {
-            handleLogout();
-            setIsDropdownOpen(false); // Đóng dropdown
-        }}
-        >
-        Logout
-        </li>
-    </ul>
-                                                )}
 
+                                            {isDropdownOpen && (
+                                                <ul className="dropdown-menu">
+                                                    <li
+                                                        onClick={() => {
+                                                            navigate('/myorder');
+                                                            setIsDropdownOpen(false); // Đóng dropdown
+                                                        }}
+                                                    >
+                                                        Hóa đơn
+                                                    </li>
+                                                    <li
+                                                        onClick={() => {
+                                                            navigate('/ca-nhan');
+                                                            setIsDropdownOpen(false); // Đóng dropdown
+                                                        }}
+                                                    >
+                                                        Cá Nhân
+                                                    </li>
+                                                    <li
+                                                        onClick={() => {
+                                                            handleLogout();
+                                                            setIsDropdownOpen(false); // Đóng dropdown
+                                                        }}
+                                                    >
+                                                        Đăng xuất
+                                                    </li>
+                                                </ul>
+                                            )}
                                         </div>
+
                                     )}
-                                    <span
-                                        className="icon-cart"
-                                        onClick={() => navigate('/cart')}
-                                    >
-                                        <i className="fas fa-shopping-cart"></i>
-                                    </span>
+
                                 </div>
                             </div>
                         </div>
@@ -125,16 +128,15 @@ const Navbar = () => {
                                 <ul>
                                     {[
                                         { path: '/', label: 'Trang Chủ' },
-                                        { path: '/about', label: 'Giới Thiệu' },
-                                        { path: '/product', label: 'Sản Phẩm' },
-                                        { path: '/solutions', label: 'Giải Pháp' },
-                                        { path: '/contact', label: 'Liên Hệ' },
+                                        { path: '/gioi-thieu', label: 'Giới Thiệu' },
+                                        { path: '/san-pham', label: 'Sản Phẩm' },
+                                        { path: '/giai-phap', label: 'Giải Pháp' },
+                                        { path: '/lien-he', label: 'Liên Hệ' },
                                     ].map((item) => (
                                         <li key={item.path}>
                                             <div
-                                                className={`navbar-item ${
-                                                    activeLink === item.path ? 'active' : ''
-                                                }`}
+                                                className={`navbar-item ${activeLink === item.path ? 'active' : ''
+                                                    }`}
                                                 onClick={() => navigate(item.path)}
                                             >
                                                 {item.label}
@@ -195,12 +197,11 @@ const Navbar = () => {
                         </div>
                         <ul>
                             <li onClick={() => handleNavigate('/')}>Trang Chủ</li>
-                            <li onClick={() => handleNavigate('/about')}>Giới Thiệu</li>
-                            <li onClick={() => handleNavigate('/product')}>Sản Phẩm</li>
-                            <li onClick={() => handleNavigate('/solutions')}>Giải Pháp</li>
-                            <li onClick={() => handleNavigate('/contact')}>Liên Hệ</li>
+                            <li onClick={() => handleNavigate('/gioi-thieu')}>Giới Thiệu</li>
+                            <li onClick={() => handleNavigate('/san-pham')}>Sản Phẩm</li>
+                            <li onClick={() => handleNavigate('/giai-phap')}>Giải Pháp</li>
+                            <li onClick={() => handleNavigate('/lien-he')}>Liên Hệ</li>
                         </ul>
-
                         {!token ? (
                             <button
                                 className="btn btn-signin"
@@ -211,7 +212,7 @@ const Navbar = () => {
                         ) : (
                             <ul>
                                 <li onClick={() => handleNavigate('/order')}>Đơn Hàng</li>
-                                <li onClick={() => handleNavigate('/profile')}>
+                                <li onClick={() => handleNavigate('/ca-nhan')}>
                                     Tài Khoản
                                 </li>
                                 <li onClick={handleLogout}>Đăng Xuất</li>

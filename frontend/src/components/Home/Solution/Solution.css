@@ -1,10 +1,12 @@
 .solutions {
   text-align: center;
+  padding: 30px 20px;
   padding: 100px 20px;
+  background-color: #ffffff;
 }
 
 .solutions-title {
-  font-size: 28px;
+  font-size: 25px;
   font-weight: bold;
   margin-bottom: 30px;
   color: #333;

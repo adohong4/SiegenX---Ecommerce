@@ -40,13 +40,13 @@ import ledScreen from './banner/Rectangle 42.png'
 import videoWallScreen from './banner/Rectangle 42.png'
 import bannerProduct from './banner/Bg.png'
 import bannerProductList from './banner/Banner1.png'
-import { products } from '../data/products'
 import bglogin from './bglogin.png'
 import logofooter from './logofooter.png'
 import profile_icon from './profile_icon.png'
 import bag_icon from './bag_icon.png'
-import logout_icon from './logout_icon.png'
-
+import zalopay from './ZaloPay.png'
+import momo from './momo.png'
+import stripe from './stripe.jpg'
 import sol from './solution/sol.png'
 import sol1 from './solution/sol1.png'
 import sol2 from './solution/sol2.png'
@@ -90,6 +90,7 @@ import booth5 from './solution/BoothSolution/booth5.svg'
 import booth6 from './solution/BoothSolution/booth6.jpg'
 import booth7 from './solution/BoothSolution/booth7.jpg'
 
+import parcel_icon from './parcel_icon.png'
 
 export const assets = {
     logo,
@@ -98,19 +99,20 @@ export const assets = {
     about1, about2, about3, about4, economic, about5,
 
     contact, introduce, forme, bgrcontact, upload, homebanner, homeProduct,
-    category1, category2, category3, category4, category5, products, solution1, solution2, solution3,
+    category1, category2, category3, category4, category5, solution1, solution2, solution3,
     solutionImage, bannerEnd, interactiveScreen, mobileScreen, advertisingScreen, ledScreen, videoWallScreen,
     bannerProduct, bannerProductList, bglogin,
 
     contact, introduce, forme, bgrcontact, upload, logofooter,
 
-    profile_icon, bag_icon, logout_icon,
+    profile_icon, bag_icon,
 
     sol, sol1, sol2, sol3, sol4, sol5, sol6, sol7,
     meeting1, meeting2, meeting3, meeting4,
     meeting5, meeting6, meeting7, meeting8, meeting9, meeting10,
     class1, class2, class3, class4, class5, class6, class7, class8, class9,
     productClass1, productClass2, productClass3, productClass4,
-    booth1, booth2, booth3, booth4, booth5, booth6, booth7
+    booth1, booth2, booth3, booth4, booth5, booth6, booth7,
 
+    parcel_icon, momo, stripe, zalopay,
 }

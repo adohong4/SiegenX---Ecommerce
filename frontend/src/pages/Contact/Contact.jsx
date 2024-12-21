@@ -44,6 +44,7 @@ const Contact = () => {
 
     return (
         <div className='page-contact'>
+            {/* < ScrollToTop/> */}
             <div className='banner-contact'>
                 <Banner />
             </div>

@@ -9,6 +9,7 @@ const AdminContextProvider = (props) => {
     const [user_list, setUserList] = useState([]);
     const [totalUsers, setTotalUsers] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
+    const [user_address, setUserAddress] = useState([]);
     const url = "http://localhost:4001";
 
     const fetchProductList = async () => {
@@ -59,7 +60,25 @@ const AdminContextProvider = (props) => {
         }
     };
 
+    const fetchUserAddress = async () => {
+        const response = await axios.get(`${url}/v1/api/user/getAddress`);
+        setUserAddress(response.data.metadata.addresses);
+    }
+
+    useEffect(() => {
+        async function loadData() {
+            await fetchUserAddress()
+            if (localStorage.getItem("token")) {
+                setToken(localStorage.getItem("token"));
+                await loadCartData(localStorage.getItem("token"))
+            }
+
+        }
+        loadData();
+    }, [])
+
     const contextValue = {
+        user_address,
         product_list,
         fetchProductList,
         removeProduct,
