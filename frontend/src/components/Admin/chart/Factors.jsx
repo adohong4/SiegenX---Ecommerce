@@ -5,7 +5,7 @@ import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Title, Tooltip, Legend } from 'chart.js';
 import { StoreContext } from '../../../context/StoreContext';
 
-// Register Chart.js components
+
 ChartJS.register(ArcElement, Title, Tooltip, Legend);
 
 const Factors = () => {
@@ -38,7 +38,7 @@ const Factors = () => {
         fetchFactors();
     }, [url]);
 
-    // Prepare data for the bar chart
+
     const chartData = {
         labels: ['Người dùng', 'Đơn hàng', 'Sản phẩm', 'Thu nhập'],
         datasets: [
@@ -61,8 +61,10 @@ const Factors = () => {
     };
 
     return (
-        <div className="user-factors">
-            <h2>Thống kê</h2>
+        <div className="user-factors-container">
+            <div className='user-factors-title'>
+                <h2>Thống kê</h2>
+            </div>
             <div className="info-cards">
                 <div className="info-card">
                     <h3>Người dùng</h3>

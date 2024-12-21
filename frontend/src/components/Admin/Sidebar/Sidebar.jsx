@@ -2,6 +2,9 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import "./Sidebar.css"
 import { assets } from '../../../assets/assets'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+
 
 const Sidebar = () => {
     return (
@@ -42,11 +45,16 @@ const Sidebar = () => {
                     </NavLink>
 
 
-                    <NavLink to='http://localhost:5173/' className="sidebar-option">
-                        <i className="bi bi-box"></i>
+
+                </div>
+                <div className='log-out-btn'>
+                    <NavLink to='http://localhost:5173/' className="sidebar-option-logout">
                         <p>Đăng xuất</p>
+                        <FontAwesomeIcon icon={faSignOutAlt} /> 
+                        
                     </NavLink>
                 </div>
+
             </div>
         </div>
     )

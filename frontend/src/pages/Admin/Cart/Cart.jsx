@@ -3,6 +3,9 @@ import './Cart.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { StoreContext } from '../../../context/StoreContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 const Cart = () => {
     const { url } = useContext(StoreContext);
@@ -84,7 +87,10 @@ const Cart = () => {
 
     return (
         <div className='order-list-container'>
-            <p>Hóa đơn</p>
+            <div className='order-list-title'>
+                <p>Hóa đơn</p>
+            </div>
+
             <div className='search'>
                 <div className='search-CSKH'>
                     <input
@@ -126,7 +132,7 @@ const Cart = () => {
                             <td>{item.date}</td>
                             <td>{item.address.fullname}</td>
                             <td>{item.paymentMethod}</td>
-                            <td>{item.amount}</td>
+                            <td>{(item.amount).toLocaleString()} đ</td>
                             <td>{item.address.street}, {item.address.state}, {item.address.country}, {item.address.zipcode}</td>
                             <td><select
                                 // onChange={(event) => statusHandler(event, order._id)}
@@ -147,10 +153,14 @@ const Cart = () => {
                             </select></td>
                             <div>
                                 <td>
-                                    <button onClick={(e) => { e.stopPropagation(); removeUser(item._id); }} className='btn-delete'>Xóa</button>
+                                    <button onClick={(e) => { e.stopPropagation(); removeUser(item._id); }} className='btn-delete'>
+                                        <FontAwesomeIcon icon={faTrash} />
+                                    </button>
                                 </td>
                                 <td>
-                                    <button type="button" onClick={() => openPopup(item)} className='btn-info'>Xem</button>
+                                    <button type="button" onClick={() => openPopup(item)} className='btn-info'>
+                                        <FontAwesomeIcon icon={faEye} />
+                                    </button>
                                 </td>
                             </div>
 
@@ -187,7 +197,7 @@ const Cart = () => {
 
                             <div className="popup-info">
                                 <label><strong>Giá trị đơn hàng:</strong></label>
-                                <p>{selectedRow.amount}</p>
+                                <p>{(selectedRow.amount).toLocaleString()}</p>
                             </div>
                             <div className="popup-info">
                                 <label><strong>Địa chỉ:</strong></label>
