@@ -15,6 +15,7 @@ const ProductShowcase = () => {
   const handleContactRedirect = () => {
     navigate("/contact");
   };
+  console.log(product_list)
 
   return (
     <section className="product-showcase">
@@ -31,7 +32,7 @@ const ProductShowcase = () => {
 
         {/* Cột sản phẩm */}
         <div className="product-grid">
-          {product_list.slice(0, 1).map((product) => (
+          {product_list.slice(0, 4).map((product) => (
             <div
               className="product-card"
               key={product.product_slug}
