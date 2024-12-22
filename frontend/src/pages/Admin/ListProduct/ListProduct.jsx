@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { StoreContext } from '../../../context/StoreContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import ReactPaginate from 'react-paginate';
 
 const ListProduct = () => {
     const { url, product_list } = useContext(StoreContext)
@@ -14,10 +15,24 @@ const ListProduct = () => {
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [sort, setSort] = useState('Sort By');
 
+
     // Hàm xóa sản phẩm
     const removeProduct = async (productId) => {
-
+        try {
+            const response = await axios.delete(`${url}/v1/api/product/delete/${productId}`);
+            if (response.data.status === 200) {
+                toast.success(response.data.message);
+                await fetchList(currentPage);
+            } else {
+                toast.error('Error deleting product');
+            }
+        } catch (error) {
+            toast.error('Exception while delete product');
+        }
     };
+
+
+
 
     const handleSearch = async () => {
         if (searchTerm.trim() === '') {
@@ -27,6 +42,7 @@ const ListProduct = () => {
 
         // const response = await axios.get(`${url}/api/user/getUserName/search?term=${searchTerm}`);
         const response = await axios.get(`${url}/api/food/searchFood`, { params: { term: searchTerm } })
+        console.log(response.data.success)
         if (response.data.success) {
             setList(response.data.data);
         } else {
@@ -51,6 +67,8 @@ const ListProduct = () => {
             }
             return 0;
         });
+
+
 
 
     return (
@@ -120,7 +138,7 @@ const ListProduct = () => {
                         <p className='price-product'>{(item.price).toLocaleString()}</p>
                         <p className=''>{item.quantity}</p>
                         <div className='button-product'>
-                            <button onClick={() => (e)} className='cursor1' >
+                            <button onClick={() => removeProduct(item._id)} className='cursor1' >
                                 <FontAwesomeIcon icon={faTrash} />
                             </button>
                             {/* <button onClick={() => (e)} className="btn-update1">Sửa</button> */}
@@ -129,7 +147,11 @@ const ListProduct = () => {
                     </div>
                 ))}
             </div>
+
+
         </div>
+
+
     )
 }
 

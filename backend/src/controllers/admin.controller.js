@@ -47,7 +47,7 @@ class AdminController {
             const updateData = { userID }
             const result = await AdminService.deleteUser(updateData);
             if (result) {
-                new NOCONTENT({
+                new OK({
                     message: 'Delete Success',
                     metadata: result.metadata
                 }).send(res);

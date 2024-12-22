@@ -64,7 +64,7 @@ class ProductService {
         try {
             const product = await productModel.findById(id);
             return {
-                product
+                product,
             }
         } catch (error) {
             throw error;
