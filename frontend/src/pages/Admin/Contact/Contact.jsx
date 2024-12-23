@@ -63,17 +63,17 @@ const Contact = () => {
         }
     };
 
-    const removeUser = async (id) => {
+    const removeContact = async (id) => {
         try {
-            const response = await axios.post(`${url}/v1/api/admin/deleteUser/${id}`);
-            if (response.data.success) {
+            const response = await axios.delete(`${url}/v1/api/contact/delete/${id}`);
+            if (response.data.status) {
                 toast.success(response.data.message);
                 fetchList(); // Fetch lại danh sách sau khi xóa
             } else {
-                toast.error("Error deleting user");
+                toast.error("Error deleting contact");
             }
         } catch (error) {
-            toast.error("Error deleting user");
+            toast.error("Exception while deleting contact");
         }
     };
 
@@ -155,7 +155,7 @@ const Contact = () => {
                                 </button>
                             </div>
                             <div className="col-actions">
-                                <button onClick={(e) => { e.stopPropagation(); removeUser(item._id); }} className="btn-delete">
+                                <button onClick={(e) => { e.stopPropagation(); removeContact(item._id); }} className="btn-delete">
                                     <FontAwesomeIcon icon={faTrash} />
                                 </button>
                                 <button onClick={() => openPopup(item)} className="btn-info">

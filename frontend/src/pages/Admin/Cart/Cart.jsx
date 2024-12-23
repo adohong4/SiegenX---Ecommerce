@@ -21,10 +21,10 @@ const Cart = () => {
             if (response.data.status) {
                 setList(response.data.metadata);
             } else {
-                toast.error("Error fetching contacts");
+                toast.error("Error fetching Order");
             }
         } catch (error) {
-            toast.error("Error fetching contacts");
+            toast.error("Error fetching Order");
         }
     };
 
@@ -50,17 +50,17 @@ const Cart = () => {
         }
     };
 
-    const removeUser = async (id) => {
+    const removeOrder = async (id) => {
         try {
-            const response = await axios.post(`${url}/v1/api/admin/deleteUser/${id}`);
-            if (response.data.success) {
+            const response = await axios.delete(`${url}/v1/api/order/delete/${id}`);
+            if (response.data.status) {
                 toast.success(response.data.message);
-                fetchList(); // Fetch lại danh sách sau khi xóa
+                fetchList(); 
             } else {
-                toast.error("Error deleting user");
+                toast.error("Error deleting Order");
             }
         } catch (error) {
-            toast.error("Error deleting user");
+            toast.error("Exception while deleting Order");
         }
     };
 
@@ -153,7 +153,7 @@ const Cart = () => {
                             </select></td>
                             <div>
                                 <td>
-                                    <button onClick={(e) => { e.stopPropagation(); removeUser(item._id); }} className='btn-delete'>
+                                    <button onClick={(e) => { e.stopPropagation(); removeOrder(item._id); }} className='btn-delete'>
                                         <FontAwesomeIcon icon={faTrash} />
                                     </button>
                                 </td>
