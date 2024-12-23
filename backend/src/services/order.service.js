@@ -35,6 +35,41 @@ class OrderService {
             throw error
         }
     }
+
+    static updateStatusOrder = async (req, res) => {
+        try {
+            const order = await orderModel.findByIdAndUpdate(req.body.orderId, { status: req.body.status })
+
+            // if (!order) {
+            //     throw new BadRequestError("Không tìm id Hóa đơn")
+            // }
+
+            return {
+                order
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    static deleteOrder = async (orderId) => {
+        try {
+            const order = await orderModel.findById(orderId)
+
+            if (!order) {
+                throw new BadRequestError("Không tìm id Hóa đơn")
+            }
+
+            await orderModel.findByIdAndDelete(orderId)
+
+            return {
+                order
+            };
+        } catch (error) {
+            throw error;
+        }
+    }
 }
+
 
 module.exports = OrderService;

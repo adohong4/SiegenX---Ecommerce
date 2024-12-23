@@ -9,7 +9,7 @@ class OrderController {
             const result = await OrderService.getOrder()
 
             new CREATED({
-                message: "Get Order",
+                message: "Lấy thông tin hóa đơn thành công",
                 metadata: result.orders
             }).send(res)
         } catch (error) {
@@ -17,5 +17,30 @@ class OrderController {
         }
     }
 
+    updateStatusOrder = async (req, res, next) => {
+        try {
+            const result = await OrderService.updateStatusOrder(req, res)
+
+            new OK({
+                message: "Cập nhật trạng thái thành công",
+                metadata: result.orders
+            }).send(res)
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    deleteOrder = async (req, res, next) => {
+        try {
+            const result = await OrderService.deleteOrder(req.params.id)
+
+            new OK({
+                message: "Xóa đơn hàng thành công",
+                metadata: result.order
+            }).send(res)
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 module.exports = new OrderController();
