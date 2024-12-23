@@ -95,8 +95,8 @@ const ListUser = () => {
                 email: currentUser.email,
                 password: currentUser.password ? currentUser.password : undefined,
             };
-            const response = await axios.put(`${url}/api/user/updateUser/${currentUser._id}`, formData);
-            if (response.data.success) {
+            const response = await axios.put(`${url}/v1/api/admin/changeInfo/${currentUser._id}`, formData);
+            if (response.data.status) {
                 toast.success('Updated successfully');
                 await fetchList(currentPage);
                 closePopup();
@@ -104,7 +104,7 @@ const ListUser = () => {
                 toast.error(response.data.message);
             }
         } catch (error) {
-            toast.error('Error updating user');
+            toast.error('Exception while updating user');
         }
     };
 
