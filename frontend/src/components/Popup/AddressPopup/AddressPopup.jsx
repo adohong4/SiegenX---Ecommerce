@@ -104,13 +104,13 @@ const AddressPopup = ({ setShowAddress }) => {
                             />
                         </div>
                         <div className='form-mul'>
-                            <label htmlFor="city">Thành phố</label>
+                            <label htmlFor="city">Thành phố/ Quận/ Huyện</label>
                             <input
                                 required
                                 name="city"
                                 id="city"
                                 type="text"
-                                placeholder="Nhập thành phố"
+                                placeholder="Nhập thành phố/ quận/ huyện"
                                 value={data.city}
                                 onChange={onChangeHandler}
                             />

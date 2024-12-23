@@ -3,6 +3,7 @@
 const productModel = require('../models/product.model');
 const userModel = require('../models/user.model');
 const orderModel = require('../models/order.model');
+const contactModel = require('../models/contact.model');
 const { BadRequestError, NotFoundError } = require('../core/error.response');
 
 class StatisticalService {
@@ -22,10 +23,14 @@ class StatisticalService {
         try {
             const productCount = await productModel.countDocuments();
             const userCount = await userModel.countDocuments();
+            const orderCount = await orderModel.countDocuments();
+            const contactCount = await contactModel.countDocuments();
 
             return {
                 totalProducts: productCount,
-                totalUsers: userCount
+                totalUsers: userCount,
+                totalOrders: orderCount,
+                totalContacts: contactCount
             };
         } catch (error) {
             throw new BadRequestError("Error while counting products");

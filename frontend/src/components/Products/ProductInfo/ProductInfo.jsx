@@ -101,8 +101,8 @@ const ProductInfo = () => {
           <div className="productinfo-description">
             <h3>Tại sao bạn nên chọn: <br />{`"${product_slug.nameProduct}"`} của SIEGENX</h3>
             <ul>
-              {product_slug.description ? (
-                <li>{product_slug.description}</li>
+              {product_slug.recap ? (
+                <li>{product_slug.recap}</li>
               ) : (
                 <li>No description available</li>
               )}

@@ -51,7 +51,7 @@ const ListProduct = () => {
     const handleSortChange = (e) => {
         setSort(e.target.value);
     };
-    const sortedList = [...list]
+    const sortedList = [...product_list]
         .filter(item => selectedCategory === 'All' || item.category === selectedCategory)
         .sort((a, b) => {
             if (sort === 'Asc') {
@@ -75,15 +75,15 @@ const ListProduct = () => {
                     <div className='search-right'>
                         <div className="sort-container">
                             <select id="sort" onChange={handleSortChange} value={sort}>
-                                <option value="Sort By">Sort By</option>
-                                <option value="Asc">Asc</option>
-                                <option value="Desc">Desc</option>
+                                <option value="Sort By">Sắp xếp</option>
+                                <option value="Asc">Tăng dần</option>
+                                <option value="Desc">Giảm dần</option>
                             </select>
                         </div>
 
                         <div className="selected-container">
                             <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
-                                <option value="All" selected>Tất cả</option>
+                                <option value="All" selected>Lọc</option>
                                 <option value="Màn hình LED">Màn hình LED</option>
                                 <option value="MH tương tác">MH tương tác</option>
                                 <option value="MH quảng cáo LCD">MH quảng cáo LCD</option>
@@ -123,7 +123,7 @@ const ListProduct = () => {
                     <b>Số Lượng</b>
                     <b>Tùy Chỉnh</b>
                 </div>
-                {product_list.map((item, index) => (
+                {sortedList.map((item, index) => (
                     <div key={index} className='list-table-format'>
                         <img src={`${url}/images/${item.images[0]}`} alt="" />
                         <p className='id-product'>{item._id}</p>
