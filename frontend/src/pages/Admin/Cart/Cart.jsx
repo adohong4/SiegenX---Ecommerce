@@ -8,7 +8,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 const Cart = () => {
-    const { url } = useContext(StoreContext);
+    const { url, order_list } = useContext(StoreContext);
     const [list, setList] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOrder, setSortOrder] = useState({ name: 'asc', email: 'asc' });
@@ -126,7 +126,7 @@ const Cart = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {list.map((item) => (
+                    {order_list.map((item) => (
                         <tr key={item._id} className='table-row'>
                             <td>{item._id}</td>
                             <td>{item.date}</td>

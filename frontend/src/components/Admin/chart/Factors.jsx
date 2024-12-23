@@ -76,7 +76,7 @@ const Factors = () => {
                 </div>
                 <div className="info-card">
                     <h3>Đơn hàng</h3>
-                    <p>{stats.totalOrders} 0</p>
+                    <p>{stats.totalOrders}</p>
                 </div>
                 <div className="info-card">
                     <h3>Doanh thu</h3>

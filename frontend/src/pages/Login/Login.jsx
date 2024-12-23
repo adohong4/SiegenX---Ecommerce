@@ -34,8 +34,6 @@ const Login = () => {
 
         const response = await axios.post(newUrl, data);
 
-        console.log(response.data.metadata.token)
-
         setToken(response.data.metadata.token);
         toast.success('Đăng nhập thành công!')
         localStorage.setItem("token", response.data.metadata.token);

@@ -6,7 +6,7 @@ import { StoreContext } from '../../../context/StoreContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { faBook } from '@fortawesome/free-solid-svg-icons'; 
+import { faBook } from '@fortawesome/free-solid-svg-icons';
 
 const Contact = () => {
     const { url } = useContext(StoreContext);
@@ -19,14 +19,14 @@ const Contact = () => {
 
     const handleViewToggle = (itemId) => {
         setList(prevList =>
-          prevList.map(item =>
-            item._id === itemId
-              ? { ...item, viewed: !item.viewed } // Chuyển đổi trạng thái đã xem
-              : item
-          )
+            prevList.map(item =>
+                item._id === itemId
+                    ? { ...item, viewed: !item.viewed } // Chuyển đổi trạng thái đã xem
+                    : item
+            )
         );
-      };
-      
+    };
+
 
     const fetchList = async () => {
         try {
