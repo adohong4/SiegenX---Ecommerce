@@ -76,8 +76,8 @@ const ListUser = () => {
 
     const removeUser = async (userId) => {
         try {
-            const response = await axios.post(`${url}/v1/api/admin/deleteUser/${userId}`);
-            if (response.data.success) {
+            const response = await axios.delete(`${url}/v1/api/admin/deleteUser/${userId}`);
+            if (response.data.status === 200) {
                 toast.success(response.data.message);
                 await fetchList(currentPage);
             } else {
