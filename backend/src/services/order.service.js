@@ -25,15 +25,26 @@ class OrderService {
 
     static getOrder = async () => {
         try {
-            const orders = await orderModel.find({});
+            const orders = await orderModel.find({});  
 
             return {
                 orders
             }
 
         } catch (error) {
-            throw error
+            throw error;
         }
+    }
+
+    static countDocuments = async () => {
+        return await orderModel.countDocuments(); 
+    };
+
+
+    static find = async (skip, limit) => {
+        return await orderModel.find()  
+            .skip(skip)                  
+            .limit(limit);               
     }
 }
 

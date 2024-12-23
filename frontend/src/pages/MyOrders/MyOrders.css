@@ -1,19 +1,93 @@
-.My-Order{
-    margin-top: 120px;
-}
-.payment-options {
-    margin-top: 15px;
+.My-Order {
+    padding: 20px;
+    margin-top: 150px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
 }
 
-.payment-logo {
-    width: 70px;
-    margin: 0 10px;
-    border: 2px solid #ccc;
-    border-radius: 25px;
-    transition: all 0.3s ease-in-out;
+.myorder-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
-.payment-logo:hover {
-    scale: 1.2;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); 
+
+.top-tittle-order {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.loading, .no-orders {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+    margin-top: 50px;
+}
+
+.myorder-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.myorder-table th, .myorder-table td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.myorder-table th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+.myorder-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.myorder-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 12px;
+    text-transform: capitalize;
+}
+
+.status-badge.wait-for-confirmation {
+    background-color: #2c3e50;
+}
+
+.status-badge.food-processing {
+    background-color: #d35400;
+}
+
+.status-badge.out-for-delivery {
+    background-color: #f39c12;
+}
+
+.status-badge.delivered {
+    background-color: #27ae60;
+}
+
+.btn-details {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-details:hover {
+    background-color: #2980b9;
 }

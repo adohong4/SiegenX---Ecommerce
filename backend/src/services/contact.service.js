@@ -35,6 +35,19 @@ class ContactService {
             throw error;
         }
     }
+
+
+
+    static countDocuments = async () => {
+        return await contactModel.countDocuments(); 
+    };
+
+
+    static find = async (skip, limit) => {
+        return await contactModel.find()  
+            .skip(skip)                  
+            .limit(limit);               
+    }
 }
 
 module.exports = ContactService;

@@ -37,6 +37,30 @@ class ContactController {
         }
     }
 
+    getContactWithPagination = async (req, res, next) => {
+        try {
+            const page = parseInt(req.query.page) || 1;
+            const limit = parseInt(req.query.limit) || 20;
+            const skip = (page - 1) * limit;
+    
+            const totalContacts = await ContactService.countDocuments();
+            const contacts = await ContactService.find(skip, limit);
+    
+            res.status(200).json({
+                message: 'Contacts fetched successfully',
+                data: contacts,
+                pagination: {
+                    total: totalContacts,
+                    currentPage: page,
+                    totalPages: Math.ceil(totalContacts / limit),
+                    limit,
+                },
+            });
+        } catch (error) {
+            next(error);
+        }
+    };
+
 }
 
 module.exports = new ContactController();

@@ -163,10 +163,21 @@ class ProductService {
                 product: updatedProduct
             }
         } catch (error) {
-            console.error(error); // In ra lỗi
-            res.status(500).json({ message: error.message });
+            throw error;
         }
     };
+
+
+    static countDocuments = async () => {
+        return await productModel.countDocuments(); 
+    }
+
+
+    static find = async (skip, limit) => {
+        return productModel.find()
+            .skip(skip)   
+            .limit(limit);
+    }
 
 }
 

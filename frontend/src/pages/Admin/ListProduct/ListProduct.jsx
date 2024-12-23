@@ -2,23 +2,40 @@ import React, { useEffect, useContext, useState } from 'react';
 import './ListProduct.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import ReactPaginate from 'react-paginate';
 import { StoreContext } from '../../../context/StoreContext';
+import ProductPopup from '../../../components/Popup/ProductsPopup/ProductsPopup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const ListProduct = () => {
     const { url, product_list } = useContext(StoreContext)
-
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0); // Theo dõi tổng số trang
+    const [selectedProduct, setSelectedProduct] = useState(null);
+    const [isPopupVisible, setIsPopupVisible] = useState(false);
     const [list, setList] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [sort, setSort] = useState('Sort By');
 
+    const handleRowClick = (product) => {
+        setSelectedProduct(product); // Truyền toàn bộ sản phẩm vào state
+        setIsPopupVisible(true);
+    };
+    
+    
+    const handlePageClick = (event) => {
+        setCurrentPage(+event.selected + 1);
+    };
+
     // Hàm xóa sản phẩm
     const removeProduct = async (productId) => {
 
     };
-
+    // const handleRowClick = (id) => {
+    //     navigate(`/product/${id}`);
+    // };
     const handleSearch = async () => {
         if (searchTerm.trim() === '') {
             await fetchList();
@@ -33,6 +50,27 @@ const ListProduct = () => {
             toast.error("Error");
         }
     };
+
+    const handleUpdateProduct = async (updatedProduct) => {
+        try {
+            const response = await axios.put(`${url}/v1/api/product/update/${updatedProduct._id}`, updatedProduct);
+    
+            if (response.data.success) {
+                setList((prevList) =>
+                    prevList.map((product) =>
+                        product._id === updatedProduct._id ? updatedProduct : product
+                    )
+                );
+                fetchList();
+                toast.success(response.data.message);   
+            } else {
+                toast.error(error);
+            }
+        } catch (error) {
+            toast.error(error);
+        }
+    };
+    
 
     const handleCategoryChange = (e) => {
         setSelectedCategory(e.target.value);
@@ -52,6 +90,20 @@ const ListProduct = () => {
             return 0;
         });
 
+        const fetchList = async (page = 1) => {
+                const response = await axios.get(`${url}/v1/api/product/pagination?page=${page}&limit=10`);
+                if (response.data.message) {
+                    setList(response.data.data);
+                    setTotalPages(response.data.pagination.totalPages); 
+                } else {
+                    toast.error('Lỗi khi lấy danh sách sản phẩm');
+                }
+        };
+
+        useEffect(() => {
+            fetchList(currentPage); 
+        }, [currentPage]);
+        
 
     return (
         <div className='listproduct add flex-col'>
@@ -112,23 +164,56 @@ const ListProduct = () => {
                     <b>Tùy Chỉnh</b>
                 </div>
                 {product_list.map((item, index) => (
-                    <div key={index} className='list-table-format'>
+                    <div
+                        key={index}
+                        className="list-table-format"
+                        onClick={() => handleRowClick(item)} // Thay vì item._id
+                        style={{ cursor: 'pointer' }} // Hiển thị con trỏ tay
+                    >
                         <img src={`${url}/images/${item.images[0]}`} alt="" />
-                        <p className='id-product'>{item._id}</p>
-                        <p className='name-product'>{item.title}</p>
-                        <p className='category-product'>{item.category}</p>
-                        <p className='price-product'>{(item.price).toLocaleString()}</p>
-                        <p className=''>{item.quantity}</p>
-                        <div className='button-product'>
-                            <button onClick={() => (e)} className='cursor1' >
+                        <p className="id-product">{item._id}</p>
+                        <p className="name-product">{item.title}</p>
+                        <p className="category-product">{item.category}</p>
+                        <p className="price-product">{item.price.toLocaleString()}</p>
+                        <p>{item.quantity}</p>
+                        <div className="button-product">
+                            <button className="cursor1">
                                 <FontAwesomeIcon icon={faTrash} />
                             </button>
-                            {/* <button onClick={() => (e)} className="btn-update1">Sửa</button> */}
                         </div>
-
                     </div>
                 ))}
             </div>
+
+            <ReactPaginate
+                breakLabel="..."
+                nextLabel=">"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={5}
+                pageCount={totalPages}
+                previousLabel="<"
+                renderOnZeroPageCount={null}
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                previousClassName="page-item"
+                previousLinkClassName="page-link"
+                nextClassName="page-item"
+                nextLinkClassName="page-link"
+                breakClassName="page-item"
+                breakLinkClassName="page-link"
+                containerClassName="pagination"
+                activeClassName="active"
+            />
+
+
+            {isPopupVisible && (
+                <ProductPopup
+                    product={selectedProduct}
+                    onClose={() => setIsPopupVisible(false)}
+                    url={url}
+                    onUpdate={handleUpdateProduct}
+                />
+            )}
         </div>
     )
 }

@@ -10,5 +10,6 @@ const router = express.Router()
 
 router.get('/order/get', asyncHandler(orderController.getOrder))
 
+router.get('/order/pagination', asyncHandler(orderController.getOrderWithPagination));
 
 module.exports = router;

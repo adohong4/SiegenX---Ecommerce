@@ -135,6 +135,9 @@
 
 .popup-info {
     margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap:20px;
 }
 
 .popup-info label {
@@ -144,9 +147,11 @@
 }
 
 .popup-footer {
-    text-align: right;
+    display: flex;
+    justify-content: center;
+    gap:20px;
 }
-
+.popup-print-btn,
 .popup-close-btn {
     padding: 8px 12px;
     background-color: #3498db;
@@ -155,12 +160,12 @@
     border-radius: 4px;
     cursor: pointer;
 }
-
+.popup-print-btn:hover,
 .popup-close-btn:hover {
     background-color: #2980b9;
 }
 
-.close-popup {
+/* .close-popup {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -169,10 +174,27 @@
     font-size: 20px;
     cursor: pointer;
     color: #7f8c8d;
-}
+} */
 
 .close-popup:hover {
     color: #2c3e50;
+}
+
+
+.pagination {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    padding: 0;
+}
+
+.pagination .page-item {
+    margin: 0 5px;
+}
+
+.pagination .active {
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 
@@ -184,5 +206,19 @@
     to {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+
+@media print {
+    .popup-close-btn, .popup-print-btn {
+        display: none !important; 
+    }
+    .popup-overlay {
+        position: static !important; 
+        background: none !important; 
+    }
+    body {
+        background-color: white; 
     }
 }

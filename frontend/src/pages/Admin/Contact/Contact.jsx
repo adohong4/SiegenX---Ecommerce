@@ -2,31 +2,57 @@ import React, { useEffect, useContext, useState } from 'react';
 import './Contact.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import ReactPaginate from 'react-paginate';
 import { StoreContext } from '../../../context/StoreContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { faBook } from '@fortawesome/free-solid-svg-icons'; 
+import { faBook } from '@fortawesome/free-solid-svg-icons';
 
 const Contact = () => {
     const { url } = useContext(StoreContext);
     const [list, setList] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
+    const [totalItems, setTotalItems] = useState(0);
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOrder, setSortOrder] = useState({ name: 'asc', email: 'asc' });
-    const [selectedRow, setSelectedRow] = useState(null); // Lưu thông tin hàng được chọn
-    const [isPopupOpen, setIsPopupOpen] = useState(false); // Trạng thái mở/đóng popup
+    const [selectedRow, setSelectedRow] = useState(null);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+    const handlePageClick = (event) => {
+        setCurrentPage(event.selected + 1);
+    };
 
     const handleViewToggle = (itemId) => {
         setList(prevList =>
-          prevList.map(item =>
-            item._id === itemId
-              ? { ...item, viewed: !item.viewed } // Chuyển đổi trạng thái đã xem
-              : item
-          )
+            prevList.map(item =>
+                item._id === itemId
+                    ? { ...item, viewed: !item.viewed }
+                    : item
+            )
         );
-      };
-      
+    };
+
+    const fetchListcontact = async (page = 1) => {
+        try {
+            const response = await axios.get(`${url}/v1/api/contact/pagination?page=${page}&limit=10`);
+            if (response.data.message) {
+                setList(response.data.data);
+                setTotalItems(response.data.pagination.totalItems);
+                setTotalPages(response.data.pagination.totalPages);
+            } else {
+                toast.error('Error fetching user list');
+            }
+        } catch (error) {
+            toast.error('Error fetching data');
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchListcontact(currentPage);
+    }, [currentPage]);
 
     const fetchList = async () => {
         try {
@@ -43,7 +69,7 @@ const Contact = () => {
 
     useEffect(() => {
         fetchList();
-    }, []); // Chỉ gọi một lần khi component mount
+    }, []);
 
     const handleSearch = async () => {
         if (!searchTerm.trim()) {
@@ -68,7 +94,7 @@ const Contact = () => {
             const response = await axios.post(`${url}/v1/api/admin/deleteUser/${id}`);
             if (response.data.success) {
                 toast.success(response.data.message);
-                fetchList(); // Fetch lại danh sách sau khi xóa
+                fetchList();
             } else {
                 toast.error("Error deleting user");
             }
@@ -167,13 +193,34 @@ const Contact = () => {
                 </div>
             </div>
 
+            <div className="pagination-container">
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel=">"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={5}
+                    pageCount={totalPages}
+                    previousLabel="<"
+                    renderOnZeroPageCount={null}
+                    pageClassName="page-item"
+                    pageLinkClassName="page-link"
+                    previousClassName="page-item"
+                    previousLinkClassName="page-link"
+                    nextClassName="page-item"
+                    nextLinkClassName="page-link"
+                    breakClassName="page-item"
+                    breakLinkClassName="page-link"
+                    containerClassName="pagination"
+                    activeClassName="active"
+                />
+            </div>
 
             {isPopupOpen && selectedRow && (
                 <div className="popup-overlay" onClick={closePopup}>
                     <div className="popup-content-cskh" onClick={(e) => e.stopPropagation()}>
                         <button className="close-popup" onClick={closePopup}>×</button>
                         <div className="popup-header">
-                            <h3>Chi tiết thông tin</h3>
+                            <h3>Chi tiết yêu cầu liên hệ</h3>
                         </div>
                         <div className="popup-body">
                             <div className="popup-info">
