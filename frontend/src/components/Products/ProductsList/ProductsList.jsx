@@ -42,18 +42,12 @@ const ProductsList = () => {
     navigate(`/san-pham/${productSlug}`);
   };
 
-
-  // >>>>>>> featureTuoi
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
   };
-  // <<<<<<< HEAD
 
-  // =======
-
-  // >>>>>>> featureTuoi
   const generatePageNumbers = () => {
     const pages = [];
     if (totalPages <= 4) {
@@ -160,7 +154,7 @@ const ProductsList = () => {
                     className="productlist-price-btn"
                     onClick={(e) => navigate("/lien-he")}
                   >
-                    {/* {product.price ? `${product.price.toLocaleString()}đ` : "LIÊN HỆ"} */} LIÊN HỆ
+                    LIÊN HỆ
                   </button>
                   <button
                     className="productlist-btn"
@@ -217,13 +211,10 @@ const ProductsList = () => {
       <div className="productlist-banner-foot">
         <img src={assets.bannerProductList} alt="" />
       </div>
-      {/* >>>>>>> featureTuoi */}
     </div>
   );
 };
 
-// <<<<<<< HEAD
-// export default ProductsList;
-// =======
+
 export default ProductsList;
-// >>>>>>> featureTuoi
+

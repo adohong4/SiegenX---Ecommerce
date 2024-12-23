@@ -61,7 +61,7 @@ const Cart = () => {
         });
 
         if (response.data.status) {
-            fetchList();
+            fetchListpage();
         }
 
         console.log(`Order ${orderId}: ${selectedValue}`);

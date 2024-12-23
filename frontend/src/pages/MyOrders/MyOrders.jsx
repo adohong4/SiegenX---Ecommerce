@@ -5,15 +5,15 @@ import './MyOrders.css';
 import { StoreContext } from '../../context/StoreContext';
 
 const MyOrders = () => {
-    const { url, token } = useContext(StoreContext); 
+    const { url, token } = useContext(StoreContext);
     const [orders, setOrders] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const fetchOrders = async () => {
         try {
-            const response = await axios.get(`${url}/v1/api/order/userorders`,{ headers: { token }});
+            const response = await axios.get(`${url}/v1/api/order/userOrder`, { headers: { token } });
 
-            if (response.data.success) {
-                setOrders(response.data.data);
+            if (response.data.status) {
+                setOrders(response.data.metadata);
                 setIsLoading(false);
             } else {
                 toast.error('Không thể lấy thông tin đơn hàng!');
@@ -59,7 +59,7 @@ const MyOrders = () => {
                             {orders.map((order) => (
                                 <tr key={order._id}>
                                     <td>{order._id}</td>
-                                    <td>{new Date(order.date).toLocaleDateString()}</td>
+                                    <td>{order.date}</td>
                                     <td>{order.amount.toLocaleString()} VND</td>
                                     <td>
                                         <span
@@ -72,7 +72,7 @@ const MyOrders = () => {
                                     </td>
                                     <td>
                                         <button
-                                            className="btn-updates"
+                                            className="btn-updates" onClick={fetchOrders}
                                         >
                                             Cập nhật đơn hàng
                                         </button>

@@ -128,7 +128,7 @@ const ProductInfo = () => {
 
           </div>
 
-          <button className="productinfo-buy-now">
+          <button className="productinfo-buy-now" onClick={() => { handleAddQuantityToCart(product_slug._id, quantity); navigate("/cart") }} >
             <FaShoppingCart className="productinfo-icon" /> MUA NGAY
           </button>
 

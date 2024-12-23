@@ -24,7 +24,7 @@ class OrderController {
 
             new OK({
                 message: "Cập nhật trạng thái thành công",
-                metadata: result.orders
+                metadata: result.order
             }).send(res)
         } catch (error) {
             next(error);
@@ -38,6 +38,19 @@ class OrderController {
             new OK({
                 message: "Xóa đơn hàng thành công",
                 metadata: result.order
+            }).send(res)
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    userOrder = async (req, res, next) => {
+        try {
+            const result = await OrderService.userOrder(req.body.userId)
+
+            new OK({
+                message: "Hiển thị đơn hàng thành công",
+                metadata: result.data
             }).send(res)
         } catch (error) {
             next(error);
