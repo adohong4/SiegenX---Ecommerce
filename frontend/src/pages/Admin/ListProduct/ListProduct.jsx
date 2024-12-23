@@ -18,20 +18,14 @@ const ListProduct = () => {
 
     // Hàm xóa sản phẩm
     const removeProduct = async (productId) => {
-        try {
-            const response = await axios.delete(`${url}/v1/api/product/delete/${productId}`);
-            if (response.data.status === 200) {
-                toast.success(response.data.message);
-                await fetchList(currentPage);
-            } else {
-                toast.error('Error deleting product');
-            }
-        } catch (error) {
-            toast.error('Exception while delete product');
+        const response = await axios.delete(`${url}/v1/api/product/delete/${productId}`);
+        if (response.data.status) {
+            toast.success(response.data.message);
+            await fetchList(currentPage);
+        } else {
+            toast.error('Error deleting product');
         }
     };
-
-
 
 
     const handleSearch = async () => {

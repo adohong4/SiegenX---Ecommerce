@@ -76,7 +76,7 @@ class ProductController {
         try {
             const result = await ProductService.deleteProduct(req.params.id);
 
-            new NOCONTENT({
+            new OK({
                 message: 'delete successful!',
                 metadata: result.product
             }).send(res);
