@@ -8,12 +8,13 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 const Cart = () => {
-    const { url, order_list } = useContext(StoreContext);
+    const { url, order_list, fetchOrder } = useContext(StoreContext);
     const [list, setList] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [sortOrder, setSortOrder] = useState({ name: 'asc', email: 'asc' });
+    const [sortOrder, setSortOrder] = useState({ 'address.fullname': 'asc', amount: 'asc' });
     const [selectedRow, setSelectedRow] = useState(null); // Lưu thông tin hàng được chọn
     const [isPopupOpen, setIsPopupOpen] = useState(false); // Trạng thái mở/đóng popup
+    const [selectedOrder, setSelectedOrder] = useState(null);
 
     const fetchList = async () => {
         try {
@@ -50,6 +51,21 @@ const Cart = () => {
         }
     };
 
+    const statusHandler = async (event, orderId) => {
+        const selectedValue = event.target.value;
+
+        const response = await axios.put(url + "/v1/api/order/updateStatus", {
+            orderId,
+            status: selectedValue
+        });
+
+        if (response.data.status) {
+            fetchList();
+        }
+
+        console.log(`Order ${orderId}: ${selectedValue}`);
+    };
+
     const removeOrder = async (id) => {
         try {
             const response = await axios.delete(`${url}/v1/api/order/delete/${id}`);
@@ -66,11 +82,17 @@ const Cart = () => {
 
     const sortBy = (field) => {
         const newOrder = sortOrder[field] === 'asc' ? 'desc' : 'asc';
-        setSortOrder({ ...sortOrder, [field]: newOrder });
-        const sortedList = [...list].sort((a, b) =>
-            newOrder === 'asc' ? a[field].localeCompare(b[field]) : b[field].localeCompare(a[field])
-        );
-        setList(sortedList);
+    setSortOrder({ ...sortOrder, [field]: newOrder });
+    const sortedList = [...list].sort((a, b) => {
+        const aValue = field.includes('.') ? field.split('.').reduce((o, i) => o[i], a) : a[field];
+        const bValue = field.includes('.') ? field.split('.').reduce((o, i) => o[i], b) : b[field];
+        if (typeof aValue === 'number' && typeof bValue === 'number') {
+            return newOrder === 'asc' ? aValue - bValue : bValue - aValue;
+        } else {
+            return newOrder === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+        }
+    });
+    setList(sortedList);
     };
 
     const openPopup = (row) => {
@@ -109,13 +131,15 @@ const Cart = () => {
             <table className="order-list-table">
                 <thead>
                     <tr className="table-header">
-                        <th onClick={() => sortBy('username')} style={{ cursor: 'pointer' }}>
+                        <th onClick={() => sortBy('_id')} style={{ cursor: 'pointer' }}>
                             Mã hóa đơn {sortOrder._id === 'asc' ? '↑' : '↓'}
                         </th>
                         <th onClick={() => sortBy('date')} style={{ cursor: 'pointer' }}>
                             Thời gian {sortOrder.date === 'asc' ? '↑' : '↓'}
                         </th>
-                        <th>Khách hàng</th>
+                        <th onClick={() => sortBy('address.fullname')} style={{ cursor: 'pointer' }}>
+                            Khách hàng {sortOrder['address.fullname'] === 'asc' ? '↑' : '↓'}
+                        </th>
                         <th>Hình thức thanh toán</th>
                         <th onClick={() => sortBy('amount')} style={{ cursor: 'pointer' }}>
                             Giá trị hóa đơn {sortOrder.amount === 'asc' ? '↑' : '↓'}
@@ -126,7 +150,7 @@ const Cart = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {order_list.map((item) => (
+                    {list.map((item) => (
                         <tr key={item._id} className='table-row'>
                             <td>{item._id}</td>
                             <td>{item.date}</td>
@@ -135,8 +159,8 @@ const Cart = () => {
                             <td>{(item.amount).toLocaleString()} đ</td>
                             <td>{item.address.street}, {item.address.state}, {item.address.country}, {item.address.zipcode}</td>
                             <td><select
-                                // onChange={(event) => statusHandler(event, order._id)}
-                                // value={order.status}
+                                onChange={(event) => statusHandler(event, item._id)}
+                                value={item.status}
                                 style={{
                                     backgroundColor: item.status === "Wait for confirmation" ? "#2c3e50" :
                                         item.status === "Food processing" ? "#d35400" :

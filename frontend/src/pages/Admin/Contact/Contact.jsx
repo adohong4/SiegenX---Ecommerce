@@ -17,22 +17,36 @@ const Contact = () => {
     const [isPopupOpen, setIsPopupOpen] = useState(false); // Trạng thái mở/đóng popup
 
 
-    const handleViewToggle = (itemId) => {
-        setList(prevList =>
-            prevList.map(item =>
-                item._id === itemId
-                    ? { ...item, viewed: !item.viewed } // Chuyển đổi trạng thái đã xem
-                    : item
-            )
-        );
+    const handleViewToggle = async (itemId) => {
+        try {
+            const updatedList = list.map(item => {
+                if (item._id === itemId) {
+                    return { ...item, viewed: !item.viewed };
+                }
+                return item;
+            });
+
+            setList(updatedList);
+
+            await axios.put(`${url}/v1/api/contact/updateCheck/${itemId}`, {
+                isCheck: updatedList.find(item => item._id === itemId).viewed
+            });
+        } catch (error) {
+            toast.error("Error updating view status");
+        }
     };
 
 
     const fetchList = async () => {
         try {
             const response = await axios.get(`${url}/v1/api/contact/get`);
+            
             if (response.data.status) {
-                setList(response.data.metadata.contacts);
+                const contacts = response.data.metadata.contacts.map(contact => ({
+                    ...contact,
+                    viewed: contact.isCheck // Thiết lập trạng thái viewed dựa trên isCheck
+                }));
+                setList(contacts);
             } else {
                 toast.error("Error fetching contacts");
             }
@@ -128,8 +142,8 @@ const Contact = () => {
                     </div>
                     <div className="col-phone">SĐT</div>
                     <div className="col-content">Nội dung</div>
-                    <div onClick={() => sortBy('time')} className="col-time" style={{ cursor: 'pointer' }}>
-                        Thời gian {sortOrder.time === 'asc' ? '↑' : '↓'}
+                    <div onClick={() => sortBy('date')} className="col-time" style={{ cursor: 'pointer' }}>
+                        Thời gian {sortOrder.date === 'asc' ? '↑' : '↓'}
                     </div>
                     <div className="col-check">Kiểm tra</div>
                     <div className="col-actions">Tùy chỉnh</div>
