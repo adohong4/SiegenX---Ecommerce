@@ -29,6 +29,7 @@ const Popup = ({ isOpen, onClose, userData, onChange, onSave }) => {
                         value={userData?.email || ''} // Điền giá trị từ userData vào input
                         onChange={onChange}
                         className="user-popup-input"
+                        readOnly
                     />
                 </div>
                 <div>

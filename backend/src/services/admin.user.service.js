@@ -8,60 +8,39 @@ const { getInfoData } = require("../utils")
 const { BadRequestError, ConflictRequestError, AuthFailureError, ForbiddenError } = require("../core/error.response")
 
 class AdminService {
-    static changeInfo = async ({ userID, username, email, password }) => {
+    static changeInfo = async ({ userId, username, password }) => {
         try {
-            console.log(userID)
-            //checking is user already exists
-            const exists = await userModel.findOne({ email, _id: { $ne: userID } });
+            const user = await userModel.findById(userId);
 
-
-            if (exists) {
-                throw new BadRequestError('User already registered!')
+            if (!user) {
+                throw new BadRequestError("Tài khoản không tồn tại");
             }
 
-            //validating email format & strong password
-            if (!validator.isEmail(email)) {
-                throw new BadRequestError('Please enter valid email')
+            const updates = {};
+
+            // Cập nhật tên người dùng
+            if (username) {
+                updates.username = username;
             }
 
-            if (password.length < 8) {
-                throw new BadRequestError('Please enter strong password')
-            }
-
-            const salt = await bcrypt.genSalt(10)
-            const hashedPassword = await bcrypt.hash(password, salt);
-
-            const newUser = await userModel.updateOne(
-                { _id: userID },
-                {
-                    username: username,
-                    email: email,
-                    password: hashedPassword
+            // Cập nhật mật khẩu nếu có
+            if (password) {
+                if (password.length < 8) {
+                    throw new BadRequestError("Mật khẩu phải dài ít nhất 8 ký tự");
                 }
-            )
-
-
-
-            if (newUser.matchedCount === 0) {
-                throw new Error('User not found');
+                const salt = await bcrypt.genSalt(10);
+                updates.password = await bcrypt.hash(password, salt);
             }
 
-            if (newUser.modifiedCount === 0) {
-                throw new Error('No changes were made to the user');
+            // Cập nhật thông tin người dùng trong database
+            const updatedUser = await userModel.findByIdAndUpdate(userId, updates, { new: true });
+
+            if (!updatedUser) {
+                throw new BadRequestError("Cập nhật không thành công");
             }
 
-            if (newUser) {
-                return {
-                    metadata: {
-                        "userID": userID,
-                        "username": username,
-                        "password": password
-                    }
-                };
-            }
-
+            return { metadata: updatedUser };
         } catch (error) {
-            // console.log(error);
             throw error;
         }
     }

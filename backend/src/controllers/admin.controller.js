@@ -7,18 +7,14 @@ class AdminController {
 
     changeInfo = async (req, res, next) => {
         try {
-            const userID = req.params.id;
-            // console.log(userID)
-            const updateData = { userID, ...req.body }
-            const result = await AdminService.changeInfo(updateData);
-            if (result) {
-                new CREATED({
-                    message: 'Update user Success',
-                    metadata: result.metadata
-                }).send(res);
-            } else {
-                res.status(400).json({ message: 'Update failed' });
-            }
+            const { id } = req.params;
+            const { username, password } = req.body;
+            const result = await AdminService.changeInfo({ userId: id, username, password });
+            new CREATED({
+                message: 'Cập nhật thành công',
+                metadata: result.metadata
+            }).send(res);
+
         } catch (error) {
             next(error);
         }
