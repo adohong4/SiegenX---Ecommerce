@@ -22,7 +22,7 @@ const ListProduct = () => {
             const response = await axios.delete(`${url}/v1/api/product/delete/${productId}`);
             if (response.data.status === 200) {
                 toast.success(response.data.message);
-                await fetchList(currentPage);
+                // await fetchList(currentPage);
             } else {
                 toast.error('Error deleting product');
             }
