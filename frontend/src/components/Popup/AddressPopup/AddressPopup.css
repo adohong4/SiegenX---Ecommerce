@@ -32,8 +32,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #f0f0f0;
+    border-bottom: 2px solid #00b98e;
     padding-bottom: 10px;
+    text-align: center !important;
     margin-bottom: 20px;
 }
 

@@ -23,7 +23,7 @@ class ProductController {
             const result = await ProductService.updateProduct(req, res, next);
 
             new CREATED({
-                message: 'update successful!',
+                message: 'Cập nhật thành công!',
                 metadata: result.product
             }).send(res);
         } catch (error) {
@@ -84,7 +84,29 @@ class ProductController {
             next(error);
         }
     }
+    getProductsWithPagination = async (req, res, next) => {
+        try {
+            const page = parseInt(req.query.page) || 1;
+            const limit = parseInt(req.query.limit) || 20;
+            const skip = (page - 1) * limit;
+            const totalProducts = await ProductService.countDocuments();
 
+            const products = await ProductService.find(skip, limit);
+
+            res.status(200).json({
+                message: 'Sản phẩm đã được lấy thành công',
+                data: products,
+                pagination: {
+                    total: totalProducts,
+                    currentPage: page,
+                    totalPages: Math.ceil(totalProducts / limit),
+                    limit,
+                },
+            });
+        } catch (error) {
+            next(error);
+        }
+    };
 
 }
 

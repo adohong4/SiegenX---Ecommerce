@@ -25,5 +25,5 @@ router.get("/product/getSlug/:slug", asyncHandler(ProductController.getProductBy
 
 router.delete("/product/delete/:id", asyncHandler(ProductController.deleteProduct));
 router.put("/product/update/:id", asyncHandler(ProductController.updateProduct))
-
+router.get('/product/pagination', asyncHandler(ProductController.getProductsWithPagination));   
 module.exports = router;

@@ -1,7 +1,8 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState, useRef } from 'react';
 import './Cart.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import ReactPaginate from 'react-paginate';
 import { StoreContext } from '../../../context/StoreContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -10,28 +11,28 @@ import { faEye } from '@fortawesome/free-solid-svg-icons';
 const Cart = () => {
     const { url, order_list, fetchOrder } = useContext(StoreContext);
     const [list, setList] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalOrder, setTotalOrder] = useState(0);
+    const [totalPages, setTotalPages] = useState(0); // Theo dõi tổng số trang
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOrder, setSortOrder] = useState({ 'address.fullname': 'asc', amount: 'asc' });
     const [selectedRow, setSelectedRow] = useState(null); // Lưu thông tin hàng được chọn
     const [isPopupOpen, setIsPopupOpen] = useState(false); // Trạng thái mở/đóng popup
-    const [selectedOrder, setSelectedOrder] = useState(null);
+    const popupRef = useRef(null); // Tạo ref cho popup
 
-    const fetchList = async () => {
-        try {
-            const response = await axios.get(`${url}/v1/api/order/get`);
-            if (response.data.status) {
-                setList(response.data.metadata);
-            } else {
-                toast.error("Error fetching Order");
-            }
-        } catch (error) {
-            toast.error("Error fetching Order");
+    const handlePrint = () => {
+        if (popupRef.current) {
+            const printContent = popupRef.current.innerHTML;
+            const originalContent = document.body.innerHTML;
+            // Chuyển nội dung popup vào body để in
+            document.body.innerHTML = printContent;
+            // Thực hiện in
+            window.print();
+            // Khôi phục nội dung ban đầu
+            document.body.innerHTML = originalContent;
+            window.location.reload(); // Reload lại trang sau khi in xong
         }
     };
-
-    useEffect(() => {
-        fetchList();
-    }, []); // Chỉ gọi một lần khi component mount
 
     const handleSearch = async () => {
         if (!searchTerm.trim()) {
@@ -71,7 +72,7 @@ const Cart = () => {
             const response = await axios.delete(`${url}/v1/api/order/delete/${id}`);
             if (response.data.status) {
                 toast.success(response.data.message);
-                fetchList(); 
+                fetchList();
             } else {
                 toast.error("Error deleting Order");
             }
@@ -82,19 +83,21 @@ const Cart = () => {
 
     const sortBy = (field) => {
         const newOrder = sortOrder[field] === 'asc' ? 'desc' : 'asc';
-    setSortOrder({ ...sortOrder, [field]: newOrder });
-    const sortedList = [...list].sort((a, b) => {
-        const aValue = field.includes('.') ? field.split('.').reduce((o, i) => o[i], a) : a[field];
-        const bValue = field.includes('.') ? field.split('.').reduce((o, i) => o[i], b) : b[field];
-        if (typeof aValue === 'number' && typeof bValue === 'number') {
-            return newOrder === 'asc' ? aValue - bValue : bValue - aValue;
-        } else {
-            return newOrder === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
-        }
-    });
-    setList(sortedList);
+        setSortOrder({ ...sortOrder, [field]: newOrder });
+        const sortedList = [...list].sort((a, b) => {
+            const aValue = field.includes('.') ? field.split('.').reduce((o, i) => o[i], a) : a[field];
+            const bValue = field.includes('.') ? field.split('.').reduce((o, i) => o[i], b) : b[field];
+            if (typeof aValue === 'number' && typeof bValue === 'number') {
+                return newOrder === 'asc' ? aValue - bValue : bValue - aValue;
+            } else {
+                return newOrder === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+            }
+        });
+        setList(sortedList);
     };
-
+    const handlePageClick = (event) => {
+        setCurrentPage(+event.selected + 1);
+    };
     const openPopup = (row) => {
         setSelectedRow(row);
         setIsPopupOpen(true);
@@ -106,6 +109,27 @@ const Cart = () => {
         setSelectedRow(null);
         document.body.classList.remove('popup-open');
     };
+
+    const fetchListpage = async (page = 1) => {
+        try {
+            const response = await axios.get(`${url}/v1/api/order/pagination?page=${page}&limit=10`);
+            if (response.data.message) {
+                setList(response.data.data);
+                setTotalOrder(response.data.pagination.limit);
+                setTotalPages(response.data.pagination.totalPages);
+            } else {
+                toast.error('Error fetching user list');
+            }
+        } catch (error) {
+            toast.error('Error fetching data');
+            console.error(error);
+        }
+    };
+
+
+    useEffect(() => {
+        fetchListpage(currentPage);
+    }, [currentPage]);
 
     return (
         <div className='order-list-container'>
@@ -193,12 +217,34 @@ const Cart = () => {
                 </tbody>
             </table>
 
+            <ReactPaginate
+                breakLabel="..."
+                nextLabel=">"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={5}
+                pageCount={totalPages}
+                previousLabel="<"
+                renderOnZeroPageCount={null}
+                pageClassName="page-item"
+                pageLinkClassName="page-link"
+                previousClassName="page-item"
+                previousLinkClassName="page-link"
+                nextClassName="page-item"
+                nextLinkClassName="page-link"
+                breakClassName="page-item"
+                breakLinkClassName="page-link"
+                containerClassName="pagination"
+                activeClassName="active"
+            />
+
+
             {isPopupOpen && selectedRow && (
                 <div className="popup-overlay" onClick={closePopup}>
-                    <div className="popup-content-cskh" onClick={(e) => e.stopPropagation()}>
+                    <div className="popup-content-cskh" onClick={(e) => e.stopPropagation()}
+                        ref={popupRef}>
                         <button className="close-popup" onClick={closePopup}>×</button>
                         <div className="popup-header">
-                            <h3>Chi tiết thông tin</h3>
+                            <h3>Chi tiết hóa đơn</h3>
                         </div>
                         <div className="popup-body">
                             <div className="popup-info">
@@ -211,29 +257,58 @@ const Cart = () => {
                             </div>
                             <div className="popup-info">
                                 <label><strong>Khách hàng:</strong></label>
-                                <p>{selectedRow.address.firstName}</p>
+                                <p>{selectedRow.address?.fullname || 'Không có thông tin'}</p>
                             </div>
-
                             <div className="popup-info">
-                                <label><strong>Chi tiết đơn hàng:</strong></label>
-                                <p>{selectedRow.items[0].name}</p>
+                                <label><strong>Hình thức thanh toán:</strong></label>
+                                <p>{selectedRow.paymentMethod || 'Không có thông tin'}</p>
                             </div>
-
                             <div className="popup-info">
                                 <label><strong>Giá trị đơn hàng:</strong></label>
-                                <p>{(selectedRow.amount).toLocaleString()}</p>
+                                <p>{(selectedRow.amount).toLocaleString()} VND</p>
                             </div>
-                            <div className="popup-info">
+                            <div className="popup-info" style={{ display: 'block' }}>
                                 <label><strong>Địa chỉ:</strong></label>
-                                <p>{selectedRow.address.street}, {selectedRow.address.state}, {selectedRow.address.country}, {selectedRow.address.zipcode}</p>
+                                <p>
+                                    {selectedRow.address?.street}, {selectedRow.address?.state}, {selectedRow.address?.country}, {selectedRow.address?.zipcode}
+                                </p>
                             </div>
-                        </div>
-                        <div className="popup-footer">
-                            <button onClick={closePopup} className="popup-close-btn">Đóng</button>
+                            <div className="popup-info" style={{ display: 'block' }}>
+                                <label><strong>Sản phẩm đã mua:</strong></label>
+                                {selectedRow.items && selectedRow.items.length > 0 ? (
+                                    <table className="product-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Tên sản phẩm</th>
+                                                <th>Số lượng</th>
+                                                <th>Giá</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {selectedRow.items.map((item, index) => (
+                                                <tr key={index}>
+                                                    <td>{item.nameProduct}</td>
+                                                    <td style={{ textAlign: 'center' }} >{item.quantity}</td>
+                                                    <td style={{ textAlign: 'center' }}>{item.price.toLocaleString()} </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                ) : (
+                                    <p>Không có sản phẩm nào.</p>
+                                )}
+                            </div>
+                            <div className="popup-footer">
+                                <div className="popup-printf">
+                                    <button onClick={handlePrint} className="popup-print-btn">In hóa đơn</button>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             )}
+
         </div>
     );
 };

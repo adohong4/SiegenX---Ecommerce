@@ -32,7 +32,7 @@ class OrderService {
             }
 
         } catch (error) {
-            throw error
+            throw error;
         }
     }
 
@@ -68,6 +68,17 @@ class OrderService {
         } catch (error) {
             throw error;
         }
+    }
+
+    static countDocuments = async () => {
+        return await orderModel.countDocuments();
+    };
+
+
+    static find = async (skip, limit) => {
+        return await orderModel.find()
+            .skip(skip)
+            .limit(limit);
     }
 }
 
