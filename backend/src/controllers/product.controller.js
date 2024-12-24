@@ -108,6 +108,21 @@ class ProductController {
         }
     };
 
+    getProductByTitle = async (req, res, next) => {
+        try {
+            const { title } = req.query; // Lấy title từ query params
+            const result = await ProductService.getProductByTitle(title);
+    
+            new OK({
+                message: 'Get Products By Title OK',
+                metadata: result.products
+            }).send(res);
+        } catch (error) {
+            next(error);
+        }
+    };
+    
+
 }
 
 module.exports = new ProductController();

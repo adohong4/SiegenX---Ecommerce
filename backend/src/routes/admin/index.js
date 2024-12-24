@@ -9,6 +9,6 @@ const router = express.Router()
 router.put('/admin/changeInfo/:id', asyncHandler(AdminController.changeInfo))
 router.get('/admin/getAllUser', asyncHandler(AdminController.getAllUser))
 router.delete('/admin/deleteUser/:id', asyncHandler(AdminController.deleteUser))
-
+router.get('/admin/users/email', AdminController.getUsersByEmail);
 
 module.exports = router

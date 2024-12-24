@@ -87,6 +87,18 @@ class AdminService {
             throw error;
         }
     }
+
+    static getUsersByEmail = async (email) => {
+        try {
+            const users = await userModel.find({ email: { $regex: email, $options: 'i' } }); 
+            if (!users || users.length === 0) {
+                throw new Error("No users found with the given email");
+            }
+            return { users };
+        } catch (error) {
+            throw error;
+        }
+    };
 }
 
 module.exports = AdminService;

@@ -74,10 +74,10 @@ const Cart = () => {
                 toast.success(response.data.message);
                 fetchList();
             } else {
-                toast.error("Error deleting Order");
+                toast.error("Xảy ra lỗi khi xóa đơn hàng");
             }
         } catch (error) {
-            toast.error("Exception while deleting Order");
+            toast.error("Xảy ra ngoại lệ khi xóa đơn hàng");
         }
     };
 
@@ -118,10 +118,10 @@ const Cart = () => {
                 setTotalOrder(response.data.pagination.limit);
                 setTotalPages(response.data.pagination.totalPages);
             } else {
-                toast.error('Error fetching user list');
+                toast.error('Lỗi khi lấy danh sách đơn hàng');
             }
         } catch (error) {
-            toast.error('Error fetching data');
+            toast.error('Xảy ra ngoại lệ khi lấy danh sách đơn hàng');
             console.error(error);
         }
     };

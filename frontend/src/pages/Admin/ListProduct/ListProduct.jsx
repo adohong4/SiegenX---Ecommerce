@@ -47,16 +47,29 @@ const ListProduct = () => {
             await fetchList();
             return;
         }
-
-        // const response = await axios.get(`${url}/api/user/getUserName/search?term=${searchTerm}`);
-        const response = await axios.get(`${url}/api/food/searchFood`, { params: { term: searchTerm } })
-        console.log(response.data.success)
-        if (response.data.success) {
-            setList(response.data.data);
-        } else {
-            toast.error("Error");
+    
+        try {
+            const response = await axios.get(`${url}/v1/api/products/title`, { params: { title: searchTerm } });
+    
+            if (response.data.status) {
+                console.log(Array.isArray(response.data.metadata))
+                if (Array.isArray(response.data.metadata)) { 
+                    setList(response.data.metadata);
+                    toast.success("Search completed successfully!");
+                } else {
+                    setList([]); 
+                    toast.error("No products found.");
+                }
+            } else {
+                setList([]);
+                toast.error("Search failed.");
+            }
+        } catch (error) {
+            setList([]); // Gán giá trị rỗng khi xảy ra lỗi
+            toast.error("Error occurred during search.");
         }
     };
+    
 
     const handleUpdateProduct = async (updatedProduct) => {
         try {
@@ -86,6 +99,7 @@ const ListProduct = () => {
     const handleSortChange = (e) => {
         setSort(e.target.value);
     };
+
     const sortedList = [...list]
         .filter(item => selectedCategory === 'All' || item.category === selectedCategory)
         .sort((a, b) => {

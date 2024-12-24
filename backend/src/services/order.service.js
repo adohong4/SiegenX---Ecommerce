@@ -68,6 +68,19 @@ class OrderService {
             .limit(limit)
             .sort({ createdAt: -1 });;
     }
+
+
+    static findByCustomerName = async (customerName) => {
+        try {
+            const users = await userModel.find({ email: { $regex: email, $options: 'i' } }); 
+            if (!users || users.length === 0) {
+                throw new Error("No users found with the given email");
+            }
+            return { users };
+        } catch (error) {
+            throw error;
+        }
+    };
 }
 
 

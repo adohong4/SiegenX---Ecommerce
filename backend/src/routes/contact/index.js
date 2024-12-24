@@ -11,4 +11,6 @@ router.delete('/contact/delete/:id', asyncHandler(ContactController.deleteContac
 router.put('/contact/updateCheck/:id', asyncHandler(ContactController.updateContactIsCheck))
 
 router.get('/contact/pagination', asyncHandler(ContactController.getContactWithPagination));
+router.get('/contacts/email', ContactController.getContactsByEmail);
+
 module.exports = router; 
