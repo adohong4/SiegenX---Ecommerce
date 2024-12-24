@@ -68,14 +68,10 @@ const Cart = () => {
     };
 
     const removeOrder = async (id) => {
-        try {
-            const response = await axios.delete(`${url}/v1/api/profile/order/delete/${id}`);
-            if (response.data.status) {
-                toast.success(response.data.message);
-                fetchList();
-            }
-        } catch (error) {
-            toast.error("Xảy ra ngoại lệ khi xóa đơn hàng");
+        const response = await axios.delete(`${url}/v1/api/profile/order/delete/${id}`);
+        if (response.data.status) {
+            toast.success(response.data.message);
+            fetchList();
         }
     };
 
