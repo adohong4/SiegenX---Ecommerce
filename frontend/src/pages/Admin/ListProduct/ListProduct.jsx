@@ -62,13 +62,13 @@ const ListProduct = () => {
         try {
             const response = await axios.put(`${url}/v1/api/product/update/${updatedProduct._id}`, updatedProduct);
 
-            if (response.data.success) {
+            if (response.data.status) {
                 setList((prevList) =>
                     prevList.map((product) =>
                         product._id === updatedProduct._id ? updatedProduct : product
                     )
                 );
-                fetchList();
+                fetchList(currentPage);
                 toast.success(response.data.message);
             } else {
                 toast.error(error);
@@ -110,8 +110,6 @@ const ListProduct = () => {
     useEffect(() => {
         fetchList(currentPage);
     }, [currentPage]);
-
-
 
     return (
         <div className='listproduct add flex-col'>
@@ -160,7 +158,6 @@ const ListProduct = () => {
                 </div>
             </div>
 
-
             <div className="list-table">
                 <div className="list-table-format title">
                     <b>Hình ảnh</b>
@@ -188,9 +185,6 @@ const ListProduct = () => {
                     </div>
                 ))}
             </div>
-
-
-
 
             <ReactPaginate
                 breakLabel="..."

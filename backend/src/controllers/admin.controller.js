@@ -44,7 +44,7 @@ class AdminController {
             const result = await AdminService.deleteUser(updateData);
             if (result) {
                 new OK({
-                    message: 'Delete Success',
+                    message: 'Xóa thành công',
                     metadata: result.metadata
                 }).send(res);
             } else {

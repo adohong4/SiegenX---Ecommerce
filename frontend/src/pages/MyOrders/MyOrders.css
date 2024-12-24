@@ -21,7 +21,8 @@
     margin-bottom: 20px;
 }
 
-.loading, .no-orders {
+.loading,
+.no-orders {
     text-align: center;
     font-size: 18px;
     color: #555;
@@ -34,7 +35,8 @@
     margin-top: 20px;
 }
 
-.myorder-table th, .myorder-table td {
+.myorder-table th,
+.myorder-table td {
     border: 1px solid #ddd;
     text-align: center;
     padding: 10px;
@@ -62,19 +64,19 @@
     text-transform: capitalize;
 }
 
-.status-badge.wait-for-confirmation {
+.status-badge.đợi-xác-nhận {
     background-color: #2c3e50;
 }
 
-.status-badge.food-processing {
+.status-badge.đang-chuẩn-bị-hàng {
     background-color: #d35400;
 }
 
-.status-badge.out-for-delivery {
+.status-badge.đang-giao-hàng {
     background-color: #f39c12;
 }
 
-.status-badge.delivered {
+.status-badge.giao-hàng-thành-công {
     background-color: #27ae60;
 }
 

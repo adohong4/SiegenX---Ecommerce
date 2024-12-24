@@ -1,7 +1,8 @@
 'use strict'
 
 const userModel = require("../models/user.model")
-const orderModel = require("../models/order.model")
+const orderModel = require("../models/order.model");
+const { BadRequestError } = require("../core/error.response");
 
 class OrderService {
 
@@ -49,6 +50,10 @@ class OrderService {
     }
 
     static userOrder = async (userId) => {
+        if (!userId) {
+            throw new BadRequestError('Không thấy id người dùng');
+        }
+
         try {
             const orders = await orderModel.find({ userId }).sort({ createdAt: -1 });
             return { data: orders }

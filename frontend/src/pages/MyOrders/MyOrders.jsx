@@ -12,7 +12,7 @@ const MyOrders = () => {
     const fetchOrders = async (token) => {
         setIsLoading(true);
         try {
-            const response = await axios.get(`${url}/v1/api/order/userOrder`, { headers: { token } });
+            const response = await axios.get(`${url}/v1/api/profile/order/userOrder`, { headers: { token } });
 
             if (response.data.status === 200) {
                 setOrders(response.data.metadata);
@@ -76,7 +76,7 @@ const MyOrders = () => {
                                     </td>
                                     <td>
                                         <button
-                                            className="btn-updates" onClick={fetchOrders}
+                                            className="btn-updates" onClick={() => fetchOrders(token)}
                                         >
                                             Cập nhật đơn hàng
                                         </button>

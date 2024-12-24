@@ -6,28 +6,6 @@ const User = require('../models/user.model');
 
 class UserController {
 
-    login = async (req, res, next) => {
-        new SuccessResponse({
-            metadata: await UserService.login(req.body)
-        }).send(res)
-    }
-
-    signUp = async (req, res, next) => {
-        try {
-            const result = await UserService.signUp(req.body);
-            if (result) {
-                new CREATED({
-                    message: 'Registered OK',
-                    metadata: result.metadata
-                }).send(res);
-            } else {
-                res.status(400).json({ message: 'Registration failed' });
-            }
-        } catch (error) {
-            next(error);
-        }
-    }
-
     getUserProfile = async (req, res, next) => {
         try {
             const result = await UserService.getProfile(req.body.userId);
@@ -56,14 +34,12 @@ class UserController {
     addUserAddress = async (req, res, next) => {
         try {
             const result = await UserService.addUserAddress(req.body);
-            if (result) {
-                new CREATED({
-                    message: 'Address added successfully',
-                    metadata: result.metadata
-                }).send(res);
-            } else {
-                res.status(400).json({ message: 'Address failed' });
-            }
+
+            new CREATED({
+                message: 'Thêm địa chỉ thành công',
+                metadata: result.metadata
+            }).send(res);
+
 
         } catch (error) {
             next(error);
@@ -73,18 +49,15 @@ class UserController {
     getUserAddress = async (req, res, next) => {
         try {
             const result = await UserService.getUserAddress(req.body);
-            if (result) {
-                new OK({
-                    message: 'Get Address Successfully',
-                    metadata: result.metadata
-                }).send(res);
-            } else {
-                res.status(400).json({ message: 'Address failed' });
-            }
+
+            new OK({
+                message: 'Lấy địa chỉ thành công',
+                metadata: result.metadata
+            }).send(res);
+
 
         } catch (error) {
             next(error);
-
         }
     };
 
@@ -94,15 +67,10 @@ class UserController {
             const userId = req.user.id
 
             const result = await UserService.deleteUserAddress({ userId, addressId });
-            if (result) {
-                new OK({
-                    message: 'delete Address Successfully',
-                    metadata: result.metadata
-                }).send(res);
-            } else {
-                res.status(400).json({ message: 'Address failed' });
-            }
-
+            new OK({
+                message: 'Xóa địa chỉ thành công',
+                metadata: result.metadata
+            }).send(res);
         } catch (error) {
             next(error);
 

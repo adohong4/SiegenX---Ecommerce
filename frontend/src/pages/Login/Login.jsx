@@ -27,19 +27,26 @@ const Login = () => {
         let newUrl = url;
 
         if (currState === 'Login') {
-            newUrl += "/v1/api/user/login"
+            newUrl += "/v1/api/identity/login"
         } else {
-            newUrl += "/v1/api/user/signup"
+            newUrl += "/v1/api/identity/signup"
         }
 
-        const response = await axios.post(newUrl, data);
-
-        setToken(response.data.metadata.token);
-        toast.success('Đăng nhập thành công!')
-        localStorage.setItem("token", response.data.metadata.token);
-
-        navigate('/')
-
+        try {
+            const response = await axios.post(newUrl, data);
+            if (response.data.status === 200) {
+                setToken(response.data.metadata.token);
+                toast.success('Đăng nhập thành công!');
+                localStorage.setItem("token", response.data.metadata.token);
+                navigate('/')
+            }
+        } catch (error) {
+            if (error.response) {
+                toast.error(error.response.data.message || 'Có lỗi xảy ra, vui lòng thử lại!');
+            } else {
+                toast.error('Lỗi kết nối với máy chủ!');
+            }
+        }
     }
 
     return (

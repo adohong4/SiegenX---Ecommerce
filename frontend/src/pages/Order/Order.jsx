@@ -22,7 +22,7 @@ const PlaceOrder = () => {
 
     const fetchUserAddress = async () => {
         try {
-            const response = await axios.get(`${url}/v1/api/user/getAddress`, {
+            const response = await axios.get(`${url}/v1/api/profile/getAddress`, {
                 headers: { token }
             });
             if (response.data.status) {
@@ -73,7 +73,7 @@ const PlaceOrder = () => {
         };
         //lựa chọn online hay tại nhà
         if (paymentMethod === 'online') {
-            let response = await axios.post(url + "/v1/api/stripe/place", orderData, { headers: { token } });
+            let response = await axios.post(url + "/v1/api/profile/stripe/place", orderData, { headers: { token } });
 
             if (response.data.success) {
                 const { session_url } = response.data;
@@ -82,7 +82,7 @@ const PlaceOrder = () => {
                 toast.error(response.data.message);
             }
         } else {
-            let response = await axios.post(url + "/v1/api/payment/verify", orderData, { headers: { token } });
+            let response = await axios.post(url + "/v1/api/profile/payment/verify", orderData, { headers: { token } });
             if (response.data.success) {
                 toast.success(response.data.message);
                 navigate("/myorder");

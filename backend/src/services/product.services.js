@@ -2,7 +2,8 @@
 
 const productModel = require('../models/product.model');
 const fs = require('fs')
-const path = require('path')
+const path = require('path');
+const { BadRequestError } = require('../core/error.response');
 
 class ProductService {
     static createProduct = async (req, res, next) => {
@@ -135,12 +136,11 @@ class ProductService {
 
     static updateProduct = async (req, res, next) => {
         try {
-            console.log(req.body); // Kiểm tra giá trị của req.body
             const productId = req.params.id;
             const product = await productModel.findById(productId);
 
             if (!product) {
-                throw new Error('Product not found');
+                throw new BadRequestError('Sản phẩm không tồn tại');
             }
 
             // Cập nhật thông tin sản phẩm
@@ -166,8 +166,6 @@ class ProductService {
                 refreshRate: req.body.refreshRate
             };
 
-            console.log(updates); // Kiểm tra giá trị của updates
-
             const updatedProduct = await productModel.findByIdAndUpdate(productId, updates, { new: true });
 
             return {
@@ -180,13 +178,13 @@ class ProductService {
 
 
     static countDocuments = async () => {
-        return await productModel.countDocuments(); 
+        return await productModel.countDocuments();
     }
 
 
     static find = async (skip, limit) => {
         return productModel.find()
-            .skip(skip)   
+            .skip(skip)
             .limit(limit);
     }
 

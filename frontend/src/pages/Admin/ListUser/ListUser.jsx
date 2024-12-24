@@ -37,7 +37,7 @@ const ListUser = () => {
 
     const fetchList = async (page = 1) => {
         try {
-            const response = await axios.get(`${url}/v1/api/user/pagination?page=${page}&limit=10`);
+            const response = await axios.get(`${url}/v1/api/profile/pagination?page=${page}&limit=10`);
             if (response.data.message) {
                 setList(response.data.data);
                 setTotalUser(response.data.pagination.limit);
@@ -61,7 +61,7 @@ const ListUser = () => {
             return;
         }
         try {
-            const response = await axios.get(`${url}/v1/api/admin/getAllUser`, { params: { term: searchTerm } });
+            const response = await axios.get(`${url}/v1/api/profile/admin/getAllUser`, { params: { term: searchTerm } });
             if (response.data.status) {
                 setList(response.data.data);
                 setTotalUser(response.data.totalUsers);
@@ -76,7 +76,7 @@ const ListUser = () => {
 
     const removeUser = async (userId) => {
         try {
-            const response = await axios.delete(`${url}/v1/api/admin/deleteUser/${userId}`);
+            const response = await axios.delete(`${url}/v1/api/profile/admin/deleteUser/${userId}`);
             if (response.data.status) {
                 toast.success(response.data.message);
                 await fetchList(currentPage);
@@ -95,7 +95,7 @@ const ListUser = () => {
                 email: currentUser.email,
                 password: currentUser.password ? currentUser.password : undefined,
             };
-            const response = await axios.put(`${url}/v1/api/admin/changeInfo/${currentUser._id}`, formData);
+            const response = await axios.put(`${url}/v1/api/profile/admin/changeInfo/${currentUser._id}`, formData);
             if (response.data.status) {
                 toast.success(response.data.message);
                 await fetchList();

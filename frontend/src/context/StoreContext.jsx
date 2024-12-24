@@ -20,14 +20,14 @@ const StoreContextProvider = (props) => {
             setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
         }
         if (token) {
-            await axios.post(url + "/v1/api/cart/add", { itemId }, { headers: { token } })
+            await axios.post(url + "/v1/api/profile/cart/add", { itemId }, { headers: { token } })
         }
     }
 
     const removeFromCart = async (itemId) => {
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
         if (token) {
-            await axios.post(url + "/v1/api/cart/remove", { itemId }, { headers: { token } })
+            await axios.post(url + "/v1/api/profile/cart/remove", { itemId }, { headers: { token } })
         }
     }
 
@@ -42,7 +42,7 @@ const StoreContextProvider = (props) => {
             setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + quantity }))
         }
         if (token) {
-            await axios.post(url + "/v1/api/cart/addQuantity", { itemId, quantity }, { headers: { token } })
+            await axios.post(url + "/v1/api/profile/cart/addQuantity", { itemId, quantity }, { headers: { token } })
         }
     }
 
@@ -68,7 +68,7 @@ const StoreContextProvider = (props) => {
     };
 
     const loadCartData = async (token) => {
-        const response = await axios.get(url + "/v1/api/cart/get", {
+        const response = await axios.get(url + "/v1/api/profile/cart/get", {
             headers: { token }
         });
         setCartItems(response.data.metadata);

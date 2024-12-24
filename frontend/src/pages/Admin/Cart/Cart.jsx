@@ -41,7 +41,7 @@ const Cart = () => {
         }
 
         try {
-            const response = await axios.get(`${url}/v1/api/admin/getAllUser`, { params: { term: searchTerm } });
+            const response = await axios.get(`${url}/v1/api/profile/admin/getAllUser`, { params: { term: searchTerm } });
             if (response.data.status) {
                 setList(response.data.data);
             } else {
@@ -55,7 +55,7 @@ const Cart = () => {
     const statusHandler = async (event, orderId) => {
         const selectedValue = event.target.value;
 
-        const response = await axios.put(url + "/v1/api/order/updateStatus", {
+        const response = await axios.put(url + "/v1/api/profile/order/updateStatus", {
             orderId,
             status: selectedValue
         });
@@ -69,12 +69,10 @@ const Cart = () => {
 
     const removeOrder = async (id) => {
         try {
-            const response = await axios.delete(`${url}/v1/api/order/delete/${id}`);
+            const response = await axios.delete(`${url}/v1/api/profile/order/delete/${id}`);
             if (response.data.status) {
                 toast.success(response.data.message);
                 fetchList();
-            } else {
-                toast.error("Error deleting Order");
             }
         } catch (error) {
             toast.error("Exception while deleting Order");
@@ -112,17 +110,14 @@ const Cart = () => {
 
     const fetchListpage = async (page = 1) => {
         try {
-            const response = await axios.get(`${url}/v1/api/order/pagination?page=${page}&limit=10`);
+            const response = await axios.get(`${url}/v1/api/profile/order/pagination?page=${page}&limit=10`);
             if (response.data.message) {
                 setList(response.data.data);
                 setTotalOrder(response.data.pagination.limit);
                 setTotalPages(response.data.pagination.totalPages);
-            } else {
-                toast.error('Error fetching user list');
             }
         } catch (error) {
             toast.error('Error fetching data');
-            console.error(error);
         }
     };
 
@@ -186,17 +181,17 @@ const Cart = () => {
                                 onChange={(event) => statusHandler(event, item._id)}
                                 value={item.status}
                                 style={{
-                                    backgroundColor: item.status === "Wait for confirmation" ? "#2c3e50" :
-                                        item.status === "Food processing" ? "#d35400" :
-                                            item.status === "Out for delivery" ? "#f39c12" :
-                                                item.status === "Delivered" ? "#27ae60" : "#ecf0f1",
-                                    color: ["Wait for confirmation", "Food processing", "Out for delivery", "Delivered"].includes(item.status) ? "white" : "black"
+                                    backgroundColor: item.status === "Đợi xác nhận" ? "#2c3e50" :
+                                        item.status === "Đang chuẩn bị hàng" ? "#d35400" :
+                                            item.status === "Đang giao hàng" ? "#f39c12" :
+                                                item.status === "Giao hàng thành công" ? "#27ae60" : "#ecf0f1",
+                                    color: ["Đợi xác nhận", "Đang chuẩn bị hàng", "Đang giao hàng", "Giao hàng thành công"].includes(item.status) ? "white" : "black"
                                 }}
                             >
-                                <option value="Wait for confirmation">Đợi xác nhận</option>
-                                <option value="Food processing">Đang chuẩn bị hàng</option>
-                                <option value="Out for delivery">Đang giao hàng</option>
-                                <option value="Delivered">Giao hàng thành công</option>
+                                <option value="Đợi xác nhận">Đợi xác nhận</option>
+                                <option value="Đang chuẩn bị hàng">Đang chuẩn bị hàng</option>
+                                <option value="Đang giao hàng">Đang giao hàng</option>
+                                <option value="Giao hàng thành công">Giao hàng thành công</option>
                             </select></td>
                             <td>
                                 <button onClick={(e) => { e.stopPropagation(); removeOrder(item._id); }} className='btn-delete'>

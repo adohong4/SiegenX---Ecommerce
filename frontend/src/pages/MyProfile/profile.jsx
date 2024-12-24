@@ -16,7 +16,7 @@ const Profile = () => {
 
     const fetchUserAddress = async () => {
         try {
-            const response = await axios.get(`${url}/v1/api/user/getAddress`, { headers: { token } });
+            const response = await axios.get(`${url}/v1/api/profile/getAddress`, { headers: { token } });
             if (response.data.status) {
                 setList(response.data.metadata.addresses);
             }
@@ -27,7 +27,7 @@ const Profile = () => {
 
     const fetchUserData = async () => {
         try {
-            const response = await axios.get(`${url}/v1/api/user/getProfile`, { headers: { token } });
+            const response = await axios.get(`${url}/v1/api/profile/getProfile`, { headers: { token } });
             if (response.data.status) {
                 setName(response.data.metadata.username);
                 setEmail(response.data.metadata.email);
@@ -39,7 +39,7 @@ const Profile = () => {
 
     const updateUserProfile = async () => {
         try {
-            const response = await axios.put(`${url}/v1/api/user/updateProfile`, { username, password }, { headers: { token } });
+            const response = await axios.put(`${url}/v1/api/profile/updateProfile`, { username, password }, { headers: { token } });
             if (response.data.status) {
                 toast.success(response.data.message);
             }
@@ -49,10 +49,9 @@ const Profile = () => {
     };
 
     useEffect(() => {
-        if (token) {
-            fetchUserData();
-            fetchUserAddress();
-        }
+        fetchUserData(token);
+        fetchUserAddress(token);
+
     }, [token]);
 
     return (

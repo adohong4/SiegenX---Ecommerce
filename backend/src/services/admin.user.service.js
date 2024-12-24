@@ -69,7 +69,6 @@ class AdminService {
 
     static deleteUser = async ({ userID }) => {
         try {
-            console.log(userID)
 
             const deletedUser = await userModel.findByIdAndDelete({ _id: userID })
 
