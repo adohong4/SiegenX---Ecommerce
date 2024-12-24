@@ -1,3 +1,4 @@
+
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import "./ProductsList.css";
@@ -5,10 +6,10 @@ import { assets } from "../../../assets/assets";
 import { StoreContext } from "../../../context/StoreContext";
 
 const ProductsList = () => {
-  const { product_list } = useContext(StoreContext);
+  const { product_list, url } = useContext(StoreContext);
   const [searchParams] = useSearchParams(); // Lấy các tham số từ URL
   const [selectedCategory, setSelectedCategory] = useState(null); // Category được chọn
-  const [currentPage, setCurrentPage] = useState(1); 
+  const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 9; // Số sản phẩm mỗi trang
   const navigate = useNavigate();
 
@@ -18,7 +19,7 @@ const ProductsList = () => {
     if (categoryFromUrl) {
       setSelectedCategory(categoryFromUrl); // Cập nhật selectedCategory khi category thay đổi trong URL
     } else {
-      setSelectedCategory(null); 
+      setSelectedCategory(null);
     }
   }, [searchParams]);
 
@@ -27,8 +28,8 @@ const ProductsList = () => {
     ? product_list.filter((product) => product.category === selectedCategory)
     : product_list;
 
-  const totalPages = Math.ceil(filteredProducts.length / productsPerPage); 
-  const currentProducts = filteredProducts.slice( 
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+  const currentProducts = filteredProducts.slice(
     (currentPage - 1) * productsPerPage, // (thứ tự trang hiện tại - 1) * số lượng sp có thể hiển thị trên 1 trang( 9sp )
     currentPage * productsPerPage // trang hiện tại * 9 
     // kết quả vidu: (0,9), (9,18), (18, 27)
@@ -38,16 +39,21 @@ const ProductsList = () => {
 
   // Xử lý khi click vào sản phẩm
   const handleProductClick = (productSlug) => {
-    navigate(`/product/${productSlug}`);
+    navigate(`/san-pham/${productSlug}`);
   };
 
-  
+
+  // >>>>>>> featureTuoi
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
   };
+  // <<<<<<< HEAD
 
+  // =======
+
+  // >>>>>>> featureTuoi
   const generatePageNumbers = () => {
     const pages = [];
     if (totalPages <= 4) {
@@ -78,12 +84,18 @@ const ProductsList = () => {
     { title: "Quảng cáo 3D (OOH)", category: " 3D (OOH)" },
     { title: "KTV 5D", category: "KTV 5D" },
   ];
-
+  const columns_Rep = [
+    { title: "LED", category: "Màn hình LED" },
+    { title: "Tương tác", category: "MH tương tác" },
+    { title: "LCD", category: "Màn hình quảng cáo LCD" },
+    { title: "3D (OOH)", category: "Quảng cáo 3D (OOH)" },
+    { title: "5D", category: "KTV 5D" },
+  ];
   // Xử lý khi click vào category từ BannerHome
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
     setCurrentPage(1);
-    navigate(`/product?category=${category}`); // Chuyển đến URL với category
+    navigate(`/san-pham?category=${category}`); // Chuyển đến URL với category
   };
 
   return (
@@ -92,6 +104,17 @@ const ProductsList = () => {
       <div className="menu-container">
         <div className="menu-columns">
           {columns.map((column, index) => (
+            <div
+              key={index}
+              className="menu-column"
+              onClick={() => handleCategoryClick(column.category)} // Chuyển category khi click
+            >
+              <div className="menu-title">{column.title}</div>
+            </div>
+          ))}
+        </div>
+        <div className="menu-columns-rep">
+          {columns_Rep.map((column, index) => (
             <div
               key={index}
               className="menu-column"
@@ -124,8 +147,7 @@ const ProductsList = () => {
               >
                 <div className="productlist-img-container">
                   <img
-                    src={product.images[0]}
-                    alt={product.nameProduct}
+                    img src={`${url}/images/${product.images[0]}`} alt=""
                     className="productlist-image"
                   />
                   <div className="cart-icon">
@@ -136,12 +158,9 @@ const ProductsList = () => {
                 <div className="productlist-actions">
                   <button
                     className="productlist-price-btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      product.price ? null : navigate("/contact");
-                    }}
+                    onClick={(e) => navigate("/lien-he")}
                   >
-                    {product.price ? `${product.price.toLocaleString()}đ` : "LIÊN HỆ"}
+                    {/* {product.price ? `${product.price.toLocaleString()}đ` : "LIÊN HỆ"} */} LIÊN HỆ
                   </button>
                   <button
                     className="productlist-btn"
@@ -162,6 +181,7 @@ const ProductsList = () => {
             ))}
           </div>
         )}
+
       </div>
 
       {filteredProducts.length > 0 && (
@@ -194,8 +214,16 @@ const ProductsList = () => {
           </button>
         </div>
       )}
+      <div className="productlist-banner-foot">
+        <img src={assets.bannerProductList} alt="" />
+      </div>
+      {/* >>>>>>> featureTuoi */}
     </div>
   );
 };
 
+// <<<<<<< HEAD
+// export default ProductsList;
+// =======
 export default ProductsList;
+// >>>>>>> featureTuoi

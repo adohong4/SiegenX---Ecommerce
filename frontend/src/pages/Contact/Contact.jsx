@@ -2,9 +2,9 @@ import React, { useState, useContext, } from 'react';
 import './Contact.css';
 import Banner from '../../components/Banner/Banner';
 import { StoreContext } from '../../context/StoreContext'
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
 const Contact = () => {
 
@@ -45,7 +45,7 @@ const Contact = () => {
 
     return (
         <div className='page-contact'>
-            < ScrollToTop/>
+            <ScrollToTop/>
             <div className='banner-contact'>
                 <Banner />
             </div>
@@ -118,7 +118,9 @@ const Contact = () => {
                                     required
                                 ></textarea>
                             </div>
-                            <button type="submit" className="btn">Gửi</button>
+                            <div className='submit-form'>
+                                <button type="submit" className="btn">Gửi</button>
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -39,7 +39,10 @@
 .form-group {
     margin-bottom: 15px;
 }
-
+.address-details-body{
+    display: flex;
+    align-items: center;
+}
 .form-control {
     width: 100%;
     padding: 8px;
@@ -99,10 +102,12 @@
 .address-details-left p {
     margin: 0;
 }
-
+.address-details-right{
+    margin-top: 10px;
+}
 .address-details-right button {
     padding: 5px 10px;
-    background-color: #00b98e;
+    background-color: red;
     color: white;
     border: none;
     border-radius: 50px;
@@ -163,4 +168,19 @@
   @font-face {
     font-family: 'Poppins';
     src: url('/frontend-user/public/DesignerVN-Poppins-Regular.ttf') format('truetype');
+  }
+
+
+  @media only screen and (max-width: 48em){
+    .profile .container {
+        margin-top: 0px;
+    }
+    .profile .container {
+        display: block;
+    }
+    .profile-info, .my-address {
+        width: 100%;
+        border-radius: 0px;
+        box-shadow: none;
+    }
   }

@@ -1,0 +1,143 @@
+.menu-container {
+    width: 100%;
+    padding: 10px 20px;
+    justify-items: center;
+  }
+  
+  .menu-columns {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+    position: relative;
+  }
+  
+  .menu-column {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .menu-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    position: relative;
+    transition: color 0.3s;
+  }
+  
+  .menu-title:hover,
+  .menu-column.active .menu-title {
+    color: #000000;
+  }
+  
+  .menu-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #00B98E;
+    transition: width 0.3s ease;
+  }
+  
+  .menu-title:hover::after,
+  .menu-column.active .menu-title::after {
+    width: 100%;
+  }
+  
+  .menu-list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    list-style: none;
+    padding: 10px 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 150%;
+  }
+  
+  .menu-column:hover .menu-list,
+  .menu-column.active .menu-list {
+    display: block;
+  }
+  
+  .menu-item {
+    font-size: 14px;
+    padding: 8px 15px;
+    color: #333;
+    white-space: nowrap;
+    position: relative;
+  }
+  
+  .menu-item:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .menu-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background-color: #00B98E;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .menu-item:hover::before {
+    opacity: 1;
+  }
+  
+  .submenu-title {
+    font-weight: 400;
+    cursor: pointer;
+    color: #000000;
+    position: relative;
+   
+  }
+  
+  .submenu-list {
+    list-style: none;
+    margin: 5px 0 0 20px;
+    padding: 0;
+  }
+  
+  .submenu-item {
+    font-size: 14px;
+    padding: 5px 10px;
+    color: #333;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+  }
+  
+  .submenu-item:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .submenu-add{
+    margin-right: 0px;
+  }
+  .submenu-arrow {
+    font-size: 18px;
+    margin-left: auto;
+    color: #333;
+  }
+
+  @media only screen and (max-width: 48em) {
+    .menu-columns {
+      display: block;
+      width: 100%;
+  }
+  .menu-title {
+    text-align: center;
+}
+  }

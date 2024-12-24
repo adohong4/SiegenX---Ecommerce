@@ -44,6 +44,6 @@ class StatisticalController {
             next(error); // Đẩy lỗi đến middleware xử lý lỗi
         }
     };
-    
+
 }
 module.exports = new StatisticalController();

@@ -2,10 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../../context/StoreContext";
 import { FaSearch, FaShoppingCart, FaCartPlus, FaComments, FaEnvelope } from "react-icons/fa";
+import { toast } from 'react-toastify';
 import "./ProductInfo.css";
 
 const ProductInfo = () => {
-  const { product_slug, fetchProductSlug } = useContext(StoreContext);
+
+  const { product_slug, fetchProductSlug, url, cartItems, addQuantityToCart, addToCart, removeFromCart } = useContext(StoreContext);
   const { productSlug } = useParams();
   const [activeTab, setActiveTab] = useState("description");
   const [quantity, setQuantity] = useState(1);
@@ -14,11 +16,16 @@ const ProductInfo = () => {
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
 
+  const handleAddQuantityToCart = (id, quantity) => {
+    addQuantityToCart(id, quantity)
+    toast.success('Added to Cart!');
+  };
+
 
   useEffect(() => {
     if (productSlug) {
       fetchProductSlug(productSlug);
-      
+
     }
   }, [productSlug]);
 
@@ -49,6 +56,7 @@ const ProductInfo = () => {
         setQuantity(newQuantity);
       }
     }
+    // >>>>>>> featureTuoi
   };
 
   const handleThumbnailClick = (image) => {
@@ -58,8 +66,6 @@ const ProductInfo = () => {
 
   const togglePopup = () => setShowPopup(!showPopup);
 
-
-
   if (!product_slug) return <div>Sản phẩm không tồn tại</div>;
 
   return (
@@ -68,7 +74,7 @@ const ProductInfo = () => {
       <div className="productinfo-container">
         <div className="productinfo-images">
           <div className="productinfo-main-image">
-            <img src={mainImage} alt={product_slug.nameProduct} />
+            <img src={`${url}/images/${mainImage}`} alt={product_slug.nameProduct} />
             <div className="productinfo-zoom-icon" onClick={togglePopup}>
               <FaSearch size={22} color="black" />
             </div>
@@ -77,7 +83,7 @@ const ProductInfo = () => {
             {product_slug.images.map((image, index) => (
               <img
                 key={index}
-                src={image}
+                src={`${url}/images/${image}`}
                 alt={`Thumbnail ${index + 1}`}
                 className={`productinfo-thumbnail ${selectedThumbnail === image ? "selected" : ""}`}
                 onClick={() => handleThumbnailClick(image)}
@@ -105,14 +111,9 @@ const ProductInfo = () => {
 
           <div className="productinfo-quantity">
             <label htmlFor="quantity">Số lượng:</label>
+
             <div className="quantity-control">
-              <button
-                type="button"
-                onClick={() => handleQuantityChange({ target: { value: quantity - 1 } })}
-                disabled={quantity <= 1}
-              >
-                -
-              </button>
+              <button type="button" onClick={() => handleQuantityChange({ target: { value: quantity - 1 } })} disabled={quantity <= 1}>-</button>
               <input
                 id="quantity"
                 type="number"
@@ -122,14 +123,9 @@ const ProductInfo = () => {
                 max={product_slug.quantity}
                 step="1"
               />
-              <button
-                type="button"
-                onClick={() => handleQuantityChange({ target: { value: quantity + 1 } })}
-                disabled={quantity >= product_slug.quantity}
-              >
-                +
-              </button>
+              <button type="button" onClick={() => handleQuantityChange({ target: { value: quantity + 1 } })} disabled={quantity >= product_slug.quantity}>+</button>
             </div>
+
           </div>
 
           <button className="productinfo-buy-now">
@@ -137,10 +133,11 @@ const ProductInfo = () => {
           </button>
 
           <div className="productinfo-actions">
-            <button className="productinfo-contact" onClick={() => navigate("/contact")} >
+            <button className="productinfo-contact" onClick={() => navigate("/lien-he")} >
               <FaEnvelope className="productinfo-icon-contact" /> LIÊN HỆ
             </button>
-            <button className="productinfo-addCart" onClick={() => navigate("/cart")} >
+
+            <button className="productinfo-addCart" onClick={() => handleAddQuantityToCart(product_slug._id, quantity)} >
               <FaCartPlus className="productinfo-icon-addCart" /> Thêm vào giỏ hàng
             </button>
           </div>
@@ -171,7 +168,7 @@ const ProductInfo = () => {
               <div className="producttab-images">
                 {product_slug.images?.[0] && (
                   <img
-                    src={product_slug.images[0]}
+                    src={`${url}/images/${product_slug.images[0]}`}
                     alt="Hình ảnh sản phẩm"
                     className="producttab-image"
                   />
@@ -185,7 +182,7 @@ const ProductInfo = () => {
               <div className="producttab-images">
                 {product_slug.images?.[1] && (
                   <img
-                    src={product_slug.images[1]}
+                    src={`${url}/images/${product_slug.images[1]}`}
                     alt="Hình ảnh sản phẩm"
                     className="producttab-image"
                   />
@@ -195,7 +192,7 @@ const ProductInfo = () => {
               <div className="producttab-images">
                 {product_slug.images?.[2] && (
                   <img
-                    src={product_slug.images[2]}
+                    src={`${url}/images/${product_slug.images[2]}`}
                     alt="Hình ảnh sản phẩm"
                     className="producttab-image"
                   />
@@ -271,7 +268,8 @@ const ProductInfo = () => {
       {showPopup && (
         <div className="popup-overlay" onClick={togglePopup}>
           <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-            <img src={mainImage} alt={product_slug.nameProduct} className="popup-image" />
+            <img src={`${url}/images/${mainImage}`} alt={product_slug.nameProduct} className="popup-image" />
+            {/* >>>>>>> featureTuoi */}
             <button className="popup-close" onClick={togglePopup}>X</button>
           </div>
         </div>

@@ -3,6 +3,10 @@ import './Contact.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { StoreContext } from '../../../context/StoreContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faBook } from '@fortawesome/free-solid-svg-icons'; 
 
 const Contact = () => {
     const { url } = useContext(StoreContext);
@@ -11,6 +15,18 @@ const Contact = () => {
     const [sortOrder, setSortOrder] = useState({ name: 'asc', email: 'asc' });
     const [selectedRow, setSelectedRow] = useState(null); // Lưu thông tin hàng được chọn
     const [isPopupOpen, setIsPopupOpen] = useState(false); // Trạng thái mở/đóng popup
+
+
+    const handleViewToggle = (itemId) => {
+        setList(prevList =>
+          prevList.map(item =>
+            item._id === itemId
+              ? { ...item, viewed: !item.viewed } // Chuyển đổi trạng thái đã xem
+              : item
+          )
+        );
+      };
+      
 
     const fetchList = async () => {
         try {
@@ -71,20 +87,22 @@ const Contact = () => {
     };
 
     const openPopup = (row) => {
-        setSelectedRow(row); 
-        setIsPopupOpen(true); 
+        setSelectedRow(row);
+        setIsPopupOpen(true);
         document.body.classList.add('popup-open');
     };
 
     const closePopup = () => {
         setIsPopupOpen(false);
-        setSelectedRow(null); 
-        document.body.classList.remove('popup-open'); 
+        setSelectedRow(null);
+        document.body.classList.remove('popup-open');
     };
 
     return (
-        <div className='user-list-container'>
-            <p>Contacts List</p>
+        <div className='contact-list-container'>
+            <div className='contact-tittle'>
+                <p>Danh sách Khách hàng liên hệ</p>
+            </div>
             <div className='search'>
                 <div className='search-CSKH'>
                     <input
@@ -100,34 +118,55 @@ const Contact = () => {
                 </div>
             </div>
 
-            <table className="user-list-table">
-                <thead>
-                    <tr className="table-header">
-                        <th onClick={() => sortBy('username')} style={{ cursor: 'pointer' }}>
-                            Tên {sortOrder.name === 'asc' ? '↑' : '↓'}
-                        </th>
-                        <th onClick={() => sortBy('email')} style={{ cursor: 'pointer' }}>
-                            Email {sortOrder.email === 'asc' ? '↑' : '↓'}
-                        </th>
-                        <th>SĐT</th>
-                        <th>Nội dung</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div className="contact-list-table">
+                <div className="table-header">
+                    <div onClick={() => sortBy('username')} className="col-tk" style={{ cursor: 'pointer' }}>
+                        Tên {sortOrder.username === 'asc' ? '↑' : '↓'}
+                    </div>
+                    <div onClick={() => sortBy('email')} className="col-email" style={{ cursor: 'pointer' }}>
+                        Email {sortOrder.email === 'asc' ? '↑' : '↓'}
+                    </div>
+                    <div className="col-phone">SĐT</div>
+                    <div className="col-content">Nội dung</div>
+                    <div onClick={() => sortBy('time')} className="col-time" style={{ cursor: 'pointer' }}>
+                        Thời gian {sortOrder.time === 'asc' ? '↑' : '↓'}
+                    </div>
+                    <div className="col-check">Kiểm tra</div>
+                    <div className="col-actions">Tùy chỉnh</div>
+                </div>
+
+                <div className="table-body">
                     {list.map((item) => (
-                        <tr key={item._id} className='table-row' onClick={() => openPopup(item)}>
-                            <td>{item.username}</td>
-                            <td>{item.email}</td>
-                            <td>{item.phone}</td>
-                            <td>{item.content}</td>
-                            <td>
-                                <button onClick={(e) => { e.stopPropagation(); removeUser(item._id); }} className='btn-delete'>Xóa</button>
-                            </td>
-                        </tr>
+                        <div
+                            key={item._id}
+                            className={`table-row ${item.viewed ? 'viewed' : ''}`}
+                        >
+                            <div>{item.username}</div>
+                            <div>{item.email}</div>
+                            <div>{item.phone}</div>
+                            <div>{item.content}</div>
+                            <div>{item.date}</div>
+                            <div className="col-check">
+                                <button
+                                    onClick={() => handleViewToggle(item._id)}
+                                    className="btn-eye"
+                                >
+                                    <FontAwesomeIcon icon={item.viewed ? faEyeSlash : faEye} />
+                                </button>
+                            </div>
+                            <div className="col-actions">
+                                <button onClick={(e) => { e.stopPropagation(); removeUser(item._id); }} className="btn-delete">
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </button>
+                                <button onClick={() => openPopup(item)} className="btn-info">
+                                    <FontAwesomeIcon icon={faBook} />
+                                </button>
+                            </div>
+                        </div>
                     ))}
-                </tbody>
-            </table>
+                </div>
+            </div>
+
 
             {isPopupOpen && selectedRow && (
                 <div className="popup-overlay" onClick={closePopup}>
@@ -148,6 +187,10 @@ const Contact = () => {
                             <div className="popup-info">
                                 <label><strong>SĐT:</strong></label>
                                 <p>{selectedRow.phone}</p>
+                            </div>
+                            <div className="popup-info">
+                                <label><strong>Thời gian:</strong></label>
+                                <p>{selectedRow.date}</p>
                             </div>
                             <div className="popup-info">
                                 <label><strong>Nội dung:</strong></label>

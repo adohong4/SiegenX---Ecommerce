@@ -97,3 +97,20 @@
   background-color: #008C65;
   border-color: #00B98E; 
 }
+
+
+@media only screen and (max-width: 48em){
+  .solutions-tabs {
+    display: block;
+}
+  .solutions-tabs .solution-tab{
+    margin-bottom: 10px;
+  }
+  .solutions-images .solution-item1,
+  .solutions-images .solution-item3{
+    display: none;
+}
+  .banner-img-f img {
+    width: 100%;
+  }
+}

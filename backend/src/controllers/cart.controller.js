@@ -6,12 +6,24 @@ const { CREATED, OK, SuccessResponse } = require('../core/success.response');
 class CartController {
     addToCart = async (req, res, next) => {
         try {
-            const cartData = req.body;
-            const result = await CartService.addToCart(cartData)
+            const result = await CartService.addToCart(req)
 
             new CREATED({
                 message: "Add to Cart",
-                data: result
+                metadata: result.cart
+            }).send(res)
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    addQuantityToCart = async (req, res, next) => {
+        try {
+            const result = await CartService.addQuantityToCart(req)
+
+            new CREATED({
+                message: "Thêm số lượng vô giỏ hàng thành công",
+                metadata: result.cart
             }).send(res)
         } catch (error) {
             next(error);
@@ -20,12 +32,11 @@ class CartController {
 
     removeFromCart = async (req, res, next) => {
         try {
-            const cartData = req.body;
-            const result = await CartService.removeFromCart(cartData)
+            const result = await CartService.removeFromCart(req)
 
             new CREATED({
                 message: "Remove From Cart",
-                data: result
+                metadata: result.cart
             }).send(res)
         } catch (error) {
             next(error);
@@ -34,13 +45,13 @@ class CartController {
 
     getCart = async (req, res, next) => {
         try {
-            const cartData = req.body;
-            const result = await CartService.getCart(cartData)
+            const { userId } = req.body;
+            const result = await CartService.getCart(userId);
 
             new OK({
                 message: "Get Cart",
-                data: result
-            }).send(res)
+                metadata: result.cartData
+            }).send(res);
         } catch (error) {
             next(error);
         }

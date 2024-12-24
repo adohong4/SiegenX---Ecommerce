@@ -6,6 +6,7 @@
     padding: 20px;
     font-family: 'Poppins', sans-serif;
     color: #333;
+    margin-top: 120px;
 }
 
 .cart-header {
@@ -129,3 +130,8 @@
         flex-direction: column;
     }
 }
+@media only screen and (max-width: 48em){
+    .cart {
+        margin-top: 0 !important;
+    }
+  }

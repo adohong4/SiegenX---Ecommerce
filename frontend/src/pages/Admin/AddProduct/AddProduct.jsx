@@ -10,10 +10,13 @@ const AddProduct = () => {
     const { url } = useContext(StoreContext);
     const [images, setImage] = useState([]);
     const [data, setData] = useState({
-        name: "",
-        description: "",
+        title: "",
+        nameProduct: "",
         price: "",
+        recap: "",
+        description: "",
         category: "Màn hình LED",
+        quantity: "",
         mainBoard: "",
         chip: "",
         cpu: "",
@@ -26,39 +29,27 @@ const AddProduct = () => {
         pixelDensity: "",
         display: "",
         refreshRate: "",
-        specifications: {} // Đảm bảo specifications là một đối tượng
     });
     const [loading, setLoading] = useState(false);
 
     const onChangeHandler = (event) => {
-        const { name, value } = event.target;
-
-        // Kiểm tra nếu tên input thuộc về specifications
-        if (name in data.specifications) {
-            setData(prevData => ({
-                ...prevData,
-                specifications: {
-                    ...prevData.specifications,
-                    [name]: value
-                }
-            }));
-        } else {
-            setData(prevData => ({
-                ...prevData,
-                [name]: value
-            }));
-        }
+        const name = event.target.name;
+        const value = event.target.value;
+        setData(data => ({ ...data, [name]: value }))
     };
 
     const onSubmitHandler = async (event) => {
         event.preventDefault();
         setLoading(true);
         const formData = new FormData();
-        formData.append("name", data.name);
+        formData.append("title", data.title);
+        formData.append("nameProduct", data.nameProduct);
         formData.append("description", data.description);
+        formData.append("recap", data.recap);
         formData.append("price", Number(data.price));
+        formData.append("quantity", Number(data.quantity));
         formData.append("category", data.category);
-        formData.append("image", image);
+        Array.from(images).forEach(image => formData.append("images", image));
         formData.append("mainBoard", data.mainBoard);
         formData.append("chip", data.chip);
         formData.append("cpu", data.cpu);
@@ -73,13 +64,16 @@ const AddProduct = () => {
         formData.append("refreshRate", data.refreshRate);
 
         try {
-            const response = await axios.post(`${url}/api/product/add`, formData);
-            if (response.data.success) {
+            const response = await axios.post(`${url}/v1/api/product/add`, formData);
+            if (response.data.status) {
                 setData({
-                    name: "",
-                    description: "",
+                    title: "",
+                    nameProduct: "",
                     price: "",
+                    recap: "",
+                    description: "",
                     category: "Màn hình LED",
+                    quantity: "",
                     mainBoard: "",
                     chip: "",
                     cpu: "",
@@ -92,7 +86,6 @@ const AddProduct = () => {
                     pixelDensity: "",
                     display: "",
                     refreshRate: "",
-                    specifications: {}
                 });
                 setImage(false);
                 toast.success(response.data.message);
@@ -108,70 +101,98 @@ const AddProduct = () => {
 
     return (
         <div className="add d-flex align-items-center justify-content-center add-tab" style={{ minHeight: '100vh' }}>
-            <div className=" addprd card p-5 shadow-lg border-0" style={{width: '100%', borderRadius: '15px', height: '100%' }}>
+            <div className=" addprd card p-5 shadow-lg border-0" style={{ width: '100%', borderRadius: '15px', height: '100%' }}>
                 <h2 className="text-center mb-4">Thêm Mới Sản Phẩm</h2>
 
                 <form onSubmit={onSubmitHandler}>
                     <Tabs defaultActiveKey="general" id="product-tabs">
                         <Tab eventKey="general" title="Thông Tin Sản Phẩm">
-                        <div className="form-group text-center">
-                            <p className="font-weight-bold mb-1">Tải Ảnh</p>
-                            <label htmlFor="images" style={{ cursor: 'pointer' }}>
-                                <div className="upload-preview-container">
-                                    {images.length > 0 ? (
-                                        images.map((img, index) => (
+                            <div className="form-group text-center">
+                                <p className="font-weight-bold mb-1">Tải Ảnh</p>
+                                <label htmlFor="images" style={{ cursor: 'pointer' }}>
+                                    <div className="upload-preview-container">
+                                        {images.length > 0 ? (
+                                            images.map((img, index) => (
+                                                <img
+                                                    key={index}
+                                                    src={URL.createObjectURL(img)}
+                                                    alt={`Upload Preview ${index + 1}`}
+                                                    className="rounded-circle shadow-sm"
+                                                    style={{
+                                                        width: '100px',
+                                                        height: '100px',
+                                                        objectFit: 'cover',
+                                                        border: '3px dashed #ddd',
+                                                        padding: '5px',
+                                                        margin: '5px',
+                                                    }}
+                                                />
+                                            ))
+                                        ) : (
                                             <img
-                                                key={index}
-                                                src={URL.createObjectURL(img)}
-                                                alt={`Upload Preview ${index + 1}`}
+                                                src={assets.upload}
+                                                alt="Upload Preview"
                                                 className="rounded-circle shadow-sm"
                                                 style={{
-                                                    width: '100px',
-                                                    height: '100px',
+                                                    width: '150px',
+                                                    height: '150px',
                                                     objectFit: 'cover',
                                                     border: '3px dashed #ddd',
-                                                    padding: '5px',
-                                                    margin: '5px',
+                                                    padding: '10px',
                                                 }}
                                             />
-                                        ))
-                                    ) : (
-                                        <img
-                                            src={assets.upload}
-                                            alt="Upload Preview"
-                                            className="rounded-circle shadow-sm"
-                                            style={{
-                                                width: '150px',
-                                                height: '150px',
-                                                objectFit: 'cover',
-                                                border: '3px dashed #ddd',
-                                                padding: '10px',
-                                            }}
-                                        />
-                                    )}
-                                </div>
-                            </label>
-                            <input
-                                onChange={(e) => setImage([...e.target.files])}
-                                type="file"
-                                id="images"
-                                className="d-none"
-                                multiple
-                                required
-                            />
-                            
-                        </div>
-                        
+                                        )}
+                                    </div>
+                                </label>
+                                <input
+                                    onChange={(e) => setImage([...e.target.files])}
+                                    type="file"
+                                    id="images"
+                                    className="d-none"
+                                    multiple
+                                    required
+                                />
+
+                            </div>
+
                             <div className="form-group">
-                                <label htmlFor="name" className="mb-2">Tên Sản Phẩm</label>
+                                <label htmlFor="title" className="mb-2">Tiêu đề</label>
                                 <input
                                     onChange={onChangeHandler}
-                                    value={data.name}
+                                    value={data.title}
                                     type="text"
-                                    name="name"
-                                    id="name"
+                                    name="title"
+                                    id="title"
                                     className="form-control rounded-pill"
                                     placeholder="Nhập tên sản phẩm"
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="nameProduct" className="mb-2">Tên Sản Phẩm</label>
+                                <input
+                                    onChange={onChangeHandler}
+                                    value={data.nameProduct}
+                                    type="text"
+                                    name="nameProduct"
+                                    id="nameProduct"
+                                    className="form-control rounded-pill"
+                                    placeholder="Nhập tên sản phẩm"
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="recap" className="mb-2">Miêu tả ngắn</label>
+                                <input
+                                    onChange={onChangeHandler}
+                                    value={data.recap}
+                                    type="text"
+                                    name="recap"
+                                    id="recap"
+                                    className="form-control rounded-pill"
+                                    placeholder="Nhập miêu tả sản phẩm"
                                     required
                                 />
                             </div>
@@ -209,7 +230,7 @@ const AddProduct = () => {
                                 </div>
 
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="price" className="mb-2">Giá (đ)</label>
+                                    <label htmlFor="price" className="mb-2">Giá (VNđ)</label>
                                     <input
                                         onChange={onChangeHandler}
                                         value={data.price}
@@ -221,181 +242,195 @@ const AddProduct = () => {
                                         required
                                     />
                                 </div>
+
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="quantity" className="mb-2">Số lượng</label>
+                                    <input
+                                        onChange={onChangeHandler}
+                                        value={data.quantity}
+                                        type="number"
+                                        name="quantity"
+                                        id="quantity"
+                                        className="form-control rounded-pill"
+                                        placeholder="20"
+                                        required
+                                    />
+                                </div>
                             </div>
                         </Tab>
 
 
                         {/* Tab 2 */}
                         <Tab eventKey="specifications" title="Thông Số Kỹ Thuật">
-                        <div className="form-row">
-                            <div className="form-group col-md-6">
-                                <label htmlFor="mainboard" className="mb-2">Mainboard</label>
-                                <input
-                                    onChange={onChangeHandler}
-                                    // value={data.specifications?.mainboard }
-                                    type="text"
-                                    name="mainboard"
-                                    id="mainboard"
-                                    className="form-control rounded-pill"
-                                    placeholder="Nhập Mainboard"
-                                    required
-                                />
-                            </div>
+                            <div className="form-row">
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="mainBoard" className="mb-2">Thông Số Bo Mạch Chủ</label>
+                                    <input
+                                        onChange={onChangeHandler}
+                                        value={data.mainBoard}
+                                        type="text"
+                                        name="mainBoard"
+                                        id="mainBoard"
+                                        className="form-control rounded-pill"
+                                        placeholder="Nhập Thông Số Bo Mạch Chủ"
+                                        required
+                                    />
+                                </div>
 
-                            <div className="form-group col-md-6">
-                                <label htmlFor="cpu" className="mb-2">Chip</label>
-                                <input
-                                    onChange={onChangeHandler}
-                                    // value={data.specifications?.cpu || ''}
-                                    type="text"
-                                    name="chip"
-                                    id="chip"
-                                    className="form-control rounded-pill"
-                                    placeholder="Nhập loại chip"
-                                    required
-                                />
-                            </div>
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="chip" className="mb-2">Chip</label>
+                                    <input
+                                        onChange={onChangeHandler}
+                                        value={data.chip}
+                                        type="text"
+                                        name="chip"
+                                        id="chip"
+                                        className="form-control rounded-pill"
+                                        placeholder="Nhập loại chip"
+                                        required
+                                    />
+                                </div>
 
-                            <div className="form-group col-md-6">
-                                <label htmlFor="gpu" className="mb-2">GPU</label>
-                                <input
-                                    onChange={onChangeHandler}
-                                    // value={data.specifications?.gpu || ''}
-                                    type="text"
-                                    name="gpu"
-                                    id="gpu"
-                                    className="form-control rounded-pill"
-                                    placeholder="Nhập GPU"
-                                    required
-                                />
-                            </div>
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="gpu" className="mb-2">GPU</label>
+                                    <input
+                                        onChange={onChangeHandler}
+                                        value={data.gpu}
+                                        type="text"
+                                        name="gpu"
+                                        id="gpu"
+                                        className="form-control rounded-pill"
+                                        placeholder="Nhập GPU"
+                                        required
+                                    />
+                                </div>
 
-                            <div className="form-group col-md-6">
-                                <label htmlFor="gpu" className="mb-2">CPU</label>
-                                <input
-                                    onChange={onChangeHandler}
-                                    // value={data.specifications?.cpu || ''}
-                                    type="text"
-                                    name="cpu"
-                                    id="cpu"
-                                    className="form-control rounded-pill"
-                                    placeholder="Nhập CPU"
-                                    required
-                                />
-                            </div>
-                            <div className="form-group col-md-6">
-                                <label htmlFor="ram" className="mb-2">RAM</label>
-                                <input
-                                    onChange={onChangeHandler}
-                                    // value={data.specifications?.ram || ''}
-                                    type="text"
-                                    name="ram"
-                                    id="ram"
-                                    className="form-control rounded-pill"
-                                    placeholder="Nhập RAM"
-                                    required
-                                />
-                            </div>
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="cpu" className="mb-2">CPU</label>
+                                    <input
+                                        onChange={onChangeHandler}
+                                        value={data.cpu}
+                                        type="text"
+                                        name="cpu"
+                                        id="cpu"
+                                        className="form-control rounded-pill"
+                                        placeholder="Nhập CPU"
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="ram" className="mb-2">RAM</label>
+                                    <input
+                                        onChange={onChangeHandler}
+                                        value={data.ram}
+                                        type="text"
+                                        name="ram"
+                                        id="ram"
+                                        className="form-control rounded-pill"
+                                        placeholder="Nhập RAM"
+                                        required
+                                    />
+                                </div>
 
-                            <div className="form-group col-md-6">
-                                <label htmlFor="storage" className="mb-2">Memory</label>
-                                <input
-                                    onChange={onChangeHandler}
-                                    // value={data.specifications?.memory || ''}
-                                    type="text"
-                                    name="storage"
-                                    id="storage"
-                                    className="form-control rounded-pill"
-                                    placeholder="Nhập Dung lượng bộ nhớ (HDD/SSD)"
-                                    required
-                                />
-                            </div>
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="memory" className="mb-2">Bộ nhớ</label>
+                                    <input
+                                        onChange={onChangeHandler}
+                                        value={data.memory}
+                                        type="text"
+                                        name="memory"
+                                        id="memory"
+                                        className="form-control rounded-pill"
+                                        placeholder="Nhập Dung lượng bộ nhớ (HDD/SSD)"
+                                        required
+                                    />
+                                </div>
 
-                            <div className="form-group col-md-6">
-                                <label htmlFor="os" className="mb-2">Version</label>
-                                <input
-                                    onChange={onChangeHandler}
-                                    // value={data.specifications?.os || ''}
-                                    type="text"
-                                    name="os"
-                                    id="os"
-                                    className="form-control rounded-pill"
-                                    placeholder="Nhập Hệ điều hành"
-                                    required
-                                />
-                            </div>
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="version" className="mb-2">Phiên bản</label>
+                                    <input
+                                        onChange={onChangeHandler}
+                                        value={data.version}
+                                        type="text"
+                                        name="version"
+                                        id="version"
+                                        className="form-control rounded-pill"
+                                        placeholder="Nhập phiên bản"
+                                        required
+                                    />
+                                </div>
 
-                            <div className="form-group col-md-6">
-                                <label htmlFor="display" className="mb-2">DisplaySize</label>
-                                <input
-                                    onChange={onChangeHandler}
-                                    // value={data.specifications?.displaySize || ''}
-                                    type="text"
-                                    name="display"
-                                    id="display"
-                                    className="form-control rounded-pill"
-                                    placeholder="Nhập Thông số màn hình (IPS, OLED, v.v.)"
-                                    required
-                                />
-                            </div>
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="displaySize" className="mb-2">Kích Thước Hiển Thị</label>
+                                    <input
+                                        onChange={onChangeHandler}
+                                        value={data.displaySize}
+                                        type="text"
+                                        name="displaySize"
+                                        id="displaySize"
+                                        className="form-control rounded-pill"
+                                        placeholder="Nhập Thông số màn hình (IPS, OLED, v.v.)"
+                                        required
+                                    />
+                                </div>
 
-                            <div className="form-group col-md-6">
-                                <label htmlFor="ports" className="mb-2">pixelDensity</label>
-                                <input
-                                    onChange={onChangeHandler}
-                                    // value={data.specifications?.pixelDensity || ''}
-                                    type="text"
-                                    name="pixelDensity"
-                                    id="pixelDensity"
-                                    className="form-control rounded-pill"
-                                    placeholder="Nhập Port"
-                                    required
-                                />
-                            </div>
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="pixelDensity" className="mb-2">Độ Phân Giải</label>
+                                    <input
+                                        onChange={onChangeHandler}
+                                        value={data.pixelDensity}
+                                        type="text"
+                                        name="pixelDensity"
+                                        id="pixelDensity"
+                                        className="form-control rounded-pill"
+                                        placeholder="Nhập Port"
+                                        required
+                                    />
+                                </div>
 
-                            <div className="form-group col-md-6">
-                                <label htmlFor="ports" className="mb-2">Port</label>
-                                <input
-                                    onChange={onChangeHandler}
-                                    // value={data.specifications?.ports || ''}
-                                    type="text"
-                                    name="ports"
-                                    id="ports"
-                                    className="form-control rounded-pill"
-                                    placeholder="Nhập pixelDensity"
-                                    required
-                                />
-                            </div>            
-                            {/* Weight */}
-                            <div className="form-group col-md-6">
-                                <label htmlFor="weight" className="mb-2">Display</label>
-                                <input
-                                    onChange={onChangeHandler}
-                                    // value={data.specifications?.display || ''}
-                                    type="text"
-                                    name="display"
-                                    id="display"
-                                    className="form-control rounded-pill"
-                                    placeholder="Nhập màn hình"
-                                    required
-                                />
-                            </div>
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="ports" className="mb-2">Cổng</label>
+                                    <input
+                                        onChange={onChangeHandler}
+                                        value={data.ports}
+                                        type="text"
+                                        name="ports"
+                                        id="ports"
+                                        className="form-control rounded-pill"
+                                        placeholder="Nhập pixelDensity"
+                                        required
+                                    />
+                                </div>
+                                {/* Weight */}
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="display" className="mb-2">Màn Hình</label>
+                                    <input
+                                        onChange={onChangeHandler}
+                                        value={data.display}
+                                        type="text"
+                                        name="display"
+                                        id="display"
+                                        className="form-control rounded-pill"
+                                        placeholder="Nhập màn hình"
+                                        required
+                                    />
+                                </div>
 
-                            {/* Battery */}
-                            <div className="form-group col-md-6">
-                                <label htmlFor="battery" className="mb-2">refreshRate</label>
-                                <input
-                                    onChange={onChangeHandler}
-                                    // value={data.specifications?.refreshRate || ''}
-                                    type="text"
-                                    name="refreshRate"
-                                    id="refreshRate"
-                                    className="form-control rounded-pill"
-                                    placeholder="Nhập tần số quét"
-                                    required
-                                />
+                                {/* Battery */}
+                                <div className="form-group col-md-6">
+                                    <label htmlFor="refreshRate" className="mb-2">refreshRate</label>
+                                    <input
+                                        onChange={onChangeHandler}
+                                        value={data.refreshRate}
+                                        type="text"
+                                        name="refreshRate"
+                                        id="refreshRate"
+                                        className="form-control rounded-pill"
+                                        placeholder="Nhập tần số quét"
+                                        required
+                                    />
+                                </div>
                             </div>
-                        </div>
                         </Tab>
                     </Tabs>
 

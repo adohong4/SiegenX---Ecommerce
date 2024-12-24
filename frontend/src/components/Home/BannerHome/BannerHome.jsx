@@ -4,12 +4,12 @@ import "./BannerHome.css";
 import { assets } from "../../../assets/assets";
 
 const BannerHome = () => {
-  
+
   const navigate = useNavigate(); // Tạo hàm điều hướng
 
   // Hàm xử lý điều hướng khi nhấn vào category
   const handleCategoryClick = (category) => {
-    navigate(`/product?category=${encodeURIComponent(category)}`);
+    navigate(`/san-pham?category=${encodeURIComponent(category)}`);
   };
 
   return (

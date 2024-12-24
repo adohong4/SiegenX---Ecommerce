@@ -5,12 +5,14 @@ import ProductShowcase from "../../components/Home/ProductShowcase/ProductShowca
 import Solutions from "../../components/Home/Solution/Solution";
 import Partners from "../../components/Home/Partners/Partners";
 import Provide from "../../components/Home/Provide/Provide";
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import './Home.css';
 import Notification from "../../components/Notification/Notification";
 const Home = () => {
   return (
     <main>
       <div className='container-home'>
+        <ScrollToTop/>
         <Notification />
         <BannerHome />
         <div className="container">

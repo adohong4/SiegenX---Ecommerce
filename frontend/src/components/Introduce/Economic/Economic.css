@@ -83,3 +83,22 @@
 .section-linhvuc .col-tab-right-linhvuc button:hover {
     background-color: #009E79;
 }
+
+@media only screen and (max-width: 48em) {
+
+    .economic-activity .row {
+        display: block;
+    }
+    #v-pills-tab {
+        height: fit-content;
+    }
+    .section-linhvuc .col-tab-right-linhvuc {
+        padding: 20px;
+    }
+    .tab-gt img{
+        width: 100%;
+    }
+    .col-tab-right-linhvuc{
+        text-align: center;
+    }
+}

@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './profile.css';
-import { assets } from '../../assets/assets'; 
-import AddressPopup from '../../components/Popup/AddressPopup/AddressPopup'; 
+import { assets } from '../../assets/assets';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { StoreContext } from '../../context/StoreContext';
+import AddressPopup from '../../components/Popup/AddressPopup/AddressPopup';
+import { AdminContext } from '../../context/AdminContext';
 
 const Profile = () => {
+    const { url, token, user_address } = useContext(StoreContext)
+
+
     const [profileImage, setProfileImage] = useState(assets.upload);
     const [showAddressPopup, setShowAddressPopup] = useState(false);
 
@@ -17,6 +24,8 @@ const Profile = () => {
             reader.readAsDataURL(file);
         }
     };
+    
+
 
     return (
         <div className="profile">
@@ -57,7 +66,6 @@ const Profile = () => {
                             name="email"
                             className="form-control"
                             placeholder="Type here"
-                            readOnly
                         />
                     </div>
 
@@ -88,23 +96,29 @@ const Profile = () => {
                         THÊM ĐỊA CHỈ
                     </button>
                     <div className="address-list">
-                        {/* Render danh sách địa chỉ (mẫu) */}
-                        <div className="my-address-addresses">
-                            <img src={assets.parcel_icon} alt="" className="address-icon" />
-                            <div className="address-details">
-                                <p>
-                                    <span>John Doe</span>
-                                </p>
-                                <div className="address-details-body">
-                                    <div className="address-details-left">
-                                        <p>123 Main St, Hanoi, Vietnam, 100000, +84 123 456 789</p>
-                                    </div>
-                                    <div className="address-details-right">
-                                        <button>Chỉnh sửa</button>
+                        {user_address.map((address, index) => {
+                            return (
+                                <div key={index} className="my-address-addresses">
+                                    <img src={assets.parcel_icon} alt="" className="address-icon" />
+                                    <div className="address-details">
+                                        <div className='Address'>
+                                            <p>
+                                                <p><span>{address.fullname}</span></p>
+                                            </p>
+                                            <div className="address-details-body">
+                                                <div className="address-details-left">
+                                                    <p>{address.street}, {address.precinct}, {address.city}, {address.province}, {address.phone}</p>
+                                                </div>
+                                                <div className="address-details-right">
+                                                    <button>Xóa</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>

@@ -1,84 +1,67 @@
 
-@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css");
-@import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-
+/* @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"); */
+/* @import url('https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
 
 * {
     box-sizing: border-box;
-    font-family: poppins;
-}
-
-.container {
-    padding: 0;
-}
-
-.container div {
-    padding: 20px 0;
-    margin-bottom: 0px;
-}
-
-.container div h1 {
-    z-index: 3;
-    position: relative;
-    background-color: white;
-    width: 700px;
-    bottom: 40px;
-    margin: auto;
-    text-align: center;
-    font-size: 34.264px;
-
-}
-
-.container div {
-    position: relative;
-}
-
-.container div p {
-    text-align: justify;
-}
-
-.container p {
-    font-size: 24px;
-}
-
-hr {
-    z-index: 1;
 }
 
 
-.section1 {
+
+.class-section:nth-child(even) {
+    background-color: #EFEFEF;
+}
+
+
+.class-section-0 > img {
+    width: 100%;
+}
+
+
+/* .class-section-1 .class-container div  {
+    width: 500px;
+} */
+
+.class-section-1 div img {
+    width: 100%;
+    height: auto;
+}
+
+.class-section-1 {
+    background: url("/src/assets/solution/classingRoomSolution/met3.png");
+    background-size: cover;
+}
+
+.class-section-1 .class-container {
     display: flex;
     align-items: center;
-    background: url("/src/assets/solution/ClassroomSolution/class3.png");
+    justify-content: center;
 }
 
-.section1 div {
-    width: 600px;
-    margin-left: 30px;
-    margin-bottom: 0;
-    padding: 0;
-    margin-top: 20px;
+.class-container {
+    padding: 70px 0;
 }
 
-.section1 div h1 {
-    text-align: left;
-}
-
-.section1 div p {
-    text-align: justify;
-    width: 700px;
-}
-
-.section1 img {
+.class-section-1 img {
     height: auto;
-    width: 700px;
-    margin: 0;
-    margin-bottom: 50px;
+    width: 500px;
 }
 
-.section1 div a {
+.class-section-1 .class-container div {
+    width: 600px;
+    margin-left: 40px;
+    margin-bottom: 0;
+    margin-top: 60px;
+}
+
+.class-section-1 .class-container div p{
+    margin-top: 30px;
+    font-size: 20px;
+    text-align: justify;
+}
+
+.class-section-1 div a {
     display: block;
     width: 260px;
     height: 70px;
@@ -89,95 +72,117 @@ hr {
     margin-top: 20px;
     padding: 12px;
     text-align: center;
-}
-
-.section1 div a span {
     color: white;
 }
 
-.section1 div a:hover {
+.class-section-1 div a:hover {
     background-color: #BD0F0F;
 }
 
-.section2 {
-    background-color: #EFEFEF;
-    padding: 50px;
+
+
+.class-section-2-child {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
 }
 
-.section2 .container h1,p {
-    text-align: center;
+.class-section-2-child div {
+    width: 320px;
 }
 
-
-.section2-child div{
-    width: 325px;
-    text-align: center;
-}
-
-.section2-child div p {
+.class-section-2-child div > p {
     text-align: justify;
     font-size: 20px;
-
 }
 
-.section2-child {
+.class-section-2-child div h2 {
+    text-align: center;
+}
+/* 
+h1 {
+    text-align: center;
+}
+
+p {
+    text-align: justify;
+} */
+
+.class-section-2 div > p, .class-section-2 div > h1 {
+    text-align: center;
+}
+
+.class-section-2-child div p {
+    text-align: justify;
+}
+
+.class-section-2-child div {
+    margin: 0 65px;
+}
+
+.class-section-2-child div img {
+    margin-left: 54px;
+}
+
+
+
+.class-section-3 {
+    padding-top: 0px 30px;
+}
+
+.class-section-3 h1{
+    text-align: center;
+}
+
+.class-section-3 .class-container > div {
+    margin-top: 70px;
     display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+    align-items: center;
+    /* justify-content: center; */
+    padding: 0px 60px;
 }
 
-.section-3 {
-    padding-top: 70px;
-}
-
-.section-3-child {
-    display: flex;
-}
-
-
-.section-3-child img {
-    height: auto;
-    width: 650px;
+.class-section-3 .class-container > div > img {
+    width: 805px;
+    height: 542px;
     border-radius: 30px;
-    margin-right: 30px;
 }
 
-.section-3-child div {
-    padding: 0;
+.class-section-3 .class-container > div > div {
+    margin-left: 50px;
+    width: 550px;
 }
 
-.section-3 h1 {
-    text-align: center;
+.class-section-3 .class-container > div > div > div {
+    margin-top: 30px;
 }
 
-.box {
+.sol-box {
     display: flex;
-    background-color: white;
-    justify-content: center;
+    margin-top: 20px;
 }
 
-.box i {
-    margin-top: 6px;
-    margin-right: 5px;
-    color: green
+.sol-box i {
+    margin: 5px;
+    color: green;
 }
 
-.section-4 {
-    background-color: #EFEFEF;
-    text-align: center;
-    padding: 50px;
+.sol-box p {
+    font-size: 20px;
 }
 
-.section-5 {
-    height: auto;
-    width: 100%;
+
+.class-section-4 {
+    background-color: white !important;
 }
 
-.section-6 h1 {
+.class-section-4 h1 {
     text-align: center;
 }
 
-.section-6 a{
+.class-section-4 a{
+
     display: block;
     background-color: #00B78D;
     width: 160px;
@@ -187,73 +192,14 @@ hr {
     border-radius: 30px;
 }
 
-.section-6 a span {
+.class-section-4 a span {
     color: white;
     font-size: 20px;
     width: 30px;
 }
 
-.section-6 a:hover {
+.class-section-4 a:hover {
     background-color: #009472;
-}
-
-.section-6 div {
-    max-width: 1300px;
-}
-
-.section-7 {
-    display: flex;
-    background-size: auto;
-    align-items: center;
-    background-color: #EFEFEF;
-    background: url("/src/assets/solution/MeetingRoomSolution/met3.png");
-}
-
-.section-7 img {
-    height: auto;
-    width: 50vw;
-    margin: 0;
-    margin-right: 60px;
-}
-
-.section-7 div {
-
-    margin: auto;
-}
-
-.section-7 div h2 {
-    margin-bottom: 50px;
-    text-align: center;
-}
-
-input {
-    height: 40px;
-    border-radius: 15px;
-    padding: 10px;
-    border: 1px solid #4543437e;
-}
-
-input[type="submit"] {
-    display: block;
-    width: 600px;
-    margin-top: 20px;
-    background-color: #00B78D;
-    height: 50px;
-    color: white;
-}
-
-input[name='des'] {
-    width: 600px;
-    margin-top: 20px;
-}
-
-input[name='name'] {
-    width: 250px;
-}
-
-input[name='sdt'] {
-    margin-left: 20px;
-    width: 330px;
 }
 
 
@@ -262,8 +208,11 @@ input[name='sdt'] {
     background-color: #EFEFEF;
     border-radius: 20px;
     margin: 0;
-    width: 320px;
-    height: 420px;
+
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0px 18px;
+    padding: 20px;
 }
 
 .sp div {
@@ -300,4 +249,378 @@ input[name='sdt'] {
 
 .sp div a:first-child {
     background-color: red;
+}
+
+.sp-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 70px;
+    padding: 0px 120px
+}
+
+
+
+.class-section-5 {
+    display: flex;
+    background-size: auto;
+    align-items: center;
+    background-color: #F1F1F1;
+    /* background-image: url("/src/assets/solution/classingRoomSolution/met3.png"); */
+}
+
+
+
+.class-section-5 img {
+    height: auto;
+    width: 50vw;
+    margin: 0;
+    margin-right: 60px;
+}
+
+.class-section-5 div {
+    margin: auto;
+}
+
+.class-section-5 div h2 {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.sol-input {
+    height: 40px;
+    border-radius: 15px;
+    padding: 10px;
+    border: 1px solid #4543437e;
+}
+
+input[name="sol-submit"] {
+    display: block;
+    width: 600px;
+    margin-top: 20px;
+    background-color: #00B78D;
+    height: 50px;
+    color: white;
+}
+
+textarea[name='sol-des'] {
+    width: 600px;
+    margin-top: 20px;
+    height: 200px;
+}
+
+input[name='sol-name'] {
+    width: 250px;
+}
+
+input[name='sol-sdt'] {
+    margin-left: 20px;
+    width: 330px;
+}
+
+.sol-box p {
+    font-size: 18px;
+}
+
+
+
+@media(max-width:1200px) {
+    .class-section-1 .class-container {
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+    }
+
+    .class-section-2-child div:last-child {
+        margin-top: 20px;
+    }
+
+
+}
+
+
+
+.class-section:nth-child(even) {
+    background-color: #EFEFEF;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+    .class-section-1 {
+        flex-direction: column;
+        padding: 30px;
+    }
+
+    .class-section-1 img {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .class-section-1 div {
+        width: 100%;
+        margin: 0;
+    }
+
+    .class-section-2-child div {
+        margin: 20px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .class-section-1 {
+        flex-direction: column;
+        padding: 0 4vw;
+    }
+
+    .class-section-1 div {
+        text-align: center;
+    }
+
+    .class-section-2-child div {
+        margin: 20px 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+
+    .class-section-1 img {
+        width: 100%;
+    }
+
+
+
+    .class-section-2-child div {
+        margin: 15px;
+    }
+
+    .class-section-3 .class-container > div {
+        flex-direction: column;
+    }
+
+    .class-section-3 img {
+        width: 100%;
+    }
+
+    .class-section-3 .class-container > div > div {
+        margin: 20px 0;
+    }
+
+    .sp {
+        margin: 15px auto;
+        width: 90%;
+    }
+
+    .sp img {
+        width: 100%;
+    }
+
+    .sp div {
+        justify-content: space-around;
+    }
+
+    .sol-box p {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+
+    .class-section-1  {
+        display: flex;
+        padding: 20px 2vw;
+        flex-direction: column-reverse;
+    }
+
+    .class-section-1 .class-container div {
+        width: 90.8vw;
+        margin-left: 0;
+    }
+
+
+    .class-section-1 div p {
+        font-size: 16px;
+        margin: 10px 0;
+    }
+
+    .class-section-1 div a {
+        width: 3vw;
+    }
+
+    .class-section-1 div a {
+        width: 38vw;
+        font-size: 20px;
+        height: 53px;
+    }
+
+    .class-section-2 .class-container {
+        padding: 70px 15px;
+    }
+
+    .class-section-2-child div h2 {
+        font-size: 18px;
+        margin: 0;
+    }
+
+    .class-section-2-child div img {
+        margin-left: 20vw;
+    }
+
+    .class-section-2-child div {
+        margin: 20px 0 0;
+    }
+
+
+
+    .class-section-3 .class-container > div > img {
+        width: 98vw;
+        height: auto;
+        border-radius: 30px;
+        object-fit: cover;
+    }
+
+    .class-section-3 .class-container > div {
+        margin-top: 30px;
+    }
+
+    .class-section-3 .class-container > div {
+        padding: 0 0;
+    }
+
+    .class-section-3 .class-container > div > div {
+        padding: 0 2vw;
+        width: auto;
+    }
+
+    .sp {
+        width: 90%;
+    }
+
+    .sp-row {
+        padding: 0px 8vw !important;
+        margin-top: 25px !important;
+    }
+
+    .sp-col {
+        margin: 10px 0;
+    }
+
+    .sp h5 {
+        font-size: 16px;
+    }
+
+    .sp img {
+        width: 80%;
+        margin: auto;
+    }
+
+    /* .sol-form {
+        width: 100vw;
+    } */
+
+    .class-section-5  div{
+        padding: 20px 2vw;
+        width: 100% !important;
+    }
+
+    .class-section-5 img {
+        display: none;
+    }
+
+
+    .sol-form div {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .class-section-5 div h2 {
+        margin-bottom: 20px;
+        width: 95vw;
+    }
+
+    .class-section-5 div {
+        margin: 0;
+    }
+
+    input[name='sol-name'], input[name='sol-sdt'] {
+        margin: 0;
+    }
+
+    input[name='sol-sdt'] {
+        margin-left: 0px !important;
+    }
+
+
+
+    input[name='sol-name'], input[name='sol-sdt'] {
+        margin: 10px 0;
+    }
+
+    /* input[name='sol-name'], input[name='sol-sdt'], input[name = 'sol-des'], input[name = 'sol-submit'] {
+    } */
+
+    .sol-input {
+        width: 96vw !important;
+    }
+
+    .sol-all-content {
+        overflow-y: hidden !important;
+    }
+}
+@media only screen and (max-width: 48em){
+    .class-section-1 div a {
+        width: fit-content;
+        padding: 15px 30px;
+        margin: 30px auto;
+    }
+    .class-section-1 img{
+        padding: 20px;
+    }
+    .class-section-2-child  div{
+        text-align: center;
+    }
+    .class-section-2-child div img {
+        margin-left: 0vw;
+    }
+    .class-section-2-child div h2 {
+        font-size: 18px;
+        margin-top: 20px;
+    }
+    .class-section-2-child div p {
+        text-align: center;
+        font-size: 16px !important;
+    }
+    .section-lh-left{
+        display: none;
+    }
+    .class-section-4 .class-container .sp-row .sp-col {
+        width: 48% !important;
+    }
+    .class-section-4 .class-container .sp-row .sp-col .sp h5 {
+        font-size: 13px;
+    }
+    .class-section-4 .class-container .sp-row .sp-col div{
+        display: block;
+    }
+    .class-section-4 .sp-row{
+        padding: 10px !important;
+        display: flex;
+    }
+    .sp div {
+        display: block;
+    }
+    .sp div a{
+        margin: 0;
+        width:90% !important;
+        margin: 10px auto;
+    }
+    .sp, .sp-col
+     {
+        margin-bottom: 0px !important;
+    }
+    .class-section-2 h1{
+        font-size: 27px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
 }

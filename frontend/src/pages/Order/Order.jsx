@@ -1,40 +1,126 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Order.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { assets } from '../../assets/assets';
+import { toast } from 'react-toastify';
+import { StoreContext } from '../../context/StoreContext';
 
 const PlaceOrder = () => {
+    const { getTotalCartAmount, token, user_address, product_list, cartItems, url } = useContext(StoreContext);
+    const navigate = useNavigate();
+    const [paymentMethod, setPaymentMethod] = useState("cash");
+    const [formData, setFormData] = useState({
+        fullname: "",
+        phone: "",
+        street: "",
+        precinct: "",
+        city: "",
+        province: "",
+    });
+
+    const handlePaymentChange = (event) => {
+        setPaymentMethod(event.target.value);
+    };
+
+    const onChangeHandler = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+    };
+
+    const handleAddressChange = (event) => {
+        const selectedAddress = JSON.parse(event.target.value);
+        setFormData({
+            fullname: selectedAddress.fullname,
+            email: selectedAddress.email || '',
+            street: selectedAddress.street,
+            precinct: selectedAddress.precinct,
+            city: selectedAddress.city,
+            province: selectedAddress.province,
+            phone: selectedAddress.phone
+        });
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        let orderItems = [];
+        product_list.map((item) => {
+            if (cartItems[item._id] > 0) {
+                let itemInfo = item;
+                itemInfo["quantity"] = cartItems[item._id];
+                orderItems.push(itemInfo);
+            }
+        });
+        let orderData = {
+            address: formData,
+            items: orderItems,
+            amount: getTotalCartAmount() + 50000,
+        };
+        //lựa chọn online hay tại nhà
+        if (paymentMethod === 'online') {
+            let response = await axios.post(url + "/v1/api/stripe/place", orderData, { headers: { token } });
+
+            if (response.data.success) {
+                const { session_url } = response.data;
+                window.location.replace(session_url);
+            } else {
+                toast.error(response.data.message);
+            }
+        } else {
+            let response = await axios.post(url + "/v1/api/payment/verify", orderData, { headers: { token } });
+            if (response.data.success) {
+                toast.success(response.data.message);
+                navigate("/myorder");
+            } else {
+                toast.error(response.data.message);
+            }
+        }
+
+    };
+
+    useEffect(() => {
+        if (!token) {
+            navigate('/cart');
+        } else if (getTotalCartAmount() === 0) {
+            navigate('/cart');
+        }
+    }, [token]);
+
     return (
-        <form className="place-order">
+        <form className="place-order" onSubmit={handleSubmit}>
             <div className="place-order-left">
                 <p className="title">Thông Tin Giao Hàng</p>
                 <div className="Place-address">
-                    <select>
-                        <option value="" disabled selected>Chọn địa chỉ giao hàng của bạn</option>
-                        <option value="1">Nguyễn Việt Anh, Hà Đông, Hà Nội, Việt Nam, 90001, 1234567890</option>
-                        <option value="2">Đỗ Hồng An, Mỗ Lao, Hà Đông, Hà Nội ,Việt Nam, 10001, 9876543210</option>
+                    <select
+                        name="address"
+                        onChange={handleAddressChange}
+                    >
+                        <option value="" disabled>Chọn địa chỉ giao hàng của bạn</option>
+                        {user_address.map((address, index) => (
+                            <option key={index} value={JSON.stringify(address)}>
+                                {address.fullname}, {address.street}, {address.precinct}, {address.city}, {address.province}, {address.phone}
+                            </option>
+                        ))}
                     </select>
                 </div>
 
                 <div className="multi-fields">
-                    <input type="text" placeholder="Tên" value="John" />
-                    <input type="text" placeholder="Họ" value="Doe" />
+                    <input type="text" placeholder="Họ và tên" name="fullname" value={formData.fullname} onChange={onChangeHandler} />
+                    <input type="email" placeholder="Email" name="email" value={formData.email} onChange={onChangeHandler} />
                 </div>
                 <div className='multi-fields'>
-                    <input type="email" placeholder="Địa chỉ email" value="john.doe@example.com" />
-                    <input type="text" placeholder="Đường" value="123 Main St" />
+                    <input type="text" placeholder="Đường" name="street" value={formData.street} onChange={onChangeHandler} />
                 </div>
 
                 <div className="multi-fields">
-                    <input type="text" placeholder="Thành phố" value="Los Angeles" />
-                    <input type="text" placeholder="Bang" value="California" />
+                    <input type="text" placeholder="Phường" name="precinct" value={formData.precinct} onChange={onChangeHandler} />
+                    <input type="text" placeholder="Thành phố" name="city" value={formData.city} onChange={onChangeHandler} />
                 </div>
                 <div className="multi-fields">
-                    <input type="text" placeholder="Mã bưu điện" value="90001" />
-                    <input type="text" placeholder="Quốc gia" value="USA" />
+                    <input type="text" placeholder="Tỉnh" name="province" value={formData.province} onChange={onChangeHandler} />
+                    <input type="text" placeholder="Số điện thoại" name="phone" value={formData.phone} onChange={onChangeHandler} />
                 </div>
-                <div className='multi-fields'>
-                    <input type="text" placeholder="Số điện thoại" value="1234567890" />
-                </div>
-                
             </div>
 
             <div className="place-order-right">
@@ -43,20 +129,57 @@ const PlaceOrder = () => {
                     <div>
                         <div className="cart-total-details">
                             <p>Tạm Tính</p>
-                            <p>5000000</p>
+                            <p>{(getTotalCartAmount()).toLocaleString()} đ</p>
                         </div>
                         <hr />
                         <div className="cart-total-details">
                             <p>Phí Giao Hàng</p>
-                            <p>200000</p>
+                            <p>{(getTotalCartAmount() === 0 ? 0 : 50000).toLocaleString()} đ</p>
                         </div>
                         <hr />
                         <div className="cart-total-details">
                             <b>Tổng Cộng</b>
-                            <b>5200000</b>
+                            <b>{(getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 50000).toLocaleString()} đ</b>
                         </div>
                     </div>
-                    <button type="submit" className="place-order-btn">Đặt Hàng</button>
+                    <div className="hinhthuc-thanhtoan">
+                        <p>Hình thức thanh toán:</p>
+                        <label>
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="cash"
+                                checked={paymentMethod === "cash"}
+                                onChange={handlePaymentChange}
+                            />
+                            Thanh toán khi nhận hàng
+                        </label>
+                        <br />
+                        <label>
+                            <input
+                                type="radio"
+                                name="paymentMethod"
+                                value="online"
+                                checked={paymentMethod === "online"}
+                                onChange={handlePaymentChange}
+                            />
+                            Thanh toán trực tuyến
+                        </label>
+
+                        {paymentMethod === "online" && (
+                            <div className="payment-options">
+                                <p>Chọn phương thức thanh toán trực tuyến:</p>
+                                <img src={assets.momo} alt="MoMo" className="payment-logo" />
+                                <img src={assets.zalopay} alt="ZaloPay" className="payment-logo" />
+                                <img src={assets.stripe} alt="Stripe" className="payment-logo" />
+                            </div>
+                        )}
+                    </div>
+
+
+                    <div className='btn-thanhtoan'>
+                        <button type="submit" className="place-order-btn">Đặt Hàng</button>
+                    </div>
                 </div>
             </div>
         </form>

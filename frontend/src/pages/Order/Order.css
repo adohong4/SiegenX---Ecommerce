@@ -86,6 +86,7 @@ hr {
 .place-order-btn {
     background-color: #00A07B;
     color: #fff;
+    border: 3px solid #fff !important;
     padding: 15px;
     border: none;
     border-radius: 4px;
@@ -97,3 +98,26 @@ hr {
 .place-order-btn:hover {
     background-color: #008E6D;
 }
+.hinhthuc-thanhtoan p{
+    margin-bottom: 20px;
+    
+}
+.hinhthuc-thanhtoan label{
+    display: flex;
+    color: #fff !important;
+    font-weight: 500;
+}
+.hinhthuc-thanhtoan label input{
+    width: fit-content;
+    margin-right: 20px;
+}
+@media only screen and (max-width: 48em){
+    .place-order {
+        display: block;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .place-order-left p{
+        text-align: center;
+    }
+  }

@@ -1,107 +1,55 @@
 import React from 'react'
 import { assets } from '../../assets/assets';
 import "./Solution.css"
+import Notification from "../../components/Notification/Notification";
+import { useNavigate } from 'react-router-dom';
+import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
+// import {navigateSolution} from "react-router-dom";
+
 
 const Solution = () => {
+
+    const navigate = useNavigate();
+
     return (
         <div className='allContent'>
-            <img src={assets.sol} alt="Solution" className='' />
+            <ScrollToTop/>
+            {/* <Notification /> */}
+            <div className='sol-section-0'>
+                <img src={assets.sol} alt="Solution" className='' />
+            </div>
 
             <div>
-                <div className='content'>
-                    <div className='container'>
-                        <section className='section-1 section'>
-                            <img src={assets.sol1} alt="sol-1 section" />
-                            <div>
-                                <h4>Giải pháp phòng họp thông minh</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta omnis ipsam dolore aspernatur? 
-                                    Similique sit vero nihil beatae amet ab iste earum aperiam laboriosam facilis, labore sint? Et, iure perferendis?</p>
-                                <button>Xem chi tiết</button>
+                <div className='sol-content'>
+                    <div className='sol-container'>
+                        <section className='sol-section-1 sol-section'>
+                            <div className='sol-sec1-left'>
+                                <img src={assets.sol1} alt="sol-1 section" />
                             </div>
-
-                        </section>
-                    </div>
-                </div>
-
-                <div className='content'>
-                    <div className='container'>
-                        <section className='section-2 section'>
-                            <img src={assets.sol2} alt="sol-2 section" />
-                            <div>
-                                <h4>Giải pháp phòng học thông minh</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta omnis ipsam dolore aspernatur? 
-                                    Similique sit vero nihil beatae amet ab iste earum aperiam laboriosam facilis, labore sint? Et, iure perferendis?</p>
-                                <button>Xem chi tiết</button>
+                            <div className='sol-sec1-right'>
+                                <h3>Giải pháp phòng họp thông minh</h3>
+                                <p>Giải pháp của SiegenX tập trung vào việc cung cấp các sản phẩm và dịch vụ công nghệ thông minh nhằm tối ưu hóa quy trình hoạt động và nâng cao hiệu quả kinh doanh cho doanh nghiệp.</p>
+                                <button onClick={() => (navigate("/giai-phap/phong-hop-thong-minh"))} >Xem chi tiết</button>
                             </div>
                         </section>
-                    </div>
-                </div>
-
-                <div className='content'>
-                    <div className="container">
-                        <section className='section-3 section'>
-                            <img src={assets.sol3} alt="sol-3" />
-                            <div>
-                                <h4>Giải pháp cho gian hàng</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta omnis ipsam dolore aspernatur? 
-                                    Similique sit vero nihil beatae amet ab iste earum aperiam laboriosam facilis, labore sint? Et, iure perferendis?</p>
-                                <button>Xem chi tiết</button>
+                        <section className='sol-section-2 sol-section'>
+                            <div className='sol-sec2-left'>
+                                <h3>Giải pháp phòng học thông minh</h3>
+                                <p>Giải pháp của SiegenX tập trung vào việc cung cấp các sản phẩm và dịch vụ công nghệ thông minh nhằm tối ưu hóa quy trình hoạt động và nâng cao hiệu quả kinh doanh cho doanh nghiệp.</p>
+                                <button onClick={() => (navigate("/giai-phap/lop-hoc-thong-minh"))}>Xem chi tiết</button>
+                            </div>
+                            <div className='sol-sec2-right'>
+                                <img src={assets.sol2} alt="sol-2 section" />
                             </div>
                         </section>
-                    </div>
-                </div>
-
-                <div className='content'>
-                    <div className="container">
-                        <section className='section-4 section'>
-                            <img src={assets.sol4} alt="sol-4" />
-                            <div>
-                                <h4>Kiến Trúc Điêu Khắc Đương Đại</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta omnis ipsam dolore aspernatur? 
-                                    Similique sit vero nihil beatae amet ab iste earum aperiam laboriosam facilis, labore sint? Et, iure perferendis?</p>
-                                <button>Xem chi tiết</button>
+                        <section className='sol-section-3 sol-section'>
+                            <div className='sol-sec1-left'>
+                                <img src={assets.sol3} alt="sol-3" />  
                             </div>
-                        </section>
-                    </div>
-                </div>
-
-                <div className='content'>
-                    <div className="container">
-                        <section className='section-5 section'>
-                            <img src={assets.sol5} alt="sol-5" />
-                            <div>
-                                <h4>Giải pháp trung tâm chỉ huy</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta omnis ipsam dolore aspernatur? 
-                                    Similique sit vero nihil beatae amet ab iste earum aperiam laboriosam facilis, labore sint? Et, iure perferendis?</p>
-                                <button>Xem chi tiết</button>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-
-                <div className='content'>
-                    <div className="container">
-                        <section className='section-6 section'>
-                            <img src={assets.sol6} alt="sol-6" />
-                            <div>
-                                <h4>Giải pháp y tế thông minh</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta omnis ipsam dolore aspernatur? 
-                                    Similique sit vero nihil beatae amet ab iste earum aperiam laboriosam facilis, labore sint? Et, iure perferendis?</p>
-                                <button>Xem chi tiết</button>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-
-                <div className='content'>
-                    <div className="container">
-                        <section className='section-7 section'>
-                            <img src={assets.sol7} alt="sol-7" />
-                            <div>
-                                <h4>Bảng biển kỹ thuật số</h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta omnis ipsam dolore aspernatur? 
-                                    Similique sit vero nihil beatae amet ab iste earum aperiam laboriosam facilis, labore sint? Et, iure perferendis?</p>
-                                <button>Xem chi tiết</button>
+                            <div className='sol-sec1-right'>
+                                <h3>Giải pháp cho gian hàng</h3>
+                                <p>Giải pháp của SiegenX tập trung vào việc cung cấp các sản phẩm và dịch vụ công nghệ thông minh nhằm tối ưu hóa quy trình hoạt động và nâng cao hiệu quả kinh doanh cho doanh nghiệp.</p>
+                                <button onClick={() => (navigate("/giai-phap/giai-phap-gian-hang"))} >Xem chi tiết</button>
                             </div>
                         </section>
                     </div>

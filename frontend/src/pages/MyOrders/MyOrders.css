@@ -1,0 +1,19 @@
+.My-Order{
+    margin-top: 120px;
+}
+.payment-options {
+    margin-top: 15px;
+}
+
+.payment-logo {
+    width: 70px;
+    margin: 0 10px;
+    border: 2px solid #ccc;
+    border-radius: 25px;
+    transition: all 0.3s ease-in-out;
+}
+.payment-logo:hover {
+    scale: 1.2;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); 
+    cursor: pointer;
+}

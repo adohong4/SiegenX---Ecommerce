@@ -44,8 +44,9 @@ import bglogin from './bglogin.png'
 import logofooter from './logofooter.png'
 import profile_icon from './profile_icon.png'
 import bag_icon from './bag_icon.png'
-import logout_icon from './logout_icon.png'
-
+import zalopay from './ZaloPay.png'
+import momo from './momo.png'
+import stripe from './stripe.jpg'
 import sol from './solution/sol.png'
 import sol1 from './solution/sol1.png'
 import sol2 from './solution/sol2.png'
@@ -55,7 +56,7 @@ import sol5 from './solution/sol5.png'
 import sol6 from './solution/sol6.png'
 import sol7 from './solution/sol7.png'
 
-import meeting1 from './solution/MeetingRoomSolution/met1.png'
+import meeting1 from './solution/MeetingRoomSolution/met1.jpg'
 import meeting2 from './solution/MeetingRoomSolution/met2.png'
 import meeting3 from './solution/MeetingRoomSolution/met3.png'
 import meeting4 from './solution/MeetingRoomSolution/met4.svg'
@@ -89,6 +90,7 @@ import booth5 from './solution/BoothSolution/booth5.svg'
 import booth6 from './solution/BoothSolution/booth6.jpg'
 import booth7 from './solution/BoothSolution/booth7.jpg'
 
+import parcel_icon from './parcel_icon.png'
 
 export const assets = {
     logo,
@@ -103,13 +105,14 @@ export const assets = {
 
     contact, introduce, forme, bgrcontact, upload, logofooter,
 
-    profile_icon, bag_icon, logout_icon,
+    profile_icon, bag_icon,
 
     sol, sol1, sol2, sol3, sol4, sol5, sol6, sol7,
     meeting1, meeting2, meeting3, meeting4,
     meeting5, meeting6, meeting7, meeting8, meeting9, meeting10,
     class1, class2, class3, class4, class5, class6, class7, class8, class9,
     productClass1, productClass2, productClass3, productClass4,
-    booth1, booth2, booth3, booth4, booth5, booth6, booth7
+    booth1, booth2, booth3, booth4, booth5, booth6, booth7,
 
+    parcel_icon, momo, stripe, zalopay,
 }

@@ -1,17 +1,14 @@
-'use strict';
+'use strict'
 
-const ShopService = require('../services/shop.service');
-const ProductService = require('../services/products.service');
-const { CREATED, SuccessResponse, OK } = require('../core/success.response');
-const { specificationModel } = require('../models/specification.model');
-const Image = require('../models/images.model'); // Nhập Image model
-const Product = require('../models/product.model');
-const mongoose = require('mongoose');
+const ProductService = require("../services/product.services");
+const { CREATED, OK, SuccessResponse, NOCONTENT } = require('../core/success.response');
 
 class ProductController {
-    // Phương thức thêm sản phẩm
-    static addProduct = async (req, res, next) => {
+    createProduct = async (req, res, next) => {
         try {
+// <<<<<<< HEAD
+//             const result = await ProductService.createProduct(req, res, next);
+// =======
             const productData = req.body; // Lấy dữ liệu từ request body
             const result = await ProductService.createProduct(productData); // Gọi phương thức tạo sản phẩm từ ProductService
 
@@ -210,14 +207,83 @@ class ProductController {
     addProduct = async (req, res, next) => {
         try {
             const result = await ProductService.addProduct(req); // Truyền req vào đây
+// >>>>>>> featureTuoi
             if (result) {
                 new CREATED({
-                    message: 'Product OK',
-                    metadata: result.metadata
+                    message: 'create Product successfull',
+                    metadata: result.product
                 }).send(res);
             } else {
-                res.status(400).json({ message: 'Product failed' });
+                res.status(400).json({ message: 'Registration failed' });
             }
+        } catch (error) {
+            next(error);
+        }
+    }
+
+
+    updateProduct = async (req, res, next) => {
+        try {
+            const result = await ProductService.updateProduct(req, res, next);
+
+            new CREATED({
+                message: 'update successful!',
+                metadata: result.product
+            }).send(res);
+        } catch (error) {
+            next(error);
+        }
+    }
+    getAllProduct = async (req, res, next) => {
+        try {
+            const result = await ProductService.getProduct(req.body);
+            if (result) {
+                new OK({
+                    message: 'get Product OK',
+                    metadata: result.product
+                }).send(res);
+            } else {
+                res.status(400).json({ message: 'Registration failed' });
+            }
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    getProductById = async (req, res, next) => {
+        try {
+            const result = await ProductService.getProductById(req.params.id);
+
+            new OK({
+                message: 'get Product By Id OK',
+                metadata: result.product
+            }).send(res);
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    getProductBySlug = async (req, res, next) => {
+        try {
+            const result = await ProductService.getProductBySlug(req.params.slug);
+
+            new OK({
+                message: 'get Product By Slug OK',
+                metadata: result.product
+            }).send(res);
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    deleteProduct = async (req, res, next) => {
+        try {
+            const result = await ProductService.deleteProduct(req.params.id);
+
+            new NOCONTENT({
+                message: 'delete successful!',
+                metadata: result.product
+            }).send(res);
         } catch (error) {
             next(error);
         }
@@ -226,4 +292,4 @@ class ProductController {
 
 }
 
-module.exports = ProductController;
+module.exports = new ProductController();
