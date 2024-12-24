@@ -55,6 +55,19 @@ class AdminController {
         }
     }
 
+    getUsersByEmail = async (req, res, next) => {
+        try {
+            const { email } = req.query; // Lấy title từ query params
+            const result = await AdminService.getUsersByEmail(email);
+
+            new OK({
+                message: 'Tìm kiếm thành công',
+                metadata: result.users
+            }).send(res);
+        } catch (error) {
+            next(error);
+        }
+    };
 }
 
 module.exports = new AdminController()

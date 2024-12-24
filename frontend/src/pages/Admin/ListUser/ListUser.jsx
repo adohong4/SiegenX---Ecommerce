@@ -56,21 +56,29 @@ const ListUser = () => {
     }, [currentPage]);
 
     const handleSearch = async () => {
-        if (!searchTerm.trim()) {
-            await fetchList(currentPage);
+        if (searchTerm.trim() === '') {
+            await fetchList();
             return;
         }
+
         try {
-            const response = await axios.get(`${url}/v1/api/profile/admin/getAllUser`, { params: { term: searchTerm } });
+            const response = await axios.get(`${url}/v1/api/profile/admin/users/email`, { params: { email: searchTerm } });
+
             if (response.data.status) {
-                setList(response.data.data);
-                setTotalUser(response.data.totalUsers);
-                setTotalPages(response.data.totalPages);
+                if (Array.isArray(response.data.metadata)) {
+                    setList(response.data.metadata);
+                    toast.success(response.data.message);
+                } else {
+                    setList([]);
+                    toast.error("No users found.");
+                }
             } else {
-                toast.error('Error searching users');
+                setList([]);
+                toast.error("Search failed.");
             }
         } catch (error) {
-            toast.error('Error searching users');
+            setList([]); // Gán giá trị rỗng khi xảy ra lỗi
+            toast.error("Error occurred during search.");
         }
     };
 
@@ -133,6 +141,8 @@ const ListUser = () => {
     const handleInputChange = (e) => {
         setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
     };
+
+
 
     return (
         <div className="user-list-container">

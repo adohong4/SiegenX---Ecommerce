@@ -75,7 +75,7 @@ const Cart = () => {
                 fetchList();
             }
         } catch (error) {
-            toast.error("Exception while deleting Order");
+            toast.error("Xảy ra ngoại lệ khi xóa đơn hàng");
         }
     };
 

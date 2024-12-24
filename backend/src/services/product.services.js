@@ -188,6 +188,20 @@ class ProductService {
             .limit(limit);
     }
 
+
+    static getProductByTitle = async (title) => {
+        try {
+            const products = await productModel.find({ title: { $regex: title, $options: 'i' } }); // Tìm kiếm không phân biệt chữ hoa/chữ thường
+            if (!products || products.length === 0) {
+                throw new Error("No products found with the given title");
+            }
+            return { products };
+        } catch (error) {
+            throw error;
+        }
+    };
+    
+
 }
 
 module.exports = ProductService;

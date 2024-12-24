@@ -108,6 +108,21 @@ class ProductController {
         }
     };
 
+    getProductByTitle = async (req, res, next) => {
+        try {
+            const { title } = req.query; // Lấy title từ query params
+            const result = await ProductService.getProductByTitle(title);
+
+            new OK({
+                message: 'Tìm kiếm sản phẩm thành công!',
+                metadata: result.products
+            }).send(res);
+        } catch (error) {
+            next(error);
+        }
+    };
+
+
 }
 
 module.exports = new ProductController();

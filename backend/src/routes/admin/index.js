@@ -10,5 +10,7 @@ router.put('/profile/admin/changeInfo/:id', asyncHandler(AdminController.changeI
 router.get('/profile/admin/getAllUser', asyncHandler(AdminController.getAllUser))
 router.delete('/profile/admin/deleteUser/:id', asyncHandler(AdminController.deleteUser))
 
+router.get('/profile/admin/users/email', asyncHandler(AdminController.getUsersByEmail));
+
 
 module.exports = router

@@ -88,7 +88,7 @@ const AddProduct = () => {
                     refreshRate: "",
                 });
                 setImage(false);
-                toast.success(response.data.message);
+                toast.success("Thêm sản phẩm thành công");
             } else {
                 toast.error(response.data.message);
             }
