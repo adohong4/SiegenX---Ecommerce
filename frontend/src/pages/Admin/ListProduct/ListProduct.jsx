@@ -131,7 +131,7 @@ const ListProduct = () => {
 
                         <div className="selected-container">
                             <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
-                                <option value="All" selected>Lọc</option>
+                                <option value="All">Lọc</option>
                                 <option value="Màn hình LED">Màn hình LED</option>
                                 <option value="MH tương tác">MH tương tác</option>
                                 <option value="MH quảng cáo LCD">MH quảng cáo LCD</option>

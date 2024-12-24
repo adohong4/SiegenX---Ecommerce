@@ -8,6 +8,7 @@ import { StoreContext } from '../../context/StoreContext';
 
 const PlaceOrder = () => {
     const { getTotalCartAmount, token, user_address, product_list, cartItems, url } = useContext(StoreContext);
+    const [list, setList] = useState([]);
     const navigate = useNavigate();
     const [paymentMethod, setPaymentMethod] = useState("cash");
     const [formData, setFormData] = useState({
@@ -18,6 +19,19 @@ const PlaceOrder = () => {
         city: "",
         province: "",
     });
+
+    const fetchUserAddress = async () => {
+        try {
+            const response = await axios.get(`${url}/v1/api/user/getAddress`, {
+                headers: { token }
+            });
+            if (response.data.status) {
+                setList(response.data.metadata.addresses);
+            }
+        } catch (error) {
+            toast.error("Lỗi hiển thị");
+        }
+    };
 
     const handlePaymentChange = (event) => {
         setPaymentMethod(event.target.value);
@@ -80,6 +94,7 @@ const PlaceOrder = () => {
     };
 
     useEffect(() => {
+        fetchUserAddress(token);
         if (!token) {
             navigate('/cart');
         } else if (getTotalCartAmount() === 0) {
@@ -97,7 +112,7 @@ const PlaceOrder = () => {
                         onChange={handleAddressChange}
                     >
                         <option value="" disabled>Chọn địa chỉ giao hàng của bạn</option>
-                        {user_address.map((address, index) => (
+                        {list.map((address, index) => (
                             <option key={index} value={JSON.stringify(address)}>
                                 {address.fullname}, {address.street}, {address.precinct}, {address.city}, {address.province}, {address.phone}
                             </option>

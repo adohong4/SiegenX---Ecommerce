@@ -1,20 +1,21 @@
-
-.order-list-table th:first-child, 
+.order-list-table th:first-child,
 .order-list-table td:first-child {
-    width: 8%; 
+    width: 8%;
     max-width: 150px;
-    white-space: nowrap; 
+    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
 }
 
-.order-list-container .order-list-title{
+.order-list-container .order-list-title {
     text-align: center;
 }
-.order-list-container .order-list-title p{
+
+.order-list-container .order-list-title p {
     font-size: 2rem;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 .order-list-container {
     padding: 20px;
     background-color: #f9f9f9;
@@ -37,7 +38,8 @@
     margin-bottom: 20px;
 }
 
-.order-list-table th, .order-list-table td {
+.order-list-table th,
+.order-list-table td {
     padding: 12px;
     text-align: center;
 }
@@ -62,7 +64,6 @@
     cursor: pointer;
 }
 
-
 .order-list-table select {
     padding: 5px 10px;
     border-radius: 4px;
@@ -72,7 +73,8 @@
 }
 
 
-.btn-delete, .btn-info {
+.btn-delete,
+.btn-info {
     padding: 8px 12px;
     border: none;
     border-radius: 4px;
@@ -110,7 +112,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    margin-top: 0   ;
+    margin-top: 0;
 }
 
 .popup-content-cskh {
@@ -137,7 +139,7 @@
     margin-bottom: 15px;
     display: flex;
     align-items: center;
-    gap:20px;
+    gap: 20px;
 }
 
 .popup-info label {
@@ -149,8 +151,9 @@
 .popup-footer {
     display: flex;
     justify-content: center;
-    gap:20px;
+    gap: 20px;
 }
+
 .popup-print-btn,
 .popup-close-btn {
     padding: 8px 12px;
@@ -160,21 +163,11 @@
     border-radius: 4px;
     cursor: pointer;
 }
+
 .popup-print-btn:hover,
 .popup-close-btn:hover {
     background-color: #2980b9;
 }
-
-/* .close-popup {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: transparent;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: #7f8c8d;
-} */
 
 .close-popup:hover {
     color: #2c3e50;
@@ -203,6 +196,7 @@
         opacity: 0;
         transform: scale(0.9);
     }
+
     to {
         opacity: 1;
         transform: scale(1);
@@ -211,14 +205,18 @@
 
 
 @media print {
-    .popup-close-btn, .popup-print-btn {
-        display: none !important; 
+
+    .popup-close-btn,
+    .popup-print-btn {
+        display: none !important;
     }
+
     .popup-overlay {
-        position: static !important; 
-        background: none !important; 
+        position: static !important;
+        background: none !important;
     }
+
     body {
-        background-color: white; 
+        background-color: white;
     }
 }

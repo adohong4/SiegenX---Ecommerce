@@ -10,9 +10,6 @@ const StoreContextProvider = (props) => {
     const url = "http://localhost:4002";
     const [token, setToken] = useState("")
     const [product_list, setProductList] = useState([])
-    const [user_address, setUserAddress] = useState([])
-    const [order_list, setOrderList] = useState([])
-    const [contact_list, setContactList] = useState([])
     const [product_slug, setProductSlug] = useState(null);
 
 
@@ -65,27 +62,10 @@ const StoreContextProvider = (props) => {
         setProductList(response.data.metadata);
     };
 
-    const fetchContact = async () => {
-        const response = await axios.get(`${url}/v1/api/contact/get`);
-        setContactList(response.data.metadata.contacts);
-    }
-
-    const fetchOrder = async () => {
-        const response = await axios.get(`${url}/v1/api/order/get`);
-        setOrderList(response.data.metadata);
-    }
-
     const fetchProductSlug = async (slug) => {
         const response = await axios.get(`${url}/v1/api/product/getSlug/${slug}`);
         setProductSlug(response.data.metadata);
     };
-
-    const loadUserAddress = async (token) => {
-        const response = await axios.get(`${url}/v1/api/user/getAddress`, {
-            headers: { token }
-        });
-        setUserAddress(response.data.metadata.addresses);
-    }
 
     const loadCartData = async (token) => {
         const response = await axios.get(url + "/v1/api/cart/get", {
@@ -96,13 +76,10 @@ const StoreContextProvider = (props) => {
 
     useEffect(() => {
         async function loadData() {
-            await fetchOrder();
-            await fetchContact();
             await fetchProductList();
             if (localStorage.getItem("token")) {
                 setToken(localStorage.getItem("token"));
                 await loadCartData(localStorage.getItem("token"));
-                await loadUserAddress(localStorage.getItem("token"));
             }
         }
         loadData();
@@ -110,9 +87,6 @@ const StoreContextProvider = (props) => {
 
 
     const contextValue = {
-        order_list,
-        contact_list,
-        user_address,
         product_list,
         product_slug,
         cartItems,

@@ -56,9 +56,7 @@ const Navbar = () => {
                             <div className="mid-right">
                                 <div className="search-bar">
                                     <input type="text" placeholder="Tìm kiếm" />
-                                    <button className="search-button">
-                                        <i className="fas fa-search"></i>
-                                    </button>
+                                    <button className="search-button"><i className="fas fa-search"></i></button>
                                 </div>
                                 <div className="icons">
                                     {!token ? (
@@ -71,47 +69,24 @@ const Navbar = () => {
                                     ) : (
                                         <div className="dropdown">
                                             {/* Icon User */}
-                                            <span
-                                                className="icon-user"
-                                                onClick={toggleDropdown}
-                                                style={{ cursor: 'pointer' }}
-                                            >
+                                            <span className="icon-user" onClick={toggleDropdown} style={{ cursor: 'pointer' }}>
                                                 <i className="fas fa-user"></i>
                                             </span>
-                                            <span
-                                                className="icon-cart"
-                                                onClick={() => navigate('/cart')}
-                                            >
+                                            <span className="icon-cart" onClick={() => navigate('/cart')}>
                                                 <i className="fas fa-shopping-cart"></i>
                                                 <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
                                             </span>
 
                                             {/* Dropdown Menu */}
-
                                             {isDropdownOpen && (
                                                 <ul className="dropdown-menu">
-                                                    <li
-                                                        onClick={() => {
-                                                            navigate('/myorder');
-                                                            setIsDropdownOpen(false); // Đóng dropdown
-                                                        }}
-                                                    >
+                                                    <li onClick={() => { navigate('/myorder'); setIsDropdownOpen(false); }}>
                                                         Hóa đơn
                                                     </li>
-                                                    <li
-                                                        onClick={() => {
-                                                            navigate('/ca-nhan');
-                                                            setIsDropdownOpen(false); // Đóng dropdown
-                                                        }}
-                                                    >
+                                                    <li onClick={() => { navigate('/ca-nhan'); setIsDropdownOpen(false); }}>
                                                         Cá Nhân
                                                     </li>
-                                                    <li
-                                                        onClick={() => {
-                                                            handleLogout();
-                                                            setIsDropdownOpen(false); // Đóng dropdown
-                                                        }}
-                                                    >
+                                                    <li onClick={() => { handleLogout(); setIsDropdownOpen(false); }}>
                                                         Đăng xuất
                                                     </li>
                                                 </ul>
@@ -135,8 +110,7 @@ const Navbar = () => {
                                     ].map((item) => (
                                         <li key={item.path}>
                                             <div
-                                                className={`navbar-item ${activeLink === item.path ? 'active' : ''
-                                                    }`}
+                                                className={`navbar-item ${activeLink === item.path ? 'active' : ''}`}
                                                 onClick={() => navigate(item.path)}
                                             >
                                                 {item.label}
@@ -211,7 +185,7 @@ const Navbar = () => {
                             </button>
                         ) : (
                             <ul>
-                                <li onClick={() => handleNavigate('/order')}>Đơn Hàng</li>
+                                <li onClick={() => handleNavigate('/myorder')}>Đơn Hàng</li>
                                 <li onClick={() => handleNavigate('/ca-nhan')}>
                                     Tài Khoản
                                 </li>

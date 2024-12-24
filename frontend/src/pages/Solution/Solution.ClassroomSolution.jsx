@@ -72,27 +72,27 @@ const ClassRoomSolution = () => {
                         <div>
                             <h2>NHỮNG TIẾT HỌC NHÀM CHÁN, NHỮNG BÀI HỌC KHÔNG THẤY KẾT QUẢ</h2>
                             <div className='sol-box'>
-                                <i class="fa-solid fa-check"></i>
+                                <i className="fa-solid fa-check"></i>
                                 <p><strong>Phương pháp giảng dạy truyền thống: </strong>
                                     một chiều, quá tập trung vào lý thuyết khiến học sinh dễ cảm thấy mệt mỏi và mất tập trung
                                 </p>
                             </div>
 
                             <div className='sol-box'>
-                                <i class="fa-solid fa-check"></i>
+                                <i className="fa-solid fa-check"></i>
                                 <p><strong>Cơ sở vật chất lạc hậu: </strong>
                                     thiếu các thiết bị hỗ trợ hiện đại cũng hạn chế khả năng tương tác và tạo ra những bài học sinh động</p>
                             </div>
 
                             <div className='sol-box'>
-                                <i class="fa-solid fa-check"></i>
+                                <i className="fa-solid fa-check"></i>
                                 <p><strong>Thiếu sự tương tác: </strong>
                                     Các hoạt động nhóm, thảo luận, thực hành ít được khuyến khích,
                                     khiến học sinh trở nên thụ động và thiếu cơ hội phát triển kỹ năng mềm.</p>
                             </div>
 
                             <div className='sol-box'>
-                                <i class="fa-solid fa-check"></i>
+                                <i className="fa-solid fa-check"></i>
                                 <p><strong>Môi trường học tập nhàm chán: </strong>
                                     Phòng học thiếu sáng tạo, trang thiết bị lạc hậu, không gian học tập hạn chế,
                                     khiến học sinh cảm thấy bức bách và không thoải mái.</p>
@@ -106,11 +106,11 @@ const ClassRoomSolution = () => {
                 {/* <a href="/"><span>LIÊN HỆ</span></a> */}
                 <div className='meet-container'>
                     <h1>THIẾT BỊ & SẢN PHẨM</h1>
-                    <div class="sp-row">
-                        <div class="sp-col">
+                    <div className="sp-row">
+                        <div className="sp-col">
                             <div className='sp'>
                                 <img src={assets.productClass1} alt="productclass1" />
-                                <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="/" className='buy'><i className="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div className='btn-sp'>
                                     <a href="/lien-he">
@@ -120,10 +120,10 @@ const ClassRoomSolution = () => {
                                 </div>
                             </div>
                         </div>
-                        <div class="sp-col">
+                        <div className="sp-col">
                             <div className="sp">
                                 <img src={assets.productClass2} alt="productclass2" />
-                                <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="/" className='buy'><i className="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div className='btn-sp'>
                                     <a href="/lien-he">
@@ -133,10 +133,10 @@ const ClassRoomSolution = () => {
                                 </div>
                             </div>
                         </div>
-                        <div class="sp-col">
+                        <div className="sp-col">
                             <div className="sp">
                                 <img src={assets.productClass3} alt="productclass3" />
-                                <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="/" className='buy'><i className="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div className='btn-sp'>
                                     <a href="/lien-he">
@@ -146,10 +146,10 @@ const ClassRoomSolution = () => {
                                 </div>
                             </div>
                         </div>
-                        <div class="sp-col">
+                        <div className="sp-col">
                             <div className="sp">
                                 <img src={assets.productClass4} alt="productclass4" />
-                                <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="/" className='buy'><i className="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div className='btn-sp'>
                                     <a href="/lien-he">

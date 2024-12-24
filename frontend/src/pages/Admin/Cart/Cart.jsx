@@ -189,8 +189,7 @@ const Cart = () => {
                                     backgroundColor: item.status === "Wait for confirmation" ? "#2c3e50" :
                                         item.status === "Food processing" ? "#d35400" :
                                             item.status === "Out for delivery" ? "#f39c12" :
-                                                item.status === "Delivered" ? "#27ae60" :
-                                                    "#ecf0f1",
+                                                item.status === "Delivered" ? "#27ae60" : "#ecf0f1",
                                     color: ["Wait for confirmation", "Food processing", "Out for delivery", "Delivered"].includes(item.status) ? "white" : "black"
                                 }}
                             >
@@ -199,19 +198,14 @@ const Cart = () => {
                                 <option value="Out for delivery">Đang giao hàng</option>
                                 <option value="Delivered">Giao hàng thành công</option>
                             </select></td>
-                            <div>
-                                <td>
-                                    <button onClick={(e) => { e.stopPropagation(); removeOrder(item._id); }} className='btn-delete'>
-                                        <FontAwesomeIcon icon={faTrash} />
-                                    </button>
-                                </td>
-                                <td>
-                                    <button type="button" onClick={() => openPopup(item)} className='btn-info'>
-                                        <FontAwesomeIcon icon={faEye} />
-                                    </button>
-                                </td>
-                            </div>
-
+                            <td>
+                                <button onClick={(e) => { e.stopPropagation(); removeOrder(item._id); }} className='btn-delete'>
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </button>
+                                <button type="button" onClick={() => openPopup(item)} className='btn-info'>
+                                    <FontAwesomeIcon icon={faEye} />
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

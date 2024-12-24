@@ -72,7 +72,7 @@ const BoothSolution = () => {
                         <img src={assets.booth6} alt="booth6" />
                         <div>
                             <div className='sol-box'>
-                                <i class="fa-solid fa-check"></i>
+                                <i className="fa-solid fa-check"></i>
                                 <p><strong>MỨC ĐỘ PHỔ BIẾN </strong>
                                     gian hàng thông minh phổ biến tại các quốc gia phát triển, nhưng ở các nước
                                     đang phát triển như Việt Nam, mô hình này còn khá mới mẻ và chủ yếu được thử nghiệm
@@ -81,21 +81,21 @@ const BoothSolution = () => {
                             </div>
 
                             <div className='sol-box'>
-                                <i class="fa-solid fa-check"></i>
+                                <i className="fa-solid fa-check"></i>
                                 <p><strong>KHẢ NĂNG TIẾP CẬN KHÁCH HÀNG: </strong>
                                     Thanh toán không tiền mặt và smartphone giúp mô hình này tiếp cận giới trẻ,
                                     nhưng một số khu vực vẫn ưa chuộng mua sắm truyền thống do hạn chế về hạ tầng và lo ngại bảo mật.</p>
                             </div>
 
                             <div className='sol-box'>
-                                <i class="fa-solid fa-check"></i>
+                                <i className="fa-solid fa-check"></i>
                                 <p><strong>Rào cản về chi phí và công nghệ: </strong>
                                     Triển khai gian hàng thông minh đòi hỏi vốn đầu tư lớn và đội ngũ kỹ thuật trình độ cao,
                                     gây khó khăn cho doanh nghiệp nhỏ.</p>
                             </div>
 
                             <div className='sol-box'>
-                                <i class="fa-solid fa-check"></i>
+                                <i className="fa-solid fa-check"></i>
                                 <p><strong>Nhận thức và tâm lý khách hàng: </strong>
                                     Nhiều người chưa quen với công nghệ tự động và lo ngại về tính bảo mật,
                                     đặc biệt là nhóm khách hàng lớn tuổi.</p>
@@ -109,11 +109,11 @@ const BoothSolution = () => {
                 {/* <a href="/"><span>LIÊN HỆ</span></a> */}
                 <div className='meet-container'>
                     <h1>THIẾT BỊ & SẢN PHẨM</h1>
-                    <div class="sp-row">
-                        <div class="sp-col">
+                    <div className="sp-row">
+                        <div className="sp-col">
                             <div className='sp'>
                                 <img src={assets.productClass1} alt="productclass1" />
-                                <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="/" className='buy'><i className="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
 
                                 <div className='btn-sp'>
@@ -124,10 +124,10 @@ const BoothSolution = () => {
                                 </div>
                             </div>
                         </div>
-                        <div class="sp-col">
+                        <div className="sp-col">
                             <div className="sp">
                                 <img src={assets.productClass2} alt="productclass2" />
-                                <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="/" className='buy'><i className="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
 
                                 <div className='btn-sp'>
@@ -138,10 +138,10 @@ const BoothSolution = () => {
                                 </div>
                             </div>
                         </div>
-                        <div class="sp-col">
+                        <div className="sp-col">
                             <div className="sp">
                                 <img src={assets.productClass3} alt="productclass3" />
-                                <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="/" className='buy'><i className="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div className='btn-sp'>
                                     <a href="/lien-he">
@@ -151,10 +151,10 @@ const BoothSolution = () => {
                                 </div>
                             </div>
                         </div>
-                        <div class="sp-col">
+                        <div className="sp-col">
                             <div className="sp">
                                 <img src={assets.productClass4} alt="productclass4" />
-                                <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="/" className='buy'><i className="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div className='btn-sp'>
                                     <a href="/lien-he">

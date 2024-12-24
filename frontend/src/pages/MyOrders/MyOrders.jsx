@@ -8,27 +8,29 @@ const MyOrders = () => {
     const { url, token } = useContext(StoreContext);
     const [orders, setOrders] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const fetchOrders = async () => {
+
+    const fetchOrders = async (token) => {
+        setIsLoading(true);
         try {
             const response = await axios.get(`${url}/v1/api/order/userOrder`, { headers: { token } });
 
-            if (response.data.status) {
+            if (response.data.status === 200) {
                 setOrders(response.data.metadata);
-                setIsLoading(false);
-            } else {
-                toast.error('Không thể lấy thông tin đơn hàng!');
-                setIsLoading(false);
             }
+            // else {
+            //     toast.error('Không thể lấy thông tin đơn hàng!');   // Reload là hiện thông báo, mặc dù trả về giá trị đúng
+            // }
         } catch (error) {
             toast.error('Lỗi khi kết nối với máy chủ!');
             setIsLoading(false);
-            console.error(error);
+        } finally {
+            setIsLoading(false); // Kết thúc tải dữ liệu
         }
     };
 
     useEffect(() => {
-        fetchOrders();
-    }, []);
+        fetchOrders(token);
+    }, [token]);
 
     return (
         <div className="My-Order">
@@ -48,9 +50,10 @@ const MyOrders = () => {
                     <table className="myorder-table">
                         <thead>
                             <tr>
-                                <th>Tên sản phẩm</th>
+                                <th>Mã hóa đơn</th>
                                 <th>Ngày đặt</th>
-                                <th>Tổng tiền</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
                                 <th>Trạng thái</th>
                                 <th>Cập nhật đơn hàng</th>
                             </tr>
@@ -60,6 +63,7 @@ const MyOrders = () => {
                                 <tr key={order._id}>
                                     <td>{order._id}</td>
                                     <td>{order.date}</td>
+                                    <td>{order.items.length} sản phẩm</td>
                                     <td>{order.amount.toLocaleString()} VND</td>
                                     <td>
                                         <span
