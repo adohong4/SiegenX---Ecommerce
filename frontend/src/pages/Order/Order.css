@@ -52,6 +52,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1em;
+    height: 100%;
 }
 
 .multi-fields input::placeholder {
@@ -110,6 +111,19 @@ hr {
 .hinhthuc-thanhtoan label input{
     width: fit-content;
     margin-right: 20px;
+}
+.pay-options{
+    display: flex;
+    gap:10px;
+}
+.payment-options img{
+    width: 50px;
+    border-radius: 20px;
+    transition: all 0.2s ease-in-out;
+}
+.payment-options img:hover{
+    scale: 1.1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 @media only screen and (max-width: 48em){
     .place-order {

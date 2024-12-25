@@ -184,9 +184,11 @@ const PlaceOrder = () => {
                         {paymentMethod === "online" && (
                             <div className="payment-options">
                                 <p>Chọn phương thức thanh toán trực tuyến:</p>
-                                <img src={assets.momo} alt="MoMo" className="payment-logo" />
-                                <img src={assets.zalopay} alt="ZaloPay" className="payment-logo" />
-                                <img src={assets.stripe} alt="Stripe" className="payment-logo" />
+                                <div className='pay-options'>
+                                    {/* <img src={assets.momo} alt="MoMo" className="payment-logo" />
+                                    <img src={assets.zalopay} alt="ZaloPay" className="payment-logo" /> */}
+                                    <img src={assets.stripe} alt="Stripe" className="payment-logo" />
+                                </div>
                             </div>
                         )}
                     </div>

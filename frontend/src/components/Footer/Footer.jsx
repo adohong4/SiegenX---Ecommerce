@@ -31,7 +31,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className='body-footer'>
-                        <div className="footer-info col-xxl-4">
+                        <div className="footer-info col-xxl-4">  
                             <img src={assets.logofooter} alt="" />
                             <h3>CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ SIEGENX</h3>
                             <p>Địa chỉ: D11-39 Khu đô thị Glaximeco, đường Lê Trọng Tấn, Q. Hà Đông, Tp. Hà Nội</p>

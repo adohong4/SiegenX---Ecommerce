@@ -17,7 +17,7 @@ const Admin = () => {
             </div>
             <div className="admin-content sidebar-right">
                 <Routes>
-                    <Route path="/" element={<DashBoard />} />
+                    <Route path="/dashboard" element={<DashBoard />} />
                     <Route path="user" element={<ListUser />} />
                     <Route path="product" element={<ListProduct />} />
                     <Route path="contact" element={<Contact />} />
