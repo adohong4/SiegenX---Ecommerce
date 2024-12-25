@@ -5,27 +5,56 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { StoreContext } from '../../context/StoreContext';
 import AddressPopup from '../../components/Popup/AddressPopup/AddressPopup';
-import { AdminContext } from '../../context/AdminContext';
 
 const Profile = () => {
     const { url, token, user_address } = useContext(StoreContext)
+    const [username, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-
-    const [profileImage, setProfileImage] = useState(assets.upload);
-    const [showAddressPopup, setShowAddressPopup] = useState(false);
-
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = () => {
-                setProfileImage(reader.result);
-            };
-            reader.readAsDataURL(file);
+    const fetchUserData = async () => {
+        try {
+            const response = await axios.get(`${url}/v1/api/user/getProfile`, {
+                headers: { token }
+            });
+            if (response.data.status) {
+                setName(response.data.metadata.username);
+                setEmail(response.data.metadata.email);
+                // console.log(response.data.data.name);
+            } else {
+                toast.error(response.data.message);
+            }
+        } catch (error) {
+            toast.error("Lỗi hiển thị");
         }
     };
-    
 
+    //update profile
+    const updateUserProfile = async () => {
+        try {
+            const response = await axios.put(`${url}/v1/api/user/updateProfile`, {
+                username,
+                password
+            }, {
+                headers: { token }
+            });
+            if (response.data.status) {
+                toast.success(response.data.message);
+            } else {
+                toast.error(response.data.message);
+            }
+        } catch (error) {
+            toast.error("Lỗi cập nhật thông tin tài khoản");
+        }
+    };
+
+    useEffect(() => {
+        if (token) {
+            fetchUserData();
+        }
+    }, [token]);
+
+    const [showAddressPopup, setShowAddressPopup] = useState(false);
 
     return (
         <div className="profile">
@@ -35,17 +64,16 @@ const Profile = () => {
                     <div className="form-group top-image-profile">
                         <p>Ảnh đại diện</p>
                         <img
-                            src={profileImage}
+
                             alt="Profile"
                             className="profile-image"
-                            onClick={() => document.getElementById('image').click()}
+
                         />
                         <input
                             type="file"
                             id="image"
                             className="form-control-file"
                             style={{ display: 'none' }}
-                            onChange={handleImageChange}
                         />
                     </div>
 
@@ -56,6 +84,8 @@ const Profile = () => {
                             name="name"
                             className="form-control"
                             placeholder="Type here"
+                            value={username}
+                            onChange={(e) => setName(e.target.value)}
                         />
                     </div>
 
@@ -66,6 +96,9 @@ const Profile = () => {
                             name="email"
                             className="form-control"
                             placeholder="Type here"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            readOnly
                         />
                     </div>
 
@@ -76,10 +109,12 @@ const Profile = () => {
                             name="password"
                             className="form-control"
                             placeholder="Type here"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
                     <div className="bottom-profile">
-                        <button type="submit" className="btn btn-primary add-btn">
+                        <button type="submit" className="btn btn-primary add-btn" onClick={updateUserProfile}>
                             LƯU THAY ĐỔI
                         </button>
                     </div>
@@ -114,7 +149,7 @@ const Profile = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             );

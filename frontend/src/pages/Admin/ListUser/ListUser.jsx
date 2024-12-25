@@ -7,7 +7,7 @@ import { StoreContext } from '../../../context/StoreContext';
 import PopupUser from '../../../components/Popup/UserPopup/PopupUser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { faBook } from '@fortawesome/free-solid-svg-icons'; 
+import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 const ListUser = () => {
@@ -76,8 +76,8 @@ const ListUser = () => {
 
     const removeUser = async (userId) => {
         try {
-            const response = await axios.post(`${url}/v1/api/admin/deleteUser/${userId}`);
-            if (response.data.success) {
+            const response = await axios.delete(`${url}/v1/api/admin/deleteUser/${userId}`);
+            if (response.data.status) {
                 toast.success(response.data.message);
                 await fetchList(currentPage);
             } else {
@@ -95,16 +95,16 @@ const ListUser = () => {
                 email: currentUser.email,
                 password: currentUser.password ? currentUser.password : undefined,
             };
-            const response = await axios.put(`${url}/api/user/updateUser/${currentUser._id}`, formData);
-            if (response.data.success) {
-                toast.success('Updated successfully');
-                await fetchList(currentPage);
+            const response = await axios.put(`${url}/v1/api/admin/changeInfo/${currentUser._id}`, formData);
+            if (response.data.status) {
+                toast.success(response.data.message);
+                await fetchList();
                 closePopup();
             } else {
                 toast.error(response.data.message);
             }
         } catch (error) {
-            toast.error('Error updating user');
+            toast.error('Mật khẩu cần ít nhất 8 ký tự');
         }
     };
 

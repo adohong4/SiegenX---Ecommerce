@@ -101,8 +101,8 @@ const ProductInfo = () => {
           <div className="productinfo-description">
             <h3>Tại sao bạn nên chọn: <br />{`"${product_slug.nameProduct}"`} của SIEGENX</h3>
             <ul>
-              {product_slug.description ? (
-                <li>{product_slug.description}</li>
+              {product_slug.recap ? (
+                <li>{product_slug.recap}</li>
               ) : (
                 <li>No description available</li>
               )}
@@ -128,7 +128,7 @@ const ProductInfo = () => {
 
           </div>
 
-          <button className="productinfo-buy-now">
+          <button className="productinfo-buy-now" onClick={() => { handleAddQuantityToCart(product_slug._id, quantity); navigate("/cart") }} >
             <FaShoppingCart className="productinfo-icon" /> MUA NGAY
           </button>
 

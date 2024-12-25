@@ -12,7 +12,10 @@ const router = express.Router()
 router.post('/user/signup', asyncHandler(UserController.signUp))
 router.post('/user/login', asyncHandler(UserController.login))
 
-//add User address
+//User Profile
+router.get('/user/getProfile', authMiddleware, asyncHandler(UserController.getUserProfile));
+router.put('/user/updateProfile', authMiddleware, asyncHandler(UserController.updateUserProfile));
+
 router.post('/user/addAddress', authMiddleware, asyncHandler(UserController.addUserAddress));
 router.get('/user/getAddress', authMiddleware, asyncHandler(UserController.getUserAddress));
 router.delete('/user/deleteAddress/:addressId', authMiddleware, asyncHandler(UserController.deleteUserAddress));

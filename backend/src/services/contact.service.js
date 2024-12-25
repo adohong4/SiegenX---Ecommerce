@@ -35,6 +35,53 @@ class ContactService {
             throw error;
         }
     }
+
+    static deleteContact = async (id) => {
+        try {
+            const contacts = await contactModel.findById(id);
+
+            if (!contacts) {
+                throw new BadRequestError("Không tìm id liên hệ")
+            }
+
+            await contactModel.findByIdAndDelete(id)
+
+            return {
+                contacts
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    static updateIsCheck = async (contactId, isCheckValue) => {
+        try {
+            // Tìm và cập nhật trường isCheck
+            const updatedContact = await contactModel.findByIdAndUpdate(
+                contactId,
+                { isCheck: isCheckValue },
+                { new: true, runValidators: true } // Trả về tài liệu đã cập nhật
+            );
+
+            return updatedContact;
+        } catch (error) {
+            throw error;
+        }
+    };
+
+
+
+    static countDocuments = async () => {
+        return await contactModel.countDocuments();
+    };
+
+
+    static find = async (skip, limit) => {
+        return await contactModel.find()
+            .skip(skip)
+            .limit(limit);
+    }
+
 }
 
 module.exports = ContactService;

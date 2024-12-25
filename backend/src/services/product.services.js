@@ -44,8 +44,7 @@ class ProductService {
                 product
             }
         } catch (error) {
-            console.log(error);
-            res.status(400).json({ success: false, message: error.message });
+            throw error
         }
     }
 
@@ -65,7 +64,7 @@ class ProductService {
         try {
             const product = await productModel.findById(id);
             return {
-                product
+                product,
             }
         } catch (error) {
             throw error;
@@ -95,23 +94,34 @@ class ProductService {
                 throw new Error('Product not found');
             }
 
-            // Lặp qua mảng images và xóa tất cả hình ảnh
-            const deleteImagePromises = product.images.map(image => {
-                const imagePath = path.join(__dirname, '../../upload', image); // Tạo đường dẫn đầy đủ
-                return new Promise((resolve, reject) => {
-                    fs.unlink(imagePath, (err) => {
-                        if (err) {
-                            console.error(`Error deleting image: ${imagePath}`, err);
-                            return reject(err);
-                        }
-                        console.warn(`Image not found: ${imagePath}`);
-                        resolve();
+            if (product.images && product.images.length > 0) {
+                // Lặp qua mảng images và xóa tất cả hình ảnh
+                const deleteImagePromises = product.images.map(image => {
+                    const imagePath = path.join(__dirname, '../../upload', image); // Tạo đường dẫn đầy đủ
+                    return new Promise((resolve, reject) => {
+                        fs.access(imagePath, fs.constants.F_OK, (err) => {
+                            if (err) {
+                                console.warn(`Image not found: ${imagePath}`);
+                                return resolve(); // Nếu hình ảnh không tồn tại, bỏ qua
+                            }
+
+                            fs.unlink(imagePath, (err) => {
+                                if (err) {
+                                    console.error(`Error deleting image: ${imagePath}`, err);
+                                    return reject(err);
+                                }
+                                console.log(`Image deleted: ${imagePath}`);
+                                resolve();
+                            });
+                        });
                     });
                 });
-            });
 
-            // Chờ cho tất cả hình ảnh được xóa
-            await Promise.all(deleteImagePromises);
+                // Chờ cho tất cả hình ảnh được xóa
+                await Promise.all(deleteImagePromises);
+            } else {
+                console.warn('No images to delete.');
+            }
 
             await productModel.findByIdAndDelete(id)
 
@@ -164,10 +174,21 @@ class ProductService {
                 product: updatedProduct
             }
         } catch (error) {
-            console.error(error); // In ra lỗi
-            res.status(500).json({ message: error.message });
+            throw error;
         }
     };
+
+
+    static countDocuments = async () => {
+        return await productModel.countDocuments(); 
+    }
+
+
+    static find = async (skip, limit) => {
+        return productModel.find()
+            .skip(skip)   
+            .limit(limit);
+    }
 
 }
 

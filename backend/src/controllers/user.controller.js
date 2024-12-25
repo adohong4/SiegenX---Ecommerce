@@ -28,6 +28,30 @@ class UserController {
         }
     }
 
+    getUserProfile = async (req, res, next) => {
+        try {
+            const result = await UserService.getProfile(req.body.userId);
+            new CREATED({
+                message: 'Lấy thông tin User thành công',
+                metadata: result.metadata
+            }).send(res);
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    updateUserProfile = async (req, res, next) => {
+        try {
+            const { userId, username, password } = req.body;
+            const result = await UserService.updateProfile({ userId, username, password });
+            new CREATED({
+                message: 'Cập nhật thông tin User thành công',
+                metadata: result.metadata
+            }).send(res);
+        } catch (error) {
+            next(error);
+        }
+    }
 
     addUserAddress = async (req, res, next) => {
         try {

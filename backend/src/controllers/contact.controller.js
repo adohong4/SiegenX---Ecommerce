@@ -37,6 +37,59 @@ class ContactController {
         }
     }
 
-}
+
+    deleteContact = async (req, res, next) => {
+        try {
+            const result = await ContactService.deleteContact(req.params.id);
+            new OK({
+                message: 'Xóa thành công',
+                metadata: result
+            }).send(res);
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    updateContactIsCheck = async (req, res, next) => {
+        try {
+            const { id } = req.params; // ID của liên hệ từ URL
+            const { isCheck } = req.body; // Giá trị mới cho isCheck từ body
+
+            const updatedContact = await ContactService.updateIsCheck(id, isCheck);
+
+            res.status(200).json({
+                message: "Cập nhật trạng thái isCheck thành công",
+                metadata: updatedContact
+            });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    getContactWithPagination = async (req, res, next) => {
+        try {
+            const page = parseInt(req.query.page) || 1;
+            const limit = parseInt(req.query.limit) || 20;
+            const skip = (page - 1) * limit;
+
+            const totalContacts = await ContactService.countDocuments();
+            const contacts = await ContactService.find(skip, limit);
+
+            res.status(200).json({
+                message: 'Contacts fetched successfully',
+                data: contacts,
+                pagination: {
+                    total: totalContacts,
+                    currentPage: page,
+                    totalPages: Math.ceil(totalContacts / limit),
+                    limit,
+                },
+            });
+        } catch (error) {
+            next(error);
+        }
+    };
+};
+
 
 module.exports = new ContactController();

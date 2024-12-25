@@ -273,7 +273,6 @@ const AddProduct = () => {
                                         id="mainBoard"
                                         className="form-control rounded-pill"
                                         placeholder="Nhập Thông Số Bo Mạch Chủ"
-                                        required
                                     />
                                 </div>
 
@@ -287,7 +286,6 @@ const AddProduct = () => {
                                         id="chip"
                                         className="form-control rounded-pill"
                                         placeholder="Nhập loại chip"
-                                        required
                                     />
                                 </div>
 
@@ -301,7 +299,6 @@ const AddProduct = () => {
                                         id="gpu"
                                         className="form-control rounded-pill"
                                         placeholder="Nhập GPU"
-                                        required
                                     />
                                 </div>
 
@@ -315,7 +312,6 @@ const AddProduct = () => {
                                         id="cpu"
                                         className="form-control rounded-pill"
                                         placeholder="Nhập CPU"
-                                        required
                                     />
                                 </div>
                                 <div className="form-group col-md-6">
@@ -328,7 +324,6 @@ const AddProduct = () => {
                                         id="ram"
                                         className="form-control rounded-pill"
                                         placeholder="Nhập RAM"
-                                        required
                                     />
                                 </div>
 
@@ -342,7 +337,6 @@ const AddProduct = () => {
                                         id="memory"
                                         className="form-control rounded-pill"
                                         placeholder="Nhập Dung lượng bộ nhớ (HDD/SSD)"
-                                        required
                                     />
                                 </div>
 
@@ -356,7 +350,6 @@ const AddProduct = () => {
                                         id="version"
                                         className="form-control rounded-pill"
                                         placeholder="Nhập phiên bản"
-                                        required
                                     />
                                 </div>
 
@@ -370,7 +363,6 @@ const AddProduct = () => {
                                         id="displaySize"
                                         className="form-control rounded-pill"
                                         placeholder="Nhập Thông số màn hình (IPS, OLED, v.v.)"
-                                        required
                                     />
                                 </div>
 
@@ -384,7 +376,6 @@ const AddProduct = () => {
                                         id="pixelDensity"
                                         className="form-control rounded-pill"
                                         placeholder="Nhập Port"
-                                        required
                                     />
                                 </div>
 
@@ -398,7 +389,6 @@ const AddProduct = () => {
                                         id="ports"
                                         className="form-control rounded-pill"
                                         placeholder="Nhập pixelDensity"
-                                        required
                                     />
                                 </div>
                                 {/* Weight */}
@@ -412,7 +402,6 @@ const AddProduct = () => {
                                         id="display"
                                         className="form-control rounded-pill"
                                         placeholder="Nhập màn hình"
-                                        required
                                     />
                                 </div>
 
@@ -427,7 +416,6 @@ const AddProduct = () => {
                                         id="refreshRate"
                                         className="form-control rounded-pill"
                                         placeholder="Nhập tần số quét"
-                                        required
                                     />
                                 </div>
                             </div>

@@ -2,48 +2,71 @@ import React, { useEffect, useContext, useState } from 'react';
 import './Contact.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import ReactPaginate from 'react-paginate';
 import { StoreContext } from '../../../context/StoreContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { faBook } from '@fortawesome/free-solid-svg-icons'; 
+import { faBook } from '@fortawesome/free-solid-svg-icons';
 
 const Contact = () => {
     const { url } = useContext(StoreContext);
     const [list, setList] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
+    const [totalItems, setTotalItems] = useState(0);
     const [searchTerm, setSearchTerm] = useState('');
     const [sortOrder, setSortOrder] = useState({ name: 'asc', email: 'asc' });
-    const [selectedRow, setSelectedRow] = useState(null); // Lưu thông tin hàng được chọn
-    const [isPopupOpen, setIsPopupOpen] = useState(false); // Trạng thái mở/đóng popup
+    const [selectedRow, setSelectedRow] = useState(null);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+    const handlePageClick = (event) => {
+        setCurrentPage(event.selected + 1);
+    };
 
-    const handleViewToggle = (itemId) => {
-        setList(prevList =>
-          prevList.map(item =>
-            item._id === itemId
-              ? { ...item, viewed: !item.viewed } // Chuyển đổi trạng thái đã xem
-              : item
-          )
-        );
-      };
-      
-
-    const fetchList = async () => {
+    const handleViewToggle = async (itemId) => {
         try {
-            const response = await axios.get(`${url}/v1/api/contact/get`);
-            if (response.data.status) {
-                setList(response.data.metadata.contacts);
+            const updatedList = list.map(item => {
+                if (item._id === itemId) {
+                    return { ...item, viewed: !item.viewed };
+                }
+                return item;
+            });
+
+            setList(updatedList);
+
+            await axios.put(`${url}/v1/api/contact/updateCheck/${itemId}`, {
+                isCheck: updatedList.find(item => item._id === itemId).viewed
+            });
+        } catch (error) {
+            toast.error("Error updating view status");
+        }
+    };
+
+    const fetchListcontact = async (page = 1) => {
+        try {
+            const response = await axios.get(`${url}/v1/api/contact/pagination?page=${page}&limit=10`);
+            if (response.data.message) {
+                const contacts = response.data.data.map(contact => ({
+                    ...contact,
+                    viewed: contact.isCheck // Thiết lập trạng thái viewed dựa trên isCheck
+                }));
+                setList(contacts);
+                setTotalItems(response.data.pagination.totalItems);
+                setTotalPages(response.data.pagination.totalPages);
             } else {
-                toast.error("Error fetching contacts");
+                toast.error('Error fetching user list');
             }
         } catch (error) {
-            toast.error("Error fetching contacts");
+            toast.error('Error fetching data');
+            console.error(error);
         }
     };
 
     useEffect(() => {
-        fetchList();
-    }, []); // Chỉ gọi một lần khi component mount
+        fetchListcontact(currentPage);
+    }, [currentPage]);
+
 
     const handleSearch = async () => {
         if (!searchTerm.trim()) {
@@ -63,17 +86,17 @@ const Contact = () => {
         }
     };
 
-    const removeUser = async (id) => {
+    const removeContact = async (id) => {
         try {
-            const response = await axios.post(`${url}/v1/api/admin/deleteUser/${id}`);
-            if (response.data.success) {
+            const response = await axios.delete(`${url}/v1/api/contact/delete/${id}`);
+            if (response.data.status) {
                 toast.success(response.data.message);
-                fetchList(); // Fetch lại danh sách sau khi xóa
+                fetchList();
             } else {
-                toast.error("Error deleting user");
+                toast.error("Error deleting contact");
             }
         } catch (error) {
-            toast.error("Error deleting user");
+            toast.error("Exception while deleting contact");
         }
     };
 
@@ -128,8 +151,8 @@ const Contact = () => {
                     </div>
                     <div className="col-phone">SĐT</div>
                     <div className="col-content">Nội dung</div>
-                    <div onClick={() => sortBy('time')} className="col-time" style={{ cursor: 'pointer' }}>
-                        Thời gian {sortOrder.time === 'asc' ? '↑' : '↓'}
+                    <div onClick={() => sortBy('date')} className="col-time" style={{ cursor: 'pointer' }}>
+                        Thời gian {sortOrder.date === 'asc' ? '↑' : '↓'}
                     </div>
                     <div className="col-check">Kiểm tra</div>
                     <div className="col-actions">Tùy chỉnh</div>
@@ -155,7 +178,7 @@ const Contact = () => {
                                 </button>
                             </div>
                             <div className="col-actions">
-                                <button onClick={(e) => { e.stopPropagation(); removeUser(item._id); }} className="btn-delete">
+                                <button onClick={(e) => { e.stopPropagation(); removeContact(item._id); }} className="btn-delete">
                                     <FontAwesomeIcon icon={faTrash} />
                                 </button>
                                 <button onClick={() => openPopup(item)} className="btn-info">
@@ -167,13 +190,34 @@ const Contact = () => {
                 </div>
             </div>
 
+            <div className="pagination-container">
+                <ReactPaginate
+                    breakLabel="..."
+                    nextLabel=">"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={5}
+                    pageCount={totalPages}
+                    previousLabel="<"
+                    renderOnZeroPageCount={null}
+                    pageClassName="page-item"
+                    pageLinkClassName="page-link"
+                    previousClassName="page-item"
+                    previousLinkClassName="page-link"
+                    nextClassName="page-item"
+                    nextLinkClassName="page-link"
+                    breakClassName="page-item"
+                    breakLinkClassName="page-link"
+                    containerClassName="pagination"
+                    activeClassName="active"
+                />
+            </div>
 
             {isPopupOpen && selectedRow && (
                 <div className="popup-overlay" onClick={closePopup}>
                     <div className="popup-content-cskh" onClick={(e) => e.stopPropagation()}>
                         <button className="close-popup" onClick={closePopup}>×</button>
                         <div className="popup-header">
-                            <h3>Chi tiết thông tin</h3>
+                            <h3>Chi tiết yêu cầu liên hệ</h3>
                         </div>
                         <div className="popup-body">
                             <div className="popup-info">

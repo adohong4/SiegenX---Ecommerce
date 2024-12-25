@@ -14,7 +14,7 @@ const Sidebar = () => {
                     <img className="logo" src={assets.logofooter} alt="Logo" />
                 </div>
                 <div className="sidebar-options">
-                    <NavLink to='/admin/dashboard' className="sidebar-option">
+                    <NavLink to='/admin' className="sidebar-option">
                         <i className="bi bi-file-earmark-bar-graph"></i>
                         <p>Dash Board</p>
                     </NavLink>
@@ -50,8 +50,8 @@ const Sidebar = () => {
                 <div className='log-out-btn'>
                     <NavLink to='http://localhost:5173/' className="sidebar-option-logout">
                         <p>Đăng xuất</p>
-                        <FontAwesomeIcon icon={faSignOutAlt} /> 
-                        
+                        <FontAwesomeIcon icon={faSignOutAlt} />
+
                     </NavLink>
                 </div>
 

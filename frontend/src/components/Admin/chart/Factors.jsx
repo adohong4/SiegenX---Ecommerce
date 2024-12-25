@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { Pie } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Title, Tooltip, Legend } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { StoreContext } from '../../../context/StoreContext';
 
 
-ChartJS.register(ArcElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const Factors = () => {
     const { url } = useContext(StoreContext)
@@ -40,15 +40,15 @@ const Factors = () => {
 
 
     const chartData = {
-        labels: ['Người dùng', 'Đơn hàng', 'Sản phẩm', 'Thu nhập'],
+        labels: ['Người dùng', 'Đơn hàng', 'Sản phẩm', 'Liên hệ'],
         datasets: [
             {
-                label: 'User Factors',
+                label: 'Người dùng',
                 data: [
                     stats.totalUsers,
                     stats.totalOrders,
                     stats.totalProducts,
-                    stats.totalRevenue,
+                    stats.totalContacts,
                 ],
                 backgroundColor: [
                     'rgba(75, 192, 192, 0.6)', // Color for Total Users
@@ -56,6 +56,13 @@ const Factors = () => {
                     'rgba(255, 206, 86, 0.6)', // Color for Total Foods
                     'rgba(54, 162, 235, 0.6)', // Color for Total Revenue
                 ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
             },
         ],
     };
@@ -76,15 +83,27 @@ const Factors = () => {
                 </div>
                 <div className="info-card">
                     <h3>Đơn hàng</h3>
-                    <p>{stats.totalOrders} 0</p>
+                    <p>{stats.totalOrders}</p>
                 </div>
                 <div className="info-card">
-                    <h3>Doanh thu</h3>
-                    {/* <p>${stats.totalRevenue.toFixed(2)}</p> */} <p>0</p>
+                    <h3>Liên hệ</h3>
+                    <p>{stats.totalContacts}</p>
                 </div>
-                <div>
 
-                </div>
+            </div>
+            <div className='orders-right-2'>
+                <Bar data={chartData} options={{
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Tổng quan'
+                        }
+                    }
+                }} />
             </div>
         </div>
     );
