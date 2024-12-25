@@ -66,7 +66,7 @@ const Profile = () => {
                             className="profile-image"
                         />
                         <input
-                            type="file"
+                            type="file"     
                             id="image"
                             className="form-control-file"
                             style={{ display: 'none' }}

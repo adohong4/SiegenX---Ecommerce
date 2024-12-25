@@ -74,9 +74,9 @@ const Navbar = () => {
                                             </span>
                                             <span className="icon-cart" onClick={() => navigate('/cart')}>
                                                 <i className="fas fa-shopping-cart"></i>
-                                                <div className={getTotalCartAmount() === 0 ? "" : "dot"}></div>
+                                                <div className={getTotalCartAmount() === 0 ? "none" : "dot"}></div>
                                             </span>
-
+  
                                             {/* Dropdown Menu */}
                                             {isDropdownOpen && (
                                                 <ul className="dropdown-menu">

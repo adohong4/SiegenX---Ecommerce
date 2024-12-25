@@ -1,3 +1,7 @@
+
+
+
+
 .My-Order {
     padding: 20px;
     margin-top: 150px;
@@ -6,10 +10,10 @@
 }
 
 .myorder-container {
-    max-width: 1200px;
+    max-width: 100% !important;
     margin: 0 auto;
     background: #fff;
-    border-radius: 8px;
+    border-radius: 8px;  
     padding: 20px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -21,6 +25,20 @@
     margin-bottom: 20px;
 }
 
+.col-update .btn-updates{
+    background-color: #fff;
+    border: 3px solid #00A07B;
+    color: #000;
+    padding: 8px ;
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
+} 
+.col-update .btn-updates:hover{
+    scale: 1.1;
+    background-color: #00A07B;
+    color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+} 
 .loading,
 .no-orders {
     text-align: center;
@@ -93,3 +111,61 @@
 .btn-details:hover {
     background-color: #2980b9;
 }
+
+.orders-wrapper{
+    display: none;
+}
+@media only screen and (max-width: 48em){
+    .My-Order{
+        margin-top: 0;
+    }
+    .orders-wrapper{
+        display: block;
+    }
+    .myorder-table{
+        display: none;
+    }
+    
+    .order-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 16px;
+        background-color: #fff;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .order-detail p {
+        margin: 8px 0;
+        font-size: 14px;
+        font-weight: bold;
+        display: flex;
+        gap:10px;
+        align-items: center;
+    }
+    
+    .order-actions {
+        text-align: right;
+        margin-top: 12px;
+    }
+    .order-actions button{
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 50px;
+        color: #000;
+        border: 3px solid #00A07B;
+        transition: all 0.3s ease-in-out;
+    }
+    .order-actions button{
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 50px;
+        color: #000;
+        border: 3px solid #00A07B;
+        transition: all 0.3s ease-in-out;
+    }
+    .order-actions button:hover{
+        scale: 1.1;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  }

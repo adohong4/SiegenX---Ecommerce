@@ -14,7 +14,7 @@ const Sidebar = () => {
                     <img className="logo" src={assets.logofooter} alt="Logo" />
                 </div>
                 <div className="sidebar-options">
-                    <NavLink to='/admin' className="sidebar-option">
+                    <NavLink to='/admin/dashboard' className="sidebar-option">
                         <i className="bi bi-file-earmark-bar-graph"></i>
                         <p>Dash Board</p>
                     </NavLink>

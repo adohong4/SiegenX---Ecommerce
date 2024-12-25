@@ -189,7 +189,11 @@
     font-weight: bold;
     text-decoration: underline;
 }
-
+.btn-order{
+    display: flex;
+    justify-content: space-around;
+    gap:5px;
+}
 
 @keyframes fadeIn {
     from {

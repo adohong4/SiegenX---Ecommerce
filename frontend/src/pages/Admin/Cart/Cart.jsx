@@ -193,7 +193,7 @@ const Cart = () => {
                                 <option value="Đang giao hàng">Đang giao hàng</option>
                                 <option value="Giao hàng thành công">Giao hàng thành công</option>
                             </select></td>
-                            <td>
+                            <td className='btn-order'>
                                 <button onClick={(e) => { e.stopPropagation(); removeOrder(item._id); }} className='btn-delete'>
                                     <FontAwesomeIcon icon={faTrash} />
                                 </button>
