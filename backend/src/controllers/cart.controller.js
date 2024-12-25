@@ -9,7 +9,7 @@ class CartController {
             const result = await CartService.addToCart(req)
 
             new CREATED({
-                message: "Add to Cart",
+                message: "Thêm vào giỏ hàng",
                 metadata: result.cart
             }).send(res)
         } catch (error) {
@@ -35,7 +35,7 @@ class CartController {
             const result = await CartService.removeFromCart(req)
 
             new CREATED({
-                message: "Remove From Cart",
+                message: "Xóa khỏi giỏ hàng",
                 metadata: result.cart
             }).send(res)
         } catch (error) {
@@ -49,7 +49,7 @@ class CartController {
             const result = await CartService.getCart(userId);
 
             new OK({
-                message: "Get Cart",
+                message: "Lấy thông tin giỏ hàng",
                 metadata: result.cartData
             }).send(res);
         } catch (error) {

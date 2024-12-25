@@ -36,7 +36,7 @@ const Cart = () => {
 
     const handleSearch = async () => {
         if (!searchTerm.trim()) {
-            fetchList();
+            fetchListpage();
             return;
         }
 
@@ -63,15 +63,13 @@ const Cart = () => {
         if (response.data.status) {
             fetchListpage();
         }
-
-        console.log(`Order ${orderId}: ${selectedValue}`);
     };
 
     const removeOrder = async (id) => {
         const response = await axios.delete(`${url}/v1/api/profile/order/delete/${id}`);
         if (response.data.status) {
             toast.success(response.data.message);
-            fetchList();
+            fetchListpage();
         }
     };
 

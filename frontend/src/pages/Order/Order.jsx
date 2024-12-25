@@ -111,7 +111,7 @@ const PlaceOrder = () => {
                         name="address"
                         onChange={handleAddressChange}
                     >
-                        <option value="" disabled>Chọn địa chỉ giao hàng của bạn</option>
+                        <option value="">Chọn địa chỉ giao hàng của bạn</option>
                         {list.map((address, index) => (
                             <option key={index} value={JSON.stringify(address)}>
                                 {address.fullname}, {address.street}, {address.precinct}, {address.city}, {address.province}, {address.phone}
