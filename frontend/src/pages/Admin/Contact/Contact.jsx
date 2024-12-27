@@ -64,28 +64,43 @@ const Contact = () => {
         }
     };
 
+    // let nofi = true;
+
     useEffect(() => {
-        fetchListcontact(currentPage);
-    }, [currentPage]);
+        if (searchTerm.trim()) {
+            // nofi = false
+            handleSearch();
+        } else {
+            fetchListcontact(currentPage);
+        }
+    }, [currentPage, searchTerm]);
+
 
 
     const handleSearch = async () => {
         if (searchTerm.trim() === '') {
-            await fetchList();
+            await fetchListcontact();
             return;
         }
 
         try {
-            const response = await axios.get(`${url}/v1/api/contacts/email`, { params: { email: searchTerm } });
+
+            const response = await axios.get(`${url}/v1/api/contacts/email`, {
+                params: { email: searchTerm, page: currentPage, limit: 10 }
+            });
 
             if (response.data.status) {
-                console.log(Array.isArray(response.data.metadata))
-                if (Array.isArray(response.data.metadata)) {
-                    setList(response.data.metadata);
-                    toast.success("Tìm kiếm thành công");
+                if (Array.isArray(response.data.data)) {
+                    const contacts = response.data.data.map(contact => ({
+                        ...contact,
+                        viewed: contact.isCheck // Thiết lập trạng thái viewed dựa trên isCheck
+                    }));
+                    setList(contacts);
+                    setTotalPages(response.data.pagination.totalPages); // Cập nhật tổng số trang
                 } else {
                     setList([]);
-                    toast.error("Không tìm thấy thông tin liên hệ nào");
+                    setTotalPages(0); // Đặt số trang về 0 nếu không có kết quả
+                    toast.error("Không tìm thấy liên hệ");
                 }
             } else {
                 setList([]);
@@ -93,16 +108,19 @@ const Contact = () => {
             }
         } catch (error) {
             setList([]); // Gán giá trị rỗng khi xảy ra lỗi
-            toast.error("Không tìm thấy thông tin liên hệ");
+            setTotalPages(0);
+            toast.error("Lỗi trong quá trình tìm kiếm");
         }
     };
 
     const removeContact = async (id) => {
         try {
             const response = await axios.delete(`${url}/v1/api/contact/delete/${id}`);
-            if (response.data) {
-                toast.success("Xoa thanh cong");
-                fetchList();
+
+            if (response.data.status) {
+                toast.success(response.data.message);
+                fetchListcontact();
+
             } else {
                 toast.error("Lỗi khi xóa thông tin liên hệ");
             }

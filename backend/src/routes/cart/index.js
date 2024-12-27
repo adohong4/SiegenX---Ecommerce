@@ -15,5 +15,4 @@ router.post('/profile/cart/addQuantity', authMiddleware, asyncHandler(cartContro
 router.post('/profile/cart/remove', authMiddleware, asyncHandler(cartController.removeFromCart))
 router.get('/profile/cart/get', authMiddleware, asyncHandler(cartController.getCart))
 
-
 module.exports = router;

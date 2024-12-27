@@ -43,17 +43,22 @@ const ListUser = () => {
                 setTotalUser(response.data.pagination.limit);
                 setTotalPages(response.data.pagination.totalPages);
             } else {
-                toast.error('Error fetching user list');
+                toast.error('Lấy dữ liệu thất bại');
             }
         } catch (error) {
-            toast.error('Error fetching data');
+            toast.error('Lỗi khi lấy dữ liệu');
             console.error(error);
         }
     };
 
     useEffect(() => {
-        fetchList(currentPage);
-    }, [currentPage]);
+        if (searchTerm.trim()) {
+            // nofi = false
+            handleSearch(); 
+        } else {
+            fetchList(currentPage); 
+        }
+    }, [currentPage, searchTerm]); 
 
     const handleSearch = async () => {
         if (searchTerm.trim() === '') {
@@ -62,23 +67,29 @@ const ListUser = () => {
         }
 
         try {
-            const response = await axios.get(`${url}/v1/api/profile/admin/users/email`, { params: { email: searchTerm } });
+            const response = await axios.get(`${url}/v1/api/profile/admin/users/email`, { 
+                params: { email: searchTerm, page: currentPage, limit: 10} 
+            });
 
             if (response.data.status) {
-                if (Array.isArray(response.data.metadata)) {
-                    setList(response.data.metadata);
-                    toast.success(response.data.message);
+                if (Array.isArray(response.data.data)) {
+                    setList(response.data.data);
+                    setTotalPages(response.data.pagination.totalPages); // Cập nhật tổng số trang
+                    // toast.success(response.data.message);
                 } else {
                     setList([]);
-                    toast.error("No users found.");
+                    setTotalPages(0); // Đặt số trang về 0 nếu không có kết quả
+                    toast.error("Không tìm thấy người dùng");
                 }
             } else {
                 setList([]);
-                toast.error("Search failed.");
+                toast.error("Tìm kiếm thất bại");
             }
         } catch (error) {
+            console.log(response.data.status)
             setList([]); // Gán giá trị rỗng khi xảy ra lỗi
-            toast.error("Error occurred during search.");
+            setTotalPages(0);
+            toast.error("Lỗi trong quá trình tìm kiếm");
         }
     };
 

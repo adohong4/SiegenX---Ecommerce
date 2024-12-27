@@ -92,13 +92,23 @@ class ContactController {
 
     getContactsByEmail = async (req, res, next) => {
         try {
-            const { email } = req.query; // Lấy title từ query params
-            const result = await ContactService.findByEmail(email);
-    
-            new OK({
-                message: 'Get contacts By email OK',
-                metadata: result.contacts
-            }).send(res);
+            const { email, page = 1, limit = 10 } = req.query; 
+            const skip = (page - 1) * limit; 
+
+            const totalContacts = await ContactService.countDocumentsByEmail(email); 
+            const contacts = await ContactService.findByEmail(email, skip, limit);
+
+            res.status(200).json({
+                status: true,
+                message: 'Tìm kiếm thông tin liên hệ thành công!',
+                data: contacts,
+                pagination: {
+                    total: totalContacts,
+                    currentPage: parseInt(page),
+                    totalPages: Math.ceil(totalContacts / limit),
+                    limit: parseInt(limit),
+                },
+            });
         } catch (error) {
             next(error);
         }
