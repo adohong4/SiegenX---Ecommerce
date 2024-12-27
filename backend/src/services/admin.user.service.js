@@ -87,17 +87,18 @@ class AdminService {
         }
     }
 
-    static getUsersByEmail = async (email) => {
-        try {
-            const users = await userModel.find({ email: { $regex: email, $options: 'i' } });
-            if (!users || users.length === 0) {
-                throw new Error("Không tìm thấy người dùng");
-            }
-            return { users };
-        } catch (error) {
-            throw error;
-        }
+    static getUsersByEmail = async (email, skip, limit) => {
+        return userModel
+            .find({ email: { $regex: email, $options: 'i' } })
+            .skip(skip)
+            .limit(limit);
     };
+
+
+    static countDocumentsByEmail = async (email) => {
+        return userModel.countDocuments({ email: { $regex: email, $options: 'i' } });
+    };
+
 }
 
 module.exports = AdminService;

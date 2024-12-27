@@ -35,20 +35,35 @@ const Cart = () => {
     };
 
     const handleSearch = async () => {
-        if (!searchTerm.trim()) {
-            fetchListpage();
+        if (searchTerm.trim() === '') {
+            await fetchListpage();
             return;
         }
 
         try {
-            const response = await axios.get(`${url}/v1/api/profile/admin/getAllUser`, { params: { term: searchTerm } });
+            const response = await axios.get(`${url}/v1/api/profile/order/id`, { 
+                params: { id: searchTerm, page: currentPage, limit: 10} 
+            });
+
             if (response.data.status) {
-                setList(response.data.data);
+                if (Array.isArray(response.data.data)) {
+                    setList(response.data.data);
+                    setTotalPages(response.data.pagination.totalPages); // Cập nhật tổng số trang
+                    // toast.success(response.data.message);
+                } else {
+                    setList([]);
+                    setTotalPages(0); // Đặt số trang về 0 nếu không có kết quả
+                    toast.error("Không tìm thấy hóa đơn");
+                }
             } else {
-                toast.error("Error searching contacts");
+                setList([]);
+                toast.error("Tìm kiếm thất bại");
             }
         } catch (error) {
-            toast.error("Error searching contacts");
+            console.log(response.data.status)
+            setList([]); // Gán giá trị rỗng khi xảy ra lỗi
+            setTotalPages(0);
+            toast.error("Lỗi trong quá trình tìm kiếm");
         }
     };
 
@@ -117,8 +132,13 @@ const Cart = () => {
 
 
     useEffect(() => {
-        fetchListpage(currentPage);
-    }, [currentPage]);
+        if (searchTerm.trim()) {
+            // nofi = false
+            handleSearch(); 
+        } else {
+            fetchListpage(currentPage); 
+        }
+    }, [currentPage, searchTerm]); 
 
     return (
         <div className='order-list-container'>

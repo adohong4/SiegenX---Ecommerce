@@ -189,16 +189,16 @@ class ProductService {
     }
 
 
-    static getProductByTitle = async (title) => {
-        try {
-            const products = await productModel.find({ title: { $regex: title, $options: 'i' } }); // Tìm kiếm không phân biệt chữ hoa/chữ thường
-            if (!products || products.length === 0) {
-                throw new Error("No products found with the given title");
-            }
-            return { products };
-        } catch (error) {
-            throw error;
-        }
+    static findByTitle = async (title, skip, limit) => {
+        return productModel
+            .find({ title: { $regex: title, $options: 'i' } })
+            .skip(skip)
+            .limit(limit);
+    };
+    
+
+    static countDocumentsByTitle = async (title) => {
+        return productModel.countDocuments({ title: { $regex: title, $options: 'i' } });
     };
     
 

@@ -27,7 +27,6 @@ router.get('/product/pagination', asyncHandler(ProductController.getProductsWith
 router.get("/product/get", asyncHandler(ProductController.getAllProduct));
 router.get("/product/getId/:id", asyncHandler(ProductController.getProductById));
 router.get("/product/getSlug/:slug", asyncHandler(ProductController.getProductBySlug));
-
 router.get('/products/title', asyncHandler(ProductController.getProductByTitle));
 
 module.exports = router;

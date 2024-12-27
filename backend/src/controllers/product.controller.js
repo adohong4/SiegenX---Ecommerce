@@ -110,17 +110,28 @@ class ProductController {
 
     getProductByTitle = async (req, res, next) => {
         try {
-            const { title } = req.query; // Lấy title từ query params
-            const result = await ProductService.getProductByTitle(title);
+            const { title, page = 1, limit = 10 } = req.query; // Lấy thêm tham số phân trang từ query
+            const skip = (page - 1) * limit; // Tính skip
 
-            new OK({
+            const totalProducts = await ProductService.countDocumentsByTitle(title); // Đếm tổng sản phẩm khớp
+            const products = await ProductService.findByTitle(title, skip, limit); // Lấy sản phẩm theo trang
+
+            res.status(200).json({
+                status: true,
                 message: 'Tìm kiếm sản phẩm thành công!',
-                metadata: result.products
-            }).send(res);
+                data: products,
+                pagination: {
+                    total: totalProducts,
+                    currentPage: parseInt(page),
+                    totalPages: Math.ceil(totalProducts / limit),
+                    limit: parseInt(limit),
+                },
+            });
         } catch (error) {
             next(error);
         }
     };
+
 
 
 }
