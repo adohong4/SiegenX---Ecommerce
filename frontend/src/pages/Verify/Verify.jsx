@@ -12,7 +12,7 @@ const Verify = () => {
     const navigate = useNavigate();
 
     const verifyPayment = async () => {
-        const response = await axios.post(url + "/v1/api/stripe/verify", { success, orderId })
+        const response = await axios.post(url + "/v1/api/profile/stripe/verify", { success, orderId })
         if (response.data.success) {
             navigate("/myorder");
         }

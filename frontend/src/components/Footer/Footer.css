@@ -90,6 +90,10 @@
     text-align: center;
     line-height: 30px;
 }
+.body-footer .footer-info h3{
+    color: #fff;
+}
+
 .footer-copy{
     display: none;
 }

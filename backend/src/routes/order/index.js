@@ -8,14 +8,14 @@ const orderController = require('../../controllers/order.controller')
 
 const router = express.Router()
 
-router.get('/order/get', asyncHandler(orderController.getOrder))
+router.get('/profile/order/get', asyncHandler(orderController.getOrder))
 
-router.put('/order/updateStatus', asyncHandler(orderController.updateStatusOrder))
-router.delete('/order/delete/:id', asyncHandler(orderController.deleteOrder))
+router.put('/profile/order/updateStatus', asyncHandler(orderController.updateStatusOrder))
+router.delete('/profile/order/delete/:id', asyncHandler(orderController.deleteOrder))
 
-router.get('/order/userOrder', authMiddleware, asyncHandler(orderController.userOrder))
+router.get('/profile/order/userOrder', authMiddleware, asyncHandler(orderController.userOrder))
 
-router.get('/order/pagination', asyncHandler(orderController.getOrderWithPagination));
+router.get('/profile/order/pagination', asyncHandler(orderController.getOrderWithPagination));
 
 
 module.exports = router;

@@ -140,8 +140,7 @@ const ProductsList = () => {
                 onClick={() => handleProductClick(product.product_slug)}
               >
                 <div className="productlist-img-container">
-                  <img
-                    img src={`${url}/images/${product.images[0]}`} alt=""
+                  <img src={`${url}/images/${product.images[0]}`} alt=""
                     className="productlist-image"
                   />
                   <div className="cart-icon">

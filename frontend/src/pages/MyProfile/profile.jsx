@@ -7,41 +7,41 @@ import { StoreContext } from '../../context/StoreContext';
 import AddressPopup from '../../components/Popup/AddressPopup/AddressPopup';
 
 const Profile = () => {
-    const { url, token, user_address } = useContext(StoreContext)
+    const { url, token } = useContext(StoreContext)
+    const [list, setList] = useState([]);
     const [username, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showAddressPopup, setShowAddressPopup] = useState(false);
 
-    const fetchUserData = async () => {
+    const fetchUserAddress = async () => {
         try {
-            const response = await axios.get(`${url}/v1/api/user/getProfile`, {
-                headers: { token }
-            });
+            const response = await axios.get(`${url}/v1/api/profile/getAddress`, { headers: { token } });
             if (response.data.status) {
-                setName(response.data.metadata.username);
-                setEmail(response.data.metadata.email);
-                // console.log(response.data.data.name);
-            } else {
-                toast.error(response.data.message);
+                setList(response.data.metadata.addresses);
             }
         } catch (error) {
             toast.error("Lỗi hiển thị");
         }
     };
 
-    //update profile
+    const fetchUserData = async () => {
+        try {
+            const response = await axios.get(`${url}/v1/api/profile/getProfile`, { headers: { token } });
+            if (response.data.status) {
+                setName(response.data.metadata.username);
+                setEmail(response.data.metadata.email);
+            }
+        } catch (error) {
+            toast.error("Lỗi hiển thị");
+        }
+    };
+
     const updateUserProfile = async () => {
         try {
-            const response = await axios.put(`${url}/v1/api/user/updateProfile`, {
-                username,
-                password
-            }, {
-                headers: { token }
-            });
+            const response = await axios.put(`${url}/v1/api/profile/updateProfile`, { username, password }, { headers: { token } });
             if (response.data.status) {
                 toast.success(response.data.message);
-            } else {
-                toast.error(response.data.message);
             }
         } catch (error) {
             toast.error("Lỗi cập nhật thông tin tài khoản");
@@ -49,12 +49,10 @@ const Profile = () => {
     };
 
     useEffect(() => {
-        if (token) {
-            fetchUserData();
-        }
-    }, [token]);
+        fetchUserData(token);
+        fetchUserAddress(token);
 
-    const [showAddressPopup, setShowAddressPopup] = useState(false);
+    }, [token]);
 
     return (
         <div className="profile">
@@ -64,13 +62,11 @@ const Profile = () => {
                     <div className="form-group top-image-profile">
                         <p>Ảnh đại diện</p>
                         <img
-
                             alt="Profile"
                             className="profile-image"
-
                         />
                         <input
-                            type="file"
+                            type="file"     
                             id="image"
                             className="form-control-file"
                             style={{ display: 'none' }}
@@ -79,11 +75,7 @@ const Profile = () => {
 
                     <div className="form-group top-mid-profile">
                         <p>Username</p>
-                        <input
-                            type="text"
-                            name="name"
-                            className="form-control"
-                            placeholder="Type here"
+                        <input type="text" name="name" className="form-control"
                             value={username}
                             onChange={(e) => setName(e.target.value)}
                         />
@@ -91,11 +83,7 @@ const Profile = () => {
 
                     <div className="form-group">
                         <p>Email</p>
-                        <input
-                            type="text"
-                            name="email"
-                            className="form-control"
-                            placeholder="Type here"
+                        <input type="text" name="email" className="form-control"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             readOnly
@@ -104,11 +92,7 @@ const Profile = () => {
 
                     <div className="form-group">
                         <p>Password</p>
-                        <input
-                            type="password"
-                            name="password"
-                            className="form-control"
-                            placeholder="Type here"
+                        <input type="password" name="password" className="form-control"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
@@ -131,15 +115,13 @@ const Profile = () => {
                         THÊM ĐỊA CHỈ
                     </button>
                     <div className="address-list">
-                        {user_address.map((address, index) => {
+                        {list.map((address, index) => {
                             return (
                                 <div key={index} className="my-address-addresses">
                                     <img src={assets.parcel_icon} alt="" className="address-icon" />
                                     <div className="address-details">
                                         <div className='Address'>
-                                            <p>
-                                                <p><span>{address.fullname}</span></p>
-                                            </p>
+                                            <p><span>{address.fullname}</span></p>
                                             <div className="address-details-body">
                                                 <div className="address-details-left">
                                                     <p>{address.street}, {address.precinct}, {address.city}, {address.province}, {address.phone}</p>
@@ -149,7 +131,6 @@ const Profile = () => {
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             );

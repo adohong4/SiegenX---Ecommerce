@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 const Login = () => {
     const { url, setToken } = useContext(StoreContext)
     const navigate = useNavigate();
-    const [currState, setCurrState] = useState('Login');
+    const [currState, setCurrState] = useState('Đăng nhập');
 
     const [data, setData] = useState({
         username: "",
@@ -26,19 +26,29 @@ const Login = () => {
         event.preventDefault()
         let newUrl = url;
 
-        if (currState === 'Login') {
-            newUrl += "/v1/api/user/login"
+        if (currState === 'Đăng nhập') {
+            newUrl += "/v1/api/identity/login"
         } else {
-            newUrl += "/v1/api/user/signup"
+            newUrl += "/v1/api/identity/signup"
         }
 
-        const response = await axios.post(newUrl, data);
+        try {
+            const response = await axios.post(newUrl, data);
+            if (response.data.status) {
+                setToken(response.data.metadata.token);
+                toast.success(currState === 'Đăng ký' ? 'Đăng ký thành công!' : 'Đăng nhập thành công!');
+                localStorage.setItem("token", response.data.metadata.token);
+            }
 
-        setToken(response.data.metadata.token);
-        toast.success('Đăng nhập thành công!')
-        localStorage.setItem("token", response.data.metadata.token);
+            navigate('/')
+        } catch (error) {
+            if (error.response) {
+                toast.error(error.response.data.message || 'Có lỗi xảy ra, vui lòng thử lại!');
+            } else {
+                toast.error('Lỗi kết nối với máy chủ!');
+            }
+        }
 
-        navigate('/')
 
     }
 
@@ -46,10 +56,10 @@ const Login = () => {
         <div className='login-popup'>
             <form onSubmit={onLogin} className="login-popup-container">
                 <div className="login-popup-title">
-                    <h2>ĐĂNG NHẬP</h2>
+                    <h2>{currState}</h2>
                 </div>
                 <div className="login-popup-inputs">
-                    {currState === "Login" ? <></> : <input name='username' onChange={onChangeHandler} value={data.username} type="text" placeholder='Tài khoản' required />}
+                    {currState === "Đăng nhập" ? <></> : <input name='username' onChange={onChangeHandler} value={data.username} type="text" placeholder='Tài khoản' required />}
                     <input name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Email' required />
                     <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Mật khẩu' required />
                 </div>
@@ -58,14 +68,14 @@ const Login = () => {
                     <button className='btn-gg'>Google</button>
                 </div>
 
-                <button type='submit' className='btn-sub'>{currState === "Sign Up" ? "Tạo tài khoản mới" : "Đăng nhập"}</button>
+                <button type='submit' className='btn-sub'>{currState === "Đăng ký" ? "Tạo tài khoản mới" : "Đăng nhập"}</button>
                 <div className="login-popup-condition">
                     <input type="checkbox" required />
                     <p>Đồng ý với các chính sách của công ty</p>
                 </div>
-                {currState === "Login"
-                    ? <p><span onClick={() => setCurrState("Sign Up")}>Tạo tài khoản mới?</span></p>
-                    : <p><span onClick={() => setCurrState("Login")}>Đã có tài khoản?</span></p>
+                {currState === "Đăng nhập"
+                    ? <p><span onClick={() => setCurrState("Đăng ký")}>Tạo tài khoản mới?</span></p>
+                    : <p><span onClick={() => setCurrState("Đăng nhập")}>Đã có tài khoản?</span></p>
                 }
             </form>
         </div>

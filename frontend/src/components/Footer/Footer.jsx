@@ -22,7 +22,7 @@ const Footer = () => {
                             <p>Hãy là người đầu tiên biết về các bộ sưu tập mới và ưu đãi độc quyền</p>
                         </div>
                         <div className='top-title-right'>
-                            <div class="container">
+                            <div className="container">
                                 <form>
                                     <input type="tel" id="phone" name="phone" placeholder="Số điện thoại" pattern="[0-9]{10,11}" />
                                     <button type="submit">Gửi</button>
@@ -31,7 +31,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className='body-footer'>
-                        <div className="footer-info col-xxl-4">
+                        <div className="footer-info col-xxl-4">  
                             <img src={assets.logofooter} alt="" />
                             <h3>CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ SIEGENX</h3>
                             <p>Địa chỉ: D11-39 Khu đô thị Glaximeco, đường Lê Trọng Tấn, Q. Hà Đông, Tp. Hà Nội</p>

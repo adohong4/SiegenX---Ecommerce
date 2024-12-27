@@ -37,7 +37,7 @@ const ListUser = () => {
 
     const fetchList = async (page = 1) => {
         try {
-            const response = await axios.get(`${url}/v1/api/user/pagination?page=${page}&limit=10`);
+            const response = await axios.get(`${url}/v1/api/profile/pagination?page=${page}&limit=10`);
             if (response.data.message) {
                 setList(response.data.data);
                 setTotalUser(response.data.pagination.limit);
@@ -56,27 +56,35 @@ const ListUser = () => {
     }, [currentPage]);
 
     const handleSearch = async () => {
-        if (!searchTerm.trim()) {
-            await fetchList(currentPage);
+        if (searchTerm.trim() === '') {
+            await fetchList();
             return;
         }
+
         try {
-            const response = await axios.get(`${url}/v1/api/admin/getAllUser`, { params: { term: searchTerm } });
+            const response = await axios.get(`${url}/v1/api/profile/admin/users/email`, { params: { email: searchTerm } });
+
             if (response.data.status) {
-                setList(response.data.data);
-                setTotalUser(response.data.totalUsers);
-                setTotalPages(response.data.totalPages);
+                if (Array.isArray(response.data.metadata)) {
+                    setList(response.data.metadata);
+                    toast.success(response.data.message);
+                } else {
+                    setList([]);
+                    toast.error("No users found.");
+                }
             } else {
-                toast.error('Error searching users');
+                setList([]);
+                toast.error("Search failed.");
             }
         } catch (error) {
-            toast.error('Error searching users');
+            setList([]); // Gán giá trị rỗng khi xảy ra lỗi
+            toast.error("Error occurred during search.");
         }
     };
 
     const removeUser = async (userId) => {
         try {
-            const response = await axios.delete(`${url}/v1/api/admin/deleteUser/${userId}`);
+            const response = await axios.delete(`${url}/v1/api/profile/admin/deleteUser/${userId}`);
             if (response.data.status) {
                 toast.success(response.data.message);
                 await fetchList(currentPage);
@@ -95,7 +103,7 @@ const ListUser = () => {
                 email: currentUser.email,
                 password: currentUser.password ? currentUser.password : undefined,
             };
-            const response = await axios.put(`${url}/v1/api/admin/changeInfo/${currentUser._id}`, formData);
+            const response = await axios.put(`${url}/v1/api/profile/admin/changeInfo/${currentUser._id}`, formData);
             if (response.data.status) {
                 toast.success(response.data.message);
                 await fetchList();
@@ -133,6 +141,8 @@ const ListUser = () => {
     const handleInputChange = (e) => {
         setCurrentUser({ ...currentUser, [e.target.name]: e.target.value });
     };
+
+
 
     return (
         <div className="user-list-container">

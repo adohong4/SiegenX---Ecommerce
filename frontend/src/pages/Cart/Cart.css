@@ -116,15 +116,15 @@
 @media (max-width: 768px) {
     .cart-items-title,
     .cart-item {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr ;
     }
 
-    .cart-items-title p:nth-child(5),
+    /* .cart-items-title p:nth-child(5),
     .cart-items-title p:nth-child(6),
     .cart-item p:nth-child(5),
     .cart-item p:nth-child(6) {
         display: none;
-    }
+    } */
 
     .cart-content {
         flex-direction: column;

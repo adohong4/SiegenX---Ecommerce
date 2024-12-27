@@ -280,6 +280,12 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 @media only screen and (max-width: 48em) {
+
+    .product-tab-container {
+        width: 100%;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
     .productinfo-container {
         display: block;
         padding: 20px;
@@ -297,6 +303,15 @@ input[type="number"]::-webkit-inner-spin-button {
 
     .productinfo-quantity label {
         font-size: 1rem;
+    }
+    .producttab-images img{
+        width: 100%;
+    }
+    .container-home {
+        margin-top: 0px;
+    }
+    .product-tab-content {
+        padding: 10px !important;
     }
 }
 
@@ -441,7 +456,7 @@ input[type="number"]::-webkit-inner-spin-button {
     margin-left: 10px;
 }
 
-.spec-value {
+/* .spec-value {
     position: absolute;
     left: 300px;
-}
+} */

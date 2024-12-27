@@ -42,7 +42,7 @@ const Cart = () => {
                                 </div>
                             )
                         }
-                    })}
+                    })}  
                 </div>
                 <div className="cart-summary">
                     <h2>CHI TIẾT ĐƠN HÀNG</h2>

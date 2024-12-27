@@ -69,7 +69,6 @@ class AdminService {
 
     static deleteUser = async ({ userID }) => {
         try {
-            console.log(userID)
 
             const deletedUser = await userModel.findByIdAndDelete({ _id: userID })
 
@@ -87,6 +86,18 @@ class AdminService {
             throw error;
         }
     }
+
+    static getUsersByEmail = async (email) => {
+        try {
+            const users = await userModel.find({ email: { $regex: email, $options: 'i' } });
+            if (!users || users.length === 0) {
+                throw new Error("Không tìm thấy người dùng");
+            }
+            return { users };
+        } catch (error) {
+            throw error;
+        }
+    };
 }
 
 module.exports = AdminService;

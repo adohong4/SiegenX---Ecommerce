@@ -48,27 +48,40 @@ const ListProduct = () => {
             return;
         }
 
-        // const response = await axios.get(`${url}/api/user/getUserName/search?term=${searchTerm}`);
-        const response = await axios.get(`${url}/api/food/searchFood`, { params: { term: searchTerm } })
-        console.log(response.data.success)
-        if (response.data.success) {
-            setList(response.data.data);
-        } else {
-            toast.error("Error");
+        try {
+            const response = await axios.get(`${url}/v1/api/products/title`, { params: { title: searchTerm } });
+
+            if (response.data.status) {
+                console.log(Array.isArray(response.data.metadata))
+                if (Array.isArray(response.data.metadata)) {
+                    setList(response.data.metadata);
+                    toast.success(response.data.message);
+                } else {
+                    setList([]);
+                    toast.error("No products found.");
+                }
+            } else {
+                setList([]);
+                toast.error("Search failed.");
+            }
+        } catch (error) {
+            setList([]); // Gán giá trị rỗng khi xảy ra lỗi
+            toast.error("Error occurred during search.");
         }
     };
+
 
     const handleUpdateProduct = async (updatedProduct) => {
         try {
             const response = await axios.put(`${url}/v1/api/product/update/${updatedProduct._id}`, updatedProduct);
 
-            if (response.data.success) {
+            if (response.data.status) {
                 setList((prevList) =>
                     prevList.map((product) =>
                         product._id === updatedProduct._id ? updatedProduct : product
                     )
                 );
-                fetchList();
+                fetchList(currentPage);
                 toast.success(response.data.message);
             } else {
                 toast.error(error);
@@ -86,6 +99,7 @@ const ListProduct = () => {
     const handleSortChange = (e) => {
         setSort(e.target.value);
     };
+
     const sortedList = [...list]
         .filter(item => selectedCategory === 'All' || item.category === selectedCategory)
         .sort((a, b) => {
@@ -111,8 +125,6 @@ const ListProduct = () => {
         fetchList(currentPage);
     }, [currentPage]);
 
-
-
     return (
         <div className='listproduct add flex-col'>
             <div className='top-list-tiltle'>
@@ -131,7 +143,7 @@ const ListProduct = () => {
 
                         <div className="selected-container">
                             <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
-                                <option value="All" selected>Lọc</option>
+                                <option value="All">Lọc</option>
                                 <option value="Màn hình LED">Màn hình LED</option>
                                 <option value="MH tương tác">MH tương tác</option>
                                 <option value="MH quảng cáo LCD">MH quảng cáo LCD</option>
@@ -160,7 +172,6 @@ const ListProduct = () => {
                 </div>
             </div>
 
-
             <div className="list-table">
                 <div className="list-table-format title">
                     <b>Hình ảnh</b>
@@ -188,9 +199,6 @@ const ListProduct = () => {
                     </div>
                 ))}
             </div>
-
-
-
 
             <ReactPaginate
                 breakLabel="..."

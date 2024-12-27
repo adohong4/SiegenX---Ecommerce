@@ -8,27 +8,25 @@ const MyOrders = () => {
     const { url, token } = useContext(StoreContext);
     const [orders, setOrders] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const fetchOrders = async () => {
-        try {
-            const response = await axios.get(`${url}/v1/api/order/userOrder`, { headers: { token } });
 
-            if (response.data.status) {
+    const fetchOrders = async (token) => {
+        setIsLoading(true);
+        try {
+            const response = await axios.get(`${url}/v1/api/profile/order/userOrder`, { headers: { token } });
+
+            if (response.data.status === 200) {
                 setOrders(response.data.metadata);
-                setIsLoading(false);
-            } else {
-                toast.error('Không thể lấy thông tin đơn hàng!');
-                setIsLoading(false);
             }
         } catch (error) {
             toast.error('Lỗi khi kết nối với máy chủ!');
+        } finally {
             setIsLoading(false);
-            console.error(error);
         }
     };
 
     useEffect(() => {
-        fetchOrders();
-    }, []);
+        fetchOrders(token);
+    }, [token]);
 
     return (
         <div className="My-Order">
@@ -45,42 +43,79 @@ const MyOrders = () => {
                         <p>Bạn chưa có đơn hàng nào.</p>
                     </div>
                 ) : (
-                    <table className="myorder-table">
-                        <thead>
-                            <tr>
-                                <th>Tên sản phẩm</th>
-                                <th>Ngày đặt</th>
-                                <th>Tổng tiền</th>
-                                <th>Trạng thái</th>
-                                <th>Cập nhật đơn hàng</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <>
+                        {/* Desktop Table */}
+                        <table className="myorder-table">
+                            <thead>
+                                <tr>
+                                    <th>Mã hóa đơn</th>
+                                    <th>Ngày đặt</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                    <th>Trạng thái</th>
+                                    <th>Cập nhật đơn hàng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {orders.map((order) => (
+                                    <tr key={order._id}>
+                                        <td>{order._id}</td>
+                                        <td>{order.date}</td>
+                                        <td>{order.items.length} sản phẩm</td>
+                                        <td>{order.amount.toLocaleString()} VND</td>
+                                        <td className="status">
+                                            <span
+                                                className={`status-badge ${order.status
+                                                    .toLowerCase()
+                                                    .replace(/\s+/g, '-')}`}
+                                            >
+                                                {order.status}
+                                            </span>
+                                        </td>
+                                        <td className="col-update status">
+                                            <button
+                                                className="btn-updates"
+                                                onClick={() => fetchOrders(token)}
+                                            >
+                                                Cập nhật đơn hàng
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+
+                        {/* Mobile Cards */}
+                        <div className="orders-wrapper">
                             {orders.map((order) => (
-                                <tr key={order._id}>
-                                    <td>{order._id}</td>
-                                    <td>{order.date}</td>
-                                    <td>{order.amount.toLocaleString()} VND</td>
-                                    <td>
-                                        <span
-                                            className={`status-badge ${order.status
-                                                .toLowerCase()
-                                                .replace(/\s+/g, '-')}`}
-                                        >
-                                            {order.status}
-                                        </span>
-                                    </td>
-                                    <td>
+                                <div key={order._id} className="order-card">
+                                    <div className="order-detail">
+                                        <p><strong>Mã hóa đơn:</strong> {order._id}</p>
+                                        <p><strong>Ngày đặt:</strong> {order.date}</p>
+                                        <p><strong>Số lượng:</strong> {order.items.length} sản phẩm</p>
+                                        <p><strong>Thành tiền:</strong> {order.amount.toLocaleString()} VND</p>
+                                        <p><strong>Trạng thái:</strong> 
+                                            <span
+                                                className={`status-badge ${order.status
+                                                    .toLowerCase()
+                                                    .replace(/\s+/g, '-')}`}
+                                            >
+                                                {order.status}
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div className="order-actions">
                                         <button
-                                            className="btn-updates" onClick={fetchOrders}
+                                            className="btn-updates"
+                                            onClick={() => fetchOrders(token)}
                                         >
                                             Cập nhật đơn hàng
                                         </button>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </div>
                             ))}
-                        </tbody>
-                    </table>
+                        </div>
+                    </>
                 )}
             </div>
         </div>

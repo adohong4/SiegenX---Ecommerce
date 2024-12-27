@@ -8,12 +8,10 @@ const { authMiddleware } = require('../../middleware/checkAuth')
 
 const router = express.Router()
 
-//changeInfo User && get all info user
-router.post('/cart/add', authMiddleware, asyncHandler(cartController.addToCart))
-router.post('/cart/addQuantity', authMiddleware, asyncHandler(cartController.addQuantityToCart))
+router.post('/profile/cart/add', authMiddleware, asyncHandler(cartController.addToCart))
+router.post('/profile/cart/addQuantity', authMiddleware, asyncHandler(cartController.addQuantityToCart))
 
-router.post('/cart/remove', authMiddleware, asyncHandler(cartController.removeFromCart))
-router.get('/cart/get', authMiddleware, asyncHandler(cartController.getCart))
-
+router.post('/profile/cart/remove', authMiddleware, asyncHandler(cartController.removeFromCart))
+router.get('/profile/cart/get', authMiddleware, asyncHandler(cartController.getCart))
 
 module.exports = router;

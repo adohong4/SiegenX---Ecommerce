@@ -39,7 +39,7 @@ const Contact = () => {
                 isCheck: updatedList.find(item => item._id === itemId).viewed
             });
         } catch (error) {
-            toast.error("Error updating view status");
+            toast.error("Lỗi khi cập nhật tình trạng");
         }
     };
 
@@ -55,10 +55,10 @@ const Contact = () => {
                 setTotalItems(response.data.pagination.totalItems);
                 setTotalPages(response.data.pagination.totalPages);
             } else {
-                toast.error('Error fetching user list');
+                toast.error('Lỗi khi lấy dữ liệu liên hệ');
             }
         } catch (error) {
-            toast.error('Error fetching data');
+            toast.error('Xảy ra ngoại lệ khi lấy dữ liệu liên hệ');
             console.error(error);
         }
     };
@@ -69,20 +69,30 @@ const Contact = () => {
 
 
     const handleSearch = async () => {
-        if (!searchTerm.trim()) {
-            fetchList();
+        if (searchTerm.trim() === '') {
+            await fetchList();
             return;
         }
-
+    
         try {
-            const response = await axios.get(`${url}/v1/api/admin/getAllUser`, { params: { term: searchTerm } });
+            const response = await axios.get(`${url}/v1/api/contacts/email`, { params: { email: searchTerm } });
+    
             if (response.data.status) {
-                setList(response.data.data);
+                console.log(Array.isArray(response.data.metadata))
+                if (Array.isArray(response.data.metadata)) { 
+                    setList(response.data.metadata);
+                    toast.success("Tìm kiếm thành công");
+                } else {
+                    setList([]); 
+                    toast.error("Không tìm thấy thông tin liên hệ nào");
+                }
             } else {
-                toast.error("Error searching contacts");
+                setList([]);
+                toast.error("Tìm kiếm thất bại");
             }
         } catch (error) {
-            toast.error("Error searching contacts");
+            setList([]); // Gán giá trị rỗng khi xảy ra lỗi
+            toast.error("Không tìm thấy thông tin liên hệ");
         }
     };
 
@@ -93,10 +103,10 @@ const Contact = () => {
                 toast.success(response.data.message);
                 fetchList();
             } else {
-                toast.error("Error deleting contact");
+                toast.error("Lỗi khi xóa thông tin liên hệ");
             }
         } catch (error) {
-            toast.error("Exception while deleting contact");
+            toast.error("Xảy ra ngoại lệ khi xóa thông tin");
         }
     };
 

@@ -7,8 +7,10 @@ import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
 
 const MeetingRoomSolution = () => {
     return (
-        <div sol-all-content>
-            <ScrollToTop/>
+
+        <div className="sol-all-content">
+
+            <ScrollToTop />
             <Notification />
             <div className='meet-section-0 meet-section'>
                 <img src={assets.meeting1} alt="meeting1" />
@@ -74,20 +76,20 @@ const MeetingRoomSolution = () => {
                             <h2>NHỮNG CUỘC HỌP NHÀM CHÁN VÀ KHÔNG HIỆU QUẢ</h2>
                             <div>
                                 <div className='sol-box'>
-                                    <i class="fa-solid fa-check"></i>
+                                    <i className="fa-solid fa-check"></i>
                                     <p><strong>Trước cuộc họp: </strong>
                                         Vận hành phức tạp nhiều thiết bị dẫn đến hiệu quả công việc thấp.
                                     </p>
                                 </div>
 
                                 <div className='sol-box'>
-                                    <i class="fa-solid fa-check"></i>
+                                    <i className="fa-solid fa-check"></i>
                                     <p><strong>Trong cuộc họp: </strong>Khó thu nhập và ghi chép dữ liệu khi họp, khó đảm
                                         bảo tính chính xác và toàn vẹn của dữ liệu. </p>
                                 </div>
 
                                 <div className='sol-box'>
-                                    <i class="fa-solid fa-check"></i>
+                                    <i className="fa-solid fa-check"></i>
                                     <p><strong>Sau cuộc họp: </strong>Khó truy vấn dữ liệu diễn ra trong cuộc họp đồng thời nguy cơ rò rỉ thông tin cao.</p>
                                 </div>
                             </div>
@@ -101,11 +103,11 @@ const MeetingRoomSolution = () => {
                 {/* <a href="/"><span>LIÊN HỆ</span></a> */}
                 <div className='meet-container'>
                     <h1>THIẾT BỊ & SẢN PHẨM</h1>
-                    <div class="sp-row">
-                        <div class="sp-col">
+                    <div className="sp-row">
+                        <div className="sp-col">
                             <div className='sp'>
                                 <img src={assets.productClass1} alt="productclass1" />
-                                <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="/" className='buy'><i className="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div className='btn-sp'>
                                     <a href="/lien-he">
@@ -115,10 +117,10 @@ const MeetingRoomSolution = () => {
                                 </div>
                             </div>
                         </div>
-                        <div class="sp-col">
+                        <div className="sp-col">
                             <div className="sp">
                                 <img src={assets.productClass2} alt="productclass2" />
-                                <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="/" className='buy'><i className="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div className='btn-sp'>
                                     <a href="/lien-he">
@@ -128,10 +130,10 @@ const MeetingRoomSolution = () => {
                                 </div>
                             </div>
                         </div>
-                        <div class="sp-col">
+                        <div className="sp-col">
                             <div className="sp">
                                 <img src={assets.productClass3} alt="productclass3" />
-                                <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="/" className='buy'><i className="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div className='btn-sp'>
                                     <a href="/lien-he">
@@ -141,10 +143,10 @@ const MeetingRoomSolution = () => {
                                 </div>
                             </div>
                         </div>
-                        <div class="sp-col">
+                        <div className="sp-col">
                             <div className="sp">
                                 <img src={assets.productClass4} alt="productclass4" />
-                                <a href="/" className='buy'><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="/" className='buy'><i className="fa-solid fa-cart-shopping"></i></a>
                                 <h5>Màn Hình Tương Tác Thông Minh SIEGenX 75inch 4k SGX -1T75</h5>
                                 <div className='btn-sp'>
                                     <a href="/lien-he">

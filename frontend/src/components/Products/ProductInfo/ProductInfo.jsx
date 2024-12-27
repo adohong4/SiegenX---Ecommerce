@@ -18,7 +18,7 @@ const ProductInfo = () => {
 
   const handleAddQuantityToCart = (id, quantity) => {
     addQuantityToCart(id, quantity)
-    toast.success('Added to Cart!');
+    toast.success("Thêm vào giỏ hàng");
   };
 
 

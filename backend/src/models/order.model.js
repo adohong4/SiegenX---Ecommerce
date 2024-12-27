@@ -11,7 +11,7 @@ const orderSchema = new Schema({
     items: { type: Array, required: true },
     amount: { type: Number, required: true },
     address: { type: Object, required: true },
-    status: { type: String, default: "Wait for confirmation" },
+    status: { type: String, default: "Đợi xác nhận" },
     date: {
         type: String,
         default: () => {

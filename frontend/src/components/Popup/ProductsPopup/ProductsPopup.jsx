@@ -18,7 +18,6 @@ const ProductPopup = ({ product, onClose, url, onUpdate }) => {
     const handleSave = async () => {
         try {
             await onUpdate(updatedProduct);  // Gọi hàm cập nhật sản phẩm
-            toast.success('Cập nhật sản phẩm thành công!');
             onClose();
         } catch (error) {
             console.error('Error updating product:', error);  // Log lỗi để dễ debug

@@ -24,7 +24,7 @@ const AddressPopup = ({ setShowAddress }) => {
         event.preventDefault();
         try {
             const token = localStorage.getItem("token");
-            const newUrl = `${url}/v1/api/user/addAddress`;
+            const newUrl = `${url}/v1/api/profile/addAddress`;
             const response = await axios.post(newUrl, data, {
                 headers: { token }
             });

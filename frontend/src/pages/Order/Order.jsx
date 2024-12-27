@@ -8,6 +8,7 @@ import { StoreContext } from '../../context/StoreContext';
 
 const PlaceOrder = () => {
     const { getTotalCartAmount, token, user_address, product_list, cartItems, url } = useContext(StoreContext);
+    const [list, setList] = useState([]);
     const navigate = useNavigate();
     const [paymentMethod, setPaymentMethod] = useState("cash");
     const [formData, setFormData] = useState({
@@ -18,6 +19,19 @@ const PlaceOrder = () => {
         city: "",
         province: "",
     });
+
+    const fetchUserAddress = async () => {
+        try {
+            const response = await axios.get(`${url}/v1/api/profile/getAddress`, {
+                headers: { token }
+            });
+            if (response.data.status) {
+                setList(response.data.metadata.addresses);
+            }
+        } catch (error) {
+            toast.error("Lỗi hiển thị");
+        }
+    };
 
     const handlePaymentChange = (event) => {
         setPaymentMethod(event.target.value);
@@ -59,7 +73,7 @@ const PlaceOrder = () => {
         };
         //lựa chọn online hay tại nhà
         if (paymentMethod === 'online') {
-            let response = await axios.post(url + "/v1/api/stripe/place", orderData, { headers: { token } });
+            let response = await axios.post(url + "/v1/api/profile/stripe/place", orderData, { headers: { token } });
 
             if (response.data.success) {
                 const { session_url } = response.data;
@@ -68,7 +82,7 @@ const PlaceOrder = () => {
                 toast.error(response.data.message);
             }
         } else {
-            let response = await axios.post(url + "/v1/api/payment/verify", orderData, { headers: { token } });
+            let response = await axios.post(url + "/v1/api/profile/payment/verify", orderData, { headers: { token } });
             if (response.data.success) {
                 toast.success(response.data.message);
                 navigate("/myorder");
@@ -80,6 +94,7 @@ const PlaceOrder = () => {
     };
 
     useEffect(() => {
+        fetchUserAddress(token);
         if (!token) {
             navigate('/cart');
         } else if (getTotalCartAmount() === 0) {
@@ -96,8 +111,8 @@ const PlaceOrder = () => {
                         name="address"
                         onChange={handleAddressChange}
                     >
-                        <option value="" disabled>Chọn địa chỉ giao hàng của bạn</option>
-                        {user_address.map((address, index) => (
+                        <option value="">Chọn địa chỉ giao hàng của bạn</option>
+                        {list.map((address, index) => (
                             <option key={index} value={JSON.stringify(address)}>
                                 {address.fullname}, {address.street}, {address.precinct}, {address.city}, {address.province}, {address.phone}
                             </option>
@@ -169,9 +184,11 @@ const PlaceOrder = () => {
                         {paymentMethod === "online" && (
                             <div className="payment-options">
                                 <p>Chọn phương thức thanh toán trực tuyến:</p>
-                                <img src={assets.momo} alt="MoMo" className="payment-logo" />
-                                <img src={assets.zalopay} alt="ZaloPay" className="payment-logo" />
-                                <img src={assets.stripe} alt="Stripe" className="payment-logo" />
+                                <div className='pay-options'>
+                                    {/* <img src={assets.momo} alt="MoMo" className="payment-logo" />
+                                    <img src={assets.zalopay} alt="ZaloPay" className="payment-logo" /> */}
+                                    <img src={assets.stripe} alt="Stripe" className="payment-logo" />
+                                </div>
                             </div>
                         )}
                     </div>

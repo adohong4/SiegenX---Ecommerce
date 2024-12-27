@@ -46,7 +46,9 @@ class OrderController {
 
     userOrder = async (req, res, next) => {
         try {
-            const result = await OrderService.userOrder(req.body.userId)
+            const { userId } = req.body;
+
+            const result = await OrderService.userOrder(userId)
 
             new OK({
                 message: "Hiển thị đơn hàng thành công",
