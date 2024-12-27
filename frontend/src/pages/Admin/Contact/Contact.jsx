@@ -27,7 +27,7 @@ const Contact = () => {
     const handleViewToggle = async (itemId) => {
         try {
             const updatedList = list.map(item => {
-                if (item._id === itemId) {
+                if (item.id === itemId) {
                     return { ...item, viewed: !item.viewed };
                 }
                 return item;
@@ -36,7 +36,7 @@ const Contact = () => {
             setList(updatedList);
 
             await axios.put(`${url}/v1/api/contact/updateCheck/${itemId}`, {
-                isCheck: updatedList.find(item => item._id === itemId).viewed
+                check: updatedList.find(item => item.id === itemId).viewed
             });
         } catch (error) {
             toast.error("Lỗi khi cập nhật tình trạng");
@@ -46,11 +46,11 @@ const Contact = () => {
     const fetchListcontact = async (page = 1) => {
         try {
             const response = await axios.get(`${url}/v1/api/contact/pagination?page=${page}&limit=20`);
-            console.log("td:", response.data.message);
+
             if (response.data.message) {
                 const contacts = response.data.data.map(contact => ({
                     ...contact,
-                    viewed: contact.isCheck // Thiết lập trạng thái viewed dựa trên isCheck
+                    viewed: contact.check // Thiết lập trạng thái viewed
                 }));
                 setList(contacts);
                 setTotalItems(response.data.pagination.totalItems);
@@ -79,21 +79,20 @@ const Contact = () => {
 
     const handleSearch = async () => {
         if (searchTerm.trim() === '') {
-            await fetchListcontact();
+            await fetchListcontact(currentPage);
             return;
         }
 
         try {
-
-            const response = await axios.get(`${url}/v1/api/contacts/email`, {
-                params: { email: searchTerm, page: currentPage, limit: 10 }
+            const response = await axios.get(`${url}/v1/api/contact/search`, {
+                params: { query: searchTerm, page: currentPage, limit: 20 } // Cập nhật tham số
             });
 
             if (response.data.status) {
                 if (Array.isArray(response.data.data)) {
                     const contacts = response.data.data.map(contact => ({
                         ...contact,
-                        viewed: contact.isCheck // Thiết lập trạng thái viewed dựa trên isCheck
+                        viewed: contact.check // Thiết lập trạng thái viewed
                     }));
                     setList(contacts);
                     setTotalPages(response.data.pagination.totalPages); // Cập nhật tổng số trang
@@ -104,7 +103,6 @@ const Contact = () => {
                 }
             } else {
                 setList([]);
-                toast.error("Tìm kiếm thất bại");
             }
         } catch (error) {
             setList([]); // Gán giá trị rỗng khi xảy ra lỗi
@@ -116,6 +114,8 @@ const Contact = () => {
     const removeContact = async (id) => {
         try {
             const response = await axios.delete(`${url}/v1/api/contact/delete/${id}`);
+
+            console.log("xoa: ", response.data.message);
 
             if (response.data.status) {
                 toast.success(response.data.message);
@@ -155,7 +155,9 @@ const Contact = () => {
             <div className='contact-tittle'>
                 <p>Danh sách Khách hàng liên hệ</p>
             </div>
-            <div className='search'>
+
+            <br />
+            {/* <div className='search'>
                 <div className='search-CSKH'>
                     <input
                         type="text"
@@ -168,7 +170,7 @@ const Contact = () => {
                         <i className="fas fa-search"></i>
                     </button>
                 </div>
-            </div>
+            </div> */}
 
             <div className="contact-list-table">
                 <div className="table-header">
@@ -200,14 +202,14 @@ const Contact = () => {
                             <div>{item.date}</div>
                             <div className="col-check">
                                 <button
-                                    onClick={() => handleViewToggle(item._id)}
+                                    onClick={() => handleViewToggle(item.id)}
                                     className="btn-eye"
                                 >
                                     <FontAwesomeIcon icon={item.viewed ? faEyeSlash : faEye} />
                                 </button>
                             </div>
                             <div className="col-actions">
-                                <button onClick={(e) => { e.stopPropagation(); removeContact(item._id); }} className="btn-delete">
+                                <button onClick={(e) => { e.stopPropagation(); removeContact(item.id); }} className="btn-delete">
                                     <FontAwesomeIcon icon={faTrash} />
                                 </button>
                                 <button onClick={() => openPopup(item)} className="btn-info">

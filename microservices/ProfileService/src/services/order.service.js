@@ -77,7 +77,7 @@ class OrderService {
 
     static findByCustomerName = async (customerName) => {
         try {
-            const users = await userModel.find({ email: { $regex: email, $options: 'i' } }); 
+            const users = await userModel.find({ email: { $regex: email, $options: 'i' } });
             if (!users || users.length === 0) {
                 throw new Error("No users found with the given email");
             }
@@ -85,6 +85,19 @@ class OrderService {
         } catch (error) {
             throw error;
         }
+    };
+
+
+    static findByID = async (id, skip, limit) => {
+        return orderModel
+            .find({ _id: id })
+            .skip(skip)
+            .limit(limit);
+    };
+
+
+    static countDocumentsByID = async (id) => {
+        return orderModel.countDocuments({ _id: id });
     };
 }
 

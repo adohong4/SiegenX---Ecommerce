@@ -98,7 +98,6 @@ class AdminService {
     static countDocumentsByEmail = async (email) => {
         return userModel.countDocuments({ email: { $regex: email, $options: 'i' } });
     };
-
 }
 
 module.exports = AdminService;

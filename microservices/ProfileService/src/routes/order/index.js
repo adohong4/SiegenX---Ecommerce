@@ -16,6 +16,7 @@ router.delete('/profile/order/delete/:id', asyncHandler(orderController.deleteOr
 router.get('/profile/order/userOrder', authMiddleware, asyncHandler(orderController.userOrder))
 
 router.get('/profile/order/pagination', asyncHandler(orderController.getOrderWithPagination));
+router.get('/profile/order/id', asyncHandler(orderController.getOrderByID));
 
 
 module.exports = router;

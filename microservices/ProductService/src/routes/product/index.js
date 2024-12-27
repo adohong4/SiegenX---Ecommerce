@@ -30,4 +30,5 @@ router.get("/product/getSlug/:slug", asyncHandler(ProductController.getProductBy
 
 router.get('/products/title', asyncHandler(ProductController.getProductByTitle));
 
+
 module.exports = router;

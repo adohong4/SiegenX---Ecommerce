@@ -4,7 +4,7 @@ import { StoreContext } from '../../../context/StoreContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const AddressPopup = ({ setShowAddress }) => {
+const AddressPopup = ({ setShowAddress, onSuccess }) => {
     const { url, setToken, url2 } = useContext(StoreContext);
     const [data, setData] = useState({
         fullname: '',
@@ -32,6 +32,7 @@ const AddressPopup = ({ setShowAddress }) => {
             if (response.data.status) {
                 toast.success('Địa chỉ đã được lưu thành công!');
                 setShowAddress(false); // Đóng popup
+                onSuccess(); // Cập nhật lại danh sách địa chỉ
             } else {
                 toast.error(response.data.message || 'Đã xảy ra lỗi. Vui lòng thử lại!');
             }

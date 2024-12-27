@@ -141,7 +141,10 @@ const Profile = () => {
 
             {/* AddressPopup */}
             {showAddressPopup && (
-                <AddressPopup setShowAddress={setShowAddressPopup} />
+                <AddressPopup
+                    setShowAddress={setShowAddressPopup}
+                    onSuccess={fetchUserAddress}
+                />
             )}
         </div>
     );

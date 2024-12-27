@@ -27,18 +27,18 @@ const Contact = () => {
 
         let newUrl = url;
         const response = await axios.post(`${newUrl}/v1/api/contact/add`, data);
-        console.log("data:", response.data.metadata)
-        if (response.data.status) {
+
+        if (response.data) {
             setData({
                 username: '',
                 email: '',
                 phone: '',
                 content: ''
             })
-            toast.success(response.data.message)
+            toast.success("Yêu cầu được gửi thành công")
         }
         else {
-            toast.error(response.data.message)
+            toast.error("Gửi yêu cầu thất bại")
         }
     }
 
@@ -52,7 +52,7 @@ const Contact = () => {
                 <div className="container contact-container">
                     <div className="contact-info">
                         <h2>CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ SIEGENX</h2>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo </p>
+                        <p>SIEGENX tự hào là đơn vị tiên phong mang đến những giải pháp công nghệ đột phá, toàn diện. Các giải pháp công nghệ của chúng tôi giúp tối ưu hoá quy trình làm việc, nâng cao hiệu suất cho đa lĩnh vực ngành nghề. </p>
                         <div className="contact-detail">
                             <div className="contact-item">
                                 <i className="fas fa-map-marker-alt"></i>

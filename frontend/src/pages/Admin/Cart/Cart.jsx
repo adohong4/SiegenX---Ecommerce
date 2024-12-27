@@ -41,8 +41,8 @@ const Cart = () => {
         }
 
         try {
-            const response = await axios.get(`${url}/v1/api/profile/order/id`, { 
-                params: { id: searchTerm, page: currentPage, limit: 10} 
+            const response = await axios.get(`${url}/v1/api/profile/order/id`, {
+                params: { id: searchTerm, page: currentPage, limit: 10 }
             });
 
             if (response.data.status) {
@@ -134,11 +134,11 @@ const Cart = () => {
     useEffect(() => {
         if (searchTerm.trim()) {
             // nofi = false
-            handleSearch(); 
+            handleSearch();
         } else {
-            fetchListpage(currentPage); 
+            fetchListpage(currentPage);
         }
-    }, [currentPage, searchTerm]); 
+    }, [currentPage, searchTerm]);
 
     return (
         <div className='order-list-container'>
