@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const ListProduct = () => {
-    const { url, product_list } = useContext(StoreContext)
+    const { url, url2, product_list } = useContext(StoreContext)
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0); // Theo dõi tổng số trang
     const [selectedProduct, setSelectedProduct] = useState(null);
@@ -185,7 +185,7 @@ const ListProduct = () => {
 
                 {sortedList.map((item, index) => (
                     <div key={index} className='list-table-format' onClick={() => handleRowClick(item)} style={{ cursor: 'pointer' }}>
-                        <img src={`${url}/images/${item.images[0]}`} alt="" />
+                        <img src={`${url2}/images/${item.images[0]}`} alt="" />
                         <p className='id-product'>{item._id}</p>
                         <p className='name-product'>{item.title}</p>
                         <p className='category-product'>{item.category}</p>

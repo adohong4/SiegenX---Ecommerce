@@ -7,7 +7,7 @@ import "./ProductInfo.css";
 
 const ProductInfo = () => {
 
-  const { product_slug, fetchProductSlug, url, cartItems, addQuantityToCart, addToCart, removeFromCart } = useContext(StoreContext);
+  const { product_slug, fetchProductSlug, url, url2, cartItems, addQuantityToCart, addToCart, removeFromCart } = useContext(StoreContext);
   const { productSlug } = useParams();
   const [activeTab, setActiveTab] = useState("description");
   const [quantity, setQuantity] = useState(1);
@@ -74,7 +74,7 @@ const ProductInfo = () => {
       <div className="productinfo-container">
         <div className="productinfo-images">
           <div className="productinfo-main-image">
-            <img src={`${url}/images/${mainImage}`} alt={product_slug.nameProduct} />
+            <img src={`${url2}/images/${mainImage}`} alt={product_slug.nameProduct} />
             <div className="productinfo-zoom-icon" onClick={togglePopup}>
               <FaSearch size={22} color="black" />
             </div>
@@ -83,7 +83,7 @@ const ProductInfo = () => {
             {product_slug.images.map((image, index) => (
               <img
                 key={index}
-                src={`${url}/images/${image}`}
+                src={`${url2}/images/${image}`}
                 alt={`Thumbnail ${index + 1}`}
                 className={`productinfo-thumbnail ${selectedThumbnail === image ? "selected" : ""}`}
                 onClick={() => handleThumbnailClick(image)}
@@ -168,7 +168,7 @@ const ProductInfo = () => {
               <div className="producttab-images">
                 {product_slug.images?.[0] && (
                   <img
-                    src={`${url}/images/${product_slug.images[0]}`}
+                    src={`${url2}/images/${product_slug.images[0]}`}
                     alt="Hình ảnh sản phẩm"
                     className="producttab-image"
                   />
@@ -182,7 +182,7 @@ const ProductInfo = () => {
               <div className="producttab-images">
                 {product_slug.images?.[1] && (
                   <img
-                    src={`${url}/images/${product_slug.images[1]}`}
+                    src={`${url2}/images/${product_slug.images[1]}`}
                     alt="Hình ảnh sản phẩm"
                     className="producttab-image"
                   />
@@ -192,7 +192,7 @@ const ProductInfo = () => {
               <div className="producttab-images">
                 {product_slug.images?.[2] && (
                   <img
-                    src={`${url}/images/${product_slug.images[2]}`}
+                    src={`${url2}/images/${product_slug.images[2]}`}
                     alt="Hình ảnh sản phẩm"
                     className="producttab-image"
                   />

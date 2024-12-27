@@ -7,7 +7,7 @@ import { StoreContext } from '../../context/StoreContext';
 
 const Cart = () => {
 
-    const { cartItems, product_list, removeFromCart, getTotalCartAmount, url } = useContext(StoreContext)
+    const { cartItems, product_list, removeFromCart, getTotalCartAmount, url, url2 } = useContext(StoreContext)
 
     const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ const Cart = () => {
                         if (cartItems[item._id] > 0) {
                             return (
                                 <div key={item._id} className="cart-item">
-                                    <img src={`${url}/images/${item.images[0]}`} className="cart-item-image" />
+                                    <img src={`${url2}/images/${item.images[0]}`} className="cart-item-image" />
                                     <p>{item.nameProduct}</p>
                                     <p>{(item.price).toLocaleString()} đ</p>
                                     <p>{cartItems[item._id]}</p>
@@ -42,7 +42,7 @@ const Cart = () => {
                                 </div>
                             )
                         }
-                    })}  
+                    })}
                 </div>
                 <div className="cart-summary">
                     <h2>CHI TIẾT ĐƠN HÀNG</h2>

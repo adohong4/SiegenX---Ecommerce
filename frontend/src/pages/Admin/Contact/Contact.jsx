@@ -45,7 +45,8 @@ const Contact = () => {
 
     const fetchListcontact = async (page = 1) => {
         try {
-            const response = await axios.get(`${url}/v1/api/contact/pagination?page=${page}&limit=10`);
+            const response = await axios.get(`${url}/v1/api/contact/pagination?page=${page}&limit=20`);
+            console.log("td:", response.data.message);
             if (response.data.message) {
                 const contacts = response.data.data.map(contact => ({
                     ...contact,
@@ -73,17 +74,17 @@ const Contact = () => {
             await fetchList();
             return;
         }
-    
+
         try {
             const response = await axios.get(`${url}/v1/api/contacts/email`, { params: { email: searchTerm } });
-    
+
             if (response.data.status) {
                 console.log(Array.isArray(response.data.metadata))
-                if (Array.isArray(response.data.metadata)) { 
+                if (Array.isArray(response.data.metadata)) {
                     setList(response.data.metadata);
                     toast.success("Tìm kiếm thành công");
                 } else {
-                    setList([]); 
+                    setList([]);
                     toast.error("Không tìm thấy thông tin liên hệ nào");
                 }
             } else {
@@ -99,8 +100,8 @@ const Contact = () => {
     const removeContact = async (id) => {
         try {
             const response = await axios.delete(`${url}/v1/api/contact/delete/${id}`);
-            if (response.data.status) {
-                toast.success(response.data.message);
+            if (response.data) {
+                toast.success("Xoa thanh cong");
                 fetchList();
             } else {
                 toast.error("Lỗi khi xóa thông tin liên hệ");

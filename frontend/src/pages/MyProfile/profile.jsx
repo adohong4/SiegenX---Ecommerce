@@ -59,19 +59,19 @@ const Profile = () => {
             <div className="container my-4 d-flex">
                 <div className="profile-info">
                     <h2 className="border-bt">Thông tin cá nhân</h2>
-                    <div className="form-group top-image-profile">
+                    {/* <div className="form-group top-image-profile">
                         <p>Ảnh đại diện</p>
                         <img
                             alt="Profile"
                             className="profile-image"
                         />
                         <input
-                            type="file"     
+                            type="file"
                             id="image"
                             className="form-control-file"
                             style={{ display: 'none' }}
                         />
-                    </div>
+                    </div> */}
 
                     <div className="form-group top-mid-profile">
                         <p>Username</p>
@@ -126,9 +126,9 @@ const Profile = () => {
                                                 <div className="address-details-left">
                                                     <p>{address.street}, {address.precinct}, {address.city}, {address.province}, {address.phone}</p>
                                                 </div>
-                                                <div className="address-details-right">
+                                                {/* <div className="address-details-right">
                                                     <button>Xóa</button>
-                                                </div>
+                                                </div> */}
                                             </div>
                                         </div>
                                     </div>
