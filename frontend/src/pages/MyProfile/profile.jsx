@@ -48,6 +48,16 @@ const Profile = () => {
         }
     };
 
+    const handleDeleteAddress = async (addressId) => {
+        try {
+            const response = await axios.delete(`${url}/v1/api/profile/deleteAddress/${addressId}`, { headers: { token } });
+            toast.success(response.data.message);
+            setList(list.filter(address => address._id !== addressId)); // Cập nhật lại danh sách địa chỉ
+        } catch (error) {
+            console.error('Error deleting address:', error);
+        }
+    };
+
     useEffect(() => {
         fetchUserData(token);
         fetchUserAddress(token);
@@ -127,7 +137,7 @@ const Profile = () => {
                                                     <p>{address.street}, {address.precinct}, {address.city}, {address.province}, {address.phone}</p>
                                                 </div>
                                                 <div className="address-details-right">
-                                                    <button>Xóa</button>
+                                                    <button onClick={() => handleDeleteAddress(address._id)}>Xóa</button>
                                                 </div>
                                             </div>
                                         </div>
