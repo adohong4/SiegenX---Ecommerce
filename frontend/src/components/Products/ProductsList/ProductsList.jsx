@@ -6,7 +6,7 @@ import { assets } from "../../../assets/assets";
 import { StoreContext } from "../../../context/StoreContext";
 
 const ProductsList = () => {
-  const { product_list, url } = useContext(StoreContext);
+  const { product_list, url, url2 } = useContext(StoreContext);
   const [searchParams] = useSearchParams(); // Lấy các tham số từ URL
   const [selectedCategory, setSelectedCategory] = useState(null); // Category được chọn
   const [currentPage, setCurrentPage] = useState(1);
@@ -140,7 +140,7 @@ const ProductsList = () => {
                 onClick={() => handleProductClick(product.product_slug)}
               >
                 <div className="productlist-img-container">
-                  <img src={`${url}/images/${product.images[0]}`} alt=""
+                  <img src={`${url2}/images/${product.images[0]}`} alt=""
                     className="productlist-image"
                   />
                   <div className="cart-icon">

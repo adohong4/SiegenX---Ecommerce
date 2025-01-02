@@ -86,6 +86,19 @@ class OrderService {
             throw error;
         }
     };
+
+
+    static findByID = async (id, skip, limit) => {
+        return orderModel
+            .find({ _id: id})
+            .skip(skip)
+            .limit(limit);
+    };
+    
+
+    static countDocumentsByID = async (id) => {
+        return orderModel.countDocuments({ _id: id });
+    };
 }
 
 

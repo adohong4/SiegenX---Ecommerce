@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const ListProduct = () => {
-    const { url, product_list } = useContext(StoreContext)
+    const { url, url2, product_list } = useContext(StoreContext)
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0); // Theo dõi tổng số trang
     const [selectedProduct, setSelectedProduct] = useState(null);
@@ -27,7 +27,15 @@ const ListProduct = () => {
 
 
     const handlePageClick = (event) => {
-        setCurrentPage(+event.selected + 1);
+        const newPage = +event.selected + 1;
+        setCurrentPage(newPage);
+
+        // Phân biệt giữa tìm kiếm và hiển thị toàn bộ danh sách
+        if (searchTerm.trim()) {
+            handleSearch(newPage);
+        } else {
+            fetchList(newPage);
+        }
     };
 
 
@@ -44,29 +52,36 @@ const ListProduct = () => {
 
     const handleSearch = async () => {
         if (searchTerm.trim() === '') {
-            await fetchList();
+            await fetchList(page); // Quay lại danh sách đầy đủ nếu không nhập gì
             return;
         }
 
         try {
-            const response = await axios.get(`${url}/v1/api/products/title`, { params: { title: searchTerm } });
+            const response = await axios.get(`${url}/v1/api/products/title`, {
+                params: { title: searchTerm, page: currentPage, limit: 10 },
+            });
 
             if (response.data.status) {
-                console.log(Array.isArray(response.data.metadata))
-                if (Array.isArray(response.data.metadata)) {
-                    setList(response.data.metadata);
-                    toast.success(response.data.message);
+                if (Array.isArray(response.data.data)) {
+                    setList(response.data.data);
+                    setTotalPages(response.data.pagination.totalPages); // Cập nhật tổng số trang
+                    // toast.success(response.data.message);
                 } else {
+                    console.log(response.data.status)
                     setList([]);
-                    toast.error("No products found.");
+                    setTotalPages(0); // Đặt số trang về 0 nếu không có kết quả
+                    toast.error("Không tìm thấy sản phẩm");
                 }
             } else {
+                console.log(response.data.status)
                 setList([]);
-                toast.error("Search failed.");
+                setTotalPages(0);
+                toast.error("Tìm kiếm thất bại");
             }
         } catch (error) {
-            setList([]); // Gán giá trị rỗng khi xảy ra lỗi
-            toast.error("Error occurred during search.");
+            setList([]);
+            setTotalPages(0);
+            toast.error("Lỗi trong quá trình tìm kiếm");
         }
     };
 
@@ -122,8 +137,13 @@ const ListProduct = () => {
     };
 
     useEffect(() => {
-        fetchList(currentPage);
-    }, [currentPage]);
+        if (searchTerm.trim()) {
+            // nofi = false
+            handleSearch(); // Nếu có từ khóa tìm kiếm, thực hiện tìm kiếm
+        } else {
+            fetchList(currentPage); // Nếu không, tải danh sách mặc định
+        }
+    }, [currentPage, searchTerm]); // Thêm searchTerm vào dependency
 
     return (
         <div className='listproduct add flex-col'>
@@ -185,7 +205,7 @@ const ListProduct = () => {
 
                 {sortedList.map((item, index) => (
                     <div key={index} className='list-table-format' onClick={() => handleRowClick(item)} style={{ cursor: 'pointer' }}>
-                        <img src={`${url}/images/${item.images[0]}`} alt="" />
+                        <img src={`${url2}/images/${item.images[0]}`} alt="" />
                         <p className='id-product'>{item._id}</p>
                         <p className='name-product'>{item.title}</p>
                         <p className='category-product'>{item.category}</p>

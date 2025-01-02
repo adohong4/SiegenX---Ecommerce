@@ -5,7 +5,7 @@ import { assets } from "../../../assets/assets";
 import { StoreContext } from "../../../context/StoreContext";
 
 const ProductShowcase = () => {
-  const { product_list, url } = useContext(StoreContext);
+  const { product_list, url2 } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const handleProductClick = (productSlug) => {
@@ -41,7 +41,7 @@ const ProductShowcase = () => {
               {/* Container hình ảnh và icon giỏ hàng */}
               <div className="product-img-container">
                 <img
-                  src={`${url}/images/${product.images[0]}`}
+                  src={`${url2}/images/${product.images[0]}`}
                   alt={product.title}
                   className="product-img"
                 />

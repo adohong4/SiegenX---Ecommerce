@@ -57,13 +57,23 @@ class AdminController {
 
     getUsersByEmail = async (req, res, next) => {
         try {
-            const { email } = req.query; // Lấy title từ query params
-            const result = await AdminService.getUsersByEmail(email);
+            const { email, page = 1, limit = 10 } = req.query; // Lấy thêm tham số phân trang từ query
+            const skip = (page - 1) * limit; // Tính skip
 
-            new OK({
-                message: 'Tìm kiếm thành công',
-                metadata: result.users
-            }).send(res);
+            const totalUsers = await AdminService.countDocumentsByEmail(email); // Đếm tổng sản phẩm khớp
+            const users = await AdminService.getUsersByEmail(email, skip, limit); // Lấy sản phẩm theo trang
+
+            res.status(200).json({
+                status: true,
+                message: 'Tìm kiếm người dùng thành công!',
+                data: users,
+                pagination: {
+                    total: totalUsers,
+                    currentPage: parseInt(page),
+                    totalPages: Math.ceil(totalUsers / limit),
+                    limit: parseInt(limit),
+                },
+            });
         } catch (error) {
             next(error);
         }
