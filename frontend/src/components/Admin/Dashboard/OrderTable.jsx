@@ -13,7 +13,7 @@ const OrderTable = () => {
 
     const fetchListpage = async (page = 1) => {
         try {
-            const response = await axios.get(`${url}/v1/api/profile/order/pagination?page=${page}&limit=5`);
+            const response = await axios.get(`${url}/v1/api/profile/order/pagination?page=${page}&limit=6`);
             if (response.data.message) {
                 setList(response.data.data);
                 setTotalOrder(response.data.pagination.limit);
@@ -29,30 +29,36 @@ const OrderTable = () => {
     }, [currentPage]);
 
     return (
-        <div className='trade-list-container'>
-            <div className='trade-list-title'>
+        <div className='orderpayment-list-container'>
+            <div className='orderpayment-list-title'>
                 <p>Giao dịch gần đây</p>
             </div>
-
-            <table className="trade-list-table">
-                <tbody>
+        
+                <ul className="transaction-list">
                     {list.map((item) => (
-                        <tr key={item._id} className='table-row'>
-                            <td>{item._id}</td>
-                            <td>{item.date}</td>
-                            <td>{item.paymentMethod}</td>
-                            <td>+ {(item.amount).toLocaleString()} đ</td>
-                        </tr>
+                    <li key={item._id} className="transaction-item">
+                        {/* <div className="transaction-icon">
+                            <br />
+                        </div> */}
+                        <div className="transaction-details">
+                            <p className="transaction-id">{item._id}</p>
+                            <p className="transaction-date">{item.date}</p>
+                        </div>
+                        <div className="transaction-amount">
+                            <p>+ {item.amount.toLocaleString()} đ</p>
+                            <p className="transaction-info">{item.paymentMethod}</p>
+                        </div>
+                    </li>
                     ))}
-                </tbody>
-            </table>
+                </ul>
 
-            <ReactPaginate
+                <ReactPaginate
                 breakLabel="..."
                 nextLabel=">"
-                pageRangeDisplayed={5}
-                pageCount={totalPages}
                 previousLabel="<"
+                pageCount={totalPages} // Tổng số trang
+                pageRangeDisplayed={1} // Hiển thị tối đa 4 số liên tiếp
+                marginPagesDisplayed={1} // Hiển thị 1 số đầu và cuối cùng
                 renderOnZeroPageCount={null}
                 pageClassName="page-item"
                 pageLinkClassName="page-link"
@@ -65,6 +71,7 @@ const OrderTable = () => {
                 containerClassName="pagination"
                 activeClassName="active"
             />
+
         </div>
     )
 }

@@ -44,6 +44,7 @@
     justify-content: flex-start;
     text-align: left;
     width: 200px;
+    transition: all 0.1s ease-in-out;
 }
 
 
@@ -129,7 +130,7 @@ swal2-html-container {
 }
 .log-out-btn{
     position: absolute;
-    bottom: -380px;
+    bottom: -300px;
 }
 .sidebar-option-logout{
     display: flex;
