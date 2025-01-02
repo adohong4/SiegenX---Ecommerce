@@ -84,7 +84,7 @@ const Profile = () => {
                     </div> */}
 
                     <div className="form-group top-mid-profile">
-                        <p>Username</p>
+                        <p>Tên tài khoản</p>
                         <input type="text" name="name" className="form-control"
                             value={username}
                             onChange={(e) => setName(e.target.value)}
@@ -101,7 +101,7 @@ const Profile = () => {
                     </div>
 
                     <div className="form-group">
-                        <p>Password</p>
+                        <p>Mật khẩu (*)</p>
                         <input type="password" name="password" className="form-control"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
