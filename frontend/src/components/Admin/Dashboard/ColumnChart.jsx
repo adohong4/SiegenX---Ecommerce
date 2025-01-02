@@ -12,10 +12,10 @@ const Factors = () => {
     const { url } = useContext(StoreContext)
 
     const [stats, setStats] = useState({
-        totalUsers: 0,
-        totalOrders: 0,
-        totalProducts: 0,
-        totalRevenue: 0,
+        totalUsers: 20,
+        totalOrders: 15,
+        totalProducts: 30,
+        totalRevenue: 20,
         ordersByStatus: []
     });
 
@@ -45,10 +45,10 @@ const Factors = () => {
             {
                 label: 'Người dùng',
                 data: [
-                    stats.totalUsers,
-                    stats.totalOrders,
-                    stats.totalProducts,
-                    stats.totalContacts,
+                    20,
+                    15,
+                    30,
+                    20,
                 ],
                 backgroundColor: [
                     'rgba(75, 192, 192, 0.6)', // Color for Total Users
@@ -68,29 +68,7 @@ const Factors = () => {
     };
 
     return (
-        <div className="user-factors-container">
-            <div className='user-factors-title'>
-                <h2>Thống kê</h2>
-            </div>
-            <div className="info-cards">
-                <div className="info-card">
-                    <h3>Người dùng</h3>
-                    <p>{stats.totalUsers}</p>
-                </div>
-                <div className="info-card">
-                    <h3>Sản phẩm</h3>
-                    <p>{stats.totalProducts}</p>
-                </div>
-                <div className="info-card">
-                    <h3>Đơn hàng</h3>
-                    <p>{stats.totalOrders}</p>
-                </div>
-                <div className="info-card">
-                    <h3>Liên hệ</h3>
-                    <p>{stats.totalContacts}</p>
-                </div>
-
-            </div>
+        <div className="column-chart-container">
             <div className='orders-right-2'>
                 <Bar data={chartData} options={{
                     responsive: true,

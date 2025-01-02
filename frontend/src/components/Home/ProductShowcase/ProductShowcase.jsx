@@ -5,7 +5,7 @@ import { assets } from "../../../assets/assets";
 import { StoreContext } from "../../../context/StoreContext";
 
 const ProductShowcase = () => {
-  const { product_list, url2 } = useContext(StoreContext);
+  const { product_list, url, url2 } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const handleProductClick = (productSlug) => {

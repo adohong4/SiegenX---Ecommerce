@@ -4,7 +4,7 @@ import "./Sidebar.css"
 import { assets } from '../../../assets/assets'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-
+import { faPlusCircle, faListUl, faUser, faBoxOpen, faHeadset, faChartBar } from '@fortawesome/free-solid-svg-icons';
 
 const Sidebar = () => {
     return (
@@ -15,32 +15,32 @@ const Sidebar = () => {
                 </div>
                 <div className="sidebar-options">
                     <NavLink to='/admin/dashboard' className="sidebar-option">
-                        <i className="bi bi-file-earmark-bar-graph"></i>
-                        <p>Dash Board</p>
+                        <FontAwesomeIcon icon={faChartBar} />
+                        <p>Tổng quan</p>
                     </NavLink>
 
                     <NavLink to='/admin/add' className="sidebar-option">
-                        <i className="bi bi-plus-circle"></i>
+                        <FontAwesomeIcon icon={faPlusCircle} />
                         <p>Thêm sản phẩm</p>
                     </NavLink>
 
                     <NavLink to='/admin/product' className="sidebar-option">
-                        <i className="bi bi-list-ul"></i>
+                        <FontAwesomeIcon icon={faListUl} />
                         <p>Sản phẩm</p>
                     </NavLink>
 
                     <NavLink to='/admin/user' className="sidebar-option">
-                        <i className="bi bi-file-person"></i>
+                        <FontAwesomeIcon icon={faUser} />
                         <p>Tài Khoản</p>
                     </NavLink>
 
                     <NavLink to='/admin/orders' className="sidebar-option">
-                        <i className="bi bi-box"></i>
+                        <FontAwesomeIcon icon={faBoxOpen} />
                         <p>Hóa Đơn</p>
                     </NavLink>
 
                     <NavLink to='/admin/contact' className="sidebar-option">
-                        <i className="bi bi-box"></i>
+                        <FontAwesomeIcon icon={faHeadset} />
                         <p>Liên Hệ CSKH</p>
                     </NavLink>
 
