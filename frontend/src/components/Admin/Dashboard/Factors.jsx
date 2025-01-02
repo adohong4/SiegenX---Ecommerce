@@ -4,6 +4,8 @@ import { toast } from 'react-toastify';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { StoreContext } from '../../../context/StoreContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUsers, faBox, faShoppingCart, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -45,22 +47,35 @@ const Factors = () => {
             </div>
             <div className="info-cards">
                 <div className="info-card">
-                    <h3>Người dùng</h3>
-                    <p>{stats.totalUsers}</p>
+                    <FontAwesomeIcon icon={faUsers} className="info-icon" />
+                    <div className='tt'>
+                        <h3>Người dùng</h3>
+                        <p>{stats.totalUsers}</p>
+                    </div>
                 </div>
                 <div className="info-card">
-                    <h3>Sản phẩm</h3>
-                    <p>{stats.totalProducts}</p>
+                    <FontAwesomeIcon icon={faBox} className="info-icon" />
+                    <div className='tt'>
+                        <h3>Sản phẩm</h3>
+                        <p>{stats.totalProducts}</p>
+                    </div>
                 </div>
                 <div className="info-card">
-                    <h3>Đơn hàng</h3>
-                    <p>{stats.totalOrders}</p>
+                    <FontAwesomeIcon icon={faShoppingCart} className="info-icon" />
+                    <div className='tt'>
+                        <h3>Đơn hàng</h3>
+                        <p>{stats.totalOrders}</p>
+                    </div>
+                    
                 </div>
                 <div className="info-card">
-                    <h3>Liên hệ</h3>
-                    <p>{stats.totalContacts}</p>
+                    <FontAwesomeIcon icon={faEnvelope} className="info-icon" />
+                    <div className='tt'>
+                        <h3>Liên hệ</h3>
+                        <p>{stats.totalContacts}</p>
+                    </div>
+                    
                 </div>
-
             </div>
         </div>
     );

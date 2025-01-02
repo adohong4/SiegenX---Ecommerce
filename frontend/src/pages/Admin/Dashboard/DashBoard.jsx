@@ -8,10 +8,25 @@ import LineChart from '../../../components/Admin/Dashboard/LineChart';
 const DashBoard = () => {
     return (
         <div className='Dashboard'>
-            <Factors />
-            <ColumnChart />
-            <OrderTable />
-            <LineChart />
+            <div className='section-doanhthu'>
+                <div className='doanhthu-left'>
+                    <Factors />
+                </div>
+                <div className='doanhthu-right'>
+                    
+                    <ColumnChart />
+                </div>
+            </div>
+            <div className='section-thongke'>
+                <div className='thongke-left'>
+                    <LineChart />
+                </div>
+                <div className='thongke-right'>
+                    <OrderTable />
+                </div>
+            </div>
+            
+            
         </div>
     )
 }
