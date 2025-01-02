@@ -12,10 +12,10 @@ const Factors = () => {
     const { url } = useContext(StoreContext)
 
     const [stats, setStats] = useState({
-        totalUsers: 0,
-        totalOrders: 0,
-        totalProducts: 0,
-        totalRevenue: 0,
+        totalUsers: 22,
+        totalOrders: 37,
+        totalProducts: 12,
+        totalContacts: 21,
         ordersByStatus: []
     });
 

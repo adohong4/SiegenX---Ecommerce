@@ -2,7 +2,7 @@
     width: 100%;
     min-height: 100%;
     border-top: 0;
-    font-size: 1em;
+    font-size: 0.9em;
     position: relative;
     z-index: 999;
 }
@@ -11,23 +11,23 @@
 .sidebar .sidebar-options .sidebar-option i,
 .sidebar .sidebar-options .sidebar-option p {
     text-transform: uppercase;
-    font-weight: bold;
     color: #fff;
     margin-bottom: 0px !important;
     transition: color 0.3s ease;
     font-size: 0.8em;
+    text-transform: capitalize;
 }
 
 .sidebar .sidebar-options .sidebar-option.active i,
 .sidebar .sidebar-options .sidebar-option.active p {
-    color: #000;
+    color: #fff;
 }
 
 .sidebar-options {
     padding: 5px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    /* gap: 20px; */
     justify-content: center;
     /* Căn giữa các mục trong sidebar */
     align-items: center;
@@ -37,32 +37,26 @@
 .sidebar-option {
     display: flex;
     align-items: center;
-    gap: 5%;
-    padding: 8px 10px;
-    border-radius: 50px;
+    padding: 15px;
     cursor: pointer;
-    opacity: 0.7;
-    transform: translateX(-20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 1;
+    gap:10px;
     justify-content: flex-start;
-    /* Để căn các phần tử con về bên trái */
     text-align: left;
-    width: 100%;
-    /* Để các phần tử con chiếm hết chiều rộng của .sidebar-option */
+    width: 200px;
 }
 
 
 .sidebar-option:hover {
-    color: #000;
-    background-color: #DDDD;
+    color: #fff !important;
     text-decoration: none;
+    border-left: 5px solid #2271b1 !important ;
 }
 
 a.sidebar-option.active {
-    background-color: #fff;
-    color: #000;
+    background-color: #2271b1;
+    color: #fff !important ;
     opacity: 1;
-    transform: translateX(0);
     text-decoration: none;
 }
 
@@ -114,6 +108,7 @@ swal2-html-container {
 }
 .logo-sidebar img{
     width: 100%;
+    padding: 20px;
 }
 .Logout {
     width: 10vw;
@@ -134,24 +129,24 @@ swal2-html-container {
 }
 .log-out-btn{
     position: absolute;
-    bottom: -270px;
+    bottom: -380px;
 }
 .sidebar-option-logout{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     padding: 10px;
-    background-color: #fff;
-    border-radius: 50px;
-    color: #000;
+    border-top: 1px solid #ccc;
+    width: 200px;
+    color: #ccc;
     transition: all 0.3s ease-in-out;
 }
 .sidebar-option-logout svg{
     margin-left: 10px;
 }
-.sidebar-option-logout:hover{
+/* .sidebar-option-logout:hover{
     scale: 1.1;
-}
+} */
 @media(max-width:1050px) {
     .sidebar-option p {
         display: none;

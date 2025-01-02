@@ -268,7 +268,7 @@ const ProductInfo = () => {
       {showPopup && (
         <div className="popup-overlay" onClick={togglePopup}>
           <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-            <img src={`${url}/images/${mainImage}`} alt={product_slug.nameProduct} className="popup-image" />
+            <img src={`${url2}/images/${mainImage}`} alt={product_slug.nameProduct} className="popup-image-vanh"  />
             {/* >>>>>>> featureTuoi */}
             <button className="popup-close" onClick={togglePopup}>X</button>
           </div>
