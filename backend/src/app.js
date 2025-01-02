@@ -14,11 +14,12 @@ connectDB();
 
 // Serve static files
 
-// Init router
+// Init router định tuyến API
 app.use('', require('./routes'));
+//Cung cấp các tệp tĩnh từ thư mục upload
 app.use('/images', express.static('upload'));
 
-// Handling errors
+// Handling errors xử lý lỗi 404
 app.use((req, res, next) => {
     const error = new Error('Not Found');
     error.status = 404;

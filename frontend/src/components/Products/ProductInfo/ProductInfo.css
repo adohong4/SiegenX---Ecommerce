@@ -455,8 +455,18 @@ input[type="number"]::-webkit-inner-spin-button {
     font-weight: 600;
     margin-left: 10px;
 }
-
+.popup-image-vanh{
+    scale: 1.1;
+    margin-left: -70px;
+}
 /* .spec-value {
     position: absolute;
     left: 300px;
 } */
+
+@media only screen and (max-width: 48em) {
+    .popup-image-vanh{
+        scale: 0.6;
+        margin-left: -125px;
+    }
+}

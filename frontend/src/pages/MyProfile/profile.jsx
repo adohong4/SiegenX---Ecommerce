@@ -126,9 +126,9 @@ const Profile = () => {
                                                 <div className="address-details-left">
                                                     <p>{address.street}, {address.precinct}, {address.city}, {address.province}, {address.phone}</p>
                                                 </div>
-                                                {/* <div className="address-details-right">
+                                                <div className="address-details-right">
                                                     <button>Xóa</button>
-                                                </div> */}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -107,6 +107,30 @@ class UserController {
 
         }
     };
+
+    deleteUserAddress = async (req, res) => {
+        const userId = req.user._id; // Lấy ID người dùng từ token
+        const addressId = req.params.addressId; // Lấy ID địa chỉ từ tham số route
+
+        try {
+            // Tìm người dùng và xóa địa chỉ
+            const user = await User.findById(userId);
+            if (!user) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+
+            // Xóa địa chỉ bằng cách lọc ra địa chỉ không cần thiết
+            user.address = user.address.filter(address => address._id.toString() !== addressId);
+
+            // Lưu người dùng
+            await user.save();
+
+            return res.status(200).json({ message: 'Address deleted successfully', addressId });
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ message: 'Server error', error });
+        }
+    };
 }
 
 module.exports = new UserController();
