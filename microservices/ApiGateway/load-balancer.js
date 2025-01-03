@@ -3,9 +3,9 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 // Define backend servers
 const servers = [
-    { url: 'http://localhost:3000' },
-    { url: 'http://localhost:3001' },
-    { url: 'http://localhost:3002' },
+    { url: 'http://localhost:4000' },
+    { url: 'http://localhost:4001' },
+    { url: 'http://localhost:4002' },
 ];
 
 let current = 0;
@@ -33,7 +33,7 @@ const server = http.createServer((req, res) => {
     proxy(req, res);
 });
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 server.listen(port, () => {
     console.log(`Load balancer running on port ${port}`);
 });

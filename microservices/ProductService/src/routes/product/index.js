@@ -15,7 +15,12 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({ storage: storage })
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 40 * 1024 * 1024 // Giới hạn 40MB
+    },
+})
 
 //admin
 router.post("/product/add", upload.array("images"), asyncHandler(ProductController.createProduct));
