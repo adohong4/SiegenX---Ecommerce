@@ -60,10 +60,9 @@ const Cart = () => {
                 toast.error("Tìm kiếm thất bại");
             }
         } catch (error) {
-            console.log(response.data.status)
             setList([]); // Gán giá trị rỗng khi xảy ra lỗi
             setTotalPages(0);
-            toast.error("Lỗi trong quá trình tìm kiếm");
+            // toast.error("Lỗi trong quá trình tìm kiếm");
         }
     };
 

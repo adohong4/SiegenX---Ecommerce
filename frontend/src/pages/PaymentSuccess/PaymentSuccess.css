@@ -1,0 +1,32 @@
+.payment-success {
+    text-align: center;
+    margin: 20px auto;
+    margin-top: 200px;
+    font-family: Arial, sans-serif;
+
+}
+
+.payment-success h1 {
+    color: green;
+}
+
+.order-info {
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-back-to-order, .btn-back-home {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #00B98E;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-back-to-order:hover, .btn-back-home:hover {
+    background-color: #0A9A79;
+}
