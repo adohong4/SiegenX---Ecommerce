@@ -25,7 +25,6 @@ class StripeController {
             res.json({ success: false, message: "Có lỗi xảy ra khi đặt hàng." });
         }
     }
-
 }
 
 module.exports = new StripeController()
