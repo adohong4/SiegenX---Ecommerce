@@ -12,5 +12,6 @@ router.delete('/profile/admin/deleteUser/:id', asyncHandler(AdminController.dele
 
 router.get('/profile/admin/users/email', asyncHandler(AdminController.getUsersByEmail));
 
+router.get('/profile/admin/user/count', asyncHandler(AdminController.countUser));
 
 module.exports = router

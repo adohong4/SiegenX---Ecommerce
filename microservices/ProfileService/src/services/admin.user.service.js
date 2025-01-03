@@ -98,6 +98,10 @@ class AdminService {
     static countDocumentsByEmail = async (email) => {
         return userModel.countDocuments({ email: { $regex: email, $options: 'i' } });
     };
+
+    static countUser = async () => {
+        return await userModel.countDocuments();
+    }
 }
 
 module.exports = AdminService;

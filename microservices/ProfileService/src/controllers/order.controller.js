@@ -114,5 +114,19 @@ class OrderController {
             next(error);
         }
     };
+
+    countOrder = async (req, res, next) => {
+        try {
+            const totalOrder = await OrderService.countOrder();
+
+            res.status(200).json({
+                status: true,
+                message: 'Đếm số lượng hóa đơn thành công!',
+                metadata: totalOrder,
+            });
+        } catch (error) {
+            next(error);
+        }
+    };
 }
 module.exports = new OrderController();

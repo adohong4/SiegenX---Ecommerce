@@ -27,7 +27,7 @@ const Contact = () => {
     const handleViewToggle = async (itemId) => {
         try {
             const updatedList = list.map(item => {
-                if (item.id === itemId) {
+                if (item._id === itemId) {
                     return { ...item, viewed: !item.viewed };
                 }
                 return item;
@@ -36,7 +36,7 @@ const Contact = () => {
             setList(updatedList);
 
             await axios.put(`${url}/v1/api/contact/updateCheck/${itemId}`, {
-                check: updatedList.find(item => item.id === itemId).viewed
+                isCheck: updatedList.find(item => item._id === itemId).viewed
             });
         } catch (error) {
             toast.error("Lỗi khi cập nhật tình trạng");
@@ -50,7 +50,7 @@ const Contact = () => {
             if (response.data.message) {
                 const contacts = response.data.data.map(contact => ({
                     ...contact,
-                    viewed: contact.check // Thiết lập trạng thái viewed
+                    viewed: contact.isCheck // Thiết lập trạng thái viewed
                 }));
                 setList(contacts);
                 setTotalItems(response.data.pagination.totalItems);
@@ -92,7 +92,7 @@ const Contact = () => {
                 if (Array.isArray(response.data.data)) {
                     const contacts = response.data.data.map(contact => ({
                         ...contact,
-                        viewed: contact.check // Thiết lập trạng thái viewed
+                        viewed: contact.isCheck // Thiết lập trạng thái viewed
                     }));
                     setList(contacts);
                     setTotalPages(response.data.pagination.totalPages); // Cập nhật tổng số trang
@@ -202,14 +202,14 @@ const Contact = () => {
                             <div>{item.date}</div>
                             <div className="col-check">
                                 <button
-                                    onClick={() => handleViewToggle(item.id)}
+                                    onClick={() => handleViewToggle(item._id)}
                                     className="btn-eye"
                                 >
                                     <FontAwesomeIcon icon={item.viewed ? faEyeSlash : faEye} />
                                 </button>
                             </div>
                             <div className="col-actions">
-                                <button onClick={(e) => { e.stopPropagation(); removeContact(item.id); }} className="btn-delete">
+                                <button onClick={(e) => { e.stopPropagation(); removeContact(item._id); }} className="btn-delete">
                                     <FontAwesomeIcon icon={faTrash} />
                                 </button>
                                 <button onClick={() => openPopup(item)} className="btn-info">

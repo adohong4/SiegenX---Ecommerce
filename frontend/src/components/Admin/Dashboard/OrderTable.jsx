@@ -11,6 +11,10 @@ const OrderTable = () => {
     const [totalOrder, setTotalOrder] = useState(0);
     const [totalPages, setTotalPages] = useState(0); // Theo dõi tổng số trang
 
+    const handlePageClick = (event) => {
+        setCurrentPage(+event.selected + 1);
+    };
+
     const fetchListpage = async (page = 1) => {
         try {
             const response = await axios.get(`${url}/v1/api/profile/order/pagination?page=${page}&limit=6`);
@@ -33,9 +37,9 @@ const OrderTable = () => {
             <div className='orderpayment-list-title'>
                 <p>Giao dịch gần đây</p>
             </div>
-        
-                <ul className="transaction-list">
-                    {list.map((item) => (
+
+            <ul className="transaction-list">
+                {list.map((item) => (
                     <li key={item._id} className="transaction-item">
                         {/* <div className="transaction-icon">
                             <br />
@@ -49,12 +53,13 @@ const OrderTable = () => {
                             <p className="transaction-info">{item.paymentMethod}</p>
                         </div>
                     </li>
-                    ))}
-                </ul>
+                ))}
+            </ul>
 
-                <ReactPaginate
+            <ReactPaginate
                 breakLabel="..."
                 nextLabel=">"
+                onPageChange={handlePageClick}
                 previousLabel="<"
                 pageCount={totalPages} // Tổng số trang
                 pageRangeDisplayed={1} // Hiển thị tối đa 4 số liên tiếp

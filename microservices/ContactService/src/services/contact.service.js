@@ -79,12 +79,13 @@ class ContactService {
     static find = async (skip, limit) => {
         return await contactModel.find()
             .skip(skip)
-            .limit(limit);
+            .limit(limit)
+            .sort({ createdAt: -1 });
     }
 
     static findByEmail = async (email) => {
         try {
-            const contacts = await contactModel.find({ email: { $regex: email, $options: 'i' } }); 
+            const contacts = await contactModel.find({ email: { $regex: email, $options: 'i' } });
             if (!contacts || contacts.length === 0) {
                 throw new Error("No contacts found with the given email");
             }

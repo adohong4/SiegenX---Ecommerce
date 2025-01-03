@@ -11,44 +11,57 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 const Factors = () => {
     const { url } = useContext(StoreContext)
 
-    const [stats, setStats] = useState({
-        totalUsers: 20,
-        totalOrders: 15,
-        totalProducts: 30,
-        totalRevenue: 20,
-        ordersByStatus: []
-    });
+    const [orders, setOrders] = useState([]);
+    const [user, setUser] = useState([]);
+    const [product, setProduct] = useState([]);
+    const [contact, setContact] = useState([]);
 
-    const fetchFactors = async () => {
-        try {
-            const response = await axios.get(`${url}/v1/api/countProducts`);
-            if (response.data.status) {
-                setStats(response.data.metadata);
-                console.log('Fetched Factors:', response.data.metadata);
-            } else {
-                toast.error(response.data.message);
-            }
-        } catch (error) {
-            console.error("Error fetching Factors", error);
-            toast.error("Failed to fetch Factors.");
+    const fetchOrderCount = async () => {
+        const response = await axios.get(`${url}/v1/api/profile/order/count`);
+        if (response.data.status) {
+            setOrders(response.data.metadata);
         }
-    };
+    }
+
+    const fetchProductCount = async () => {
+        const response = await axios.get(`${url}/v1/api/product/count`);
+        if (response.data.status) {
+            setProduct(response.data.metadata);
+        }
+    }
+
+    const fetchUserCount = async () => {
+        const response = await axios.get(`${url}/v1/api/profile/admin/user/count`);
+        if (response.data.status) {
+            setUser(response.data.metadata);
+        }
+    }
+
+    const fetchContactCount = async () => {
+        const response = await axios.get(`${url}/v1/api/contact/count`);
+        if (response.data.status) {
+            setContact(response.data.metadata);
+        }
+    }
 
     useEffect(() => {
-        fetchFactors();
+        fetchProductCount();
+        fetchOrderCount();
+        fetchUserCount();
+        fetchContactCount();
     }, [url]);
 
 
     const chartData = {
-        labels: ['Người dùng', 'Đơn hàng', 'Sản phẩm', 'Liên hệ'],
+        labels: ['Người dùng', 'Sản phẩm', 'Đơn hàng', 'Liên hệ'],
         datasets: [
             {
                 label: 'Người dùng',
                 data: [
-                    20,
-                    15,
-                    30,
-                    20,
+                    user,
+                    product,
+                    orders,
+                    contact,
                 ],
                 backgroundColor: [
                     'rgba(75, 192, 192, 0.6)', // Color for Total Users

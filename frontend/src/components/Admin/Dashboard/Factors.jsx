@@ -13,31 +13,46 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 const Factors = () => {
     const { url } = useContext(StoreContext)
 
-    const [stats, setStats] = useState({
-        totalUsers: 20,
-        totalOrders: 15,
-        totalProducts: 30,
-        totalRevenue: 20,
-        ordersByStatus: []
-    });
+    const [orders, setOrders] = useState([]);
+    const [user, setUser] = useState([]);
+    const [product, setProduct] = useState([]);
+    const [contact, setContact] = useState([]);
 
-    const fetchFactors = async () => {
-        try {
-            const response = await axios.get(`${url}/v1/api/countProducts`);
-            if (response.data.status) {
-                setStats(response.data.metadata);
-                console.log('Fetched Factors:', response.data.metadata);
-            } else {
-                toast.error(response.data.message);
-            }
-        } catch (error) {
-            console.error("Error fetching Factors", error);
-            toast.error("Failed to fetch Factors.");
+    const fetchOrderCount = async () => {
+        const response = await axios.get(`${url}/v1/api/profile/order/count`);
+        if (response.data.status) {
+            setOrders(response.data.metadata);
         }
-    };
+    }
+
+    const fetchProductCount = async () => {
+        const response = await axios.get(`${url}/v1/api/product/count`);
+        if (response.data.status) {
+            setProduct(response.data.metadata);
+        }
+    }
+
+    const fetchUserCount = async () => {
+        const response = await axios.get(`${url}/v1/api/profile/admin/user/count`);
+        if (response.data.status) {
+            setUser(response.data.metadata);
+        }
+    }
+
+    const fetchContactCount = async () => {
+        const response = await axios.get(`${url}/v1/api/contact/count`);
+        if (response.data.status) {
+            setContact(response.data.metadata);
+        }
+    }
+
+
 
     useEffect(() => {
-        fetchFactors();
+        fetchProductCount();
+        fetchOrderCount();
+        fetchUserCount();
+        fetchContactCount();
     }, [url]);
 
     return (
@@ -50,31 +65,31 @@ const Factors = () => {
                     <FontAwesomeIcon icon={faUsers} className="info-icon" />
                     <div className='tt'>
                         <h3>Người dùng</h3>
-                        <p>{stats.totalUsers}</p>
+                        <p>{user}</p>
                     </div>
                 </div>
                 <div className="info-card">
                     <FontAwesomeIcon icon={faBox} className="info-icon" />
                     <div className='tt'>
                         <h3>Sản phẩm</h3>
-                        <p>{stats.totalProducts}</p>
+                        <p>{product}</p>
                     </div>
                 </div>
                 <div className="info-card">
                     <FontAwesomeIcon icon={faShoppingCart} className="info-icon" />
                     <div className='tt'>
                         <h3>Đơn hàng</h3>
-                        <p>{stats.totalOrders}</p>
+                        <p>{orders}</p>
                     </div>
-                    
+
                 </div>
                 <div className="info-card">
                     <FontAwesomeIcon icon={faEnvelope} className="info-icon" />
                     <div className='tt'>
                         <h3>Liên hệ</h3>
-                        <p>{stats.totalContacts}</p>
+                        <p>{contact}</p>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

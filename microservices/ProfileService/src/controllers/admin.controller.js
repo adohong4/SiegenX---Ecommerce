@@ -78,6 +78,22 @@ class AdminController {
             next(error);
         }
     };
+
+    countUser = async (req, res, next) => {
+        try {
+            const result = await AdminService.countUser();
+            if (result) {
+                new OK({
+                    message: 'Count User Successful',
+                    metadata: result
+                }).send(res);
+            } else {
+                res.status(400).json({ message: 'Failed' });
+            }
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 
 module.exports = new AdminController()
