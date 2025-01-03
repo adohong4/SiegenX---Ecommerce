@@ -66,6 +66,7 @@ const PlaceOrder = () => {
                 orderItems.push(itemInfo);
             }
         });
+
         let orderData = {
             address: formData,
             items: orderItems,
@@ -82,15 +83,45 @@ const PlaceOrder = () => {
                 toast.error(response.data.message);
             }
         } else {
+            // let response = await axios.post(url + "/v1/api/profile/payment/verify", orderData, { headers: { token } });
+            // if (response.data.success) {
+            //     toast.success(response.data.message);
+            //     navigate("/myorder");
+            // } else {
+            //     toast.error(response.data.message);
+            // }
+
             let response = await axios.post(url + "/v1/api/profile/payment/verify", orderData, { headers: { token } });
             if (response.data.success) {
+                console.log("Thanh toán thành công, điều hướng tới /payment-success");
                 toast.success(response.data.message);
-                navigate("/myorder");
+        
+                await sendEmailConfirmation(orderItems, formData.email)
+                // Chuyển hướng đến trang thông báo thanh toán thành công
+                navigate('/payment-success', {
+                    state: { 
+                        message: "Đặt hàng thành công!",
+                        orderData
+                    }
+                });
             } else {
                 toast.error(response.data.message);
             }
         }
 
+    };
+
+    const sendEmailConfirmation = async (orderDetails, email) => {
+        try {
+            const response = await axios.post(url + '/v1/api/profile/send-email', {
+                email: email,
+                orderDetails: orderDetails, // Array chứa chi tiết đơn hàng
+            });
+
+            console.log(response.data.message); // Thông báo thành công
+        } catch (error) {
+            console.error('Lỗi khi gửi email:', error.response?.data || error.message);
+        }
     };
 
     useEffect(() => {

@@ -19,6 +19,7 @@ import BoothSolution from './pages/Solution/Solution.BoothSolution'
 import Admin from './pages/Admin/Admin';
 import MyOrder from './pages/MyOrders/MyOrders';
 import Verify from './pages/Verify/Verify';
+import PaymentSuccess from './pages/PaymentSuccess/PaymentSuccess';
 function App() {
   return (
     <>
@@ -48,6 +49,7 @@ function App() {
                     <Route path="/giai-phap/giai-phap-gian-hang" element={<BoothSolution />}></Route>
                     <Route path="/myorder" element={<MyOrder />}></Route>
                     <Route path="/verify" element={<Verify />}></Route>  
+                    <Route path="/payment-success" element={<PaymentSuccess />}></Route>  
                   </Routes>
                   <Footer />
                 </>
