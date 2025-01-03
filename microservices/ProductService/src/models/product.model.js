@@ -42,5 +42,4 @@ ProductSchema.pre('save', function (next) {
 ProductSchema.index({ _id: -1, category: 1 });
 
 const productModel = mongoose.models.product || mongoose.model(DOCUMENT_NAME, ProductSchema);
-
 module.exports = productModel;
