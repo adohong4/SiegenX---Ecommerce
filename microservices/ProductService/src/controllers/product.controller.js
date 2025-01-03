@@ -9,7 +9,7 @@ class ProductController {
             const result = await ProductService.createProduct(req, res, next);
             if (result) {
                 new CREATED({
-                    message: 'create Product successfull',
+                    message: 'Đã thêm sản phẩm mới',
                     metadata: result.product
                 }).send(res);
             }
@@ -77,7 +77,7 @@ class ProductController {
             const result = await ProductService.deleteProduct(req.params.id);
 
             new OK({
-                message: 'delete successful!',
+                message: 'Xóa thành công',
                 metadata: result.product
             }).send(res);
         } catch (error) {
@@ -136,6 +136,18 @@ class ProductController {
         return productModel.countDocuments({ title: { $regex: title, $options: 'i' } });
     };
 
+    countProducts = async (req, res, next) => {
+        try {
+            const result = await ProductService.countDocuments();
+
+            new OK({
+                message: 'Thành công',
+                metadata: result
+            }).send(res);
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 
 module.exports = new ProductController();

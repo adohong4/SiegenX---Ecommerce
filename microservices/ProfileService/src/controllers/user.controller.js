@@ -61,23 +61,6 @@ class UserController {
         }
     };
 
-    deleteUserAddress = async (req, res, next) => {
-        try {
-            const { addressId } = req.params;
-            const userId = req.user.id
-
-            const result = await UserService.deleteUserAddress({ userId, addressId });
-            new OK({
-                message: 'Xóa địa chỉ thành công',
-                metadata: result.metadata
-            }).send(res);
-        } catch (error) {
-            next(error);
-
-        }
-    };
-
-
     getUsersWithPagination = async (req, res, next) => {
         try {
             const page = parseInt(req.query.page) || 1;
@@ -108,27 +91,28 @@ class UserController {
         }
     };
 
-    deleteUserAddress = async (req, res) => {
-        const userId = req.user._id; // Lấy ID người dùng từ token
-        const addressId = req.params.addressId; // Lấy ID địa chỉ từ tham số route
+    deleteAddress = async (req, res) => {
+        const userId = req.body.userId; // Sử dụng optional chaining
+        const addressId = req.params.addressId;
 
         try {
-            // Tìm người dùng và xóa địa chỉ
+            // Tìm người dùng
             const user = await User.findById(userId);
             if (!user) {
                 return res.status(404).json({ message: 'User not found' });
             }
 
-            // Xóa địa chỉ bằng cách lọc ra địa chỉ không cần thiết
-            user.address = user.address.filter(address => address._id.toString() !== addressId);
+            // Xóa địa chỉ
+            const updatedUser = await User.findOneAndUpdate(
+                { _id: userId },
+                { $pull: { address: { _id: addressId } } },
+                { new: true }
+            );
 
-            // Lưu người dùng
-            await user.save();
-
-            return res.status(200).json({ message: 'Address deleted successfully', addressId });
+            return res.status(200).json({ message: 'Xóa địa chỉ thành công', addressId });
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ message: 'Server error', error });
+            return res.status(500).json({ message: 'Server error', error: error.message });
         }
     };
 }

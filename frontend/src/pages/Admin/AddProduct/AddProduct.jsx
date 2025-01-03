@@ -156,7 +156,7 @@ const AddProduct = () => {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="title" className="mb-2">Tiêu đề</label>
+                                <label htmlFor="title" className="mb-2">Tiêu đề (*)</label>
                                 <input
                                     onChange={onChangeHandler}
                                     value={data.title}
@@ -170,7 +170,7 @@ const AddProduct = () => {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="nameProduct" className="mb-2">Tên Sản Phẩm</label>
+                                <label htmlFor="nameProduct" className="mb-2">Tên Sản Phẩm (*)</label>
                                 <input
                                     onChange={onChangeHandler}
                                     value={data.nameProduct}
@@ -184,7 +184,7 @@ const AddProduct = () => {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="recap" className="mb-2">Miêu tả ngắn</label>
+                                <label htmlFor="recap" className="mb-2">Miêu tả ngắn (*)</label>
                                 <input
                                     onChange={onChangeHandler}
                                     value={data.recap}
@@ -198,7 +198,7 @@ const AddProduct = () => {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="description" className="mb-2">Miêu tả sản phẩm</label>
+                                <label htmlFor="description" className="mb-2">Miêu tả sản phẩm (*)</label>
                                 <textarea
                                     onChange={onChangeHandler}
                                     value={data.description}
@@ -213,7 +213,7 @@ const AddProduct = () => {
 
                             <div className="form-row">
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="category" className="mb-2">Danh mục</label>
+                                    <label htmlFor="category" className="mb-2">Danh mục (*)</label>
                                     <select
                                         onChange={onChangeHandler}
                                         value={data.category}
@@ -230,7 +230,7 @@ const AddProduct = () => {
                                 </div>
 
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="price" className="mb-2">Giá (VNđ)</label>
+                                    <label htmlFor="price" className="mb-2">Giá (VNđ) (*)</label>
                                     <input
                                         onChange={onChangeHandler}
                                         value={data.price}
@@ -244,7 +244,7 @@ const AddProduct = () => {
                                 </div>
 
                                 <div className="form-group col-md-6">
-                                    <label htmlFor="quantity" className="mb-2">Số lượng</label>
+                                    <label htmlFor="quantity" className="mb-2">Số lượng (*)</label>
                                     <input
                                         onChange={onChangeHandler}
                                         value={data.quantity}

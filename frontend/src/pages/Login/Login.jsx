@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { GoogleLogin } from '@react-oauth/google'
 import { StoreContext } from '../../context/StoreContext'
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
@@ -21,6 +22,29 @@ const Login = () => {
         const value = event.target.value;
         setData(data => ({ ...data, [name]: value }))
     }
+
+    const handleGoogleLogin = async (credentialResponse) => {
+        try {
+            const response = await axios.post(`${url}/v1/api/identity/google-login`, {
+                token: credentialResponse.credential,
+            });
+
+            if (response.data.status) {
+                const { user } = response.data.metadata;
+                toast.success(`Chào mừng ${user.username || user.email}!`);
+                localStorage.setItem("token", response.data.metadata.token); // Nếu cần thêm token sau này
+                navigate('/');
+            } else {
+                toast.error(response.data.message || 'Đăng nhập thất bại');
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            toast.error(
+                error.response?.data?.message || 'Có lỗi xảy ra, vui lòng thử lại'
+            );
+        }
+    };
+
 
     const onLogin = async (event) => {
         event.preventDefault()
@@ -64,8 +88,10 @@ const Login = () => {
                     <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Mật khẩu' required />
                 </div>
                 <div className="Oauth2">
-                    <button className='btn-fb'>Facebook</button>
-                    <button className='btn-gg'>Google</button>
+                    {/* <button className='btn-fb'>Facebook</button> */}
+                    <GoogleLogin
+                        onSuccess={handleGoogleLogin}
+                    />
                 </div>
 
                 <button type='submit' className='btn-sub'>{currState === "Đăng ký" ? "Tạo tài khoản mới" : "Đăng nhập"}</button>

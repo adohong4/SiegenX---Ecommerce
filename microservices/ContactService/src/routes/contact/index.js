@@ -15,4 +15,6 @@ router.put('/contact/updateCheck/:id', asyncHandler(ContactController.updateCont
 router.get('/contact/pagination', asyncHandler(ContactController.getContactWithPagination));
 router.get('/contacts/email', ContactController.getContactsByEmail);
 
+router.get('/contact/count', asyncHandler(ContactController.countContact));
+
 module.exports = router; 

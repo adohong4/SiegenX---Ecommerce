@@ -95,11 +95,11 @@ const PlaceOrder = () => {
             if (response.data.success) {
                 console.log("Thanh toán thành công, điều hướng tới /payment-success");
                 toast.success(response.data.message);
-        
+
                 await sendEmailConfirmation(orderItems, formData.email)
                 // Chuyển hướng đến trang thông báo thanh toán thành công
                 navigate('/payment-success', {
-                    state: { 
+                    state: {
                         message: "Đặt hàng thành công!",
                         orderData
                     }
@@ -153,7 +153,7 @@ const PlaceOrder = () => {
 
                 <div className="multi-fields">
                     <input type="text" placeholder="Họ và tên" name="fullname" value={formData.fullname} onChange={onChangeHandler} />
-                    <input type="email" placeholder="Email" name="email" value={formData.email} onChange={onChangeHandler} />
+                    <input type="email" placeholder="Email" name="email" value={formData.email} onChange={onChangeHandler} required />
                 </div>
                 <div className='multi-fields'>
                     <input type="text" placeholder="Đường" name="street" value={formData.street} onChange={onChangeHandler} />

@@ -107,30 +107,6 @@ class UserService {
             throw error;
         }
     }
-
-    static deleteUserAddress = async ({ userId, addressId }) => {
-        try {
-            const user = await userModel.findByIdAndUpdate(userId,
-                { $pull: { address: { _id: addressId } } }, { new: true }
-            );
-
-            if (!user) {
-                throw new BadRequestError("Tài khoản không tồn tại");
-            }
-
-            return {
-                message: "Xóa địa chỉ thành công",
-                metadata: {
-                    addresses: user.address,
-                }
-            };
-        } catch (error) {
-            throw error;
-        }
-    }
-
-
-
 }
 
 module.exports = UserService;

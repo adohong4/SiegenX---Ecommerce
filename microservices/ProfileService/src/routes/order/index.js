@@ -21,5 +21,6 @@ router.get('/profile/order/id', asyncHandler(orderController.getOrderByID));
 
 // Statistical
 router.get('/profile/order/statistical', asyncHandler(statisticalController.getTotalAmountLast7Days));
+router.get('/profile/order/count', asyncHandler(orderController.countOrder));
 
 module.exports = router;

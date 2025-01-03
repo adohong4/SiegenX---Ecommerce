@@ -13,7 +13,7 @@ router.put('/profile/updateProfile', authMiddleware, asyncHandler(UserController
 
 router.post('/profile/addAddress', authMiddleware, asyncHandler(UserController.addUserAddress));
 router.get('/profile/getAddress', authMiddleware, asyncHandler(UserController.getUserAddress));
-router.delete('/profile/deleteAddress/:addressId', authMiddleware, asyncHandler(UserController.deleteUserAddress));
+router.delete('/profile/deleteAddress/:addressId', authMiddleware, asyncHandler(UserController.deleteAddress));
 
 //phan trang nguoi dung
 router.get('/profile/pagination', asyncHandler(UserController.getUsersWithPagination));

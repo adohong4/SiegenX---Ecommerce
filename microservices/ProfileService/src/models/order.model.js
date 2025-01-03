@@ -29,6 +29,8 @@ const orderSchema = new Schema({
     payment: { type: Boolean, default: false }
 }, { timestamps: true })
 
+orderSchema.index({ userId: 1 });
+
 const orderModel = mongoose.models.order || mongoose.model(DOCUMENT_NAME, orderSchema)
 
 module.exports = orderModel;

@@ -71,7 +71,7 @@ class OrderService {
         return await orderModel.find()
             .skip(skip)
             .limit(limit)
-            .sort({ createdAt: -1 });;
+            .sort({ createdAt: -1 });
     }
 
 
@@ -99,6 +99,10 @@ class OrderService {
     static countDocumentsByID = async (id) => {
         return orderModel.countDocuments({ _id: id });
     };
+
+    static countOrder = async () => {
+        return await orderModel.countDocuments();
+    }
 }
 
 

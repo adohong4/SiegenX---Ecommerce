@@ -37,7 +37,7 @@
 .admin-content {
     flex: 1;
     /* padding: 20px; */
-    background-color: white;
+    background-color: #f4f4f4;
     margin-left: 200px;
     /* overflow-y: auto; */
     height: 100vh;
@@ -51,7 +51,7 @@
 }
 
 .admin-content p {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.6;
     color: #000;
 }

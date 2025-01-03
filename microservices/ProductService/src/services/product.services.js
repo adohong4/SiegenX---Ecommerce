@@ -181,11 +181,11 @@ class ProductService {
         return await productModel.countDocuments();
     }
 
-
     static find = async (skip, limit) => {
         return productModel.find()
             .skip(skip)
-            .limit(limit);
+            .limit(limit)
+            .sort({ createdAt: -1 });
     }
 
     static findByTitle = async (title, skip, limit) => {

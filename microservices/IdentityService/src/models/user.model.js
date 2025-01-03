@@ -18,7 +18,7 @@ const AddressSchema = new Schema({
 const UserSchema = new Schema({
     username: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    password: { type: String, required: false },
     // role: { type: String, required: true },
     address: [AddressSchema],
     cartData: { type: Object, default: {} }

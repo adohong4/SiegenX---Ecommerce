@@ -66,6 +66,18 @@ class ContactController {
         }
     }
 
+    countContact = async (req, res, next) => {
+        try {
+            const result = await ContactService.countDocuments();
+            new OK({
+                message: 'Đếm thành công',
+                metadata: result
+            }).send(res);
+        } catch (error) {
+            next(error);
+        }
+    }
+
     getContactWithPagination = async (req, res, next) => {
         try {
             const page = parseInt(req.query.page) || 1;
@@ -94,7 +106,7 @@ class ContactController {
         try {
             const { email } = req.query; // Lấy title từ query params
             const result = await ContactService.findByEmail(email);
-    
+
             new OK({
                 message: 'Get contacts By email OK',
                 metadata: result.contacts
